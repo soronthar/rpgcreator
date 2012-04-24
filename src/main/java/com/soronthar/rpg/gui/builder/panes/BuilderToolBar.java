@@ -18,9 +18,8 @@ public class BuilderToolBar extends JToolBar {
         this.addSeparator();
         this.add(actions.runProjectAction());
         this.addSeparator();
-        this.add(new JToggleButton(actions.addObstacleAction()));
-        this.add(new JToggleButton(actions.addHeroStartAction()));
-        this.add(new JToggleButton(actions.addJumpAction()));
+        this.add(new SpecialsToogleToolbar(actions));
+
 
     }
 

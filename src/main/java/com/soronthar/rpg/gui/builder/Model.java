@@ -11,6 +11,10 @@ import com.soronthar.rpg.model.tiles.TileSetBag;
 import java.awt.image.BufferedImage;
 
 public class Model {
+    public enum SpecialModes {
+        NONE, OBSTACLE, HERO_START, JUMP
+    }
+
     private TileSetBag tileSets = new TileSetBag();
     private Project project;
     private Scenery activeScenery = Scenery.NULL_SCENERY;
@@ -19,10 +23,7 @@ public class Model {
 
     private boolean[] visibility = new boolean[LayersArray.LAYER_COUNT + 1];
 
-
-    private boolean paintObstacles = false;
-    private boolean heroStartMode = false;
-    private boolean addJumpMode = false;
+    SpecialModes mode = SpecialModes.NONE;
     private BufferedImage drawingPen;
 
 
@@ -40,29 +41,35 @@ public class Model {
 
 
     public boolean isPaintObstacles() {
-        return paintObstacles;
+        return mode == SpecialModes.OBSTACLE;
     }
 
     public boolean isHeroStartMode() {
-        return heroStartMode;
+        return mode == SpecialModes.HERO_START;
     }
 
     public boolean isAddJumpMode() {
-        return addJumpMode;
+        return mode == SpecialModes.JUMP;
+    }
+
+    public void setMode(SpecialModes mode) {
+        this.mode = mode;
     }
 
     public void setPaintObstacles(boolean paintObstacles) {
-        this.paintObstacles = paintObstacles;
+        if (paintObstacles) setMode(SpecialModes.OBSTACLE);
+        else setMode(SpecialModes.NONE);
     }
 
     public void setHeroStartMode(boolean heroStartMode) {
-        this.heroStartMode = heroStartMode;
+        if (heroStartMode) setMode(SpecialModes.HERO_START);
+        else setMode(SpecialModes.NONE);
     }
 
     public void setAddJumpMode(boolean addJumpMode) {
-        this.addJumpMode = addJumpMode;
+        if (addJumpMode) setMode(SpecialModes.JUMP);
+        else setMode(SpecialModes.NONE);
     }
-
 
     public BufferedImage getDrawingPen() {
         BufferedImage tile;
