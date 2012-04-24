@@ -1,4 +1,4 @@
-package com.soronthar.rpg.gui.builder.actions;
+package com.soronthar.rpg.gui.builder.actions.base;
 
 import javax.swing.*;
 

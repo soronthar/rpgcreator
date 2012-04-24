@@ -1,6 +1,7 @@
 package com.soronthar.rpg.gui.builder.actions;
 
 import com.soronthar.rpg.gui.builder.Controller;
+import com.soronthar.rpg.gui.builder.actions.base.ShowDialogAction;
 import org.soronthar.util.StringUtils;
 
 import javax.swing.*;
@@ -10,10 +11,7 @@ import java.awt.event.ActionEvent;
 public class NewProjectAction extends ShowDialogAction {
 
     public NewProjectAction(JFrame frame, Controller controller) {
-        super("New Project", frame, controller);
-        this.setIcon(new ImageIcon("icons/newproject.png"));
-
-
+        super("New Project", "icons/newproject.png", frame, controller);
     }
 
     public void actionPerformed(ActionEvent e) {

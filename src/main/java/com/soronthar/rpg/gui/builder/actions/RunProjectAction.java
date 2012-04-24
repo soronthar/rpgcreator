@@ -1,6 +1,7 @@
 package com.soronthar.rpg.gui.builder.actions;
 
 import com.soronthar.rpg.gui.builder.Controller;
+import com.soronthar.rpg.gui.builder.actions.base.WithControllerAction;
 import com.soronthar.rpg.runner.manager.GameManager;
 
 import javax.swing.*;
@@ -8,8 +9,7 @@ import java.awt.event.ActionEvent;
 
 public class RunProjectAction extends WithControllerAction {
     public RunProjectAction(Controller controller) {
-        super("Run Project", controller);
-        this.setIcon(new ImageIcon("icons/run.png"));
+        super("Run Project", "icons/run.png", controller);
     }
 
     public void actionPerformed(ActionEvent e) {

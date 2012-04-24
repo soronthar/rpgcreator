@@ -1,14 +1,14 @@
-package com.soronthar.rpg.gui.builder.actions;
+package com.soronthar.rpg.gui.builder.actions.base;
 
 import com.soronthar.rpg.gui.builder.Controller;
 
 import javax.swing.*;
 
-public abstract class WithControllerAction extends AbstractAction {
+public abstract class WithControllerAction extends IconedAction {
     private Controller controller;
 
-    public WithControllerAction(String name, Controller controller) {
-        super(name);
+    public WithControllerAction(String name, String iconName, Controller controller) {
+        super(name, iconName);
         this.controller = controller;
         setTooltip(name);
     }
