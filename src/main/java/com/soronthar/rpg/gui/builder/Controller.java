@@ -5,7 +5,7 @@ import com.soronthar.rpg.gui.builder.panes.PaintPanel;
 import com.soronthar.rpg.gui.builder.panes.TilesetsPanel;
 import com.soronthar.rpg.model.JumpPoint;
 import com.soronthar.rpg.model.MainEngine;
-import com.soronthar.rpg.model.objects.Sprite;
+import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.soronthar.rpg.model.project.NewProjectPersister;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.scenery.*;

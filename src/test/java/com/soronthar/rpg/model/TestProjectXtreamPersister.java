@@ -1,8 +1,8 @@
 package com.soronthar.rpg.model;
 
-import com.soronthar.rpg.model.objects.Facing;
-import com.soronthar.rpg.model.objects.Sprite;
-import com.soronthar.rpg.model.objects.UnmoveableSprite;
+import com.soronthar.rpg.model.objects.sprites.Facing;
+import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.sprites.UnmoveableSprite;
 import com.soronthar.rpg.model.project.NewProjectPersister;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.scenery.DrawnTile;

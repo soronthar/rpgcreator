@@ -1,20 +1,22 @@
 package com.soronthar.rpg.model.objects;
 
+
 import java.awt.*;
 
-public class Obstacle extends Sprite {
-    @Override
-    public void update(long elapsedTime) {
+public class Obstacle extends SpecialObject {
 
-    }
 
-    @Override
-    public Image getFrame() {
-        return null;
+    public Obstacle(Point location) {
+        super(location);
     }
 
     @Override
     public boolean isVisible() {
         return false;
+    }
+
+    @Override
+    public boolean isSolid() {
+        return true;
     }
 }

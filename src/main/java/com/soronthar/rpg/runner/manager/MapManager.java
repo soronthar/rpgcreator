@@ -1,8 +1,9 @@
 package com.soronthar.rpg.runner.manager;
 
-import com.soronthar.rpg.model.objects.Hero;
 import com.soronthar.rpg.model.objects.Obstacle;
-import com.soronthar.rpg.model.objects.Sprite;
+import com.soronthar.rpg.model.objects.SpecialObject;
+import com.soronthar.rpg.model.objects.sprites.Hero;
+import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.soronthar.rpg.model.scenery.Scenery;
 import com.soronthar.rpg.model.tiles.Tile;
 
@@ -13,13 +14,12 @@ import java.util.List;
 public class MapManager {
     Hero hero;
     List<Sprite> sprites = new ArrayList<Sprite>();
-    SpritesPerPoint solidItems = new SpritesPerPoint();
+    SpecialsPerPoint solidItems = new SpecialsPerPoint();
 
 
     public MapManager(Scenery scenery) {
         Rectangle screenBounds = new Rectangle(scenery.getWidth() - Tile.TILE_SIZE, scenery.getHeight() - Tile.TILE_SIZE);
-        this.hero = new Hero();
-        this.hero.constraintTo(screenBounds);
+        this.hero = new Hero(scenery.getHeroStartingPoint(), screenBounds);
 
         for (Sprite sprite : scenery.getSprites().values()) {
             this.sprites.add(sprite);
@@ -27,27 +27,25 @@ public class MapManager {
 
         Collection<Point> obstacles = scenery.getObstacles();
         for (Point point : obstacles) {
-            this.solidItems.add(point, new Obstacle());
+            this.solidItems.add(point, new Obstacle(point));
         }
-
-        hero.setLocation(scenery.getHeroStartingPoint());
     }
 
-    private class SpritesPerPoint {
-        Map<Point, List<Sprite>> spriteMap = new HashMap<Point, List<Sprite>>();
+    private class SpecialsPerPoint {
+        Map<Point, List<SpecialObject>> spriteMap = new HashMap<Point, List<SpecialObject>>();
 
 
-        public void add(Point location, Sprite sprite) {
-            List<Sprite> sprites = spriteMap.get(location);
+        public void add(Point location, SpecialObject sprite) {
+            List<SpecialObject> sprites = spriteMap.get(location);
             if (sprites == null) {
-                sprites = new ArrayList<Sprite>();
+                sprites = new ArrayList<SpecialObject>();
                 spriteMap.put(location, sprites);
             }
             sprites.add(sprite);
         }
 
         public void remove(Point location, Sprite sprite) {
-            List<Sprite> sprites = spriteMap.get(location);
+            List<SpecialObject> sprites = spriteMap.get(location);
             if (sprites == null) return;
             sprites.remove(sprite);
         }
@@ -56,10 +54,20 @@ public class MapManager {
             return spriteMap.containsKey(location);
         }
 
-        public boolean haveSpriteAt(Sprite sprite, Point location) {
-            List<Sprite> sprites = spriteMap.get(location);
+        public boolean haveSpriteAt(SpecialObject sprite, Point location) {
+            List<SpecialObject> sprites = spriteMap.get(location);
             if (sprites == null || sprites.isEmpty()) return false;
             return sprites.contains(sprite);
+        }
+
+        public boolean haveSolidSpritesAt(Point location) {
+            List<SpecialObject> sprites = spriteMap.get(location);
+            if (sprites == null || sprites.isEmpty()) return false;
+
+            for (SpecialObject specialObject : sprites) {
+                if (specialObject.isSolid()) return true;
+            }
+            return false;
         }
     }
 
@@ -92,18 +100,16 @@ public class MapManager {
         Point oldLocation = sprite.getLocation();
         sprite.update(elapsedTime);
 
-        if (sprite.isMoving()) { //there is a nasty bug that may creep here. Check "canMove" instead of "isMoving"
+        if (sprite.isMoving()) { //TODO: there is a nasty bug that may creep here. Check "canMove" instead of "isMoving"
             Point tileLocation = sprite.getTileLocation();
             if (hasCollition(sprite, tileLocation)) {
                 sprite.setLocation(oldLocation);
             }
         }
-
-
     }
 
-    private boolean hasCollition(Sprite sprite, Point tileLocation) {
-        return solidItems.haveSpritesAt(tileLocation); //&& !solidItems.haveSpriteAt(sprite,tileLocation);
+    private boolean hasCollition(SpecialObject sprite, Point tileLocation) {
+        return solidItems.haveSolidSpritesAt(tileLocation);
     }
 
     public Hero getHero() {

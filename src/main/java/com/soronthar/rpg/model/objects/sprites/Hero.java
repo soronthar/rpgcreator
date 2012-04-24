@@ -1,4 +1,4 @@
-package com.soronthar.rpg.model.objects;
+package com.soronthar.rpg.model.objects.sprites;
 
 import com.soronthar.rpg.ImageLoader;
 import com.soronthar.rpg.gui.image.TranslucentImage;
@@ -7,13 +7,13 @@ import com.soronthar.rpg.model.tiles.Tile;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Hero extends Sprite {
+public class Hero extends MoveableSprite {
     private BufferedImage spriteImages;
 
 
-    public Hero() {
+    public Hero(Point location, Rectangle bound) {
+        super(location, bound);
         this.spriteImages = new ImageLoader().load("hero.png");
-
     }
 
     public void setSpeed(int dx, int dy) {
@@ -60,6 +60,5 @@ public class Hero extends Sprite {
     public void update(long elapsedTime) {
         determineFacing();
         move();
-//        adjustPositionToTile(false);
     }
 }

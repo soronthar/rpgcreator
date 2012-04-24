@@ -1,8 +1,8 @@
 package com.soronthar.rpg.model.project.xtream;
 
-import com.soronthar.rpg.model.objects.Facing;
-import com.soronthar.rpg.model.objects.Sprite;
-import com.soronthar.rpg.model.objects.UnmoveableSprite;
+import com.soronthar.rpg.model.objects.sprites.Facing;
+import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.sprites.UnmoveableSprite;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;

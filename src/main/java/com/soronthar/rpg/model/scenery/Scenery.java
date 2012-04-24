@@ -2,8 +2,9 @@ package com.soronthar.rpg.model.scenery;
 
 import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.model.JumpPoint;
-import com.soronthar.rpg.model.objects.Sprite;
-import com.soronthar.rpg.model.objects.UnmoveableSprite;
+import com.soronthar.rpg.model.objects.ObjectMap;
+import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.sprites.UnmoveableSprite;
 import com.soronthar.rpg.model.tiles.Tile;
 import org.soronthar.geom.Dimension;
 
@@ -17,7 +18,8 @@ public class Scenery implements Serializable {
     private LayersArray layers = new LayersArray();
     private Map<Point, Sprite> sprites = new HashMap<Point, Sprite>();
     private Set<Point> obstacles = new HashSet<Point>();
-    private Map<Point, JumpPoint> jumpPoints = new HashMap<Point, JumpPoint>();
+
+    private ObjectMap objects = new ObjectMap();
 
     private Point heroStartingPoint;
     public static final Scenery NULL_SCENERY = new Scenery("Null") {
@@ -138,14 +140,15 @@ public class Scenery implements Serializable {
     }
 
     public Collection<JumpPoint> getJumpPoints() {
-        return jumpPoints.values();
+        return objects.getJumpPoints();
+
     }
 
     public void addJumpPoint(JumpPoint jump) {
-        this.jumpPoints.put(jump.getLocation(), jump);
+        objects.add(jump);
     }
 
     public void removeJumpAt(Point point) {
-        this.jumpPoints.remove(point);
+        objects.removeJumpAt(point);
     }
 }

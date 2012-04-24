@@ -1,14 +1,14 @@
-package com.soronthar.rpg.model.objects;
+package com.soronthar.rpg.model.objects.sprites;
 
 import java.awt.*;
 
 public class UnmoveableSprite extends Sprite {
     public UnmoveableSprite(Point p) {
-        this.setLocation(p);
+        super(p);
     }
 
     public UnmoveableSprite(Point p, Facing facing) {
-        this.setLocation(p);
+        this(p);
         this.facing = facing;
     }
 
@@ -21,7 +21,4 @@ public class UnmoveableSprite extends Sprite {
         return null;
     }
 
-    protected void move() {
-
-    }
 }

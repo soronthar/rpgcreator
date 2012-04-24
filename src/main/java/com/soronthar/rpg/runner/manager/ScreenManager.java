@@ -1,7 +1,7 @@
 package com.soronthar.rpg.runner.manager;
 
-import com.soronthar.rpg.model.objects.Hero;
-import com.soronthar.rpg.model.objects.Sprite;
+import com.soronthar.rpg.model.objects.sprites.Hero;
+import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.soronthar.rpg.model.tiles.Tile;
 
 import java.awt.*;

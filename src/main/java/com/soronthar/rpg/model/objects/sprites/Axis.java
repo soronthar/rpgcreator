@@ -1,4 +1,4 @@
-package com.soronthar.rpg.model.objects;
+package com.soronthar.rpg.model.objects.sprites;
 
 /**
  * Created by IntelliJ IDEA.

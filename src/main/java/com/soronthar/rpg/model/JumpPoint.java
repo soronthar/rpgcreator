@@ -1,18 +1,15 @@
 package com.soronthar.rpg.model;
 
+import com.soronthar.rpg.model.objects.SpecialObject;
+
 import java.awt.*;
 
-public class JumpPoint {
-    private Point location;
+public class JumpPoint extends SpecialObject {
     private String target;
 
     public JumpPoint(Point location, String target) {
-        this.location = location;
+        super(location);
         this.target = target;
-    }
-
-    public Point getLocation() {
-        return location;
     }
 
     public String getTargetName() {

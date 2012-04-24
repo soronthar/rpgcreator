@@ -49,7 +49,6 @@ public class RpgCreator extends JFrame {
             JMenu run = new JMenu("Run");
             run.add(new JMenuItem(actions.runProjectAction()));
 
-
             this.add(project);
             this.add(run);
         }
