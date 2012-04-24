@@ -172,15 +172,20 @@ public class Controller {
         }
 
         Collection<Point> obstacles = scenery.getObstacles();
-        this.model.setPaintObstacles(true);
+        setMode(Model.SpecialModes.OBSTACLE);
         for (Point point : obstacles) {
             this.paintPanel.drawTileAtPoint(normalizePointToTile(point));
         }
-        this.model.setPaintObstacles(false);
 
-        this.model.setHeroStartMode(true);
+        setMode(Model.SpecialModes.HERO_START);
         this.paintPanel.drawTileAtPoint(normalizePointToTile(scenery.getHeroStartingPoint()));
-        this.model.setHeroStartMode(false);
+
+        setMode(Model.SpecialModes.JUMP);
+        for (JumpPoint jump : scenery.getJumpPoints()) {
+            this.paintPanel.drawTileAtPoint(normalizePointToTile(jump.getLocation()));
+        }
+
+        setMode(Model.SpecialModes.NONE);
     }
 
     private void notifyChangeDrawingPen(Tile info) {
@@ -235,19 +240,10 @@ public class Controller {
         return this.model.getProject();
     }
 
-    public void setAddObstacle(boolean b) {
-        model.setPaintObstacles(b);
+    public void setMode(Model.SpecialModes mode) {
+        model.setMode(mode);
     }
 
-
-    public void setHeroStartMode(boolean heroStartMode) {
-        model.setHeroStartMode(heroStartMode);
-    }
-
-
-    public void setAddJump(boolean addJump) {
-        model.setAddJumpMode(addJump);
-    }
 
     public Model getModel() {
         return model;

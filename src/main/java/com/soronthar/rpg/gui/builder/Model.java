@@ -56,21 +56,6 @@ public class Model {
         this.mode = mode;
     }
 
-    public void setPaintObstacles(boolean paintObstacles) {
-        if (paintObstacles) setMode(SpecialModes.OBSTACLE);
-        else setMode(SpecialModes.NONE);
-    }
-
-    public void setHeroStartMode(boolean heroStartMode) {
-        if (heroStartMode) setMode(SpecialModes.HERO_START);
-        else setMode(SpecialModes.NONE);
-    }
-
-    public void setAddJumpMode(boolean addJumpMode) {
-        if (addJumpMode) setMode(SpecialModes.JUMP);
-        else setMode(SpecialModes.NONE);
-    }
-
     public BufferedImage getDrawingPen() {
         BufferedImage tile;
         if (isPaintObstacles()) {
