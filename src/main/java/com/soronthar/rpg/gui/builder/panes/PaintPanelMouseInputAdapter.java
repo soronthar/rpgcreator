@@ -17,11 +17,6 @@ import java.util.Vector;
 
 import static com.soronthar.rpg.Utils.normalizePointToTile;
 
-/**
- * mousePressed and mouseReleased are used to identify which button is being used
- * when using a drag gesture, allowing to keep drawing or removing tiles as long
- * as the button is pressed.
- */
 class PaintPanelMouseInputAdapter extends MouseInputAdapter {
     private Controller controller;
 
@@ -31,7 +26,48 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
 
 
     public void mouseClicked(MouseEvent e) {
-        manipulateCanvas(e);
+        final Point point = normalizePointToTile(e.getPoint());
+
+        if (SwingUtilities.isMiddleMouseButton(e) || (SwingUtilities.isLeftMouseButton(e) && e.isControlDown())) {
+            final SpecialObject specialObject = controller.getModel().getActiveScenery().getSpecialAt(point);
+            JFrame ancestor = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, controller.getPaintPanel());
+            final JDialog dialog = new JDialog(ancestor, "Edit", true);
+            dialog.setLayout(new FlowLayout());
+            if (specialObject instanceof JumpPoint) {
+                Project project = controller.getModel().getProject();
+                SceneryBag sceneries = project.getSceneries();
+                Vector vector = new Vector();
+                int i = 0;
+                int selected = 0;
+                for (Scenery scenery : sceneries) {
+                    vector.add(scenery.getName());
+                    if (scenery.getName().equals(((JumpPoint) specialObject).getTargetName())) {
+                        selected = i;
+                    }
+                    i++;
+                }
+                final JComboBox combo = new JComboBox(vector);
+                combo.setSelectedIndex(selected);
+                JLabel label = new JLabel("Choose Scenery:");
+                dialog.add(label);
+                dialog.add(combo);
+                JButton button = new JButton("OK");
+                dialog.add(button);
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        controller.getModel().getActiveScenery().addJumpPoint(new JumpPoint(point, (String) combo.getSelectedItem()));
+                        dialog.setVisible(false);
+                    }
+                });
+                dialog.setLocationRelativeTo(ancestor);
+                dialog.pack();
+                dialog.setVisible(true);
+            }
+
+        } else {
+            manipulateCanvas(e);
+        }
     }
 
     public void mouseDragged(MouseEvent e) {
@@ -73,46 +109,7 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
         final Point point = normalizePointToTile(e.getPoint());
 
         if (controller.getPaintPanel().isEnabled()) {
-            if (SwingUtilities.isMiddleMouseButton(e) || (SwingUtilities.isLeftMouseButton(e) && e.isControlDown())) {
-
-                final SpecialObject specialObject = controller.getModel().getActiveScenery().getSpecialAt(point);
-
-
-                JFrame ancestor = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, controller.getPaintPanel());
-                final JDialog dialog = new JDialog(ancestor, "Edit", true);
-                dialog.setLayout(new FlowLayout());
-                if (specialObject instanceof JumpPoint) {
-                    Project project = controller.getModel().getProject();
-                    SceneryBag sceneries = project.getSceneries();
-                    Vector vector = new Vector();
-                    int i = 0;
-                    int selected = 0;
-                    for (Scenery scenery : sceneries) {
-                        vector.add(scenery.getName());
-                        if (scenery.getName().equals(((JumpPoint) specialObject).getTargetName())) {
-                            selected = i;
-                        }
-                        i++;
-                    }
-                    final JComboBox combo = new JComboBox(vector);
-                    combo.setSelectedIndex(selected);
-                    JLabel label = new JLabel("Choose Scenery:");
-                    dialog.add(label);
-                    dialog.add(combo);
-                    JButton button = new JButton("OK");
-                    dialog.add(button);
-                    button.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            controller.getModel().getActiveScenery().addJumpPoint(new JumpPoint(point, (String) combo.getSelectedItem()));
-                            dialog.setVisible(false);
-                        }
-                    });
-                    dialog.pack();
-                    dialog.setVisible(true);
-                }
-
-            } else if (SwingUtilities.isLeftMouseButton(e)) {
+            if (SwingUtilities.isLeftMouseButton(e)) {
                 drawTile(point);
             } else {
                 removeTile(point);
