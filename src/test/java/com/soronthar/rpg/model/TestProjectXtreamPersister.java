@@ -1,0 +1,154 @@
+package com.soronthar.rpg.model;
+
+import com.soronthar.rpg.model.objects.Facing;
+import com.soronthar.rpg.model.objects.Sprite;
+import com.soronthar.rpg.model.objects.UnmoveableSprite;
+import com.soronthar.rpg.model.project.NewProjectPersister;
+import com.soronthar.rpg.model.project.Project;
+import com.soronthar.rpg.model.scenery.DrawnTile;
+import com.soronthar.rpg.model.scenery.Layer;
+import com.soronthar.rpg.model.scenery.LayersArray;
+import com.soronthar.rpg.model.scenery.Scenery;
+import com.soronthar.rpg.model.tiles.Tile;
+import com.soronthar.rpg.model.tiles.TileSet;
+import junit.framework.TestCase;
+import org.apache.commons.io.FileUtils;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.net.URISyntaxException;
+import java.util.Collection;
+import java.util.Map;
+
+public class TestProjectXtreamPersister extends TestCase {
+    public void testSave() throws URISyntaxException, IOException {
+        TileSet tileSet = new TileSet("TILESET", new BufferedImage(Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 20, BufferedImage.TYPE_INT_ARGB));
+        Scenery firstScenery = new Scenery("first");
+        for (int i = 0; i < LayersArray.LAYER_COUNT; i++) {
+            if (i != LayersArray.SPRITE_LAYER_INDEX) {
+                firstScenery.setTile(tileSet.getTile(new Point(0, i), Tile.TILE_DIMENSION), i, new org.soronthar.geom.Point(i, 0));
+            }
+        }
+        firstScenery.addSprite(new UnmoveableSprite(new Point(3, 0), Facing.UP));
+        firstScenery.addObstacleAt(new Point(8, 1));
+        firstScenery.setHeroStartingPoint(new Point(5, 8));
+
+        firstScenery.addJumpPoint(new JumpPoint(new Point(6, 2), "second"));
+
+        Scenery secondScenery = new Scenery("second");
+        for (int i = 0; i < LayersArray.LAYER_COUNT; i++) {
+            if (i != LayersArray.SPRITE_LAYER_INDEX) {
+                secondScenery.setTile(tileSet.getTile(new Point(1, i), Tile.TILE_DIMENSION), i, new org.soronthar.geom.Point(i, 1));
+            }
+        }
+
+
+        Project project = new Project("Test Project");
+        project.addScenery(firstScenery);
+        project.addScenery(secondScenery);
+
+        NewProjectPersister persister = new NewProjectPersister();
+        StringWriter out = new StringWriter();
+        persister.save(project, out);
+        File file = new File(this.getClass().getResource("/SmallProject.xml").toURI());
+
+        String testProject = FileUtils.readFileToString(file, "UTF-8");
+        //line endings, tabs and whitespaces at the begining of the lines may fool the equals method,
+        // messing up the test. So, filter them up.
+        String expected = testProject.replaceAll("\r\n", "\n").replaceAll("(\\s)\\s+", "$1");
+        String actual = out.toString().replaceAll("\r\n", "\n").replaceAll("(\\s)\\s+", "$1");
+        assertEquals(expected, actual);
+    }
+
+    public void testLoad() throws FileNotFoundException, URISyntaxException {
+        NewProjectPersister persister = new NewProjectPersister();
+        File file = new File(this.getClass().getResource("/SmallProject.xml").toURI());
+        Project project = persister.load(new FileReader(file));
+
+        assertEquals("Test Project", project.getName());
+        assertEquals(2, project.getSceneries().size());
+        Scenery nonexistent = project.getScenery("nonexistent");
+        assertNull(nonexistent);
+
+        assertFirstScenery(project.getScenery("first"));
+        assertSecondScenery(project.getScenery("second"));
+
+    }
+
+    private void assertFirstScenery(Scenery scenery) {
+        assertLoadedScenery(scenery, 0);
+
+        Map<Point, Sprite> sprites = scenery.getSprites();
+        assertEquals("Scenery " + scenery.getName(), 1, sprites.size());
+        Sprite sprite = sprites.get(new Point(3, 0));
+        assertNotNull(sprite);
+        assertEquals(Facing.UP, sprite.getFacing());
+        assertTrue(sprite.isSolid());
+        assertFalse(sprite.isMoving());
+
+        Collection<Point> obstacles = scenery.getObstacles();
+        assertEquals(1, obstacles.size());
+        Point point = obstacles.iterator().next();
+        assertEquals(8, point.x);
+        assertEquals(1, point.y);
+
+        assertEquals(new Point(5, 8), scenery.getHeroStartingPoint());
+
+        Collection<JumpPoint> jump = scenery.getJumpPoints();
+        assertEquals(1, jump.size());
+
+        JumpPoint jumpPoint = jump.iterator().next();
+        assertEquals(new Point(6, 2), jumpPoint.getLocation());
+        assertEquals("second", jumpPoint.getTargetName());
+
+    }
+
+
+    private void assertSecondScenery(Scenery scenery) {
+        assertLoadedScenery(scenery, 1);
+        Collection<Point> obstacles = scenery.getObstacles();
+        assertEquals(0, obstacles.size());
+
+        assertEquals(new Point(0, 0), scenery.getHeroStartingPoint());
+
+    }
+
+
+    private void assertLoadedScenery(Scenery scenery, int index) {
+        assertNotNull(scenery);
+        LayersArray layers = scenery.getLayers();
+        assertEquals(5, layers.size());
+        for (int i = index; i < LayersArray.LAYER_COUNT; i++) {
+            Layer layer = scenery.getLayer(i);
+            if (i == LayersArray.SPRITE_LAYER_INDEX) {
+                assertNull(layer);
+                continue;
+            } else {
+                assertNotNull(layer);
+            }
+
+            assertNull(layer.getTileAt(new Point(-1, -1)));
+            DrawnTile drawnTile = layer.getTileAt(new Point(i, index));
+            String fixtureId = identifyScenery(scenery, i);
+            assertNotNull(fixtureId, drawnTile);
+            Point point = drawnTile.getPoint();
+            assertEquals(fixtureId, i, point.x);
+            assertEquals(fixtureId, index, point.y);
+
+            Tile tile = drawnTile.getTile();
+            assertEquals(fixtureId, "TILESET", tile.getTilesetName());
+            Point point1 = tile.getPoint();
+            assertEquals(fixtureId, index, point1.x);
+            assertEquals(fixtureId, i, point1.y);
+            assertEquals(fixtureId, Tile.TILE_DIMENSION, tile.getDimension());
+        }
+
+
+    }
+
+    private String identifyScenery(Scenery scenery, int i) {
+        return "Scenery " + scenery.getName() + " layer " + i;
+    }
+
+}

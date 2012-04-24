@@ -1,0 +1,68 @@
+package com.soronthar.rpg.gui.builder.components.scenery;
+
+import com.soronthar.rpg.Utils;
+import com.soronthar.rpg.gui.builder.Controller;
+import com.soronthar.rpg.model.project.Project;
+import com.soronthar.rpg.model.scenery.Scenery;
+import com.soronthar.rpg.model.scenery.SceneryBag;
+
+import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
+
+public class SceneryTree extends JTree {
+    public SceneryTree(final Controller controller) {
+
+        super(new DefaultTreeModel(new DefaultMutableTreeNode("<< No Project Loaded >>", false)));
+        this.setMinimumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
+        this.setMaximumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
+
+        controller.setSceneryTree(this);
+        this.addTreeSelectionListener(new TreeSelectionListener() {
+            public void valueChanged(TreeSelectionEvent e) {
+                TreePath path = e.getNewLeadSelectionPath();
+                if (path != null) {
+                    DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
+                    if (!node.isRoot()) {
+                        controller.selectScenery(((Scenery) node.getUserObject()).getName());
+                    }
+                }
+            }
+        });
+
+    }
+
+
+    public void updateSceneriesForProject(Project project) {
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(project);
+
+        SceneryBag sceneryBag = project.getSceneries();
+        for (Scenery scenery : sceneryBag) {
+            root.add(new DefaultMutableTreeNode(scenery));
+        }
+
+        getModel().setRoot(root);
+        this.revalidate();
+    }
+
+    public void clearSceneryTree(Project project) {
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(project);
+        getModel().setRoot(root);
+        this.revalidate();
+    }
+
+    public void addSceneryToProjectTree(Scenery scenery) {
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(scenery);
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) getModel().getRoot();
+        root.add(node);
+        getModel().setRoot(root);
+        this.revalidate();
+    }
+
+    public DefaultTreeModel getModel() {
+        return (DefaultTreeModel) super.getModel();
+    }
+}

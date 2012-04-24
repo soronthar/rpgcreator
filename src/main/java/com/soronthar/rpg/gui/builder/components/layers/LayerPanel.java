@@ -1,0 +1,111 @@
+package com.soronthar.rpg.gui.builder.components.layers;
+
+import com.soronthar.rpg.Utils;
+import com.soronthar.rpg.gui.builder.Controller;
+import com.soronthar.rpg.gui.builder.actions.ActionsManager;
+import com.soronthar.rpg.model.scenery.LayersArray;
+
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
+
+public class LayerPanel extends JScrollPane {
+    public LayerPanel(final Controller controller, final ActionsManager actionsManager) {
+        final JTable table = new JTable(new MyTableModel());
+        table.setMinimumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
+        table.setMaximumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
+        table.setPreferredScrollableViewportSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
+        table.setFillsViewportHeight(true);
+        setViewportView(table);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        table.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                if (e.getType() == TableModelEvent.UPDATE) {
+                    int row = e.getLastRow();
+                    controller.handleToggleLayerVisibilityEvent(row);
+                }
+            }
+        });
+
+
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int row = table.getSelectedRow();
+                    controller.setActiveLayer(row);
+                }
+            }
+        });
+    }
+
+    class MyTableModel extends AbstractTableModel {
+        private String[] columnNames = {"Is Visible", "Layer"};
+        private boolean[] isVisible = new boolean[LayersArray.LAYER_COUNT];
+
+        MyTableModel() {
+            for (int i = 0; i < isVisible.length; i++) {
+                isVisible[i] = true;
+            }
+        }
+
+        public int getColumnCount() {
+            return columnNames.length;
+        }
+
+        public int getRowCount() {
+            return LayersArray.LAYER_COUNT;
+        }
+
+        public String getColumnName(int col) {
+            return columnNames[col];
+        }
+
+        public Object getValueAt(int row, int col) {
+            switch (col) {
+                case 0:
+                    return isVisible[row];
+                case 1:
+                    return LayersArray.LAYER_NAMES[row];
+                default:
+                    return null;
+            }
+        }
+
+        /*
+         * JTable uses this method to determine the default renderer/
+         * editor for each cell.  If we didn't implement this method,
+         * then the last column would contain text ("true"/"false"),
+         * rather than a check box.
+         */
+        public Class getColumnClass(int c) {
+            return getValueAt(0, c).getClass();
+        }
+
+        /*
+         * Don't need to implement this method unless your table's
+         * editable.
+         */
+        public boolean isCellEditable(int row, int col) {
+            return col == 0;
+        }
+
+        /*
+         * Don't need to implement this method unless your table's
+         * data can change.
+         */
+        public void setValueAt(Object value, int row, int col) {
+            if (col == 0) {
+                isVisible[row] = (Boolean) value;
+                fireTableCellUpdated(row, col);
+            }
+        }
+
+    }
+
+
+}

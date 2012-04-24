@@ -1,0 +1,38 @@
+<project name="Test Project">
+    <fileVersion>0.1</fileVersion>
+    <sceneries>
+        <scenery name="first" width="320" height="160">
+            <layer index="0">
+                <drawnTile pos="0,0" tileSetName="TILESET" tile="0,0" dimension="32x32"/>
+            </layer>
+            <layer index="1">
+                <drawnTile pos="1,0" tileSetName="TILESET" tile="0,1" dimension="32x32"/>
+            </layer>
+            <layer index="2">
+                <drawnTile pos="2,0" tileSetName="TILESET" tile="0,2" dimension="32x32"/>
+            </layer>
+            <layer index="4">
+                <drawnTile pos="4,0" tileSetName="TILESET" tile="0,4" dimension="32x32"/>
+            </layer>
+            <obstacle x="8" y="1"/>
+            <sprite facing="UP" x="3" y="0"/>
+            <jumpPoint x="6" y="2" target="second"/>
+            <heroStartingPoint x="5" y="8"/>
+        </scenery>
+        <scenery name="second" width="320" height="160">
+            <layer index="0">
+                <drawnTile pos="0,1" tileSetName="TILESET" tile="1,0" dimension="32x32"/>
+            </layer>
+            <layer index="1">
+                <drawnTile pos="1,1" tileSetName="TILESET" tile="1,1" dimension="32x32"/>
+            </layer>
+            <layer index="2">
+                <drawnTile pos="2,1" tileSetName="TILESET" tile="1,2" dimension="32x32"/>
+            </layer>
+            <layer index="4">
+                <drawnTile pos="4,1" tileSetName="TILESET" tile="1,4" dimension="32x32"/>
+            </layer>
+            <heroStartingPoint x="0" y="0"/>
+        </scenery>
+    </sceneries>
+</project>
