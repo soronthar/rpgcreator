@@ -66,10 +66,12 @@ public class Controller {
             activeScenery.addJumpPoint(new JumpPoint(p, activeScenery.getName()));
             this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
         } else {
-            Tile activeTile = model.getActiveTile();
-            if (activeTile != null) {
-                model.getActiveScenery().setTile(activeTile, model.getActiveLayerIndex(), p);
-                this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
+            if (!model.isInSpecialLayer()) {
+                Tile activeTile = model.getActiveTile();
+                if (activeTile != null) {
+                    model.getActiveScenery().setTile(activeTile, model.getActiveLayerIndex(), p);
+                    this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
+                }
             }
         }
     }
@@ -80,15 +82,16 @@ public class Controller {
             this.paintPanel.handleEraseTileEvent(p);
         } else if (model.isHeroStartMode()) {
             model.getActiveScenery().setHeroStartingPoint(new Point(0, 0));
-            ;
             this.paintPanel.handleEraseTileEvent(p);
         } else if (model.isAddJumpMode()) {
-            model.getActiveScenery().removeJumpAt(new Point(0, 0));
+            model.getActiveScenery().removeJumpAt(p);
             this.paintPanel.handleEraseTileEvent(p);
         } else {
-            Scenery activeScenery = model.getActiveScenery();
-            activeScenery.setTile(null, model.getActiveLayerIndex(), p);
-            this.paintPanel.handleEraseTileEvent(p);
+            if (!model.isInSpecialLayer()) {
+                Scenery activeScenery = model.getActiveScenery();
+                activeScenery.setTile(null, model.getActiveLayerIndex(), p);
+                this.paintPanel.handleEraseTileEvent(p);
+            }
         }
     }
 

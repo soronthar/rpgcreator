@@ -7,15 +7,13 @@ import org.soronthar.geom.Point;
 
 public class Utils {
 
-    private Utils() {
-    }
-
     public static Point normalizePointToTile(java.awt.Point point) {
         Point p = new Point();
         p.x = normalizeDimensionToTile(point.x);
         p.y = normalizeDimensionToTile(point.y);
         return p;
     }
+
 
     public static int normalizeDimensionToTile(int pixels) {
         return Tile.TILE_SIZE * (pixels / Tile.TILE_SIZE);

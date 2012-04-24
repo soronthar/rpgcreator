@@ -11,6 +11,7 @@ import com.soronthar.rpg.model.tiles.TileSetBag;
 import java.awt.image.BufferedImage;
 
 public class Model {
+
     public enum SpecialModes {
         NONE, OBSTACLE, HERO_START, JUMP
     }
@@ -31,9 +32,6 @@ public class Model {
         return visibility[layer];
     }
 
-    public void setLayerVisibility(int layer, boolean visibility) {
-        this.visibility[layer] = visibility;
-    }
 
     public void toggleLayerVisibility(int layer) {
         this.visibility[layer] = !this.visibility[layer];
@@ -135,4 +133,10 @@ public class Model {
     public void addScenery(Scenery scenery) {
         this.project.addScenery(scenery);
     }
+
+    public boolean isInSpecialLayer() {
+        return activeLayerIndex == LayersArray.LAYER_COUNT;
+    }
+
+
 }

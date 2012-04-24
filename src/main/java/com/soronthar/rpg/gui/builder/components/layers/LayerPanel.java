@@ -13,6 +13,8 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
 public class LayerPanel extends JScrollPane {
+
+
     public LayerPanel(final Controller controller, final ActionsManager actionsManager) {
         final JTable table = new JTable(new MyTableModel());
         table.setMinimumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
@@ -44,8 +46,9 @@ public class LayerPanel extends JScrollPane {
     }
 
     class MyTableModel extends AbstractTableModel {
+        public final int ROWS = LayersArray.LAYER_COUNT + 1;
         private String[] columnNames = {"Is Visible", "Layer"};
-        private boolean[] isVisible = new boolean[LayersArray.LAYER_COUNT];
+        private boolean[] isVisible = new boolean[ROWS];
 
         MyTableModel() {
             for (int i = 0; i < isVisible.length; i++) {
@@ -58,7 +61,7 @@ public class LayerPanel extends JScrollPane {
         }
 
         public int getRowCount() {
-            return LayersArray.LAYER_COUNT;
+            return ROWS;
         }
 
         public String getColumnName(int col) {
@@ -70,7 +73,11 @@ public class LayerPanel extends JScrollPane {
                 case 0:
                     return isVisible[row];
                 case 1:
-                    return LayersArray.LAYER_NAMES[row];
+                    if (row == ROWS - 1) {
+                        return "Specials";
+                    } else {
+                        return LayersArray.LAYER_NAMES[row];
+                    }
                 default:
                     return null;
             }

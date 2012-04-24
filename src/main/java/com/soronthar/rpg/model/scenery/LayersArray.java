@@ -3,7 +3,7 @@ package com.soronthar.rpg.model.scenery;
 import java.util.Iterator;
 
 public class LayersArray implements Iterable<Layer> {
-    public static final String[] LAYER_NAMES = {"Base Layer", "Grass Layer", "Objects Layer", "Sprite Layer", "Above Layer"};
+    public static final String[] LAYER_NAMES = {"Base Layer", "Grass Layer", "Objects Layer", "Hero Layer", "Above Layer"};
     public static final int LAYER_COUNT = LAYER_NAMES.length;
     public static final int SPRITE_LAYER_INDEX = 3;
 

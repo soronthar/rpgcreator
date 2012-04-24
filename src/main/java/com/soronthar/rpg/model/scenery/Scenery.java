@@ -89,10 +89,6 @@ public class Scenery implements Serializable {
         this.dimension = dimension;
     }
 
-    public Dimension getDimension() {
-        return dimension;    //TODO: protect
-    }
-
     public int getWidth() {
         return this.dimension.width;
     }
