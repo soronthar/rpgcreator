@@ -17,6 +17,8 @@ import com.soronthar.rpg.gui.builder.panes.TilesetsPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public class BuilderGUI extends JPanel {
     private PaintPanel paintPanel;
@@ -46,7 +48,17 @@ public class BuilderGUI extends JPanel {
         tilesetsPanel = new TilesetsPanel(controller);
         sceneryTree = new SceneryTree(controller);
         layerPanel = new LayerPanel(controller, actionsManager);
-        statusBar = new ColoredJPanel(Color.BLACK);
+        statusBar = new ColoredJPanel(Color.lightGray);
+        final JLabel label = new JLabel("0,0");
+        statusBar.add(label);
+        controller.getModel().addChangeListener("location", new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                Point point = (Point) evt.getNewValue();
+                label.setText(point.x + "," + point.y);
+            }
+        });
+
     }
 
     private void addComponentsToPanel() {

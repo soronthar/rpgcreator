@@ -3,6 +3,7 @@ package com.soronthar.rpg.model.scenery;
 import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.model.JumpPoint;
 import com.soronthar.rpg.model.objects.ObjectMap;
+import com.soronthar.rpg.model.objects.Obstacle;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.soronthar.rpg.model.objects.sprites.UnmoveableSprite;
 import com.soronthar.rpg.model.tiles.Tile;
@@ -10,23 +11,27 @@ import org.soronthar.geom.Dimension;
 
 import java.awt.*;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Scenery implements Serializable {
     private Dimension dimension;
     private String name;
     private LayersArray layers = new LayersArray();
     private Map<Point, Sprite> sprites = new HashMap<Point, Sprite>();
-    private Set<Point> obstacles = new HashSet<Point>();
 
     private ObjectMap objects = new ObjectMap();
 
     private Point heroStartingPoint;
+
     public static final Scenery NULL_SCENERY = new Scenery("Null") {
         public void setTile(Point p, Tile tile) {
 
         }
     };
+
+
     public static final int WIDTH = 320;
     public static final int HEIGHT = 160;
 
@@ -128,15 +133,15 @@ public class Scenery implements Serializable {
     }
 
     public Collection<Point> getObstacles() {
-        return obstacles;
+        return objects.getObstacles();
     }
 
     public void addObstacleAt(Point point) {
-        obstacles.add(point);
+        objects.add(new Obstacle(point));
     }
 
     public void removeObstacleAt(Point point) {
-        obstacles.remove(point);
+        objects.removeObstacleAt(point);
     }
 
     public Collection<JumpPoint> getJumpPoints() {

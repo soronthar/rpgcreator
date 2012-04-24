@@ -8,10 +8,12 @@ import com.soronthar.rpg.model.tiles.Tile;
 import com.soronthar.rpg.model.tiles.TileSet;
 import com.soronthar.rpg.model.tiles.TileSetBag;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 public class Model {
-
     public enum SpecialModes {
         NONE, OBSTACLE, HERO_START, JUMP
     }
@@ -21,12 +23,19 @@ public class Model {
     private Scenery activeScenery = Scenery.NULL_SCENERY;
     private int activeLayerIndex;
     private Tile activeTile;
+    private Point location;
 
     private boolean[] visibility = new boolean[LayersArray.LAYER_COUNT + 1];
-
     SpecialModes mode = SpecialModes.NONE;
     private BufferedImage drawingPen;
 
+    PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
+    public void setPointerLocation(Point location) {
+        Point oldValue = this.location;
+        this.location = location;
+        pcs.firePropertyChange("location", oldValue, location);
+    }
 
     public boolean isLayerVisible(int layer) {
         return visibility[layer];
@@ -138,5 +147,8 @@ public class Model {
         return activeLayerIndex == LayersArray.LAYER_COUNT;
     }
 
+    public void addChangeListener(String name, PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener(name, listener);
+    }
 
 }

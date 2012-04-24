@@ -60,7 +60,7 @@ public class PaintCanvas extends JPanel {
 
     public void movePaintPointerTo(Point p) {
         BufferedImage tile = model.getDrawingPen();
-
+        model.setPointerLocation(p);
         if (tile != null) {
             glassLayer.drawSelectOutline(p, new Dimension(tile.getWidth(), tile.getHeight()));
         } else {

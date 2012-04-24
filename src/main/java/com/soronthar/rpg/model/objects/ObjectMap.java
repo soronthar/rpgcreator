@@ -12,6 +12,7 @@ public class ObjectMap {
     private Map<Point, java.util.List<SpecialObject>> spriteMap = new HashMap<Point, java.util.List<SpecialObject>>();
 
     private Map<Point, JumpPoint> jumpPoints = new HashMap<Point, JumpPoint>();
+    private Map<Point, Obstacle> obstacles = new HashMap<Point, Obstacle>();
 
 
     public void add(SpecialObject specialObject) {
@@ -25,6 +26,8 @@ public class ObjectMap {
 
         if (specialObject instanceof JumpPoint) {
             this.jumpPoints.put(specialObject.getLocation(), (JumpPoint) specialObject);
+        } else if (specialObject instanceof Obstacle) {
+            this.obstacles.put(specialObject.getLocation(), (Obstacle) specialObject);
         }
     }
 
@@ -64,5 +67,17 @@ public class ObjectMap {
         if (jumpPoint != null) {
             remove(point, jumpPoint);
         }
+    }
+
+    public Collection<Point> getObstacles() {
+        return this.obstacles.keySet();
+    }
+
+    public void removeObstacleAt(Point point) {
+        Obstacle obstacle = this.obstacles.remove(point);
+        if (obstacle != null) {
+            remove(point, obstacle);
+        }
+
     }
 }
