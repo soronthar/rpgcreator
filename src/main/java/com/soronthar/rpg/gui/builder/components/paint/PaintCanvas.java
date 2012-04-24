@@ -10,6 +10,8 @@ import org.soronthar.geom.Dimension;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public class PaintCanvas extends JPanel {
     private GlassSelectLayer glassLayer;
@@ -23,6 +25,13 @@ public class PaintCanvas extends JPanel {
     public PaintCanvas(int w, int h, Model model) {
         this.setCanvasSize(new Dimension(w, h));
         this.model = model;
+        this.model.addChangeListener(Model.LOCATION, new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                Point location = (Point) evt.getNewValue();
+                movePaintPointerTo(location);
+            }
+        });
     }
 
     public void setCanvasSize(java.awt.Dimension dimension) {
@@ -60,7 +69,6 @@ public class PaintCanvas extends JPanel {
 
     public void movePaintPointerTo(Point p) {
         BufferedImage tile = model.getDrawingPen();
-        model.setPointerLocation(p);
         if (tile != null) {
             glassLayer.drawSelectOutline(p, new Dimension(tile.getWidth(), tile.getHeight()));
         } else {

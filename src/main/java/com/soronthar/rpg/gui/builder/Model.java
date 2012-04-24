@@ -14,6 +14,9 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class Model {
+
+    public static final String LOCATION = "location";
+
     public enum SpecialModes {
         NONE, OBSTACLE, HERO_START, JUMP
     }
@@ -34,7 +37,7 @@ public class Model {
     public void setPointerLocation(Point location) {
         Point oldValue = this.location;
         this.location = location;
-        pcs.firePropertyChange("location", oldValue, location);
+        pcs.firePropertyChange(LOCATION, oldValue, location);
     }
 
     public boolean isLayerVisible(int layer) {

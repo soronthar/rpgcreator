@@ -32,6 +32,7 @@ public class Controller {
 
     public Controller(Model model) {
         this.model = model;
+
     }
 
 
@@ -250,5 +251,10 @@ public class Controller {
 
     public Model getModel() {
         return model;
+    }
+
+    //TODO: remove
+    public PaintPanel getPaintPanel() {
+        return paintPanel;
     }
 }

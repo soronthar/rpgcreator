@@ -4,6 +4,7 @@ import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.model.JumpPoint;
 import com.soronthar.rpg.model.objects.ObjectMap;
 import com.soronthar.rpg.model.objects.Obstacle;
+import com.soronthar.rpg.model.objects.SpecialObject;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.soronthar.rpg.model.objects.sprites.UnmoveableSprite;
 import com.soronthar.rpg.model.tiles.Tile;
@@ -155,5 +156,9 @@ public class Scenery implements Serializable {
 
     public void removeJumpAt(Point point) {
         objects.removeJumpAt(point);
+    }
+
+    public SpecialObject getSpecialAt(Point point) {
+        return objects.getObjectAt(point);
     }
 }

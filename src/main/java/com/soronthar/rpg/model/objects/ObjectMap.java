@@ -80,4 +80,8 @@ public class ObjectMap {
         }
 
     }
+
+    public SpecialObject getObjectAt(Point point) {
+        return this.jumpPoints.get(point);
+    }
 }

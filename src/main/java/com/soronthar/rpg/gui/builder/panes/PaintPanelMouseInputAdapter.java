@@ -1,8 +1,19 @@
 package com.soronthar.rpg.gui.builder.panes;
 
+import com.soronthar.rpg.gui.builder.Controller;
+import com.soronthar.rpg.model.JumpPoint;
+import com.soronthar.rpg.model.objects.SpecialObject;
+import com.soronthar.rpg.model.project.Project;
+import com.soronthar.rpg.model.scenery.Scenery;
+import com.soronthar.rpg.model.scenery.SceneryBag;
+
+import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
 
 import static com.soronthar.rpg.Utils.normalizePointToTile;
 
@@ -12,47 +23,25 @@ import static com.soronthar.rpg.Utils.normalizePointToTile;
  * as the button is pressed.
  */
 class PaintPanelMouseInputAdapter extends MouseInputAdapter {
-    private PaintPanel paintPanel;
-    private int clickButton = MouseEvent.NOBUTTON;
+    private Controller controller;
 
-    public PaintPanelMouseInputAdapter(PaintPanel paintPanel) {
-        this.paintPanel = paintPanel;
+    public PaintPanelMouseInputAdapter(Controller controller) {
+        this.controller = controller;
     }
 
-    /**
-     * Records which button is being pressed. This is used during the processing of a drag gesture
-     * to determine the actionto take (draw tile or delete tile)
-     *
-     * @param e
-     */
-    public void mousePressed(MouseEvent e) {
-        clickButton = e.getButton();
-    }
-
-    /**
-     * When the mouse is released, clean up the house.
-     *
-     * @param e
-     */
-    public void mouseReleased(MouseEvent e) {
-        clickButton = MouseEvent.NOBUTTON;
-    }
 
     public void mouseClicked(MouseEvent e) {
-        manipulateCanvas(e, e.getButton());
+        manipulateCanvas(e);
     }
 
     public void mouseDragged(MouseEvent e) {
-        manipulateCanvas(e, clickButton);
+        manipulateCanvas(e);
     }
 
     /**
      * Moves the paint pointer inside the canvas.
-     *
-     * @param e
      */
     public void mouseMoved(MouseEvent e) {
-        //If a button is being pressed, then the mouseDragged method will be invoked.
         //By checking that no button is actually beig pressed,
         //the same thing will not be rendered twice (once here and once in mouseDragged).
         if (e.getButton() != MouseEvent.NOBUTTON) return;
@@ -62,10 +51,8 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
 
     /**
      * Used to show the paint pointer when the canvas get the "focus". This has to be detected
-     * manually (ie, focusis when the mouse enterss the Canvas area) as the rendering of the
-     * paint canvas is being controlled by the application,
-     *
-     * @param e
+     * manually (ie, focus is when the mouse enters the Canvas area) as the rendering of the
+     * paint canvas is being controlled by the application.
      */
     public void mouseEntered(MouseEvent e) {
         movePaintPointer(e);
@@ -76,50 +63,88 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
      * Used to hide the paint pointer when the canvas loses the "focus". This has to be detected
      * manually (ie, focus is lost when the mouse leaves the Canvas area) as the rendering of the
      * paint canvas is being controlled by the application,
-     *
-     * @param e
      */
     public void mouseExited(MouseEvent e) {
         hidePaintPointer(e);
     }
 
 
-    private void manipulateCanvas(MouseEvent e, int mouseButton) {
-        Point point = e.getPoint();
-        if (paintPanel.isEnabled()) {
-            if (mouseButton == MouseEvent.BUTTON1) {
+    private void manipulateCanvas(MouseEvent e) {
+        final Point point = normalizePointToTile(e.getPoint());
+
+        if (controller.getPaintPanel().isEnabled()) {
+            if (SwingUtilities.isMiddleMouseButton(e) || (SwingUtilities.isLeftMouseButton(e) && e.isControlDown())) {
+
+                final SpecialObject specialObject = controller.getModel().getActiveScenery().getSpecialAt(point);
+
+
+                JFrame ancestor = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, controller.getPaintPanel());
+                final JDialog dialog = new JDialog(ancestor, "Edit", true);
+                dialog.setLayout(new FlowLayout());
+                if (specialObject instanceof JumpPoint) {
+                    Project project = controller.getModel().getProject();
+                    SceneryBag sceneries = project.getSceneries();
+                    Vector vector = new Vector();
+                    int i = 0;
+                    int selected = 0;
+                    for (Scenery scenery : sceneries) {
+                        vector.add(scenery.getName());
+                        if (scenery.getName().equals(((JumpPoint) specialObject).getTargetName())) {
+                            selected = i;
+                        }
+                        i++;
+                    }
+                    final JComboBox combo = new JComboBox(vector);
+                    combo.setSelectedIndex(selected);
+                    JLabel label = new JLabel("Choose Scenery:");
+                    dialog.add(label);
+                    dialog.add(combo);
+                    JButton button = new JButton("OK");
+                    dialog.add(button);
+                    button.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            controller.getModel().getActiveScenery().addJumpPoint(new JumpPoint(point, (String) combo.getSelectedItem()));
+                            dialog.setVisible(false);
+                        }
+                    });
+                    dialog.pack();
+                    dialog.setVisible(true);
+                }
+
+            } else if (SwingUtilities.isLeftMouseButton(e)) {
                 drawTile(point);
             } else {
                 removeTile(point);
             }
-            paintPanel.getCanvas().movePaintPointerTo(normalizePointToTile(point));
+            controller.getModel().setPointerLocation(normalizePointToTile(e.getPoint()));
             forceRepaint(e);
         }
     }
 
 
     private void movePaintPointer(MouseEvent e) {
-        if (paintPanel.isEnabled()) {
-            paintPanel.getCanvas().movePaintPointerTo(normalizePointToTile(e.getPoint()));
+        if (controller.getPaintPanel().isEnabled()) {
+            controller.getModel().setPointerLocation(normalizePointToTile(e.getPoint()));
             forceRepaint(e);
         }
     }
 
 
     private void hidePaintPointer(MouseEvent e) {
-        if (paintPanel.isEnabled()) {
-            paintPanel.getCanvas().hidePaintPointerEvent();
+        if (controller.getPaintPanel().isEnabled()) {
+            controller.getPaintPanel().getCanvas().hidePaintPointerEvent();
             forceRepaint(e);
         }
     }
 
 
     private void drawTile(Point point) {
-        this.paintPanel.controller.addTileToActiveSceneryAtPoint(normalizePointToTile(point));
+        this.controller.getPaintPanel().controller.addTileToActiveSceneryAtPoint(normalizePointToTile(point));
     }
 
     private void removeTile(Point point) {
-        this.paintPanel.controller.removeTileAtPoint(normalizePointToTile(point));
+        this.controller.getPaintPanel().controller.removeTileAtPoint(normalizePointToTile(point));
     }
 
     private void forceRepaint(MouseEvent e) {

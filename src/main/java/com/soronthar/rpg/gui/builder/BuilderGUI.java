@@ -51,7 +51,7 @@ public class BuilderGUI extends JPanel {
         statusBar = new ColoredJPanel(Color.lightGray);
         final JLabel label = new JLabel("0,0");
         statusBar.add(label);
-        controller.getModel().addChangeListener("location", new PropertyChangeListener() {
+        controller.getModel().addChangeListener(Model.LOCATION, new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 Point point = (Point) evt.getNewValue();

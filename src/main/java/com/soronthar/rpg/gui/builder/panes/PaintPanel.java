@@ -52,7 +52,7 @@ public class PaintPanel extends JScrollPane {
     }
 
     private void setMouseAdapter(JPanel panel) {
-        PaintPanelMouseInputAdapter mouseInputAdapter = new PaintPanelMouseInputAdapter(this);
+        PaintPanelMouseInputAdapter mouseInputAdapter = new PaintPanelMouseInputAdapter(controller);
         panel.addMouseListener(mouseInputAdapter);
         panel.addMouseMotionListener(mouseInputAdapter);
     }
