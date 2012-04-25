@@ -90,7 +90,7 @@ public class Scenery implements Serializable {
 
 
     public String toString() {
-        return this.name + " " + super.toString();
+        return this.name;
     }
 
     public void setDimension(Dimension dimension) {
