@@ -1,5 +1,6 @@
 package com.soronthar.rpg.runner.manager;
 
+import com.soronthar.rpg.model.JumpPoint;
 import com.soronthar.rpg.model.objects.Obstacle;
 import com.soronthar.rpg.model.objects.SpecialObject;
 import com.soronthar.rpg.model.objects.sprites.Hero;
@@ -115,7 +116,14 @@ public class MapManager {
 
     private void updateHero(long elapsedTime) {
         updateSprite(hero, elapsedTime);
-        //TODO: aqui quede
+
+        Point location = hero.getLocation();
+        SpecialObject specialAt = scenery.getSpecialAt(location);
+        if (specialAt instanceof JumpPoint) {
+            JumpPoint jump = (JumpPoint) specialAt;
+            Scenery scenery1 = sceneries.get(jump.getTargetName());
+            this.setScenery(scenery1);
+        }
     }
 
     private void updateSprites(long elapsedTime) {

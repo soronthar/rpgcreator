@@ -36,6 +36,7 @@ public class GameManager {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 screenManager.setScenery((Scenery) evt.getNewValue());
+                if (frame != null) frame.pack();
             }
         });
         mapManager.init();

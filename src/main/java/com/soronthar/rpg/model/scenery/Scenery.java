@@ -122,7 +122,7 @@ public class Scenery implements Serializable {
     }
 
     public Point getHeroStartingPoint() {
-        return heroStartingPoint;
+        return new Point(heroStartingPoint);
     }
 
     public void setHeroStartingPoint(Point heroStartingPoint) {
