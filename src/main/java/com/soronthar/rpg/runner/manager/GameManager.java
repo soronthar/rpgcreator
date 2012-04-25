@@ -4,17 +4,15 @@ package com.soronthar.rpg.runner.manager;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.scenery.Scenery;
 import com.soronthar.rpg.model.tiles.Tile;
-import com.soronthar.rpg.model.tiles.TileSetBag;
-import com.soronthar.rpg.model.tiles.TileSetBagPersister;
 import com.soronthar.rpg.runner.GameAction;
-import org.soronthar.geom.Dimension;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.lang.reflect.InvocationTargetException;
 
 public class GameManager {
@@ -32,15 +30,15 @@ public class GameManager {
 
 
     public GameManager(Project project) {
-        TileSetBag tileSets = new TileSetBagPersister().loadTilesets();
-        Scenery scenery = project.getSceneries().iterator().next();
-        BufferedImage[] layers = TilesetRenderer.createLayers(tileSets, scenery);
-        Dimension viewSize = new Dimension(scenery.getWidth(), scenery.getHeight());
-
-        mapManager = new MapManager(scenery);
-        screenManager = new ScreenManager(viewSize, layers);
-
-
+        screenManager = new ScreenManager();
+        mapManager = new MapManager(project.getSceneries());
+        mapManager.addSceneryListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                screenManager.setScenery((Scenery) evt.getNewValue());
+            }
+        });
+        mapManager.init();
         createAndInitializeFrame();
         initializeInputManager();
     }

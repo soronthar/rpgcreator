@@ -2,7 +2,10 @@ package com.soronthar.rpg.runner.manager;
 
 import com.soronthar.rpg.model.objects.sprites.Hero;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.scenery.Scenery;
 import com.soronthar.rpg.model.tiles.Tile;
+import com.soronthar.rpg.model.tiles.TileSetBag;
+import com.soronthar.rpg.model.tiles.TileSetBagPersister;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -16,10 +19,18 @@ public class ScreenManager extends Canvas {
     private Rectangle viewPort;
     private Point relativeCenter;
     private Dimension imageSize;
+    public static final TileSetBag TILE_SETS = new TileSetBagPersister().loadTilesets();
 
 
-    public ScreenManager(Dimension dimension, BufferedImage[] layers) {
-        this.layers = layers;
+    public ScreenManager() {
+        //Ignore repaints and focus so we are in complete control over the rendering
+        this.setIgnoreRepaint(true);
+        this.setFocusable(false);
+    }
+
+    public void setScenery(Scenery scenery) {
+        this.layers = TilesetRenderer.createLayers(TILE_SETS, scenery);
+        Dimension dimension = new org.soronthar.geom.Dimension(scenery.getWidth(), scenery.getHeight());
         this.setPreferredSize(new Dimension(dimension.width, dimension.height));
         Dimension viewSize = new Dimension(dimension.width, dimension.height);
         imageSize = new Dimension(layers[0].getWidth(), layers[0].getHeight());
@@ -29,14 +40,6 @@ public class ScreenManager extends Canvas {
 
         int stepBits = (int) (Math.log(Tile.TILE_SIZE) / Math.log(2));
         this.relativeCenter = calculateViewPortRelativeCenter(viewSize, stepBits);
-
-
-        //Ignore repaints so we are in complete control over the rendering
-        this.setIgnoreRepaint(true);
-
-        //Ignore repaints so we are in complete control over the rendering 
-        this.setFocusable(false);
-
     }
 
     public Image getImage(int layer) {
