@@ -115,6 +115,7 @@ public class MapManager {
 
     private void updateHero(long elapsedTime) {
         updateSprite(hero, elapsedTime);
+        //TODO: aqui quede
     }
 
     private void updateSprites(long elapsedTime) {
