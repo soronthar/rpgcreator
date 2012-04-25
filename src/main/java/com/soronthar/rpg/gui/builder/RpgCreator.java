@@ -1,8 +1,6 @@
 package com.soronthar.rpg.gui.builder;
 
-import com.soronthar.rpg.ImageLoader;
 import com.soronthar.rpg.gui.builder.actions.ActionsManager;
-import com.soronthar.rpg.model.MainEngine;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,10 +11,6 @@ public class RpgCreator extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(new Dimension(1024, 768));
         this.setTitle("RPG Creator");
-
-        //TODO: this order of initialization is kind of brittle
-        MainEngine mainEngine = MainEngine.getInstance();
-        mainEngine.setImageLoader(new ImageLoader());
 
         Controller controller = new Controller(new Model());
         ActionsManager actionsManager = new ActionsManager(this, controller);

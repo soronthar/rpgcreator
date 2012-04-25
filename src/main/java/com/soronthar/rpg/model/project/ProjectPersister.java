@@ -9,7 +9,7 @@ import org.soronthar.geom.Point;
 
 import java.io.*;
 
-public class NewProjectPersister {
+public class ProjectPersister {
 
     private XStream createXStream() {
         XStream xstream = new XStream(new DomDriver());

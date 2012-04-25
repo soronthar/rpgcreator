@@ -9,7 +9,6 @@ import java.io.Serializable;
 public class Project implements Serializable {
     private String fileVersion = "0.1";
     private String name;
-    private String path;
     private SceneryBag sceneries;
 
     public Project(String name) {
@@ -21,10 +20,6 @@ public class Project implements Serializable {
         return name;
     }
 
-    public String getPath() {
-        return path;
-    }
-
     public SceneryBag getSceneries() {
         return sceneries;
     }
@@ -33,19 +28,11 @@ public class Project implements Serializable {
         this.sceneries.put(scenery);
     }
 
-    public String toString() {
-        return this.name;
-    }
-
     public Scenery getScenery(String name) {
         return this.sceneries.get(name);
     }
 
     public String getFileVersion() {
         return fileVersion;
-    }
-
-    public void setFileVersion(String fileVersion) {
-        this.fileVersion = fileVersion;
     }
 }

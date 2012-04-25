@@ -3,8 +3,8 @@ package com.soronthar.rpg.model;
 import com.soronthar.rpg.model.objects.sprites.Facing;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.soronthar.rpg.model.objects.sprites.UnmoveableSprite;
-import com.soronthar.rpg.model.project.NewProjectPersister;
 import com.soronthar.rpg.model.project.Project;
+import com.soronthar.rpg.model.project.ProjectPersister;
 import com.soronthar.rpg.model.scenery.DrawnTile;
 import com.soronthar.rpg.model.scenery.Layer;
 import com.soronthar.rpg.model.scenery.LayersArray;
@@ -48,7 +48,7 @@ public class TestProjectXtreamPersister extends TestCase {
         project.addScenery(firstScenery);
         project.addScenery(secondScenery);
 
-        NewProjectPersister persister = new NewProjectPersister();
+        ProjectPersister persister = new ProjectPersister();
         StringWriter out = new StringWriter();
         persister.save(project, out);
         File file = new File(this.getClass().getResource("/SmallProject.xml").toURI());
@@ -62,7 +62,7 @@ public class TestProjectXtreamPersister extends TestCase {
     }
 
     public void testLoad() throws FileNotFoundException, URISyntaxException {
-        NewProjectPersister persister = new NewProjectPersister();
+        ProjectPersister persister = new ProjectPersister();
         File file = new File(this.getClass().getResource("/SmallProject.xml").toURI());
         Project project = persister.load(new FileReader(file));
 
@@ -71,6 +71,7 @@ public class TestProjectXtreamPersister extends TestCase {
         Scenery nonexistent = project.getScenery("nonexistent");
         assertNull(nonexistent);
 
+        assertEquals("0.1", project.getFileVersion());
         assertFirstScenery(project.getScenery("first"));
         assertSecondScenery(project.getScenery("second"));
 

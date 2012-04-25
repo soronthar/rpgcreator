@@ -1,13 +1,13 @@
 package com.soronthar.rpg.gui.builder;
 
+import com.soronthar.rpg.ImageLoader;
 import com.soronthar.rpg.gui.builder.components.scenery.SceneryTree;
 import com.soronthar.rpg.gui.builder.panes.PaintPanel;
 import com.soronthar.rpg.gui.builder.panes.TilesetsPanel;
 import com.soronthar.rpg.model.JumpPoint;
-import com.soronthar.rpg.model.MainEngine;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
-import com.soronthar.rpg.model.project.NewProjectPersister;
 import com.soronthar.rpg.model.project.Project;
+import com.soronthar.rpg.model.project.ProjectPersister;
 import com.soronthar.rpg.model.scenery.*;
 import com.soronthar.rpg.model.tiles.Tile;
 import com.soronthar.rpg.model.tiles.TileSet;
@@ -97,7 +97,7 @@ public class Controller {
     }
 
     public void saveProject() {
-        new NewProjectPersister().save(model.getProject());
+        new ProjectPersister().save(model.getProject());
     }
 
     public void loadProject(String projectName) {
@@ -105,7 +105,7 @@ public class Controller {
         try {
             this.paintPanel.clearMap();
 
-            Project project = new NewProjectPersister().load(projectName);
+            Project project = new ProjectPersister().load(projectName);
 //            Project project = new ProjectPersister().load(projectName);
             SceneryBag sceneryBag = project.getSceneries();
             if (sceneryBag.size() > 0) {
@@ -216,7 +216,7 @@ public class Controller {
             Enumeration<?> enumeration = tilesetsDef.propertyNames();
             while (enumeration.hasMoreElements()) {
                 String key = (String) enumeration.nextElement();
-                image = MainEngine.getInstance().imageLoader().load("resources/" + tilesetsDef.getProperty(key));
+                image = new ImageLoader().load("resources/" + tilesetsDef.getProperty(key));
                 TileSet tileSet = new TileSet(key, image);
                 model.getTilesets().put(tileSet);
             }
