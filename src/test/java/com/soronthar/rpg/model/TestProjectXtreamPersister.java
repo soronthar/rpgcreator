@@ -22,7 +22,31 @@ import java.util.Collection;
 import java.util.Map;
 
 public class TestProjectXtreamPersister extends TestCase {
-    public void testSave() throws URISyntaxException, IOException {
+    public void testSaveByWriter() throws URISyntaxException, IOException {
+        Project project = createTestProject();
+
+        ProjectPersister persister = new ProjectPersister();
+        StringWriter out = new StringWriter();
+        persister.save(project, out);
+
+        File file = new File(this.getClass().getResource("/SmallProject.xml").toURI());
+
+        String testProject = FileUtils.readFileToString(file, "UTF-8");
+        //line endings, tabs and whitespaces at the begining of the lines may fool the equals method,
+        // messing up the test. So, filter them up.
+        String expected = testProject.replaceAll("\r\n", "\n").replaceAll("(\\s)\\s+", "$1");
+        String actual = out.toString().replaceAll("\r\n", "\n").replaceAll("(\\s)\\s+", "$1");
+        assertEquals(expected, actual);
+    }
+
+    public void testSaveByPath() throws URISyntaxException, IOException {
+        Project project = createTestProject();
+        ProjectPersister persister = new ProjectPersister();
+        persister.save(project);
+        assertLoadedProject(persister.load(project.getName()));
+    }
+
+    private Project createTestProject() {
         TileSet tileSet = new TileSet("TILESET", new BufferedImage(Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 20, BufferedImage.TYPE_INT_ARGB));
         Scenery firstScenery = new Scenery("first");
         for (int i = 0; i < LayersArray.LAYER_COUNT; i++) {
@@ -47,25 +71,22 @@ public class TestProjectXtreamPersister extends TestCase {
         Project project = new Project("Test Project");
         project.addScenery(firstScenery);
         project.addScenery(secondScenery);
-
-        ProjectPersister persister = new ProjectPersister();
-        StringWriter out = new StringWriter();
-        persister.save(project, out);
-        File file = new File(this.getClass().getResource("/SmallProject.xml").toURI());
-
-        String testProject = FileUtils.readFileToString(file, "UTF-8");
-        //line endings, tabs and whitespaces at the begining of the lines may fool the equals method,
-        // messing up the test. So, filter them up.
-        String expected = testProject.replaceAll("\r\n", "\n").replaceAll("(\\s)\\s+", "$1");
-        String actual = out.toString().replaceAll("\r\n", "\n").replaceAll("(\\s)\\s+", "$1");
-        assertEquals(expected, actual);
+        return project;
     }
 
-    public void testLoad() throws FileNotFoundException, URISyntaxException {
+    public void testLoadByPath() throws FileNotFoundException, URISyntaxException {
         ProjectPersister persister = new ProjectPersister();
         File file = new File(this.getClass().getResource("/SmallProject.xml").toURI());
-        Project project = persister.load(new FileReader(file));
+        assertLoadedProject(persister.load(file.getAbsolutePath()));
+    }
 
+    public void testLoadByReader() throws FileNotFoundException, URISyntaxException {
+        ProjectPersister persister = new ProjectPersister();
+        File file = new File(this.getClass().getResource("/SmallProject.xml").toURI());
+        assertLoadedProject(persister.load(new FileReader(file)));
+    }
+
+    private void assertLoadedProject(Project project) {
         assertEquals("Test Project", project.getName());
         assertEquals(2, project.getSceneries().size());
         Scenery nonexistent = project.getScenery("nonexistent");
@@ -74,7 +95,6 @@ public class TestProjectXtreamPersister extends TestCase {
         assertEquals("0.1", project.getFileVersion());
         assertFirstScenery(project.getScenery("first"));
         assertSecondScenery(project.getScenery("second"));
-
     }
 
     private void assertFirstScenery(Scenery scenery) {

@@ -14,7 +14,7 @@ public class ProjectPersister {
     private XStream createXStream() {
         XStream xstream = new XStream(new DomDriver());
         xstream.registerConverter(new TileConverter());
-        xstream.registerConverter(new PointConverter());
+//        xstream.registerConverter(new PointConverter());
         xstream.registerConverter(new SceneryConverter());
         xstream.registerConverter(new SpriteConverter());
         xstream.registerConverter(new DrawnTileConverter());
