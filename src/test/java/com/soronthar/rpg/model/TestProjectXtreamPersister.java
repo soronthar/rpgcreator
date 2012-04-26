@@ -13,6 +13,7 @@ import com.soronthar.rpg.model.tiles.Tile;
 import com.soronthar.rpg.model.tiles.TileSet;
 import junit.framework.TestCase;
 import org.apache.commons.io.FileUtils;
+import org.soronthar.error.TechnicalException;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -170,6 +171,27 @@ public class TestProjectXtreamPersister extends TestCase {
 
     private String identifyScenery(Scenery scenery, int i) {
         return "Scenery " + scenery.getName() + " layer " + i;
+    }
+
+    public void testExceptionOnSave() {
+        Project project = new Project("?*?"); //this should be an invalid name in all systems
+        ProjectPersister persister = new ProjectPersister();
+        try {
+            persister.save(project);
+            fail();
+        } catch (TechnicalException e) {
+        }
+
+    }
+
+
+    public void testExceptionOnLoad() {
+        ProjectPersister persister = new ProjectPersister();
+        try {
+            persister.load("?*?");
+            fail();
+        } catch (TechnicalException e) {
+        }
     }
 
 }
