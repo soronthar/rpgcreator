@@ -5,7 +5,6 @@ import com.soronthar.rpg.gui.builder.components.scenery.SceneryTree;
 import com.soronthar.rpg.gui.builder.panes.PaintPanel;
 import com.soronthar.rpg.gui.builder.panes.TilesetsPanel;
 import com.soronthar.rpg.model.JumpPoint;
-import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.project.ProjectPersister;
 import com.soronthar.rpg.model.scenery.*;
@@ -20,7 +19,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Properties;
 
 import static com.soronthar.rpg.Utils.normalizePointToTile;
 
@@ -160,18 +161,10 @@ public class Controller {
         for (int layerIndex = 0; layerIndex < layers.size(); layerIndex++) {
             this.model.setActiveLayerIndex(layerIndex);
 
-            if (layerIndex == LayersArray.SPRITE_LAYER_INDEX) {
-                Map<Point, Sprite> sprites = scenery.getSprites();
-                Set<Point> points = sprites.keySet();
-                for (Point point : points) {
-                    this.paintPanel.drawTileAtPoint(normalizePointToTile(point));
-                }
-            } else {
-                Layer sceneryLayer = layers.layerAt(layerIndex);
-                for (DrawnTile drawnTile : sceneryLayer) {
-                    notifyChangeDrawingPen(drawnTile.getTile());
-                    this.paintPanel.drawTileAtPoint(normalizePointToTile(drawnTile.getPoint()));
-                }
+            Layer sceneryLayer = layers.layerAt(layerIndex);
+            for (DrawnTile drawnTile : sceneryLayer) {
+                notifyChangeDrawingPen(drawnTile.getTile());
+                this.paintPanel.drawTileAtPoint(normalizePointToTile(drawnTile.getPoint()));
             }
         }
 

@@ -75,14 +75,7 @@ public class Model {
         } else if (isAddJumpMode()) {
             tile = Palette.createJumpPointDrawingPen();
         } else {
-            switch (getActiveLayerIndex()) {
-                case LayersArray.SPRITE_LAYER_INDEX:
-                    tile = Palette.createSpriteDrawingPen();
-                    break;
-                default:
-                    tile = drawingPen;
-                    break;
-            }
+            tile = drawingPen;
         }
         return tile;
     }

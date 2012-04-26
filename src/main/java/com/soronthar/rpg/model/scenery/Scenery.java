@@ -6,7 +6,6 @@ import com.soronthar.rpg.model.objects.ObjectMap;
 import com.soronthar.rpg.model.objects.Obstacle;
 import com.soronthar.rpg.model.objects.SpecialObject;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
-import com.soronthar.rpg.model.objects.sprites.UnmoveableSprite;
 import com.soronthar.rpg.model.tiles.Tile;
 import org.soronthar.geom.Dimension;
 
@@ -57,13 +56,6 @@ public class Scenery implements Serializable {
 
 
     public void setTile(Tile tile, int layer, Point p) {
-        if (layer == LayersArray.SPRITE_LAYER_INDEX) {
-            if (tile != null) {
-                sprites.put(p, new UnmoveableSprite(p));
-            } else {
-                sprites.remove(p);
-            }
-        }
         if (tile != null) {
             Dimension tileDimension = tile.getDimension();
             String tileSetName = tile.getTilesetName();
@@ -106,11 +98,7 @@ public class Scenery implements Serializable {
     }
 
     public Layer getLayer(int i) {
-        if (i == LayersArray.SPRITE_LAYER_INDEX) {
-            return null;
-        } else {
-            return layers.layerAt(i);
-        }
+        return layers.layerAt(i);
     }
 
     public LayersArray getLayers() {

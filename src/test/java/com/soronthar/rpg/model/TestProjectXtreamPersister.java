@@ -144,7 +144,6 @@ public class TestProjectXtreamPersister extends TestCase {
         for (int i = index; i < LayersArray.LAYER_COUNT; i++) {
             Layer layer = scenery.getLayer(i);
             if (i == LayersArray.SPRITE_LAYER_INDEX) {
-                assertNull(layer);
                 continue;
             } else {
                 assertNotNull(layer);
