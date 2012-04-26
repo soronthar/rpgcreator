@@ -18,7 +18,7 @@ public class LoadProjectAction extends ShowDialogAction {
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
-            getController().loadProject(file.getName());
+            getController().loadProject(file.getAbsolutePath());
         }
     }
 }

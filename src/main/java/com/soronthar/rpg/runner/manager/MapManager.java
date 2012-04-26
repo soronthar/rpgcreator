@@ -32,6 +32,10 @@ public class MapManager {
         pcs.addPropertyChangeListener(SCENERY, pcl);
     }
 
+    public Scenery getActiveScenery() {
+        return this.scenery;
+    }
+
     public void setScenery(Scenery scenery) {
         Scenery oldValue = this.scenery;
         this.scenery = scenery;
@@ -55,7 +59,7 @@ public class MapManager {
         setScenery(sceneries.iterator().next());
     }
 
-    private class SpecialsPerPoint {
+    public class SpecialsPerPoint {
         Map<Point, List<SpecialObject>> spriteMap = new HashMap<Point, List<SpecialObject>>();
 
 
@@ -68,21 +72,6 @@ public class MapManager {
             sprites.add(sprite);
         }
 
-        public void remove(Point location, Sprite sprite) {
-            List<SpecialObject> sprites = spriteMap.get(location);
-            if (sprites == null) return;
-            sprites.remove(sprite);
-        }
-
-        public boolean haveSpritesAt(Point location) {
-            return spriteMap.containsKey(location);
-        }
-
-        public boolean haveSpriteAt(SpecialObject sprite, Point location) {
-            List<SpecialObject> sprites = spriteMap.get(location);
-            if (sprites == null || sprites.isEmpty()) return false;
-            return sprites.contains(sprite);
-        }
 
         public boolean haveSolidSpritesAt(Point location) {
             List<SpecialObject> sprites = spriteMap.get(location);
@@ -98,16 +87,6 @@ public class MapManager {
             this.spriteMap.clear();
         }
     }
-
-    public Point centerGuidePoint(Rectangle viewBounds) {
-        int xTiles = viewBounds.width >> 5;
-        int yTiles = viewBounds.height >> 5;
-
-        int centerX = xTiles / 2;
-        int centerY = yTiles / 2;
-        return new Point(centerX << 5, centerY << 5);
-    }
-
 
     public void update(long elapsedTime) {
         updateHero(elapsedTime);
