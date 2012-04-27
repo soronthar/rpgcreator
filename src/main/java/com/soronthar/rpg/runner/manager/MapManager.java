@@ -100,7 +100,7 @@ public class MapManager {
         SpecialObject specialAt = scenery.getSpecialAt(location);
         if (specialAt instanceof JumpPoint) {
             JumpPoint jump = (JumpPoint) specialAt;
-            Scenery scenery1 = sceneries.get(jump.getTargetName());
+            Scenery scenery1 = sceneries.get(jump.getTargetId());
             this.setScenery(scenery1);
         }
     }

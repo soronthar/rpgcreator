@@ -27,7 +27,7 @@ public class SceneryTree extends JTree {
                 if (path != null) {
                     DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
                     if (!node.isRoot()) {
-                        controller.selectScenery(((Scenery) node.getUserObject()).getName());
+                        controller.selectScenery(((Scenery) node.getUserObject()).getId());
                     }
                 }
             }

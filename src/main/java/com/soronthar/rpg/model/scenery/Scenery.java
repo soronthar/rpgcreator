@@ -16,32 +16,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Scenery implements Serializable {
+    public static final int WIDTH = 320;
+    public static final int HEIGHT = 160;
+
+    private long id;
     private Dimension dimension;
     private String name;
     private LayersArray layers = new LayersArray();
     private Map<Point, Sprite> sprites = new HashMap<Point, Sprite>();
-
     private ObjectMap objects = new ObjectMap();
-
     private Point heroStartingPoint;
 
-    public static final Scenery NULL_SCENERY = new Scenery("Null") {
+    public static final Scenery NULL_SCENERY = new Scenery(0, "Null") {
         public void setTile(Point p, Tile tile) {
 
         }
     };
 
 
-    public static final int WIDTH = 320;
-    public static final int HEIGHT = 160;
-
-    public Scenery() {
+    public Scenery(long id, String name) {
+        this.id = id;
         this.sprites = new HashMap<Point, Sprite>();
         this.heroStartingPoint = new Point(0, 0);
-    }
-
-    public Scenery(String name) {
-        this();
         this.name = name;
         this.dimension = new Dimension(WIDTH, HEIGHT);
     }
@@ -148,5 +144,9 @@ public class Scenery implements Serializable {
 
     public SpecialObject getSpecialAt(Point point) {
         return objects.getObjectAt(point);
+    }
+
+    public long getId() {
+        return id;
     }
 }

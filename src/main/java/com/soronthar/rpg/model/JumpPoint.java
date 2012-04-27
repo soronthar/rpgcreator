@@ -5,14 +5,14 @@ import com.soronthar.rpg.model.objects.SpecialObject;
 import java.awt.*;
 
 public class JumpPoint extends SpecialObject {
-    private String target;
+    private long target;
 
-    public JumpPoint(Point location, String target) {
+    public JumpPoint(Point location, long target) {
         super(location);
         this.target = target;
     }
 
-    public String getTargetName() {
+    public long getTargetId() {
         return target;
     }
 }

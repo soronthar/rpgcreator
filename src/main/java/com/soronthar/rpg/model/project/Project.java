@@ -28,8 +28,8 @@ public class Project implements Serializable {
         this.sceneries.put(scenery);
     }
 
-    public Scenery getScenery(String name) {
-        return this.sceneries.get(name);
+    public Scenery getScenery(long id) {
+        return this.sceneries.get(id);
     }
 
     public String getFileVersion() {

@@ -28,9 +28,11 @@ public class SceneryConverter implements Converter {
     private static final String HEIGHT = "height";
     private static final String LAYER = "layer";
     private static final String INDEX = "index";
+    private static final String ID = "id";
 
     public void marshal(Object o, HierarchicalStreamWriter writer, MarshallingContext context) {
         Scenery scenery = (Scenery) o;
+        writer.addAttribute(ID, Long.toString(scenery.getId()));
         writer.addAttribute(NAME, scenery.getName());
         writer.addAttribute(WIDTH, Integer.toString(scenery.getWidth()));
         writer.addAttribute(HEIGHT, Integer.toString(scenery.getHeight()));
@@ -53,7 +55,7 @@ public class SceneryConverter implements Converter {
             writer.startNode(JUMP_POINT);
             writer.addAttribute(X_COORD, Integer.toString(jump.getLocation().x));
             writer.addAttribute(Y_COORD, Integer.toString(jump.getLocation().y));
-            writer.addAttribute(TARGET, jump.getTargetName());
+            writer.addAttribute(TARGET, Long.toString(jump.getTargetId()));
             writer.endNode();
         }
 
@@ -68,7 +70,8 @@ public class SceneryConverter implements Converter {
     public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
 
         String name = reader.getAttribute(NAME);
-        Scenery scenery = new Scenery(name);
+        String id = reader.getAttribute(ID);
+        Scenery scenery = new Scenery(Long.parseLong(id), name);
 
         String width = reader.getAttribute(WIDTH);
         String height = reader.getAttribute(HEIGHT);
@@ -99,7 +102,7 @@ public class SceneryConverter implements Converter {
                 int x = Integer.parseInt(reader.getAttribute(X_COORD));
                 int y = Integer.parseInt(reader.getAttribute(Y_COORD));
                 String target = reader.getAttribute(TARGET);
-                JumpPoint jump = new JumpPoint(new Point(x, y), target);
+                JumpPoint jump = new JumpPoint(new Point(x, y), Long.parseLong(target));
                 scenery.addJumpPoint(jump);
             }
             reader.moveUp();

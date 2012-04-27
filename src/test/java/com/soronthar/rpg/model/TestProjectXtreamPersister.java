@@ -49,7 +49,7 @@ public class TestProjectXtreamPersister extends TestCase {
 
     private Project createTestProject() {
         TileSet tileSet = new TileSet("TILESET", new BufferedImage(Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 20, BufferedImage.TYPE_INT_ARGB));
-        Scenery firstScenery = new Scenery("first");
+        Scenery firstScenery = new Scenery(1, "first");
         for (int i = 0; i < LayersArray.LAYER_COUNT; i++) {
             if (i != LayersArray.SPRITE_LAYER_INDEX) {
                 firstScenery.setTile(tileSet.getTile(new Point(0, i), Tile.TILE_DIMENSION), i, new org.soronthar.geom.Point(i, 0));
@@ -59,9 +59,9 @@ public class TestProjectXtreamPersister extends TestCase {
         firstScenery.addObstacleAt(new Point(8, 1));
         firstScenery.setHeroStartingPoint(new Point(5, 8));
 
-        firstScenery.addJumpPoint(new JumpPoint(new Point(6, 2), "second"));
+        firstScenery.addJumpPoint(new JumpPoint(new Point(6, 2), 2));
 
-        Scenery secondScenery = new Scenery("second");
+        Scenery secondScenery = new Scenery(2, "second");
         for (int i = 0; i < LayersArray.LAYER_COUNT; i++) {
             if (i != LayersArray.SPRITE_LAYER_INDEX) {
                 secondScenery.setTile(tileSet.getTile(new Point(1, i), Tile.TILE_DIMENSION), i, new org.soronthar.geom.Point(i, 1));
@@ -90,12 +90,12 @@ public class TestProjectXtreamPersister extends TestCase {
     private void assertLoadedProject(Project project) {
         assertEquals("Test Project", project.getName());
         assertEquals(2, project.getSceneries().size());
-        Scenery nonexistent = project.getScenery("nonexistent");
+        Scenery nonexistent = project.getScenery(0);
         assertNull(nonexistent);
 
         assertEquals("0.1", project.getFileVersion());
-        assertFirstScenery(project.getScenery("first"));
-        assertSecondScenery(project.getScenery("second"));
+        assertFirstScenery(project.getScenery(1));
+        assertSecondScenery(project.getScenery(2));
     }
 
     private void assertFirstScenery(Scenery scenery) {
@@ -122,7 +122,7 @@ public class TestProjectXtreamPersister extends TestCase {
 
         JumpPoint jumpPoint = jump.iterator().next();
         assertEquals(new Point(6, 2), jumpPoint.getLocation());
-        assertEquals("second", jumpPoint.getTargetName());
+        assertEquals(2, jumpPoint.getTargetId());
 
     }
 
@@ -139,6 +139,7 @@ public class TestProjectXtreamPersister extends TestCase {
 
     private void assertLoadedScenery(Scenery scenery, int index) {
         assertNotNull(scenery);
+        assertEquals(index + 1, scenery.getId());
         LayersArray layers = scenery.getLayers();
         assertEquals(5, layers.size());
         for (int i = index; i < LayersArray.LAYER_COUNT; i++) {

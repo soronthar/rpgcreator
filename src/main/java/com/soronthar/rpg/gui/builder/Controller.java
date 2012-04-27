@@ -65,7 +65,7 @@ public class Controller {
             this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
         } else if (model.isAddJumpMode()) {
             Scenery activeScenery = model.getActiveScenery();
-            activeScenery.addJumpPoint(new JumpPoint(p, activeScenery.getName()));
+            activeScenery.addJumpPoint(new JumpPoint(p, activeScenery.getId()));
             this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
         } else {
             if (!model.isInSpecialLayer()) {
@@ -125,7 +125,7 @@ public class Controller {
 
     public void createNewProject(String projectName) {
         Project project = new Project(projectName);
-        Scenery scenery = new Scenery("New Scenery");
+        Scenery scenery = new Scenery(System.currentTimeMillis(), "New Scenery");
         project.addScenery(scenery);
         model.setProject(project);
         model.setActiveScenery(scenery);
@@ -137,7 +137,7 @@ public class Controller {
     }
 
     public void addNewScenery(String sceneryName) {
-        Scenery scenery = new Scenery(sceneryName);
+        Scenery scenery = new Scenery(System.currentTimeMillis(), sceneryName);
         model.addScenery(scenery);
         model.setActiveScenery(scenery);
         this.paintPanel.clearMap();
@@ -145,8 +145,8 @@ public class Controller {
         this.sceneryTree.addSceneryToProjectTree(scenery);
     }
 
-    public void selectScenery(String sceneryName) {
-        model.setActiveScenery(model.getProject().getScenery(sceneryName));
+    public void selectScenery(long id) {
+        model.setActiveScenery(model.getProject().getScenery(id));
         this.paintPanel.clearMap();
         drawScenery(model.getActiveScenery());
     }

@@ -1,12 +1,12 @@
 <project name="MapManagerTest.xml">
     <fileVersion>0.1</fileVersion>
     <sceneries>
-        <scenery name="First" width="320" height="160">
+        <scenery id="1" name="First" width="320" height="160">
             <obstacle x="160" y="64"/>
-            <jumpPoint x="288" y="96" target="Second"/>
+            <jumpPoint x="288" y="96" target="2"/>
             <heroStartingPoint x="0" y="0"/>
         </scenery>
-        <scenery name="Second" width="320" height="160">
+        <scenery id="2" name="Second" width="320" height="160">
             <heroStartingPoint x="32" y="32"/>
         </scenery>
     </sceneries>

@@ -5,14 +5,14 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 
 public class SceneryBag implements Serializable, Iterable<Scenery> {
-    private LinkedHashMap<String, Scenery> map = new LinkedHashMap<String, Scenery>();
+    private LinkedHashMap<Long, Scenery> map = new LinkedHashMap<Long, Scenery>();
 
-    public Scenery get(String name) {
+    public Scenery get(long name) {
         return map.get(name);
     }
 
     public void put(Scenery scenery) {
-        map.put(scenery.getName(), scenery);
+        map.put(scenery.getId(), scenery);
     }
 
     public Iterator<Scenery> iterator() {

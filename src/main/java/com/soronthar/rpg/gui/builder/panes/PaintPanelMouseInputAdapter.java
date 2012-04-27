@@ -40,8 +40,8 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
                 int i = 0;
                 int selected = 0;
                 for (Scenery scenery : sceneries) {
-                    vector.add(scenery.getName());
-                    if (scenery.getName().equals(((JumpPoint) specialObject).getTargetName())) {
+                    vector.add(scenery);
+                    if (scenery.getId() == (((JumpPoint) specialObject).getTargetId())) {
                         selected = i;
                     }
                     i++;
@@ -56,7 +56,8 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        controller.getModel().getActiveScenery().addJumpPoint(new JumpPoint(point, (String) combo.getSelectedItem()));
+                        Scenery selectedItem = (Scenery) combo.getSelectedItem();
+                        controller.getModel().getActiveScenery().addJumpPoint(new JumpPoint(point, selectedItem.getId()));
                         dialog.setVisible(false);
                     }
                 });

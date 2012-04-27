@@ -164,7 +164,7 @@ public class TestMapManager extends TestCase {
         manager.update(System.currentTimeMillis());
 
         assertEquals(2, listener.getTimesCalled());
-        Scenery secondScenery = project.getScenery("Second");
+        Scenery secondScenery = project.getScenery(2);
         Hero secondHero = manager.getHero();
         assertNotSame(hero, secondHero);
         assertEquals(secondScenery, manager.getActiveScenery());
