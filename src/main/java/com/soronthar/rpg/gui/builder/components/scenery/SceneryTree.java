@@ -16,7 +16,8 @@ import javax.swing.tree.TreePath;
 public class SceneryTree extends JTree {
     public SceneryTree(final Controller controller) {
 
-        super(new DefaultTreeModel(new DefaultMutableTreeNode("<< No Project Loaded >>", false)));
+        super(new SceneryTreeModel());
+
         this.setMinimumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
         this.setMaximumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
 
@@ -32,12 +33,12 @@ public class SceneryTree extends JTree {
                 }
             }
         });
-
+        this.setEditable(true);
     }
 
 
     public void updateSceneriesForProject(Project project) {
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode(project);
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(project.getName());
 
         SceneryBag sceneryBag = project.getSceneries();
         for (Scenery scenery : sceneryBag) {
@@ -64,5 +65,19 @@ public class SceneryTree extends JTree {
 
     public DefaultTreeModel getModel() {
         return (DefaultTreeModel) super.getModel();
+    }
+
+    private static class SceneryTreeModel extends DefaultTreeModel {
+        private SceneryTreeModel() {
+            super(new DefaultMutableTreeNode("<< No Project Loaded >>"), false);
+        }
+
+        @Override
+        public void valueForPathChanged(TreePath path, Object newValue) {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
+            Scenery scenery = (Scenery) node.getUserObject();
+            scenery.setName((String) newValue);
+            nodeChanged(node);
+        }
     }
 }
