@@ -19,9 +19,16 @@ public class SpecialsToggleToolbar extends JToolBar {
                 new MyToggleButton(actions.addJumpAction()),
 
         };
-
         for (JToggleButton toggle : toggles) {
             this.add(toggle);
+        }
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        for (JToggleButton toggle : toggles) {
+            toggle.setEnabled(enabled);
         }
     }
 

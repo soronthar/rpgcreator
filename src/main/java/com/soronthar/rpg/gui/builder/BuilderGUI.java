@@ -46,9 +46,10 @@ public class BuilderGUI extends JPanel {
     private void createComponents(Controller controller, ActionsManager actionsManager) {
         paintPanel = new PaintPanel(controller);
         toolBar = new BuilderToolBar(actionsManager);
+        toolBar.setEnabled(false);
         tilesetsPanel = new TilesetsPanel(controller);
         sceneryTree = new SceneryTree(controller);
-        layerPanel = new LayerPanel(controller, actionsManager);
+        layerPanel = new LayerPanel(controller);
         statusBar = new ColoredJPanel(Color.lightGray);
         final JLabel label = new JLabel("0,0");
         statusBar.add(label);
@@ -162,5 +163,6 @@ public class BuilderGUI extends JPanel {
         this.sceneryTree.setEnabled(enabled);
         this.tilesetsPanel.setEnabled(enabled);
         this.paintPanel.setEnabled(enabled);
+        this.toolBar.setEnabled(enabled);
     }
 }

@@ -92,7 +92,7 @@ public class TilesetsPanel extends JTabbedPane {
             Tile tile = new Tile(tilePanel.getName(), topLeft, dimension);
 
             this.tilePanel.tileSelectedEvent(tile);
-            controller.setActiveTile(tile);
+            controller.setDrawingPen(tile);
 
             startPoint = null;
             topLeft = null;

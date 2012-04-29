@@ -28,6 +28,26 @@ public class ActionsManager {
         this.addHeroStartAction = new AddHeroStartAction(controller);
         this.addJumpAction = new AddJumpAction(controller);
 
+        setInitialState();
+    }
+
+    public void setInitialState() {
+        this.saveProjectAction().setEnabled(false);
+        this.newSceneryAction().setEnabled(false);
+        this.runProjectAction().setEnabled(false);
+        this.addObstacleAction().setEnabled(false);
+        this.addHeroStartAction().setEnabled(false);
+        this.addJumpAction().setEnabled(false);
+    }
+
+    public void setAllEnabled() {
+        this.saveProjectAction().setEnabled(true);
+        this.newSceneryAction().setEnabled(true);
+        this.runProjectAction().setEnabled(true);
+        this.addObstacleAction().setEnabled(true);
+        this.addHeroStartAction().setEnabled(true);
+        this.addJumpAction().setEnabled(true);
+
     }
 
     public Action newProjectAction() {

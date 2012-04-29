@@ -1,6 +1,7 @@
 package com.soronthar.rpg.gui.builder;
 
 import com.soronthar.rpg.ImageLoader;
+import com.soronthar.rpg.gui.builder.actions.ActionsManager;
 import com.soronthar.rpg.gui.builder.components.scenery.SceneryTree;
 import com.soronthar.rpg.gui.builder.panes.PaintPanel;
 import com.soronthar.rpg.gui.builder.panes.TilesetsPanel;
@@ -31,14 +32,14 @@ public class Controller {
     private PaintPanel paintPanel;
     private SceneryTree sceneryTree;
     private BuilderGUI builderGUI;
+    private ActionsManager actionManager;
 
     public Controller(Model model) {
         this.model = model;
 
     }
 
-
-    public void handleToggleLayerVisibilityEvent(int layerIndex) {
+    public void toggleLayerVisibility(int layerIndex) {
         model.toggleLayerVisibility(layerIndex);
         this.paintPanel.getCanvas().repaint();
         this.paintPanel.repaint();
@@ -50,7 +51,7 @@ public class Controller {
     }
 
 
-    public void setActiveTile(Tile activeTile) {
+    public void setDrawingPen(Tile activeTile) {
         model.setActiveTile(activeTile);
         if (activeTile != null) {
             notifyChangeDrawingPen(activeTile);
@@ -106,6 +107,7 @@ public class Controller {
 
         try {
             this.builderGUI.setEnabled(true);
+            this.actionManager.setAllEnabled();
             this.paintPanel.clearMap();
 
             Project project = new ProjectPersister().load(projectName);
@@ -131,6 +133,8 @@ public class Controller {
         model.setProject(project);
         model.setActiveScenery(scenery);
         this.builderGUI.setEnabled(true);
+        this.actionManager.setAllEnabled();
+
         this.paintPanel.clearMap();
         this.sceneryTree.clearSceneryTree(project);
         this.sceneryTree.addSceneryToProjectTree(scenery);
@@ -254,5 +258,9 @@ public class Controller {
 
     public void setMainGUI(BuilderGUI builderGUI) {
         this.builderGUI = builderGUI;
+    }
+
+    public void setActionManager(ActionsManager actionManager) {
+        this.actionManager = actionManager;
     }
 }

@@ -5,10 +5,12 @@ import com.soronthar.rpg.gui.builder.actions.ActionsManager;
 import javax.swing.*;
 
 public class BuilderToolBar extends JToolBar {
+
+    private final SpecialsToggleToolbar toggleToolbar;
+
     public BuilderToolBar(final ActionsManager actions) {
         super(JToolBar.HORIZONTAL);
         this.setFloatable(false);
-//        this.setBackground(Color.BLUE);
 
         this.add(actions.newProjectAction());
         this.add(actions.loadProjectAction());
@@ -18,9 +20,16 @@ public class BuilderToolBar extends JToolBar {
         this.addSeparator();
         this.add(actions.runProjectAction());
         this.addSeparator();
-        this.add(new SpecialsToggleToolbar(actions));
+        toggleToolbar = new SpecialsToggleToolbar(actions);
+        this.add(toggleToolbar);
 
 
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        this.toggleToolbar.setEnabled(enabled);
     }
 
     @Override

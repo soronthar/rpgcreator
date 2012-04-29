@@ -19,6 +19,8 @@ public class RpgCreator extends JFrame {
         contentPane.setEnabled(false);
         this.setContentPane(contentPane);
         this.setJMenuBar(createMenu(actionsManager));
+        controller.setActionManager(actionsManager);
+
         //(RAF) this is the last thing that should be done.
         controller.loadTilesets();
 

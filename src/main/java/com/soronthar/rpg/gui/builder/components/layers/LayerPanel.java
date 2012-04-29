@@ -2,7 +2,6 @@ package com.soronthar.rpg.gui.builder.components.layers;
 
 import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.gui.builder.Controller;
-import com.soronthar.rpg.gui.builder.actions.ActionsManager;
 import com.soronthar.rpg.model.scenery.LayersArray;
 
 import javax.swing.*;
@@ -17,7 +16,7 @@ public class LayerPanel extends JScrollPane {
 
     private final JTable layersTable;
 
-    public LayerPanel(final Controller controller, final ActionsManager actionsManager) {
+    public LayerPanel(final Controller controller) {
         layersTable = new JTable(new MyTableModel());
         layersTable.setMinimumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
         layersTable.setMaximumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
@@ -30,7 +29,7 @@ public class LayerPanel extends JScrollPane {
             public void tableChanged(TableModelEvent e) {
                 if (e.getType() == TableModelEvent.UPDATE) {
                     int row = e.getLastRow();
-                    controller.handleToggleLayerVisibilityEvent(row);
+                    controller.toggleLayerVisibility(row);
                 }
             }
         });
