@@ -40,6 +40,7 @@ public class BuilderGUI extends JPanel {
 
         createComponents(controller, actionsManager);
         addComponentsToPanel();
+        controller.setMainGUI(this);
     }
 
     private void createComponents(Controller controller, ActionsManager actionsManager) {
@@ -103,15 +104,14 @@ public class BuilderGUI extends JPanel {
         g.weightx = 0;
         g.weighty = 0.2;
         g.fill = GridBagConstraints.BOTH;
-        TabDock leftDock = new TabDock();
-        Dockable dockable = new DefaultDockable("Window1", sceneryTree, "Scenery", null, DockingMode.ALL);
-        leftDock.addDockable(dockable, new Position(0));
-
-        Dockable layers = new DefaultDockable("Window2", layerPanel, "Layers", null, DockingMode.ALL);
-        leftDock.addDockable(layers, new Position(1));
-
-        dockModel.addRootDock("sceneryTree", leftDock, dockModel.getOwner(0));
-        contentPane.add(leftDock, g);
+        TabDock tabs = new TabDock();
+        Dockable sceneriesDock = new DefaultDockable("Scenery", sceneryTree, "Scenery", null, DockingMode.ALL);
+        tabs.addDockable(sceneriesDock, new Position(0));
+        Dockable layersDock = new DefaultDockable("Layers", layerPanel, "Layers", null, DockingMode.ALL);
+        tabs.addDockable(layersDock, new Position(1));
+        tabs.setSelectedDockable(sceneriesDock);
+        dockModel.addRootDock("sceneryTree", tabs, dockModel.getOwner(0));
+        contentPane.add(tabs, g);
     }
 
     private void addTileSetsPanel(GridBagConstraints g, TilesetsPanel tilesetsPanel) {
@@ -154,4 +154,13 @@ public class BuilderGUI extends JPanel {
         }
     }
 
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        this.layerPanel.setEnabled(enabled);
+        this.sceneryTree.setEnabled(enabled);
+        this.tilesetsPanel.setEnabled(enabled);
+        this.paintPanel.setEnabled(enabled);
+    }
 }

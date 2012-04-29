@@ -30,6 +30,7 @@ public class Controller {
     private TilesetsPanel tilesetsPanel;
     private PaintPanel paintPanel;
     private SceneryTree sceneryTree;
+    private BuilderGUI builderGUI;
 
     public Controller(Model model) {
         this.model = model;
@@ -104,6 +105,7 @@ public class Controller {
     public void loadProject(String projectName) {
 
         try {
+            this.builderGUI.setEnabled(true);
             this.paintPanel.clearMap();
 
             Project project = new ProjectPersister().load(projectName);
@@ -115,7 +117,6 @@ public class Controller {
                 drawScenery(activeScenery);
             }
             model.setProject(project);
-            paintPanel.setEnabled(true);
             this.sceneryTree.updateSceneriesForProject(project);
             this.setActiveLayer(0);
         } catch (Exception e) {
@@ -129,9 +130,9 @@ public class Controller {
         project.addScenery(scenery);
         model.setProject(project);
         model.setActiveScenery(scenery);
+        this.builderGUI.setEnabled(true);
         this.paintPanel.clearMap();
         this.sceneryTree.clearSceneryTree(project);
-        this.paintPanel.setEnabled(true);
         this.sceneryTree.addSceneryToProjectTree(scenery);
         this.setActiveLayer(0);
     }
@@ -249,5 +250,9 @@ public class Controller {
     //TODO: remove
     public PaintPanel getPaintPanel() {
         return paintPanel;
+    }
+
+    public void setMainGUI(BuilderGUI builderGUI) {
+        this.builderGUI = builderGUI;
     }
 }

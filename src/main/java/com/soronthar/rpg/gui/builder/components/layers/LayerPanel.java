@@ -15,15 +15,17 @@ import javax.swing.table.AbstractTableModel;
 public class LayerPanel extends JScrollPane {
 
 
+    private final JTable layersTable;
+
     public LayerPanel(final Controller controller, final ActionsManager actionsManager) {
-        final JTable table = new JTable(new MyTableModel());
-        table.setMinimumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
-        table.setMaximumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
-        table.setPreferredScrollableViewportSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
-        table.setFillsViewportHeight(true);
-        setViewportView(table);
-        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        table.getModel().addTableModelListener(new TableModelListener() {
+        layersTable = new JTable(new MyTableModel());
+        layersTable.setMinimumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
+        layersTable.setMaximumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
+        layersTable.setPreferredScrollableViewportSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
+        layersTable.setFillsViewportHeight(true);
+        setViewportView(layersTable);
+        layersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        layersTable.getModel().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {
                 if (e.getType() == TableModelEvent.UPDATE) {
@@ -34,11 +36,11 @@ public class LayerPanel extends JScrollPane {
         });
 
 
-        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        layersTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    int row = table.getSelectedRow();
+                    int row = layersTable.getSelectedRow();
                     controller.setActiveLayer(row);
                 }
             }
@@ -114,5 +116,9 @@ public class LayerPanel extends JScrollPane {
 
     }
 
-
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        this.layersTable.setEnabled(enabled);
+    }
 }

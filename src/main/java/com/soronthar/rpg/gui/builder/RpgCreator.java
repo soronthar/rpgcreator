@@ -16,7 +16,7 @@ public class RpgCreator extends JFrame {
         ActionsManager actionsManager = new ActionsManager(this, controller);
 
         Container contentPane = new BuilderGUI(controller, actionsManager, this);
-
+        contentPane.setEnabled(false);
         this.setContentPane(contentPane);
         this.setJMenuBar(createMenu(actionsManager));
         //(RAF) this is the last thing that should be done.
