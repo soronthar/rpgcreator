@@ -263,4 +263,11 @@ public class Controller {
     public void setActionManager(ActionsManager actionManager) {
         this.actionManager = actionManager;
     }
+
+    public void setScenerySize(long id, Dimension dimension) {
+        Scenery scenery = this.model.getProject().getScenery(id);
+        scenery.setDimension(dimension);
+        this.paintPanel.clearMap();
+        drawScenery(model.getActiveScenery());//TODO: nasty bug... is it possible to change the size of an inactive scenery?
+    }
 }

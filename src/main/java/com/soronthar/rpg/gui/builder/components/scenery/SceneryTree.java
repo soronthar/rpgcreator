@@ -5,6 +5,7 @@ import com.soronthar.rpg.gui.builder.Controller;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.scenery.Scenery;
 import com.soronthar.rpg.model.scenery.SceneryBag;
+import org.soronthar.geom.Dimension;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -12,6 +13,11 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class SceneryTree extends JTree {
     public SceneryTree(final Controller controller) {
@@ -34,6 +40,57 @@ public class SceneryTree extends JTree {
             }
         });
         this.setEditable(true);
+
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                final SceneryTree sceneryTree = SceneryTree.this;
+                if (e.isPopupTrigger() && sceneryTree.getSelectionCount() > 0) {
+                    JPopupMenu menu = new JPopupMenu();
+                    menu.add(new AbstractAction("Test popup") {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            JFrame ancestor = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, sceneryTree);
+                            DefaultMutableTreeNode node = (DefaultMutableTreeNode) sceneryTree.getSelectionPath().getLastPathComponent();
+                            Scenery scenery = (Scenery) node.getUserObject();
+                            final JDialog dialog = new JDialog(ancestor, "Edit", true);
+                            dialog.setLayout(new FlowLayout());
+                            JLabel width = new JLabel("Width:");
+                            final JLabel height = new JLabel("Height:");
+                            final JTextField widthValue = new JTextField(Integer.toString(scenery.getWidth()));
+                            final JTextField heightValue = new JTextField(Integer.toString(scenery.getHeight()));
+
+                            dialog.add(width);
+                            dialog.add(widthValue);
+                            dialog.add(height);
+                            dialog.add(heightValue);
+
+                            JButton button = new JButton("OK");
+                            dialog.add(button);
+                            button.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+
+                                    DefaultMutableTreeNode node = (DefaultMutableTreeNode) sceneryTree.getSelectionPath().getLastPathComponent();
+                                    Scenery scenery = (Scenery) node.getUserObject();
+
+                                    controller.setScenerySize(scenery.getId(), new Dimension(Integer.parseInt(widthValue.getText()), Integer.parseInt(heightValue.getText())));
+                                    dialog.setVisible(false);
+                                }
+                            });
+                            dialog.setLocationRelativeTo(ancestor);
+                            dialog.pack();
+                            dialog.setVisible(true);
+
+                            //To change body of implemented methods use File | Settings | File Templates.
+                        }
+                    });
+                    menu.add("Testa");
+                    menu.add("Testa");
+                    menu.show(sceneryTree, e.getX(), e.getY());
+                }
+            }
+        });
     }
 
 
