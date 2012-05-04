@@ -12,7 +12,8 @@ public class Hero extends MoveableSprite {
 
 
     public Hero(Point location, Rectangle bound) {
-        super(location, bound);
+        super("hero", location);
+        setBounds(bound);
         this.spriteImages = new ImageLoader().load("hero.png");
     }
 

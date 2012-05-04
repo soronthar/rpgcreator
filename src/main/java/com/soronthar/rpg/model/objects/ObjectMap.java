@@ -1,6 +1,7 @@
 package com.soronthar.rpg.model.objects;
 
 import com.soronthar.rpg.model.JumpPoint;
+import com.soronthar.rpg.model.objects.sprites.Sprite;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -52,7 +53,7 @@ public class ObjectMap {
         if (sprites == null || sprites.isEmpty()) return false;
 
         for (SpecialObject specialObject : sprites) {
-            if (specialObject.isSolid()) return true;
+            if (specialObject instanceof Sprite && ((Sprite) specialObject).isSolid()) return true;
         }
         return false;
     }

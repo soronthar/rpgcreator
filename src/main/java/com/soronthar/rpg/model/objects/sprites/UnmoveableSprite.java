@@ -3,13 +3,12 @@ package com.soronthar.rpg.model.objects.sprites;
 import java.awt.*;
 
 public class UnmoveableSprite extends Sprite {
-    public UnmoveableSprite(Point p) {
-        super(p);
+    public UnmoveableSprite(String id, Point p) {
+        super(id, p);
     }
 
-    public UnmoveableSprite(Point p, Facing facing) {
-        this(p);
-        this.facing = facing;
+    public UnmoveableSprite(String id, Point p, Facing facing) {
+        super(id, p, facing);
     }
 
     @Override

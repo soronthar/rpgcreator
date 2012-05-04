@@ -12,7 +12,7 @@ import org.soronthar.geom.Dimension;
 import java.awt.*;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Scenery implements Serializable {
@@ -23,7 +23,7 @@ public class Scenery implements Serializable {
     private Dimension dimension;
     private String name;
     private LayersArray layers = new LayersArray();
-    private Map<Point, Sprite> sprites = new HashMap<Point, Sprite>();
+    private Map<String, Sprite> sprites = new LinkedHashMap<String, Sprite>();
     private ObjectMap objects = new ObjectMap();
     private Point heroStartingPoint;
 
@@ -36,7 +36,6 @@ public class Scenery implements Serializable {
 
     public Scenery(long id, String name) {
         this.id = id;
-        this.sprites = new HashMap<Point, Sprite>();
         this.heroStartingPoint = new Point(0, 0);
         this.name = name;
         this.dimension = new Dimension(WIDTH, HEIGHT);
@@ -101,7 +100,7 @@ public class Scenery implements Serializable {
         return layers;
     }
 
-    public Map<Point, Sprite> getSprites() {
+    public Map<String, Sprite> getSprites() {
         return sprites;
     }
 
@@ -114,7 +113,7 @@ public class Scenery implements Serializable {
     }
 
     public void addSprite(Sprite sprite) {
-        this.sprites.put(sprite.getLocation(), sprite);
+        this.sprites.put(sprite.getId(), sprite);
     }
 
     public Collection<Point> getObstacles() {

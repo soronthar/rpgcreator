@@ -22,7 +22,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Properties;
 
 import static com.soronthar.rpg.Utils.normalizePointToTile;
 
@@ -69,9 +71,10 @@ public class Controller {
             Scenery activeScenery = model.getActiveScenery();
             activeScenery.addJumpPoint(new JumpPoint(p, activeScenery.getId()));
             this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
-        }else if (model.isAddSpriteMode()) {
+        } else if (model.isAddSpriteMode()) {
             Scenery activeScenery = model.getActiveScenery();
-            activeScenery.addSprite(new MoveableSprite(p,new Rectangle(0,0)));
+            int size = activeScenery.getSprites().size();
+            activeScenery.addSprite(new MoveableSprite("Sprite-" + size, p));
             this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
         } else {
             if (!model.isInSpecialLayer()) {

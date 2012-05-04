@@ -10,9 +10,16 @@ public class MoveableSprite extends Sprite {
     private int steps;
     private Rectangle bounds;
 
-    public MoveableSprite(Point location, Rectangle bound) {
-        super(location);
-        this.bounds = bound;
+    public MoveableSprite(String id, Point location) {
+        super(id, location);
+    }
+
+    public MoveableSprite(String id, Point location, Facing facing) {
+        super(id, location, facing);
+    }
+
+    public void setBounds(Rectangle bounds) {
+        this.bounds = bounds;
     }
 
     public void setLocation(Point location) {
@@ -28,6 +35,11 @@ public class MoveableSprite extends Sprite {
         if (newLocation.x >= bounds.width) newLocation.x = bounds.width;
         if (newLocation.y >= bounds.height) newLocation.y = bounds.height;
         return newLocation;
+    }
+
+    @Override
+    public void update(long elapsedTime) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     protected void move() {
@@ -93,6 +105,5 @@ public class MoveableSprite extends Sprite {
 
         return xRemainder != 0 || yRemainder != 0;
     }
-
 
 }

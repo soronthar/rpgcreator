@@ -10,13 +10,4 @@ public class Obstacle extends SpecialObject {
         super(location);
     }
 
-    @Override
-    public boolean isVisible() {
-        return false;
-    }
-
-    @Override
-    public boolean isSolid() {
-        return true;
-    }
 }

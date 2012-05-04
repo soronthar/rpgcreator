@@ -78,7 +78,8 @@ public class MapManager {
             if (sprites == null || sprites.isEmpty()) return false;
 
             for (SpecialObject specialObject : sprites) {
-                if (specialObject.isSolid()) return true;
+                if (specialObject instanceof Sprite && ((Sprite) specialObject).isSolid()) return true;
+                if (specialObject instanceof Obstacle) return true;
             }
             return false;
         }

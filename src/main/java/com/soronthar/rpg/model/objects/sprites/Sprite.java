@@ -7,11 +7,23 @@ import java.awt.*;
 
 
 public abstract class Sprite extends SpecialObject {
-    private Image[] frames;
-    protected Facing facing = Facing.UP;
+    private String id;
+    private boolean isSolid = true;
+    private boolean visible = true;
 
-    protected Sprite(Point location) {
+
+    private Image[] frames;
+    protected Facing facing = Facing.DOWN;
+
+    protected Sprite(String id, Point location) {
         super(location);
+        this.id = id;
+    }
+
+    protected Sprite(String id, Point location, Facing facing) {
+        super(location);
+        this.id = id;
+        this.facing = facing;
     }
 
 
@@ -37,21 +49,33 @@ public abstract class Sprite extends SpecialObject {
     }
 
 
-    @Override
     public boolean isSolid() {
-        return true;
+        return isSolid;
+    }
+
+    public void setSolid(boolean solid) {
+        isSolid = solid;
     }
 
     public boolean isMoving() {
         return false;
     }
 
-
-    public void update(long elapsedTime) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public boolean isVisible() {
+        return visible;
     }
+
+    abstract public void update(long elapsedTime);
 
     public Image getFrame() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }
