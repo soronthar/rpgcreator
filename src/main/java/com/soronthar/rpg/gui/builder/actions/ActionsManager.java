@@ -16,6 +16,7 @@ public class ActionsManager {
     private AddObstacleAction addObstacleAction;
     private AddHeroStartAction addHeroStartAction;
     private AddJumpAction addJumpAction;
+    private AddSpriteAction addSpriteAction;
 
     public ActionsManager(JFrame parent, Controller controller) {
         this.newProjectAction = new NewProjectAction(parent, controller);
@@ -27,7 +28,7 @@ public class ActionsManager {
         this.addObstacleAction = new AddObstacleAction(controller);
         this.addHeroStartAction = new AddHeroStartAction(controller);
         this.addJumpAction = new AddJumpAction(controller);
-
+        this.addSpriteAction=new AddSpriteAction(controller);
         setInitialState();
     }
 
@@ -38,6 +39,7 @@ public class ActionsManager {
         this.addObstacleAction().setEnabled(false);
         this.addHeroStartAction().setEnabled(false);
         this.addJumpAction().setEnabled(false);
+        this.addSpriteAction().setEnabled(false);
     }
 
     public void setAllEnabled() {
@@ -47,6 +49,7 @@ public class ActionsManager {
         this.addObstacleAction().setEnabled(true);
         this.addHeroStartAction().setEnabled(true);
         this.addJumpAction().setEnabled(true);
+        this.addSpriteAction().setEnabled(true);
 
     }
 
@@ -84,5 +87,9 @@ public class ActionsManager {
 
     public Action addJumpAction() {
         return addJumpAction;
+    }
+
+    public Action addSpriteAction() {
+        return addSpriteAction;
     }
 }

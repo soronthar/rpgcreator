@@ -17,6 +17,7 @@ public class SpecialsToggleToolbar extends JToolBar {
                 new MyToggleButton(actions.addObstacleAction()),
                 new MyToggleButton(actions.addHeroStartAction()),
                 new MyToggleButton(actions.addJumpAction()),
+                new MyToggleButton(actions.addSpriteAction()),
 
         };
         for (JToggleButton toggle : toggles) {

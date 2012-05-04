@@ -37,10 +37,6 @@ public abstract class Sprite extends SpecialObject {
     }
 
 
-    public abstract void update(long elapsedTime);
-
-    public abstract Image getFrame();
-
     @Override
     public boolean isSolid() {
         return true;
@@ -48,5 +44,14 @@ public abstract class Sprite extends SpecialObject {
 
     public boolean isMoving() {
         return false;
+    }
+
+
+    public void update(long elapsedTime) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public Image getFrame() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

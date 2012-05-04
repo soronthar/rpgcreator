@@ -4,7 +4,7 @@ import com.soronthar.rpg.model.tiles.Tile;
 
 import java.awt.*;
 
-public abstract class MoveableSprite extends Sprite {
+public class MoveableSprite extends Sprite {
     protected int dx;
     protected int dy;
     private int steps;
@@ -93,5 +93,6 @@ public abstract class MoveableSprite extends Sprite {
 
         return xRemainder != 0 || yRemainder != 0;
     }
+
 
 }

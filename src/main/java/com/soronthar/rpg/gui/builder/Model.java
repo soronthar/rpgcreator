@@ -17,8 +17,10 @@ public class Model {
 
     public static final String LOCATION = "location";
 
+
+
     public enum SpecialModes {
-        NONE, OBSTACLE, HERO_START, JUMP
+        NONE, OBSTACLE, HERO_START, JUMP, SPRITE
     }
 
     private TileSetBag tileSets = new TileSetBag();
@@ -62,6 +64,10 @@ public class Model {
         return mode == SpecialModes.JUMP;
     }
 
+    public boolean isAddSpriteMode() {
+        return mode==SpecialModes.SPRITE;
+    }
+
     public void setMode(SpecialModes mode) {
         this.mode = mode;
     }
@@ -74,11 +80,15 @@ public class Model {
             tile = Palette.createHeroStartDrawingPen();
         } else if (isAddJumpMode()) {
             tile = Palette.createJumpPointDrawingPen();
-        } else {
+        } else if (isAddSpriteMode()) {
+            tile = Palette.createSpriteDrawingPen();
+        }  else {
             tile = drawingPen;
         }
         return tile;
     }
+
+
 
     public void setDrawingPen(BufferedImage drawingPen) {
         this.drawingPen = drawingPen;
@@ -112,11 +122,15 @@ public class Model {
 
 
     public int getActiveLayerIndex() {
-        if (isPaintObstacles() || isHeroStartMode() || isAddJumpMode()) {
+        if (isSpecialMode()) {
             return LayersArray.LAYER_COUNT;
         } else {
             return activeLayerIndex;
         }
+    }
+
+    private boolean isSpecialMode() {
+        return mode!=SpecialModes.NONE;
     }
 
     public void setActiveLayerIndex(int activeLayerIndex) {

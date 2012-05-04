@@ -149,4 +149,8 @@ public class Scenery implements Serializable {
     public long getId() {
         return id;
     }
+
+    public void removeSpriteAt(Point p) {
+        sprites.remove(p);
+    }
 }

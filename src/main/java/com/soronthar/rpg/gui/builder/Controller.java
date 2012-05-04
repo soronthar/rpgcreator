@@ -6,6 +6,8 @@ import com.soronthar.rpg.gui.builder.components.scenery.SceneryTree;
 import com.soronthar.rpg.gui.builder.panes.PaintPanel;
 import com.soronthar.rpg.gui.builder.panes.TilesetsPanel;
 import com.soronthar.rpg.model.JumpPoint;
+import com.soronthar.rpg.model.objects.sprites.MoveableSprite;
+import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.project.ProjectPersister;
 import com.soronthar.rpg.model.scenery.*;
@@ -20,9 +22,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.Properties;
+import java.util.*;
 
 import static com.soronthar.rpg.Utils.normalizePointToTile;
 
@@ -69,6 +69,10 @@ public class Controller {
             Scenery activeScenery = model.getActiveScenery();
             activeScenery.addJumpPoint(new JumpPoint(p, activeScenery.getId()));
             this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
+        }else if (model.isAddSpriteMode()) {
+            Scenery activeScenery = model.getActiveScenery();
+            activeScenery.addSprite(new MoveableSprite(p,new Rectangle(0,0)));
+            this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
         } else {
             if (!model.isInSpecialLayer()) {
                 Tile activeTile = model.getActiveTile();
@@ -89,6 +93,9 @@ public class Controller {
             this.paintPanel.handleEraseTileEvent(p);
         } else if (model.isAddJumpMode()) {
             model.getActiveScenery().removeJumpAt(p);
+            this.paintPanel.handleEraseTileEvent(p);
+        } else if (model.isAddSpriteMode()) {
+            model.getActiveScenery().removeSpriteAt(p);
             this.paintPanel.handleEraseTileEvent(p);
         } else {
             if (!model.isInSpecialLayer()) {
@@ -185,6 +192,12 @@ public class Controller {
         setMode(Model.SpecialModes.JUMP);
         for (JumpPoint jump : scenery.getJumpPoints()) {
             this.paintPanel.drawTileAtPoint(normalizePointToTile(jump.getLocation()));
+        }
+
+        setMode(Model.SpecialModes.SPRITE);
+        Collection<Sprite> sprites = scenery.getSprites().values();
+        for (Sprite sprite : sprites) {
+            this.paintPanel.drawTileAtPoint(normalizePointToTile(sprite.getLocation()));
         }
 
         setMode(Model.SpecialModes.NONE);

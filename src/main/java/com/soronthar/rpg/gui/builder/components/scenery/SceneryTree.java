@@ -40,14 +40,21 @@ public class SceneryTree extends JTree {
 
         this.addMouseListener(new MouseAdapter() {
             @Override
+            public void mousePressed(MouseEvent e) {
+                final SceneryTree sceneryTree = SceneryTree.this;
+                int closestRowForLocation = sceneryTree.getClosestRowForLocation(e.getX(), e.getY());
+                sceneryTree.setSelectionRow(closestRowForLocation);
+            }
+
+            @Override
             public void mouseReleased(MouseEvent e) {
                 final SceneryTree sceneryTree = SceneryTree.this;
-                if (e.isPopupTrigger() && sceneryTree.getSelectionCount() > 0) {
+
+                if (e.isPopupTrigger() && sceneryTree.getSelectionPath().getPathCount() > 1) {
                     JPopupMenu menu = new JPopupMenu();
-                    menu.add(new AbstractAction("Test popup") {
+                    menu.add(new AbstractAction("Resize Scenery") {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            JFrame ancestor = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, sceneryTree);
                             DefaultMutableTreeNode node = (DefaultMutableTreeNode) sceneryTree.getSelectionPath().getLastPathComponent();
                             Scenery scenery = (Scenery) node.getUserObject();
 
@@ -55,8 +62,6 @@ public class SceneryTree extends JTree {
                             dialog.setVisible(true);
                         }
                     });
-                    menu.add("Testa");
-                    menu.add("Testa");
                     menu.show(sceneryTree, e.getX(), e.getY());
                 }
             }
@@ -73,6 +78,9 @@ public class SceneryTree extends JTree {
         }
 
         getModel().setRoot(root);
+        if (project.getSceneries().size()>0) {
+            this.setSelectionRow(1);
+        }
         this.revalidate();
     }
 
