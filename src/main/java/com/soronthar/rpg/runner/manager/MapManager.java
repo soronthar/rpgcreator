@@ -120,7 +120,7 @@ public class MapManager {
 
         if (sprite.isMoving()) { //TODO: there is a nasty bug that may creep here. Check "canMove" instead of "isMoving"
             Point tileLocation = sprite.getTileLocation();
-            if (hasCollition(sprite, tileLocation)) {
+            if (hasCollition(sprite, tileLocation) || isOutsideBounds(sprite)) {
                 sprite.setLocation(oldLocation);
                 sprite.handleCollitionAt(tileLocation);
             }
@@ -128,13 +128,13 @@ public class MapManager {
     }
 
     private boolean isOutsideBounds(Sprite sprite) {
-        if (screenBounds == null) return false;
-        Point tileLocation = sprite.getTileLocation();
-        if (tileLocation.x < screenBounds.x) return false;
-        if (tileLocation.y < screenBounds.y) return false;
-        if (tileLocation.x >= screenBounds.width) return false;
-        if (tileLocation.y >= screenBounds.height) return false;
-        return true;
+//        if (screenBounds == null) return false;
+//        Point tileLocation = sprite.getTileLocation();
+//        if (tileLocation.x < screenBounds.x) return true;
+//        if (tileLocation.y < screenBounds.y) return true;
+//        if (tileLocation.x >= screenBounds.width) return true;
+//        if (tileLocation.y >= screenBounds.height) return true;
+        return false;
     }
 
     private boolean hasCollition(SpecialObject sprite, Point tileLocation) {

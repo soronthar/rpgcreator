@@ -32,7 +32,7 @@ public class Sprite extends SpecialObject {
     }
 
     //TODO: move somewhere else
-    private static Point normalizePointToBounds(Point newLocation, Rectangle bounds) {
+    protected static Point normalizePointToBounds(Point newLocation, Rectangle bounds) {
         if (bounds == null) return newLocation;
         if (newLocation.x < bounds.x) newLocation.x = bounds.x;
         if (newLocation.y < bounds.y) newLocation.y = bounds.y;
@@ -64,6 +64,10 @@ public class Sprite extends SpecialObject {
     }
 
 
+    public Rectangle getBound() {
+        return bounds;
+    }
+
     public boolean isSolid() {
         return solid;
     }
@@ -75,6 +79,17 @@ public class Sprite extends SpecialObject {
 
     public boolean isVisible() {
         return visible;
+    }
+
+
+    protected boolean isOutsideBounds() {
+        if (bounds == null) return false;
+        Point tileLocation = this.getTileLocation();
+        if (tileLocation.x < bounds.x) return true;
+        if (tileLocation.y < bounds.y) return true;
+        if (tileLocation.x >= bounds.width) return true;
+        if (tileLocation.y >= bounds.height) return true;
+        return false;
     }
 
 
@@ -105,6 +120,10 @@ public class Sprite extends SpecialObject {
     protected void move() {
         this.location.translate(dx, dy);
         this.location = normalizePointToBounds(location, bounds);
+        increaseSteps();
+    }
+
+    protected void increaseSteps() {
         this.steps++;
     }
 
