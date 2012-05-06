@@ -120,7 +120,7 @@ public class MapManager {
 
         if (sprite.isMoving()) { //TODO: there is a nasty bug that may creep here. Check "canMove" instead of "isMoving"
             Point tileLocation = sprite.getTileLocation();
-            if (hasCollition(sprite, tileLocation) || isOutsideBounds(sprite)) {
+            if (hasCollition(sprite, tileLocation)) {
                 sprite.setLocation(oldLocation);
                 sprite.handleCollitionAt(tileLocation);
             }
