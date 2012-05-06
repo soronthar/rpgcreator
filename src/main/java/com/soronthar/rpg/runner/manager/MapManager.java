@@ -23,6 +23,7 @@ public class MapManager {
     PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private Scenery scenery;
     private SceneryBag sceneries;
+    private Rectangle screenBounds;
 
     public MapManager(SceneryBag sceneries) {
         this.sceneries = sceneries;
@@ -42,10 +43,11 @@ public class MapManager {
         this.sprites.clear();
         this.solidItems.clear();
 
-        Rectangle screenBounds = new Rectangle(scenery.getWidth() - Tile.TILE_SIZE, scenery.getHeight() - Tile.TILE_SIZE);
+        screenBounds = new Rectangle(scenery.getWidth() - Tile.TILE_SIZE, scenery.getHeight() - Tile.TILE_SIZE);
         this.hero = new Hero(scenery.getHeroStartingPoint(), screenBounds);
         for (Sprite sprite : scenery.getSprites().values()) {
             this.sprites.add(sprite);
+            sprite.constraintTo(screenBounds); //TODO: perhaps the contraint logic should be moved to the map
         }
 
         Collection<Point> obstacles = scenery.getObstacles();
@@ -118,10 +120,21 @@ public class MapManager {
 
         if (sprite.isMoving()) { //TODO: there is a nasty bug that may creep here. Check "canMove" instead of "isMoving"
             Point tileLocation = sprite.getTileLocation();
-            if (hasCollition(sprite, tileLocation)) {
+            if (hasCollition(sprite, tileLocation) || isOutsideBounds(sprite)) {
                 sprite.setLocation(oldLocation);
+                sprite.handleCollitionAt(tileLocation);
             }
         }
+    }
+
+    private boolean isOutsideBounds(Sprite sprite) {
+        if (screenBounds == null) return false;
+        Point tileLocation = sprite.getTileLocation();
+        if (tileLocation.x < screenBounds.x) return false;
+        if (tileLocation.y < screenBounds.y) return false;
+        if (tileLocation.x >= screenBounds.width) return false;
+        if (tileLocation.y >= screenBounds.height) return false;
+        return true;
     }
 
     private boolean hasCollition(SpecialObject sprite, Point tileLocation) {

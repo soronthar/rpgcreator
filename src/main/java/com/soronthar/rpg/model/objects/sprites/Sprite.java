@@ -10,14 +10,15 @@ import java.awt.*;
 
 public class Sprite extends SpecialObject {
     private String id;
-    private boolean isSolid = true;
+    private boolean solid = true;
     private boolean visible = true;
-    protected Facing facing = Facing.DOWN;
-    protected int dx;
-    protected int dy;
+    private FrameStrategy strategy = new NullFrameStrategy();
+
+    private Facing facing = Facing.DOWN;
+    private int dx;
+    private int dy;
     private int steps;
     private Rectangle bounds;
-    FrameStrategy strategy = new NullFrameStrategy();
 
     public Sprite(String id, Point location) {
         super(location);
@@ -64,11 +65,11 @@ public class Sprite extends SpecialObject {
 
 
     public boolean isSolid() {
-        return isSolid;
+        return solid;
     }
 
     public void setSolid(boolean solid) {
-        isSolid = solid;
+        this.solid = solid;
     }
 
 
@@ -189,5 +190,8 @@ public class Sprite extends SpecialObject {
     public void update(long elapsedTime) {
         determineFacing();
         move();
+    }
+
+    public void handleCollitionAt(Point tileLocation) {
     }
 }

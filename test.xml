@@ -133,6 +133,7 @@
             <obstacle x="0" y="32"/>
             <obstacle x="160" y="32"/>
             <obstacle x="32" y="32"/>
+            <sprite id="Sprite-0" facing="DOWN" x="64" y="128" solid="true" visible="true"/>
             <jumpPoint x="288" y="160" target="2"/>
             <heroStartingPoint x="0" y="0"/>
         </scenery>

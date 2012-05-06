@@ -10,5 +10,4 @@ public class Hero extends Sprite {
         setBounds(bound);
         setFrameStrategy(new WholeImageFrameStrategy("hero.png"));
     }
-
 }
