@@ -1,7 +1,6 @@
 package com.soronthar.rpg.model;
 
 import com.soronthar.rpg.model.objects.sprites.Facing;
-import com.soronthar.rpg.model.objects.sprites.MoveableSprite;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.soronthar.rpg.model.objects.sprites.UnmoveableSprite;
 import com.soronthar.rpg.model.project.Project;
@@ -57,9 +56,8 @@ public class TestProjectXtreamPersister extends TestCase {
                 firstScenery.setTile(tileSet.getTile(new Point(0, i), Tile.TILE_DIMENSION), i, new org.soronthar.geom.Point(i, 0));
             }
         }
-        firstScenery.addSprite(new UnmoveableSprite("notmove", new Point(3, 0), Facing.UP));
-        firstScenery.addSprite(new MoveableSprite("alltrue", new Point(4, 0), Facing.LEFT));
-        MoveableSprite notsolid = new MoveableSprite("notsolid", new Point(5, 0));
+        firstScenery.addSprite(new Sprite("alltrue", new Point(4, 0), Facing.LEFT));
+        Sprite notsolid = new Sprite("notsolid", new Point(5, 0));
         notsolid.setSolid(false);
         firstScenery.addSprite(notsolid);
         UnmoveableSprite notvisible = new UnmoveableSprite("notvisible", new Point(6, 0));
@@ -112,19 +110,11 @@ public class TestProjectXtreamPersister extends TestCase {
         assertLoadedScenery(scenery, 0);
 
         Map<String, Sprite> sprites = scenery.getSprites();
-        assertEquals("Scenery " + scenery.getName(), 4, sprites.size());
+        assertEquals("Scenery " + scenery.getName(), 3, sprites.size());
 
-        Sprite sprite = sprites.get("notmove");
-        assertNotNull(sprite);
-        assertEquals(Facing.UP, sprite.getFacing());
-        assertTrue(sprite instanceof UnmoveableSprite);
-        assertTrue(sprite.isSolid());
-        assertFalse(sprite.isMoving());
-
-        sprite = sprites.get("notsolid");
+        Sprite sprite = sprites.get("notsolid");
         assertNotNull(sprite);
         assertEquals(Facing.DOWN, sprite.getFacing());
-        assertTrue(sprite instanceof MoveableSprite);
         assertTrue(sprite.isSolid());
         assertFalse(sprite.isMoving());
         assertTrue(sprite.isVisible());
@@ -132,14 +122,12 @@ public class TestProjectXtreamPersister extends TestCase {
         sprite = sprites.get("alltrue");
         assertNotNull(sprite);
         assertEquals(Facing.LEFT, sprite.getFacing());
-        assertTrue(sprite instanceof MoveableSprite);
         assertTrue(sprite.isSolid());
         assertFalse(sprite.isMoving());
 
         sprite = sprites.get("notvisible");
         assertNotNull(sprite);
         assertEquals(Facing.DOWN, sprite.getFacing());
-        assertTrue(sprite instanceof UnmoveableSprite);
         assertTrue(sprite.isSolid());
         assertFalse(sprite.isMoving());
 
