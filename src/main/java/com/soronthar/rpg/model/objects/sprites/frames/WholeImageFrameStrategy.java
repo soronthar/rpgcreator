@@ -10,9 +10,11 @@ import java.awt.image.BufferedImage;
 
 public class WholeImageFrameStrategy implements FrameStrategy {
     private BufferedImage spriteImageMap;
+    private final String imageName;
 
     public WholeImageFrameStrategy(String imageName) {
-        this.spriteImageMap = new ImageLoader().load(imageName);
+        this.imageName = imageName;
+        this.spriteImageMap = new ImageLoader().load("sprites/"+this.imageName);
 
     }
 
@@ -34,5 +36,9 @@ public class WholeImageFrameStrategy implements FrameStrategy {
 
         return image;
 
+    }
+
+    public String getImageName() {
+        return imageName;
     }
 }

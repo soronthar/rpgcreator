@@ -17,7 +17,7 @@ public class ImageLoader {
     public BufferedImage load(String fileName) {
         BufferedImage image;
         try {
-            image = new PngImage().read(new java.io.File(fileName));
+            image = new PngImage().read(new java.io.File("resources/" + fileName));
         } catch (IOException e) {
             throw new TechnicalException(e);
         }

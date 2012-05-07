@@ -32,7 +32,6 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
                 final JDialog dialog = new SpriteEditDialog((Sprite) specialObject,point,controller);
                 dialog.setVisible(true);
             }
-
         } else {
             manipulateCanvas(e);
         }

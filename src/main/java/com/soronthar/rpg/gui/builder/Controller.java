@@ -231,7 +231,7 @@ public class Controller {
             Enumeration<?> enumeration = tilesetsDef.propertyNames();
             while (enumeration.hasMoreElements()) {
                 String key = (String) enumeration.nextElement();
-                image = new ImageLoader().load("resources/" + tilesetsDef.getProperty(key));
+                image = new ImageLoader().load( tilesetsDef.getProperty(key));
                 TileSet tileSet = new TileSet(key, image);
                 model.getTilesets().put(tileSet);
             }

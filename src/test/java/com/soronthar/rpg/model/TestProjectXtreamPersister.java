@@ -117,7 +117,7 @@ public class TestProjectXtreamPersister extends TestCase {
         assertNotNull(sprite);
         assertEquals(Facing.DOWN, sprite.getFacing());
         assertFalse(sprite instanceof Npc);
-        assertTrue(sprite.isSolid());
+        assertFalse(sprite.isSolid());
         assertFalse(sprite.isMoving());
         assertTrue(sprite.isVisible());
 
@@ -128,8 +128,11 @@ public class TestProjectXtreamPersister extends TestCase {
         assertNotNull(sprite);
         assertTrue(sprite instanceof Npc);
         assertEquals(Facing.DOWN, sprite.getFacing());
+        assertEquals("miscsprite.png", ((Npc) sprite).getFrameMapName());
         assertTrue(sprite.isSolid());
+        assertTrue(sprite.isVisible());
         assertTrue(sprite.isMoving());
+
 
         sprite = sprites.get("notvisible");
         assertNotNull(sprite);
@@ -137,6 +140,7 @@ public class TestProjectXtreamPersister extends TestCase {
         assertEquals(Facing.DOWN, sprite.getFacing());
         assertTrue(sprite.isSolid());
         assertFalse(sprite.isMoving());
+        assertFalse(sprite.isVisible());
 
         Collection<Point> obstacles = scenery.getObstacles();
         assertEquals(1, obstacles.size());

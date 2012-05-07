@@ -54,7 +54,7 @@ public class ObjectMap {
         if (object == null) {
             object = obstacles.get(point);
             if (object == null) {
-                object = spritesByPoint.remove(point);
+                object = spritesByPoint.get(point);
             }
         }
         return object;

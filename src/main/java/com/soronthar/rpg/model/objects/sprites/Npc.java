@@ -1,5 +1,6 @@
 package com.soronthar.rpg.model.objects.sprites;
 
+import com.soronthar.rpg.model.objects.sprites.frames.NullFrameStrategy;
 import com.soronthar.rpg.model.objects.sprites.frames.WholeImageFrameStrategy;
 import com.soronthar.rpg.model.tiles.Tile;
 
@@ -7,10 +8,11 @@ import java.awt.*;
 
 public class Npc extends Sprite {
     private static final int STEP_SIZE = Tile.TILE_SIZE / 2;
+    private String imageName;
 
     public Npc(String id, Point location, Facing facing) {
         super(id, location);
-        setFrameStrategy(new WholeImageFrameStrategy("miscsprite.png"));
+        setFrameMapName("miscsprite.png");
         switch (facing) {
             case UP:
                 goUp();
@@ -27,6 +29,10 @@ public class Npc extends Sprite {
         }
     }
 
+    public void setFrameMapName(String imageName) {
+        this.imageName = imageName;
+        setFrameStrategy(new WholeImageFrameStrategy(imageName));
+    }
 
 
     @Override
@@ -78,6 +84,10 @@ public class Npc extends Sprite {
 
     private void goRight() {
         setSpeed(STEP_SIZE, 0);
+    }
+
+    public String getFrameMapName() {
+        return imageName;
     }
 
 }

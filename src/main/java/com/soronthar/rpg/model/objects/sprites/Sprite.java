@@ -77,8 +77,12 @@ public class Sprite extends SpecialObject {
         this.visible = visible;
     }
 
-    public void setFrameStrategy(FrameStrategy strategy) {
+    protected void setFrameStrategy(FrameStrategy strategy) {
         this.strategy = strategy;
+    }
+
+    protected FrameStrategy getFrameStrategy() {
+        return this.strategy;
     }
 
     public void setLocation(Point location) {
