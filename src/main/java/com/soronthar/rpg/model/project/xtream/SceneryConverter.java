@@ -46,7 +46,7 @@ public class SceneryConverter implements Converter {
             writer.endNode();
         }
 
-        for (Sprite sprite : scenery.getSprites().values()) {
+        for (Sprite sprite : scenery.getSprites()) {
             context.convertAnother(sprite);
         }
 

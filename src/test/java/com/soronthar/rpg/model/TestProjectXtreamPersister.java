@@ -1,5 +1,6 @@
 package com.soronthar.rpg.model;
 
+import com.soronthar.rpg.model.objects.SpecialObject;
 import com.soronthar.rpg.model.objects.sprites.Facing;
 import com.soronthar.rpg.model.objects.sprites.Npc;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
@@ -109,7 +110,7 @@ public class TestProjectXtreamPersister extends TestCase {
     private void assertFirstScenery(Scenery scenery) {
         assertLoadedScenery(scenery, 0);
 
-        Map<String, Sprite> sprites = scenery.getSprites();
+        Map<String, Sprite> sprites = scenery.getSpriteMap();
         assertEquals("Scenery " + scenery.getName(), 3, sprites.size());
 
         Sprite sprite = sprites.get("notsolid");
@@ -120,10 +121,13 @@ public class TestProjectXtreamPersister extends TestCase {
         assertFalse(sprite.isMoving());
         assertTrue(sprite.isVisible());
 
+        SpecialObject specialAt = scenery.getSpecialAt(sprite.getLocation());
+        assertEquals(sprite,specialAt);
+
         sprite = sprites.get("alltrue");
         assertNotNull(sprite);
         assertTrue(sprite instanceof Npc);
-        assertEquals(Facing.LEFT, sprite.getFacing());
+        assertEquals(Facing.DOWN, sprite.getFacing());
         assertTrue(sprite.isSolid());
         assertTrue(sprite.isMoving());
 

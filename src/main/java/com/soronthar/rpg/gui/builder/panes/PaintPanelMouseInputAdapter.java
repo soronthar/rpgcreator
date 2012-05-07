@@ -3,17 +3,12 @@ package com.soronthar.rpg.gui.builder.panes;
 import com.soronthar.rpg.gui.builder.Controller;
 import com.soronthar.rpg.model.JumpPoint;
 import com.soronthar.rpg.model.objects.SpecialObject;
-import com.soronthar.rpg.model.project.Project;
-import com.soronthar.rpg.model.scenery.Scenery;
-import com.soronthar.rpg.model.scenery.SceneryBag;
+import com.soronthar.rpg.model.objects.sprites.Sprite;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.util.Vector;
 
 import static com.soronthar.rpg.Utils.normalizePointToTile;
 
@@ -30,39 +25,11 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
 
         if (SwingUtilities.isMiddleMouseButton(e) || (SwingUtilities.isLeftMouseButton(e) && e.isControlDown())) {
             final SpecialObject specialObject = controller.getModel().getActiveScenery().getSpecialAt(point);
-            JFrame ancestor = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, controller.getPaintPanel());
-            final JDialog dialog = new JDialog(ancestor, "Edit", true);
-            dialog.setLayout(new FlowLayout());
             if (specialObject instanceof JumpPoint) {
-                Project project = controller.getModel().getProject();
-                SceneryBag sceneries = project.getSceneries();
-                Vector vector = new Vector();
-                int i = 0;
-                int selected = 0;
-                for (Scenery scenery : sceneries) {
-                    vector.add(scenery);
-                    if (scenery.getId() == (((JumpPoint) specialObject).getTargetId())) {
-                        selected = i;
-                    }
-                    i++;
-                }
-                final JComboBox combo = new JComboBox(vector);
-                combo.setSelectedIndex(selected);
-                JLabel label = new JLabel("Choose Scenery:");
-                dialog.add(label);
-                dialog.add(combo);
-                JButton button = new JButton("OK");
-                dialog.add(button);
-                button.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        Scenery selectedItem = (Scenery) combo.getSelectedItem();
-                        controller.getModel().getActiveScenery().addJumpPoint(new JumpPoint(point, selectedItem.getId()));
-                        dialog.setVisible(false);
-                    }
-                });
-                dialog.setLocationRelativeTo(ancestor);
-                dialog.pack();
+                final JDialog dialog = new JumpPointEditDialog((JumpPoint) specialObject,point,controller);
+                dialog.setVisible(true);
+            } else if (specialObject instanceof Sprite) {
+                final JDialog dialog = new SpriteEditDialog((Sprite) specialObject,point,controller);
                 dialog.setVisible(true);
             }
 
@@ -70,6 +37,7 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
             manipulateCanvas(e);
         }
     }
+
 
     public void mouseDragged(MouseEvent e) {
         manipulateCanvas(e);

@@ -45,7 +45,7 @@ public class MapManager {
 
         screenBounds = new Rectangle(scenery.getWidth() - Tile.TILE_SIZE, scenery.getHeight() - Tile.TILE_SIZE);
         this.hero = new Hero(scenery.getHeroStartingPoint());
-        for (Sprite sprite : scenery.getSprites().values()) {
+        for (Sprite sprite : scenery.getSprites()) {
             this.sprites.add(sprite);
         }
 
@@ -96,7 +96,7 @@ public class MapManager {
 
     public void update(long elapsedTime) {
         updateHero(elapsedTime);
-//        updateSprites(elapsedTime);
+        updateSprites(elapsedTime);
     }
 
     private void updateHero(long elapsedTime) {
@@ -125,6 +125,7 @@ public class MapManager {
             Point tileLocation = sprite.getTileLocation();
             if (isOutsideBounds(sprite)) {
                 sprite.setLocation(normalizePointToBounds(sprite.getLocation(), screenBounds));
+                sprite.handleAtEdge(screenBounds);
             }
 
             if (hasCollition(sprite, tileLocation)) {

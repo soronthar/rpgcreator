@@ -23,7 +23,6 @@ public class Scenery implements Serializable {
     private Dimension dimension;
     private String name;
     private LayersArray layers = new LayersArray();
-    private Map<String, Sprite> sprites = new LinkedHashMap<String, Sprite>();
     private ObjectMap objects = new ObjectMap();
     private Point heroStartingPoint;
 
@@ -100,8 +99,8 @@ public class Scenery implements Serializable {
         return layers;
     }
 
-    public Map<String, Sprite> getSprites() {
-        return sprites;
+    public Collection<Sprite> getSprites() {
+        return this.objects.getSpritesById().values();
     }
 
     public Point getHeroStartingPoint() {
@@ -113,7 +112,7 @@ public class Scenery implements Serializable {
     }
 
     public void addSprite(Sprite sprite) {
-        this.sprites.put(sprite.getId(), sprite);
+        this.objects.add(sprite);
     }
 
     public Collection<Point> getObstacles() {
@@ -125,7 +124,7 @@ public class Scenery implements Serializable {
     }
 
     public void removeObstacleAt(Point point) {
-        objects.removeObstacleAt(point);
+        objects.removeObjectAt(point);
     }
 
     public Collection<JumpPoint> getJumpPoints() {
@@ -138,7 +137,7 @@ public class Scenery implements Serializable {
     }
 
     public void removeJumpAt(Point point) {
-        objects.removeJumpAt(point);
+        objects.removeObjectAt(point);
     }
 
     public SpecialObject getSpecialAt(Point point) {
@@ -150,6 +149,10 @@ public class Scenery implements Serializable {
     }
 
     public void removeSpriteAt(Point p) {
-        sprites.remove(p);
+        objects.removeObjectAt(p);
+    }
+
+    public Map<String, Sprite> getSpriteMap() {
+        return objects.getSpritesById();
     }
 }

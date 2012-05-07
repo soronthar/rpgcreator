@@ -6,6 +6,8 @@ import com.soronthar.rpg.gui.builder.components.scenery.SceneryTree;
 import com.soronthar.rpg.gui.builder.panes.PaintPanel;
 import com.soronthar.rpg.gui.builder.panes.TilesetsPanel;
 import com.soronthar.rpg.model.JumpPoint;
+import com.soronthar.rpg.model.objects.sprites.Facing;
+import com.soronthar.rpg.model.objects.sprites.Npc;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.project.ProjectPersister;
@@ -72,8 +74,8 @@ public class Controller {
             this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
         } else if (model.isAddSpriteMode()) {
             Scenery activeScenery = model.getActiveScenery();
-            int size = activeScenery.getSprites().size();
-            activeScenery.addSprite(new Sprite("Sprite-" + size, p));
+            int size = activeScenery.getSpriteMap().size();
+            activeScenery.addSprite(new Npc("Sprite-" + size, p, Facing.DOWN));
             this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
         } else {
             if (!model.isInSpecialLayer()) {
@@ -197,7 +199,7 @@ public class Controller {
         }
 
         setMode(Model.SpecialModes.SPRITE);
-        Collection<Sprite> sprites = scenery.getSprites().values();
+        Collection<Sprite> sprites = scenery.getSprites();
         for (Sprite sprite : sprites) {
             this.paintPanel.drawTileAtPoint(normalizePointToTile(sprite.getLocation()));
         }
