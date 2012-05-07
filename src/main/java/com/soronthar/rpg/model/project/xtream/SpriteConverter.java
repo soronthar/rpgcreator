@@ -1,7 +1,7 @@
 package com.soronthar.rpg.model.project.xtream;
 
 import com.soronthar.rpg.model.objects.sprites.Facing;
-import com.soronthar.rpg.model.objects.sprites.NPC;
+import com.soronthar.rpg.model.objects.sprites.Npc;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
@@ -22,7 +22,7 @@ public class SpriteConverter implements Converter {
         writer.addAttribute("y", Integer.toString(sprite.getLocation().y));
         writer.addAttribute("solid", Boolean.toString(sprite.isSolid()));
         writer.addAttribute("visible", Boolean.toString(sprite.isVisible()));
-        if (sprite instanceof NPC) {
+        if (sprite instanceof Npc) {
             writer.addAttribute("type", "npc");
         } else {
             writer.addAttribute("type", "sprite");
@@ -38,7 +38,7 @@ public class SpriteConverter implements Converter {
         String type = reader.getAttribute("type");
         Sprite sprite;
         if (type.equals("npc")) {
-            sprite = new NPC(id, new Point(x, y), Facing.valueOf(facing));
+            sprite = new Npc(id, new Point(x, y), Facing.valueOf(facing));
         } else {
             sprite = new Sprite(id, new Point(x, y), Facing.valueOf(facing));
         }
