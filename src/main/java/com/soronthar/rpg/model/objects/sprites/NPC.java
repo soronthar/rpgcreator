@@ -8,14 +8,6 @@ import java.awt.*;
 public class Npc extends Sprite {
     private static final int STEP_SIZE = Tile.TILE_SIZE / 2;
 
-    public Npc(String id, Point location, Rectangle bound) {
-        super(id, location);
-        setBounds(bound);
-        setFrameStrategy(new WholeImageFrameStrategy("miscsprite.png"));
-        setSpeed(0, STEP_SIZE);
-    }
-
-
     public Npc(String id, Point location, Facing facing) {
         super(id, location, facing);
         setFrameStrategy(new WholeImageFrameStrategy("miscsprite.png"));

@@ -18,7 +18,6 @@ public class Sprite extends SpecialObject {
     private int dx;
     private int dy;
     private int steps;
-    private Rectangle bounds;
 
     public Sprite(String id, Point location) {
         super(location);
@@ -30,17 +29,6 @@ public class Sprite extends SpecialObject {
         this.id = id;
         this.facing = facing;
     }
-
-    //TODO: move somewhere else
-    protected static Point normalizePointToBounds(Point newLocation, Rectangle bounds) {
-        if (bounds == null) return newLocation;
-        if (newLocation.x < bounds.x) newLocation.x = bounds.x;
-        if (newLocation.y < bounds.y) newLocation.y = bounds.y;
-        if (newLocation.x >= bounds.width) newLocation.x = bounds.width;
-        if (newLocation.y >= bounds.height) newLocation.y = bounds.height;
-        return newLocation;
-    }
-
 
     private Point getTileLocationForPoint(Point location) {
         Point newLocation = new Point(location);
@@ -63,11 +51,6 @@ public class Sprite extends SpecialObject {
         return facing;
     }
 
-
-    public Rectangle getBound() {
-        return bounds;
-    }
-
     public boolean isSolid() {
         return solid;
     }
@@ -79,17 +62,6 @@ public class Sprite extends SpecialObject {
 
     public boolean isVisible() {
         return visible;
-    }
-
-
-    protected boolean isOutsideBounds() {
-        if (bounds == null) return false;
-        Point tileLocation = this.getTileLocation();
-        if (tileLocation.x < bounds.x) return true;
-        if (tileLocation.y < bounds.y) return true;
-        if (tileLocation.x >= bounds.width) return true;
-        if (tileLocation.y >= bounds.height) return true;
-        return false;
     }
 
 
@@ -109,17 +81,13 @@ public class Sprite extends SpecialObject {
         this.strategy = strategy;
     }
 
-    public void setBounds(Rectangle bounds) {
-        this.bounds = bounds;
-    }
-
     public void setLocation(Point location) {
-        this.location = normalizePointToBounds(location, bounds);
+        this.location = location;
     }
 
     protected void move() {
         this.location.translate(dx, dy);
-        this.location = normalizePointToBounds(location, bounds);
+        System.out.println("location = " + location);
         increaseSteps();
     }
 
@@ -170,10 +138,6 @@ public class Sprite extends SpecialObject {
 
     public boolean isMoving() {
         return getDx() != 0 || getDy() != 0;
-    }
-
-    public void constraintTo(Rectangle screenBounds) {
-        this.bounds = screenBounds;
     }
 
     boolean isMovingBetweenTiles() {

@@ -15,9 +15,10 @@ import java.net.URISyntaxException;
 import java.util.Collection;
 
 public class TestMapManager extends TestCase {
-    private static final int STEP_SIZE = Tile.TILE_SIZE; //Move tile to tile. It is easier to follow the test.
 
     public void test() throws URISyntaxException {
+        int stepSize = Tile.TILE_SIZE; //Move tile to tile. It is easier to follow the test.
+
         ProjectPersister persister = new ProjectPersister();
         File file = new File(this.getClass().getResource("/MapManagerTest.xml").toURI());
         Project project = persister.load(file.getAbsolutePath());
@@ -38,129 +39,128 @@ public class TestMapManager extends TestCase {
         assertEquals("First", scenery.getName());
         Hero hero = manager.getHero();
         assertEquals(scenery.getHeroStartingPoint(), hero.getLocation());
-        assertEquals(new Point(0, 0), hero.getLocation());  //This is just to document the fact
-        // that the hero starts at 0,0
+        assertEquals(new Point(0, 0), hero.getLocation()); //This is just to document the fact that the hero starts at 0,0
 
         Collection<Point> obstacles = scenery.getObstacles();
         for (Point point : obstacles) {
             assertTrue(manager.solidItems.haveSolidSpritesAt(point));
         }
 
-        hero.setSpeed(STEP_SIZE, 0); //move to the right
+        hero.setSpeed(stepSize, 0); //move to the right
         manager.update(System.currentTimeMillis());
-        assertEquals(new Point(STEP_SIZE, 0), hero.getLocation());
+        assertEquals(new Point(stepSize, 0), hero.getLocation());
 
-        hero.setSpeed(8 * STEP_SIZE, 0); //move to the right, bigger speed
+        hero.setSpeed(8 * stepSize, 0); //move to the right, bigger speed
         manager.update(System.currentTimeMillis()); //Hero should be positioned at the edge of the scenery
-        assertEquals(new Point(9 * STEP_SIZE, 0), hero.getLocation());
+        assertEquals(new Point(9 * stepSize, 0), hero.getLocation());
 
         manager.update(System.currentTimeMillis());
-        assertEquals(new Point(9 * STEP_SIZE, 0), hero.getLocation()); //at the right edge, so don't move
+        assertEquals(new Point(9 * stepSize, 0), hero.getLocation()); //at the right edge, so don't move
 
 
-        hero.setSpeed(0, -STEP_SIZE);
+        hero.setSpeed(0, -stepSize);
         manager.update(System.currentTimeMillis());
-        assertEquals(new Point(9 * STEP_SIZE, 0), hero.getLocation()); //at the top edge, so don't move
+        assertEquals(new Point(9 * stepSize, 0), hero.getLocation()); //at the top edge, so don't move
 
-        hero.setSpeed(-10 * STEP_SIZE, 0); //move to the top left edge
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(0, 0), hero.getLocation());
-
-        hero.setSpeed(-10 * STEP_SIZE, 0); //try move beyond the left edge
+        hero.setSpeed(-10 * stepSize, 0); //move to the top left edge
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(0, 0), hero.getLocation());
 
-        hero.setSpeed(0, -10 * STEP_SIZE); //try move beyond the top edge
+        hero.setSpeed(-10 * stepSize, 0); //try move beyond the left edge
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(0, 0), hero.getLocation());
 
-        hero.setSpeed(-STEP_SIZE, -STEP_SIZE); //try move beyond the top left edge
+        hero.setSpeed(0, -10 * stepSize); //try move beyond the top edge
+        manager.update(System.currentTimeMillis());
+        assertEquals(new Point(0, 0), hero.getLocation());
+
+        hero.setSpeed(-stepSize, -stepSize); //try move beyond the top left edge
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(0, 0), hero.getLocation());
 
 
-        hero.setSpeed(0, 10 * STEP_SIZE);
+        hero.setSpeed(0, 10 * stepSize);
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(0, 128), hero.getLocation());
 
-        hero.setSpeed(-STEP_SIZE, 0); //try to move beyond the left edge
+        hero.setSpeed(-stepSize, 0); //try to move beyond the left edge
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(0, 128), hero.getLocation());
 
-        hero.setSpeed(0, STEP_SIZE); //try to move beyond the bottom edge
+        hero.setSpeed(0, stepSize); //try to move beyond the bottom edge
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(0, 128), hero.getLocation());
 
-        hero.setSpeed(STEP_SIZE, STEP_SIZE); //try to move beyond the bottom-left corner
+        hero.setSpeed(stepSize, stepSize); //try to move beyond the bottom-left corner
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(0, 128), hero.getLocation());
 
 
-        hero.setSpeed(10 * STEP_SIZE, 0); //move to the bottom-right edge
+        hero.setSpeed(10 * stepSize, 0); //move to the bottom-right edge
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(288, 128), hero.getLocation());
 
-        hero.setSpeed(STEP_SIZE, 0); //try to move beyond the right edge
+        hero.setSpeed(stepSize, 0); //try to move beyond the right edge
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(288, 128), hero.getLocation());
 
-        hero.setSpeed(0, STEP_SIZE); //try to move beyond the bottom edge
+        hero.setSpeed(0, stepSize); //try to move beyond the bottom edge
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(288, 128), hero.getLocation());
 
-        hero.setSpeed(STEP_SIZE, STEP_SIZE); //try to move beyond the bottom-right corner
+        hero.setSpeed(stepSize, stepSize); //try to move beyond the bottom-right corner
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(288, 128), hero.getLocation());
 
         //move below the the obstacle at <obstacle x="160" y="64"/>
-        hero.setSpeed(-4 * STEP_SIZE, 0);
+        hero.setSpeed(-4 * stepSize, 0);
         manager.update(System.currentTimeMillis());
-        hero.setSpeed(0, -STEP_SIZE);
+        hero.setSpeed(0, -stepSize);
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(160, 96), hero.getLocation());
 
-        hero.setSpeed(0, -STEP_SIZE); //try to go up, and fail
+        hero.setSpeed(0, -stepSize); //try to go up, and fail
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(160, 96), hero.getLocation());
 
         //move to the left side of the obstacle
-        hero.setSpeed(-STEP_SIZE, 0);
+        hero.setSpeed(-stepSize, 0);
         manager.update(System.currentTimeMillis());
-        hero.setSpeed(0, -STEP_SIZE);
+        hero.setSpeed(0, -stepSize);
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(128, 64), hero.getLocation());
 
-        hero.setSpeed(STEP_SIZE, 0); //try to go right, and fail
+        hero.setSpeed(stepSize, 0); //try to go right, and fail
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(128, 64), hero.getLocation());
 
         //move to the top side of the obstacle
-        hero.setSpeed(0, -STEP_SIZE);
+        hero.setSpeed(0, -stepSize);
         manager.update(System.currentTimeMillis());
-        hero.setSpeed(STEP_SIZE, 0);
+        hero.setSpeed(stepSize, 0);
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(160, 32), hero.getLocation());
 
-        hero.setSpeed(0, STEP_SIZE); //try to go down, and fail
+        hero.setSpeed(0, stepSize); //try to go down, and fail
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(160, 32), hero.getLocation());
 
         //move to the right side of the obstacle
-        hero.setSpeed(STEP_SIZE, 0);
+        hero.setSpeed(stepSize, 0);
         manager.update(System.currentTimeMillis());
-        hero.setSpeed(0, STEP_SIZE);
+        hero.setSpeed(0, stepSize);
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(192, 64), hero.getLocation());
 
-        hero.setSpeed(-STEP_SIZE, 0); //try to go left, and fail
+        hero.setSpeed(-stepSize, 0); //try to go left, and fail
         manager.update(System.currentTimeMillis());
         assertEquals(new Point(192, 64), hero.getLocation());
 
 
         //move the to jump point at <jumpPoint x="288" y="96" target="Second"/>
-        hero.setSpeed(0, STEP_SIZE);
+        hero.setSpeed(0, stepSize);
         manager.update(System.currentTimeMillis());
-        hero.setSpeed(4 * STEP_SIZE, 0);
+        hero.setSpeed(4 * stepSize, 0);
         manager.update(System.currentTimeMillis());
 
         assertEquals(2, listener.getTimesCalled());
