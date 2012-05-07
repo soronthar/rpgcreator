@@ -2,7 +2,7 @@ package com.soronthar.rpg.model;
 
 import com.soronthar.rpg.model.objects.SpecialObject;
 import com.soronthar.rpg.model.objects.sprites.Facing;
-import com.soronthar.rpg.model.objects.sprites.Npc;
+import com.soronthar.rpg.model.objects.sprites.test;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.project.ProjectPersister;
@@ -57,7 +57,7 @@ public class TestProjectXtreamPersister extends TestCase {
                 firstScenery.setTile(tileSet.getTile(new Point(0, i), Tile.TILE_DIMENSION), i, new org.soronthar.geom.Point(i, 0));
             }
         }
-        firstScenery.addSprite(new Npc("alltrue", new Point(4, 0), Facing.LEFT));
+        firstScenery.addSprite(new test("alltrue", new Point(4, 0), Facing.LEFT));
         Sprite notsolid = new Sprite("notsolid", new Point(5, 0));
         notsolid.setSolid(false);
         firstScenery.addSprite(notsolid);
@@ -116,7 +116,7 @@ public class TestProjectXtreamPersister extends TestCase {
         Sprite sprite = sprites.get("notsolid");
         assertNotNull(sprite);
         assertEquals(Facing.DOWN, sprite.getFacing());
-        assertFalse(sprite instanceof Npc);
+        assertFalse(sprite instanceof test);
         assertTrue(sprite.isSolid());
         assertFalse(sprite.isMoving());
         assertTrue(sprite.isVisible());
@@ -126,14 +126,14 @@ public class TestProjectXtreamPersister extends TestCase {
 
         sprite = sprites.get("alltrue");
         assertNotNull(sprite);
-        assertTrue(sprite instanceof Npc);
+        assertTrue(sprite instanceof test);
         assertEquals(Facing.DOWN, sprite.getFacing());
         assertTrue(sprite.isSolid());
         assertTrue(sprite.isMoving());
 
         sprite = sprites.get("notvisible");
         assertNotNull(sprite);
-        assertFalse(sprite instanceof Npc);
+        assertFalse(sprite instanceof test);
         assertEquals(Facing.DOWN, sprite.getFacing());
         assertTrue(sprite.isSolid());
         assertFalse(sprite.isMoving());
