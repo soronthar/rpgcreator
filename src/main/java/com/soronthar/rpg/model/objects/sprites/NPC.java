@@ -9,39 +9,75 @@ public class Npc extends Sprite {
     private static final int STEP_SIZE = Tile.TILE_SIZE / 2;
 
     public Npc(String id, Point location, Facing facing) {
-        super(id, location, facing);
+        super(id, location);
         setFrameStrategy(new WholeImageFrameStrategy("miscsprite.png"));
         switch (facing) {
             case UP:
-                setSpeed(0, -STEP_SIZE);
+                goUp();
                 break;
             case DOWN:
-                setSpeed(0, STEP_SIZE);
+                goDown();
                 break;
             case LEFT:
-                setSpeed(-STEP_SIZE, 0);
+                goLeft();
                 break;
             case RIGHT:
-                setSpeed(STEP_SIZE, 0);
+                goRight();
                 break;
         }
     }
+
+
 
     @Override
     public void handleCollitionAt(Point tileLocation) {
         switch (getFacing()) {
             case UP:
-                setSpeed(STEP_SIZE, 0);
+                goLeft();
                 break;
             case DOWN:
-                setSpeed(-STEP_SIZE, 0);
+                goRight();
                 break;
             case LEFT:
-                setSpeed(0, -STEP_SIZE);
+                goDown();
                 break;
             case RIGHT:
-                setSpeed(0, STEP_SIZE);
+                goUp();
                 break;
         }
     }
+
+
+
+    @Override
+    public void handleAtEdge(Rectangle bounds) {
+        Point location = this.getLocation();
+        if (location.y==0 && getFacing()==Facing.UP) {
+            goLeft();
+        } else if (location.y==bounds.height && getFacing()==Facing.DOWN) {
+            goRight();
+        } else if (location.x==bounds.width && getFacing()==Facing.RIGHT) {
+            goUp();
+        } else if (location.x==0 && getFacing()==Facing.LEFT) {
+            goDown();
+        }
+
+    }
+
+    private void goUp() {
+        setSpeed(0, -STEP_SIZE);
+    }
+
+    private void goDown() {
+        setSpeed(0, STEP_SIZE);
+    }
+
+    private void goLeft() {
+        setSpeed(-STEP_SIZE, 0);
+    }
+
+    private void goRight() {
+        setSpeed(STEP_SIZE, 0);
+    }
+
 }
