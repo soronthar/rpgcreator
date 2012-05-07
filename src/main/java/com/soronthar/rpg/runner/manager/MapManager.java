@@ -148,13 +148,11 @@ public class MapManager {
     private boolean isOutsideBounds(Sprite sprite) {
 
         if (screenBounds == null) return false;
-//        Point tileLocation = sprite.getTileLocation();
         Point tileLocation = sprite.getLocation();
-        if (tileLocation.x < screenBounds.x) return true;
-        if (tileLocation.y < screenBounds.y) return true;
-        if (tileLocation.x >= screenBounds.width) return true;
-        if (tileLocation.y >= screenBounds.height) return true;
-        return false;
+        return tileLocation.x < screenBounds.x ||
+                tileLocation.y < screenBounds.y ||
+                tileLocation.x >= screenBounds.width ||
+                tileLocation.y >= screenBounds.height;
     }
 
     private boolean hasCollition(SpecialObject sprite, Point tileLocation) {

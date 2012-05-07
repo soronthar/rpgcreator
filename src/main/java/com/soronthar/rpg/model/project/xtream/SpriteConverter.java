@@ -1,7 +1,7 @@
 package com.soronthar.rpg.model.project.xtream;
 
 import com.soronthar.rpg.model.objects.sprites.Facing;
-import com.soronthar.rpg.model.objects.sprites.Npc;
+import com.soronthar.rpg.model.objects.sprites.MobNpc;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
@@ -21,9 +21,9 @@ public class SpriteConverter implements Converter {
         writer.addAttribute("y", Integer.toString(sprite.getLocation().y));
         writer.addAttribute("solid", Boolean.toString(sprite.isSolid()));
         writer.addAttribute("visible", Boolean.toString(sprite.isVisible()));
-        if (sprite instanceof Npc) {
+        if (sprite instanceof MobNpc) {
             writer.addAttribute("type", "npc");
-            writer.addAttribute("frames", ((Npc) sprite).getFrameMapName());
+            writer.addAttribute("frames", ((MobNpc) sprite).getFrameMapName());
         } else {
             writer.addAttribute("type", "sprite");
         }
@@ -40,8 +40,8 @@ public class SpriteConverter implements Converter {
         String type = reader.getAttribute("type");
         Sprite sprite;
         if (type.equals("npc")) {
-            sprite = new Npc(id, new Point(x, y), Facing.valueOf(facing));
-            ((Npc) sprite).setFrameMapName(reader.getAttribute("frames"));
+            sprite = new MobNpc(id, new Point(x, y), Facing.valueOf(facing));
+            ((MobNpc) sprite).setFrameMapName(reader.getAttribute("frames"));
         } else {
             sprite = new Sprite(id, new Point(x, y), Facing.valueOf(facing));
         }

@@ -113,6 +113,7 @@ public class TestMapManager extends TestCase {
         assertEquals(secondScenery.getHeroStartingPoint(), secondHero.getLocation());
     }
 
+
     public void testObstacles() {
         int stepSize = Tile.TILE_SIZE; //Move tile to tile. It is easier to follow the test.
         MapManager manager = createMapManager();
@@ -126,7 +127,7 @@ public class TestMapManager extends TestCase {
             assertTrue(manager.solidItems.haveSolidSpritesAt(point));
         }
 
-        //move below the obstacle at (5,2) <obstacle x="160" y="64"/>
+        //move below the obstacle at (5,2)
         mover.setLocation(5, 3);
         mover.up();
         mover.assertLocation().at(5, 3);

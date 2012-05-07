@@ -6,11 +6,11 @@ import com.soronthar.rpg.model.tiles.Tile;
 
 import java.awt.*;
 
-public class Npc extends Sprite {
+public class MobNpc extends Sprite {
     private static final int STEP_SIZE = Tile.TILE_SIZE / 2;
     private String imageName;
 
-    public Npc(String id, Point location, Facing facing) {
+    public MobNpc(String id, Point location, Facing facing) {
         super(id, location);
         setFrameMapName("miscsprite.png");
         switch (facing) {
