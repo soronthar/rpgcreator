@@ -5,10 +5,10 @@ import com.soronthar.rpg.model.tiles.Tile;
 
 import java.awt.*;
 
-public class NPC extends Sprite {
+public class Npc extends Sprite {
     private static final int STEP_SIZE = Tile.TILE_SIZE / 2;
 
-    public NPC(String id, Point location, Facing facing) {
+    public Npc(String id, Point location, Facing facing) {
         super(id, location, facing);
         setFrameStrategy(new WholeImageFrameStrategy("miscsprite.png"));
         switch (facing) {

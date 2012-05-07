@@ -255,8 +255,13 @@
         <drawnTile pos="192,320" tileSetName="black" tile="128,128" dimension="32x32"/>
         <drawnTile pos="224,320" tileSetName="black" tile="160,128" dimension="32x32"/>
       </layer>
-      <jumpPoint x="160" y="0" target="1"/>
+      <jumpPoint x="160" y="0" target="3"/>
       <heroStartingPoint x="128" y="160"/>
+    </scenery>
+    <scenery id="3" name="Third" width="320" height="160">
+      <obstacle x="160" y="64"/>
+      <jumpPoint x="288" y="96" target="2"/>
+      <heroStartingPoint x="0" y="0"/>
     </scenery>
   </sceneries>
 </project>

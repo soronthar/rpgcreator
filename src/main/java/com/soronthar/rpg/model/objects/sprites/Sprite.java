@@ -82,12 +82,11 @@ public class Sprite extends SpecialObject {
     }
 
     public void setLocation(Point location) {
-        this.location = location;
+        this.location = (Point) location.clone();
     }
 
     protected void move() {
         this.location.translate(dx, dy);
-        System.out.println("location = " + location);
         increaseSteps();
     }
 

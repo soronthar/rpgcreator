@@ -25,7 +25,7 @@ public class GameManager {
 
     private JFrame frame;
     private static final int DELAY = 100;
-    private static final int STEP_SIZE = Tile.TILE_SIZE / 2;
+    public static final int STEP_SIZE = Tile.TILE_SIZE / 2;
     private final MapManager mapManager;
 
 

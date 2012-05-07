@@ -7,8 +7,8 @@ import java.util.LinkedHashMap;
 public class SceneryBag implements Serializable, Iterable<Scenery> {
     private LinkedHashMap<Long, Scenery> map = new LinkedHashMap<Long, Scenery>();
 
-    public Scenery get(long name) {
-        return map.get(name);
+    public Scenery get(long id) {
+        return map.get(id);
     }
 
     public void put(Scenery scenery) {

@@ -44,7 +44,6 @@ public class MapManager {
         this.solidItems.clear();
 
         screenBounds = new Rectangle(scenery.getWidth() - Tile.TILE_SIZE, scenery.getHeight() - Tile.TILE_SIZE);
-        System.out.println("screenBounds = " + screenBounds);
         this.hero = new Hero(scenery.getHeroStartingPoint());
         for (Sprite sprite : scenery.getSprites().values()) {
             this.sprites.add(sprite);
@@ -59,6 +58,10 @@ public class MapManager {
 
     public void init() {
         setScenery(sceneries.iterator().next());
+    }
+
+    public Scenery getScenery(int id) {
+        return sceneries.get(id);
     }
 
     public class SpecialsPerPoint {
@@ -144,8 +147,8 @@ public class MapManager {
     private boolean isOutsideBounds(Sprite sprite) {
 
         if (screenBounds == null) return false;
-        Point tileLocation = sprite.getTileLocation();
-//        Point tileLocation = sprite.getLocation();
+//        Point tileLocation = sprite.getTileLocation();
+        Point tileLocation = sprite.getLocation();
         if (tileLocation.x < screenBounds.x) return true;
         if (tileLocation.y < screenBounds.y) return true;
         if (tileLocation.x >= screenBounds.width) return true;

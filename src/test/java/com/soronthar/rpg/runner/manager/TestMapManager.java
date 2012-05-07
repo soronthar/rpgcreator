@@ -8,163 +8,104 @@ import com.soronthar.rpg.model.tiles.Tile;
 import junit.framework.TestCase;
 
 import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.util.Collection;
 
+/**
+ * All the test of movements beyond the borders are using 1 and 2 steps to guarantee that no matter the speed
+ * the hero is confined inside the boundaries
+ */
 public class TestMapManager extends TestCase {
 
-    public void test() throws URISyntaxException {
-        int stepSize = Tile.TILE_SIZE; //Move tile to tile. It is easier to follow the test.
+    /**
+     * There are some subtle movement bugs that may creep in when the step size is a fraction of a tile
+     * When reading this test, bear in mind that each tile now need two steps. This means that the
+     * tile (2,4) is in the location (4,8).
+     *
+     */
+    public void testEdgeMovementWithSmallSteps() {
+        int stepSize = Tile.TILE_SIZE / 2;
+        MapManager manager = initManager();
+        HeroMover mover = new HeroMover(manager, stepSize);
+        mover.up();
+        mover.assertLocation().at(0, 0);
+        mover.left();
+        mover.assertLocation().at(0, 0);
 
-        ProjectPersister persister = new ProjectPersister();
-        File file = new File(this.getClass().getResource("/MapManagerTest.xml").toURI());
-        Project project = persister.load(file.getAbsolutePath());
-        MapManager manager = new MapManager(project.getSceneries());
+        mover.setLocation(0, 8);
+        mover.down();
+        mover.assertLocation().at(0, 8);
+        mover.left();
+        mover.assertLocation().at(0, 8);
+
+        mover.setLocation(18, 8);
+        mover.down();
+        mover.assertLocation().at(18, 8);
+        mover.right();
+        mover.assertLocation().at(18, 8);
+
+
+        mover.setLocation(18, 0);
+        mover.up();
+        mover.assertLocation().at(18, 0);
+        mover.right();
+        mover.assertLocation().at(18, 0);
+    }
+
+
+    /**
+     * Tests that the hero can move around in one or more steps at a time.
+     */
+    public void testSimpleMovement() {
+        MapManager manager = initManager();
+        int stepSize = Tile.TILE_SIZE; //Move tile to tile. It is easier to follow the test.
+        HeroMover mover = new HeroMover(manager, stepSize);
+
+        mover.assertLocation().at(0, 0);
+        mover.right();
+        mover.assertLocation().at(1, 0);
+        mover.right(2);
+        mover.assertLocation().at(3, 0);
+        mover.down();
+        mover.assertLocation().at(3, 1);
+        mover.down(2);
+        mover.assertLocation().at(3, 3);
+        mover.left();
+        mover.assertLocation().at(2, 3);
+        mover.left(2);
+        mover.assertLocation().at(0, 3);
+        mover.up();
+        mover.assertLocation().at(0, 2);
+        mover.up(2);
+        mover.assertLocation().at(0, 0);
+    }
+
+
+
+    public void testJumpPoints() {
+        MapManager manager = createMapManager();
+
         SceneryChangeListener listener = new SceneryChangeListener();
         manager.addSceneryListener(listener);
-        assertNull(manager.getActiveScenery());
         assertEquals(0, listener.getTimesCalled());
         assertNull(listener.getLastNewValue());
 
         manager.init();
-        Scenery scenery = manager.getActiveScenery();
+        Hero hero = manager.getHero();
+
+        int stepSize = Tile.TILE_SIZE; //Move tile to tile. It is easier to follow the test.
+        HeroMover mover = new HeroMover(manager, stepSize);
 
         assertEquals(1, listener.getTimesCalled());
-        assertEquals(scenery, listener.getLastNewValue());
+        assertEquals(manager.getActiveScenery(), listener.getLastNewValue());
 
-
-        assertEquals("First", scenery.getName());
-        Hero hero = manager.getHero();
-        assertEquals(scenery.getHeroStartingPoint(), hero.getLocation());
-        assertEquals(new Point(0, 0), hero.getLocation()); //This is just to document the fact that the hero starts at 0,0
-
-        Collection<Point> obstacles = scenery.getObstacles();
-        for (Point point : obstacles) {
-            assertTrue(manager.solidItems.haveSolidSpritesAt(point));
-        }
-
-        hero.setSpeed(stepSize, 0); //move to the right
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(stepSize, 0), hero.getLocation());
-
-        hero.setSpeed(8 * stepSize, 0); //move to the right, bigger speed
-        manager.update(System.currentTimeMillis()); //Hero should be positioned at the edge of the scenery
-        assertEquals(new Point(9 * stepSize, 0), hero.getLocation());
-
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(9 * stepSize, 0), hero.getLocation()); //at the right edge, so don't move
-
-
-        hero.setSpeed(0, -stepSize);
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(9 * stepSize, 0), hero.getLocation()); //at the top edge, so don't move
-
-        hero.setSpeed(-10 * stepSize, 0); //move to the top left edge
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(0, 0), hero.getLocation());
-
-        hero.setSpeed(-10 * stepSize, 0); //try move beyond the left edge
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(0, 0), hero.getLocation());
-
-        hero.setSpeed(0, -10 * stepSize); //try move beyond the top edge
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(0, 0), hero.getLocation());
-
-        hero.setSpeed(-stepSize, -stepSize); //try move beyond the top left edge
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(0, 0), hero.getLocation());
-
-
-        hero.setSpeed(0, 10 * stepSize);
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(0, 128), hero.getLocation());
-
-        hero.setSpeed(-stepSize, 0); //try to move beyond the left edge
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(0, 128), hero.getLocation());
-
-        hero.setSpeed(0, stepSize); //try to move beyond the bottom edge
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(0, 128), hero.getLocation());
-
-        hero.setSpeed(stepSize, stepSize); //try to move beyond the bottom-left corner
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(0, 128), hero.getLocation());
-
-
-        hero.setSpeed(10 * stepSize, 0); //move to the bottom-right edge
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(288, 128), hero.getLocation());
-
-        hero.setSpeed(stepSize, 0); //try to move beyond the right edge
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(288, 128), hero.getLocation());
-
-        hero.setSpeed(0, stepSize); //try to move beyond the bottom edge
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(288, 128), hero.getLocation());
-
-        hero.setSpeed(stepSize, stepSize); //try to move beyond the bottom-right corner
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(288, 128), hero.getLocation());
-
-        //move below the the obstacle at <obstacle x="160" y="64"/>
-        hero.setSpeed(-4 * stepSize, 0);
-        manager.update(System.currentTimeMillis());
-        hero.setSpeed(0, -stepSize);
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(160, 96), hero.getLocation());
-
-        hero.setSpeed(0, -stepSize); //try to go up, and fail
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(160, 96), hero.getLocation());
-
-        //move to the left side of the obstacle
-        hero.setSpeed(-stepSize, 0);
-        manager.update(System.currentTimeMillis());
-        hero.setSpeed(0, -stepSize);
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(128, 64), hero.getLocation());
-
-        hero.setSpeed(stepSize, 0); //try to go right, and fail
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(128, 64), hero.getLocation());
-
-        //move to the top side of the obstacle
-        hero.setSpeed(0, -stepSize);
-        manager.update(System.currentTimeMillis());
-        hero.setSpeed(stepSize, 0);
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(160, 32), hero.getLocation());
-
-        hero.setSpeed(0, stepSize); //try to go down, and fail
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(160, 32), hero.getLocation());
-
-        //move to the right side of the obstacle
-        hero.setSpeed(stepSize, 0);
-        manager.update(System.currentTimeMillis());
-        hero.setSpeed(0, stepSize);
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(192, 64), hero.getLocation());
-
-        hero.setSpeed(-stepSize, 0); //try to go left, and fail
-        manager.update(System.currentTimeMillis());
-        assertEquals(new Point(192, 64), hero.getLocation());
-
-
-        //move the to jump point at <jumpPoint x="288" y="96" target="Second"/>
-        hero.setSpeed(0, stepSize);
-        manager.update(System.currentTimeMillis());
-        hero.setSpeed(4 * stepSize, 0);
-        manager.update(System.currentTimeMillis());
+        //move above the Jumppoint at (9,3) <jumpPoint x="288" y="96" target="Second"/> (
+        mover.setLocation(9, 2);
+        mover.down();
 
         assertEquals(2, listener.getTimesCalled());
-        Scenery secondScenery = project.getScenery(2);
+        Scenery secondScenery = manager.getScenery(2);
         Hero secondHero = manager.getHero();
         assertNotSame(hero, secondHero);
         assertEquals(secondScenery, manager.getActiveScenery());
@@ -172,23 +113,159 @@ public class TestMapManager extends TestCase {
         assertEquals(secondScenery.getHeroStartingPoint(), secondHero.getLocation());
     }
 
-    private class SceneryChangeListener implements PropertyChangeListener {
-        int timesCalled;
-        Scenery lastNewValue;
+    public void testObstacles() {
+        int stepSize = Tile.TILE_SIZE; //Move tile to tile. It is easier to follow the test.
+        MapManager manager = createMapManager();
+        manager.init();
+        HeroMover mover = new HeroMover(manager, stepSize);
 
-        @Override
-        public void propertyChange(PropertyChangeEvent evt) {
-            timesCalled++;
-            lastNewValue = (Scenery) evt.getNewValue();
+        Scenery scenery= manager.getActiveScenery();
+
+        Collection<Point> obstacles = scenery.getObstacles();
+        for (Point point : obstacles) {
+            assertTrue(manager.solidItems.haveSolidSpritesAt(point));
         }
 
-        public int getTimesCalled() {
-            return timesCalled;
-        }
+        //move below the obstacle at (5,2) <obstacle x="160" y="64"/>
+        mover.setLocation(5, 3);
+        mover.up();
+        mover.assertLocation().at(5, 3);
 
-        public Scenery getLastNewValue() {
-            return lastNewValue;
+        //move to the left side of the obstacle
+        mover.setLocation(4, 2);
+        mover.right();
+        mover.assertLocation().at(4, 2);
+
+        //move to the top side of the obstacle
+        mover.setLocation(5, 1);
+        mover.down();
+        mover.assertLocation().at(5, 1);
+
+        //move to the right side of the obstacle
+        mover.setLocation(6, 2);
+        mover.left();
+        mover.assertLocation().at(6, 2);
+    }
+
+    public void testHeroLocationIsCloned() {
+        Hero hero=new Hero(new Point(0,0));
+        Point location=new Point(1,2);
+        hero.setLocation(location);
+        assertNotSame(location,hero.getLocation());
+
+        location.translate(5,5);
+        assertEquals(new Point(6,7),location);
+        assertEquals(new Point(1,2),hero.getLocation());
+    }
+
+    public void testBoundaries() throws URISyntaxException {
+        int stepSize = Tile.TILE_SIZE; //Move tile to tile. It is easier to follow the test.
+        MapManager manager = createMapManager();
+        manager.init();
+        Scenery scenery= manager.getActiveScenery();
+        assertEquals("First", scenery.getName());
+        Hero hero = manager.getHero();
+
+        assertEquals(scenery.getHeroStartingPoint(), hero.getLocation());
+        assertEquals(new Point(0, 0), hero.getLocation()); //This is just to document the fact that the hero starts at 0,0
+
+        //The scenery is a 10x5 grid
+        assertEquals(10, scenery.getWidth() / Tile.TILE_SIZE);
+        assertEquals(5, scenery.getHeight() / Tile.TILE_SIZE);
+
+        HeroMover mover = new HeroMover(manager, stepSize);
+
+        assertCannotMoveBeyondLeft(mover, 0, 0);
+        assertCannotMoveBeyondTop(mover, 0, 0);
+        assertCannotMoveBeyondTopLeft(mover);
+
+        mover.toTopRight();
+        assertCannotMoveBeyondRight(mover, 9, 0);
+        assertCannotMoveBeyondTop(mover, 9, 0);
+        assertCannotMoveBeyondTopRight(mover);
+
+        mover.toBottomLeft();
+        assertCannotMoveBeyondLeft(mover, 0, 4);
+        assertCannotMoveBeyondBottom(mover, 0, 4);
+        assertCannotMoveBeyondBottomLeft(mover);
+
+        mover.toBottomRight();
+        assertCannotMoveBeyondRight(mover, 9, 4);
+        assertCannotMoveBeyondBottom(mover, 9, 4);
+        assertCannotMoveBeyondBottomRight(mover);
+    }
+
+    private void assertCannotMoveBeyondBottomLeft(HeroMover mover) {
+        mover.bottomLeft();
+        mover.assertLocation().atBottomLeft();
+    }
+
+    private void assertCannotMoveBeyondBottomRight(HeroMover mover) {
+        mover.bottomRight();
+        mover.assertLocation().atBottomRight();
+    }
+
+    private void assertCannotMoveBeyondTopLeft(HeroMover mover) {
+        mover.topLeft();
+        mover.assertLocation().atTopLeft();
+    }
+
+    private void assertCannotMoveBeyondTopRight(HeroMover mover) {
+        mover.topRight();
+        mover.assertLocation().atTopRight();
+    }
+
+    private void assertCannotMoveBeyondTop(HeroMover mover, int x, int y) {
+        mover.up();
+        mover.assertLocation().at(x, y);
+
+        mover.up(2);
+        mover.assertLocation().at(x, y);
+    }
+
+    private void assertCannotMoveBeyondBottom(HeroMover mover, int x, int y) {
+        mover.down();
+        mover.assertLocation().at(x, y);
+
+        mover.down(2);
+        mover.assertLocation().at(x, y);
+    }
+
+    private void assertCannotMoveBeyondRight(HeroMover mover, int x, int y) {
+        mover.right();
+        mover.assertLocation().at(x, y);
+
+        mover.right(2);
+        mover.assertLocation().at(x, y);
+    }
+
+    private void assertCannotMoveBeyondLeft(HeroMover mover, int x, int y) {
+        mover.left();
+        mover.assertLocation().at(x, y);
+
+        mover.left(2);
+        mover.assertLocation().at(x, y);
+    }
+
+
+
+    private MapManager initManager() {
+        MapManager manager = createMapManager();
+        assertNull(manager.getActiveScenery());
+        manager.init();
+        return manager;
+    }
+
+    private MapManager createMapManager() {
+        try {
+            ProjectPersister persister = new ProjectPersister();
+            File file = new File(this.getClass().getResource("/MapManagerTest.xml").toURI());
+            Project project = persister.load(file.getAbsolutePath());
+            return new MapManager(project.getSceneries());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
         }
     }
+
 
 }
