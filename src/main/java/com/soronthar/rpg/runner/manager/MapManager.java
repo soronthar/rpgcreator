@@ -18,10 +18,10 @@ import java.util.List;
 public class MapManager {
     public static final String SCENERY = "scenery";
     Hero hero;
-    List<Sprite> sprites = new ArrayList<Sprite>();
-    SpecialsPerPoint solidItems = new SpecialsPerPoint();
+    List<Sprite> sprites = new ArrayList<Sprite>(); //TODO: Sprites are being registered in the list and in the map
+    SpecialsPerPoint specialsPerPoint = new SpecialsPerPoint();
     PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-    private Scenery scenery;
+    private Scenery activeScenery;
     private SceneryBag sceneries;
     private Rectangle screenBounds;
 
@@ -34,30 +34,31 @@ public class MapManager {
     }
 
     public Scenery getActiveScenery() {
-        return this.scenery;
+        return this.activeScenery;
     }
 
-    public void setScenery(Scenery scenery) {
-        Scenery oldValue = this.scenery;
-        this.scenery = scenery;
+    public void setActiveScenery(Scenery activeScenery) {
+        Scenery oldValue = this.activeScenery;
+        this.activeScenery = activeScenery;
         this.sprites.clear();
-        this.solidItems.clear();
+        this.specialsPerPoint.clear();
 
-        screenBounds = new Rectangle(scenery.getWidth() - Tile.TILE_SIZE, scenery.getHeight() - Tile.TILE_SIZE);
-        this.hero = new Hero(scenery.getHeroStartingPoint());
-        for (Sprite sprite : scenery.getSprites()) {
+        screenBounds = new Rectangle(activeScenery.getWidth() - Tile.TILE_SIZE, activeScenery.getHeight() - Tile.TILE_SIZE);
+        this.hero = new Hero(activeScenery.getHeroStartingPoint());
+        for (Sprite sprite : activeScenery.getSprites()) {
             this.sprites.add(sprite);
+            this.specialsPerPoint.add(sprite.getLocation(), sprite);
         }
 
-        Collection<Point> obstacles = scenery.getObstacles();
+        Collection<Point> obstacles = activeScenery.getObstacles();
         for (Point point : obstacles) {
-            this.solidItems.add(point, new Obstacle(point));
+            this.specialsPerPoint.add(point, new Obstacle(point));
         }
-        pcs.firePropertyChange(SCENERY, oldValue, scenery);
+        pcs.firePropertyChange(SCENERY, oldValue, activeScenery);
     }
 
     public void init() {
-        setScenery(sceneries.iterator().next());
+        setActiveScenery(sceneries.iterator().next());
     }
 
     public Scenery getScenery(int id) {
@@ -78,7 +79,7 @@ public class MapManager {
         }
 
 
-        public boolean haveSolidSpritesAt(Point location) {
+        public boolean haveSolidAt(Point location) {
             List<SpecialObject> sprites = spriteMap.get(location);
             if (sprites == null || sprites.isEmpty()) return false;
 
@@ -92,6 +93,13 @@ public class MapManager {
         public void clear() {
             this.spriteMap.clear();
         }
+
+        public void remove(Point location, SpecialObject object) {
+            List<SpecialObject> sprites = spriteMap.get(location);
+            if (sprites != null) {
+                sprites.remove(object);
+            }
+        }
     }
 
     public void update(long elapsedTime) {
@@ -103,11 +111,11 @@ public class MapManager {
         updateSprite(hero, elapsedTime);
 
         Point location = hero.getLocation();
-        SpecialObject specialAt = scenery.getSpecialAt(location);
+        SpecialObject specialAt = activeScenery.getSpecialAt(location);
         if (specialAt instanceof JumpPoint) {
             JumpPoint jump = (JumpPoint) specialAt;
             Scenery scenery1 = sceneries.get(jump.getTargetId());
-            this.setScenery(scenery1);
+            this.setActiveScenery(scenery1);
         }
     }
 
@@ -132,7 +140,9 @@ public class MapManager {
                 sprite.setLocation(oldLocation);
                 sprite.handleCollitionAt(tileLocation);
             }
-            
+
+            specialsPerPoint.remove(oldLocation, sprite);
+            specialsPerPoint.add(sprite.getLocation(), sprite);
         }
     }
 
@@ -156,7 +166,7 @@ public class MapManager {
     }
 
     private boolean hasCollition(SpecialObject sprite, Point tileLocation) {
-        return solidItems.haveSolidSpritesAt(tileLocation);
+        return specialsPerPoint.haveSolidAt(tileLocation);
     }
 
     public Hero getHero() {

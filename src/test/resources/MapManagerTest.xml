@@ -3,6 +3,7 @@
     <sceneries>
         <scenery id="1" name="First" width="320" height="160">
             <obstacle x="160" y="64"/>
+          <sprite id="solid" facing="DOWN" x="64" y="64" solid="true" visible="true" type="sprite"/>
             <jumpPoint x="288" y="96" target="2"/>
             <heroStartingPoint x="0" y="0"/>
         </scenery>
