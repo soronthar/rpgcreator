@@ -10,17 +10,16 @@ public class TilesetCompiler extends JFrame {
 
     private TilesetCompiler() throws HeadlessException {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(new Dimension(1024, 768));
+        this.setSize(new Dimension(1024, 736));
         this.setTitle("Tileset Compiler");
 
         TilesetCompilerController controller = new TilesetCompilerController(new Model());
 
-        Container contentPane = new BuilderGUI(controller, this);
+        Container contentPane = new TilesetCompilerGUI(controller);
         this.setContentPane(contentPane);
 
         //(RAF) this is the last thing that should be done.
         controller.loadTilesets();
-        contentPane.setEnabled(true);
 
     }
 

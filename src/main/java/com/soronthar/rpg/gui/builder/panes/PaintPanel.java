@@ -15,10 +15,15 @@ public class PaintPanel extends JScrollPane {
 
 
     public PaintPanel(Controller controller) {
+        this(controller, Scenery.WIDTH - 1, Scenery.HEIGHT - 1);
+    }
+
+    public PaintPanel(Controller controller, int w, int h) {
         this.controller = controller;
-        this.setViewportView(initializeCanvas());
+        this.setViewportView(initializeCanvas(w, h));
+        this.setAutoscrolls(true);
         this.setBackground(Color.blue.brighter());
-        this.setEnabled(false);
+        this.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         forceRepaintOnScroll();
         controller.setPaintPanel(this);
     }
@@ -36,18 +41,18 @@ public class PaintPanel extends JScrollPane {
         });
     }
 
-    private JPanel initializeCanvas() {
-        JPanel panel = createPanel();
+    private JPanel initializeCanvas(int w, int h) {
+        JPanel panel = createPanel(w, h);
         setMouseAdapter(panel);
         return panel;
     }
 
-    private JPanel createPanel() {
+    private JPanel createPanel(int w, int h) {
         JPanel panel = new JPanel();
         panel.setLayout(new OverlayLayout(panel));
-        canvas = new PaintCanvas(Scenery.WIDTH - 1, Scenery.HEIGHT - 1, this.controller.getModel());
+        canvas = new PaintCanvas(w, h, this.controller.getModel());
         panel.add(canvas);
-        panel.setPreferredSize(new Dimension(800, 640));
+        panel.setPreferredSize(new Dimension(w, h));
         return panel;
     }
 

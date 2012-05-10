@@ -22,9 +22,9 @@ public class TilesetsPanel extends JTabbedPane {
 
     public TilesetsPanel(Controller controller) {
         this.setTabPlacement(JTabbedPane.BOTTOM);
-        this.setMinimumSize(Utils.getScaledTileDimension(8, 8).addPadding(23, 49));
-        this.setMaximumSize(Utils.getScaledTileDimension(8, 12).addPadding(23, 49));
-        this.setPreferredSize(Utils.getScaledTileDimension(8, 12).addPadding(23, 49));
+        this.setMinimumSize(Utils.getScaledTileDimension(12, 8).addPadding(23, 49));
+        this.setMaximumSize(Utils.getScaledTileDimension(12, 12).addPadding(23, 49));
+        this.setPreferredSize(Utils.getScaledTileDimension(12, 12).addPadding(23, 49));
         controller.setTilesetPanel(this);
         this.controller = controller;
     }

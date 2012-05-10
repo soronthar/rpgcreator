@@ -1,6 +1,5 @@
 package com.soronthar.rpg.gui.builder;
 
-import com.soronthar.rpg.ImageLoader;
 import com.soronthar.rpg.gui.builder.panes.PaintPanel;
 import com.soronthar.rpg.gui.builder.panes.TilesetsPanel;
 import com.soronthar.rpg.model.JumpPoint;
@@ -9,16 +8,13 @@ import com.soronthar.rpg.model.objects.sprites.MobNpc;
 import com.soronthar.rpg.model.scenery.Scenery;
 import com.soronthar.rpg.model.tiles.Tile;
 import com.soronthar.rpg.model.tiles.TileSet;
+import com.soronthar.rpg.model.tiles.TileSetBag;
+import com.soronthar.rpg.model.tiles.TileSetBagPersister;
 import org.soronthar.error.ApplicationException;
-import org.soronthar.error.ExceptionHandler;
 import org.soronthar.geom.Dimension;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.Properties;
 
 import static com.soronthar.rpg.Utils.normalizePointToTile;
 
@@ -104,23 +100,9 @@ public class Controller {
     }
 
     public void loadTilesets() {
-        try {
-            Properties tilesetsDef = new Properties();
-            tilesetsDef.load(new FileInputStream("tileset.properties"));
-            BufferedImage image;
-
-            Enumeration<?> enumeration = tilesetsDef.propertyNames();
-            while (enumeration.hasMoreElements()) {
-                String key = (String) enumeration.nextElement();
-                image = new ImageLoader().load(tilesetsDef.getProperty(key));
-                TileSet tileSet = new TileSet(key, image);
-                model.getTilesets().put(tileSet);
-            }
-        } catch (IOException e) {
-            ExceptionHandler.handleException(e);
-        }
+        TileSetBag tileSets = new TileSetBagPersister().loadTilesets();
+        model.setTileSets(tileSets);
         tilesetsPanel.setTileSets(model.getTilesets());
-
     }
 
 

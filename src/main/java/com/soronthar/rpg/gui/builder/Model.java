@@ -18,7 +18,6 @@ public class Model {
     public static final String LOCATION = "location";
 
 
-
     public enum SpecialModes {
         NONE, OBSTACLE, HERO_START, JUMP, SPRITE
     }
@@ -65,7 +64,7 @@ public class Model {
     }
 
     public boolean isAddSpriteMode() {
-        return mode==SpecialModes.SPRITE;
+        return mode == SpecialModes.SPRITE;
     }
 
     public void setMode(SpecialModes mode) {
@@ -82,12 +81,11 @@ public class Model {
             tile = Palette.createJumpPointDrawingPen();
         } else if (isAddSpriteMode()) {
             tile = Palette.createSpriteDrawingPen();
-        }  else {
+        } else {
             tile = drawingPen;
         }
         return tile;
     }
-
 
 
     public void setDrawingPen(BufferedImage drawingPen) {
@@ -102,6 +100,10 @@ public class Model {
 
     public TileSet getTileSet(String name) {
         return tileSets.get(name);
+    }
+
+    public void setTileSets(TileSetBag tileSets) {
+        this.tileSets = tileSets;
     }
 
     public Tile getActiveTile() {
@@ -130,7 +132,7 @@ public class Model {
     }
 
     private boolean isSpecialMode() {
-        return mode!=SpecialModes.NONE;
+        return mode != SpecialModes.NONE;
     }
 
     public void setActiveLayerIndex(int activeLayerIndex) {
