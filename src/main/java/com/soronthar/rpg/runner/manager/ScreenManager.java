@@ -60,7 +60,7 @@ public class ScreenManager extends Canvas {
         BufferStrategy bufferStrategy = getBufferStrategy();
         Graphics g = bufferStrategy.getDrawGraphics();
 
-        for (int layer = 0; layer < 3; layer++) {
+        for (int layer = 0; layer < 4; layer++) {
             g.drawImage(getImage(layer), 0, 0, null);
         }
 
@@ -72,7 +72,6 @@ public class ScreenManager extends Canvas {
             }
         }
 
-        g.drawImage(getImage(3), 0, 0, null);
         g.drawImage(getImage(4), 0, 0, null);
 
         g.dispose();
