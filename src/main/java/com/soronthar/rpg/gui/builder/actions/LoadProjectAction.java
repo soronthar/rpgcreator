@@ -1,6 +1,6 @@
 package com.soronthar.rpg.gui.builder.actions;
 
-import com.soronthar.rpg.gui.builder.Controller;
+import com.soronthar.rpg.gui.builder.RpgCreatorController;
 import com.soronthar.rpg.gui.builder.actions.base.ShowDialogAction;
 
 import javax.swing.*;
@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 
 public class LoadProjectAction extends ShowDialogAction {
-    public LoadProjectAction(JFrame frame, Controller controller) {
+    public LoadProjectAction(JFrame frame, RpgCreatorController controller) {
         super("Load Project", "icons/open.png", frame, controller);
     }
 

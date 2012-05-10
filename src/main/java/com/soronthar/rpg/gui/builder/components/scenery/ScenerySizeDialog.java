@@ -1,6 +1,6 @@
 package com.soronthar.rpg.gui.builder.components.scenery;
 
-import com.soronthar.rpg.gui.builder.Controller;
+import com.soronthar.rpg.gui.builder.RpgCreatorController;
 import com.soronthar.rpg.model.scenery.Scenery;
 
 import javax.swing.*;
@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ScenerySizeDialog extends JDialog {
-    public ScenerySizeDialog(final SceneryTree sceneryTree, Scenery scenery, final Controller controller) {
+    public ScenerySizeDialog(final SceneryTree sceneryTree, Scenery scenery, final RpgCreatorController controller) {
         super((Frame) SwingUtilities.getAncestorOfClass(JFrame.class, sceneryTree), "Scenery " + scenery.getName() + " Size", true);
         this.setLayout(new FlowLayout());
         JLabel width = new JLabel("Width:");

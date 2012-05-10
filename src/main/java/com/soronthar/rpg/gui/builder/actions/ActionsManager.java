@@ -1,6 +1,6 @@
 package com.soronthar.rpg.gui.builder.actions;
 
-import com.soronthar.rpg.gui.builder.Controller;
+import com.soronthar.rpg.gui.builder.RpgCreatorController;
 
 import javax.swing.*;
 
@@ -18,7 +18,7 @@ public class ActionsManager {
     private AddJumpAction addJumpAction;
     private AddSpriteAction addSpriteAction;
 
-    public ActionsManager(JFrame parent, Controller controller) {
+    public ActionsManager(JFrame parent, RpgCreatorController controller) {
         this.newProjectAction = new NewProjectAction(parent, controller);
         this.loadProjectAction = new LoadProjectAction(parent, controller);
         this.saveProjectAction = new SaveProjectAction(controller);
@@ -28,7 +28,7 @@ public class ActionsManager {
         this.addObstacleAction = new AddObstacleAction(controller);
         this.addHeroStartAction = new AddHeroStartAction(controller);
         this.addJumpAction = new AddJumpAction(controller);
-        this.addSpriteAction=new AddSpriteAction(controller);
+        this.addSpriteAction = new AddSpriteAction(controller);
         setInitialState();
     }
 

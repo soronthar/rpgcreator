@@ -29,11 +29,11 @@ public class BuilderGUI extends JPanel {
     private FloatDockModel dockModel;
     private LayerPanel layerPanel;
 
-    public BuilderGUI(Controller controller, ActionsManager actionsManager, RpgCreator rpgCreator) {
+    public BuilderGUI(RpgCreatorController controller, ActionsManager actionsManager, JFrame parent) {
         super(new GridBagLayout());
         // Create the dock model for the docks.
         dockModel = new FloatDockModel();
-        dockModel.addOwner("frame0", rpgCreator);
+        dockModel.addOwner("frame0", parent);
 
         // Give the dock model to the docking manager.
         DockingManager.setDockModel(dockModel);
@@ -43,7 +43,7 @@ public class BuilderGUI extends JPanel {
         controller.setMainGUI(this);
     }
 
-    private void createComponents(Controller controller, ActionsManager actionsManager) {
+    private void createComponents(RpgCreatorController controller, ActionsManager actionsManager) {
         paintPanel = new PaintPanel(controller);
         toolBar = new BuilderToolBar(actionsManager);
         toolBar.setEnabled(false);

@@ -1,29 +1,26 @@
-package com.soronthar.rpg.gui.builder;
+package com.soronthar.rpg.gui.compiler;
 
+import com.soronthar.rpg.gui.builder.Model;
 import com.soronthar.rpg.gui.builder.actions.ActionsManager;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class RpgCreator extends JFrame {
+public class TilesetCompiler extends JFrame {
 
-    private RpgCreator() throws HeadlessException {
+    private TilesetCompiler() throws HeadlessException {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(new Dimension(1024, 768));
-        this.setTitle("RPG Creator");
+        this.setTitle("Tileset Compiler");
 
-        RpgCreatorController controller = new RpgCreatorController(new Model());
-        ActionsManager actionsManager = new ActionsManager(this, controller);
+        TilesetCompilerController controller = new TilesetCompilerController(new Model());
 
-        Container contentPane = new BuilderGUI(controller, actionsManager, this);
-        contentPane.setEnabled(false);
+        Container contentPane = new BuilderGUI(controller, this);
         this.setContentPane(contentPane);
-        this.setJMenuBar(createMenu(actionsManager));
-        controller.setActionManager(actionsManager);
 
         //(RAF) this is the last thing that should be done.
         controller.loadTilesets();
-
+        contentPane.setEnabled(true);
 
     }
 
@@ -53,6 +50,6 @@ public class RpgCreator extends JFrame {
 
     public static void main(String[] args) throws Exception {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        new RpgCreator().setVisible(true);
+        new TilesetCompiler().setVisible(true);
     }
 }

@@ -1,6 +1,6 @@
 package com.soronthar.rpg.gui.builder.actions;
 
-import com.soronthar.rpg.gui.builder.Controller;
+import com.soronthar.rpg.gui.builder.RpgCreatorController;
 import com.soronthar.rpg.gui.builder.actions.base.WithControllerAction;
 
 import java.awt.event.ActionEvent;
@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 
 public class NewSceneryAction extends WithControllerAction {
 
-    public NewSceneryAction(Controller controller) {
+    public NewSceneryAction(RpgCreatorController controller) {
         super("New Scenery", "icons/addscenery.png", controller);
     }
 

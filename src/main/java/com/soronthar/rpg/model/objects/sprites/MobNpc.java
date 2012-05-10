@@ -1,6 +1,5 @@
 package com.soronthar.rpg.model.objects.sprites;
 
-import com.soronthar.rpg.model.objects.sprites.frames.NullFrameStrategy;
 import com.soronthar.rpg.model.objects.sprites.frames.WholeImageFrameStrategy;
 import com.soronthar.rpg.model.tiles.Tile;
 
@@ -54,17 +53,16 @@ public class MobNpc extends Sprite {
     }
 
 
-
     @Override
     public void handleAtEdge(Rectangle bounds) {
         Point location = this.getLocation();
-        if (location.y==0 && getFacing()==Facing.UP) {
+        if (location.y == 0 && getFacing() == Facing.UP) {
             goLeft();
-        } else if (location.y==bounds.height && getFacing()==Facing.DOWN) {
+        } else if (location.y == bounds.height && getFacing() == Facing.DOWN) {
             goRight();
-        } else if (location.x==bounds.width && getFacing()==Facing.RIGHT) {
+        } else if (location.x == bounds.width && getFacing() == Facing.RIGHT) {
             goUp();
-        } else if (location.x==0 && getFacing()==Facing.LEFT) {
+        } else if (location.x == 0 && getFacing() == Facing.LEFT) {
             goDown();
         }
 

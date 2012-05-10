@@ -1,7 +1,7 @@
 package com.soronthar.rpg.gui.builder.components.scenery;
 
 import com.soronthar.rpg.Utils;
-import com.soronthar.rpg.gui.builder.Controller;
+import com.soronthar.rpg.gui.builder.RpgCreatorController;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.scenery.Scenery;
 import com.soronthar.rpg.model.scenery.SceneryBag;
@@ -17,7 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class SceneryTree extends JTree {
-    public SceneryTree(final Controller controller) {
+    public SceneryTree(final RpgCreatorController controller) {
 
         super(new SceneryTreeModel());
 
@@ -78,7 +78,7 @@ public class SceneryTree extends JTree {
         }
 
         getModel().setRoot(root);
-        if (project.getSceneries().size()>0) {
+        if (project.getSceneries().size() > 0) {
             this.setSelectionRow(1);
         }
         this.revalidate();
