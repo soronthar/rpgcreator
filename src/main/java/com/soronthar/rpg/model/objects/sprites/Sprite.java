@@ -118,9 +118,6 @@ public class Sprite extends SpecialObject {
             newFacing = Facing.UP;
         }
 
-//        if (!this.facing.hasSameAxis(newFacing)) {
-//            adjustPositionToTile(true);
-//        }
         if (this.facing != newFacing) {
             resetStepCount();
         }
@@ -178,10 +175,11 @@ public class Sprite extends SpecialObject {
         move();
     }
 
-    public void handleCollitionAt(Point tileLocation) {
+    public void handleCollitionAt(Point tileLocation) {     //todo: test that this is being called
     }
 
-    public void handleAtEdge(Rectangle bounds) {
+    public void handleAtEdge(Rectangle bounds) {//todo: test that this is being called
+
     }
 
 

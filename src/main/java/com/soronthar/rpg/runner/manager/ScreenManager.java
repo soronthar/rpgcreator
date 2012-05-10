@@ -67,7 +67,7 @@ public class ScreenManager extends Canvas {
         drawSprite(player, g);
 
         for (Sprite sprite : sprites) {
-            if (viewPort.contains(sprite.getLocation())) {
+            if (viewPort.contains(sprite.getLocation()) && sprite.isVisible()) {
                 drawSprite(sprite, g);
             }
         }
