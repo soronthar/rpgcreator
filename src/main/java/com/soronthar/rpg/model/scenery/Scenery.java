@@ -12,12 +12,11 @@ import org.soronthar.geom.Dimension;
 import java.awt.*;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Scenery implements Serializable {
-    public static final int WIDTH = 320;
-    public static final int HEIGHT = 160;
+    public static final int WIDTH = 640;
+    public static final int HEIGHT = 480;
 
     private long id;
     private Dimension dimension;
