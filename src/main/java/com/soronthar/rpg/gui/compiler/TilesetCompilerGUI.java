@@ -13,7 +13,7 @@ public class TilesetCompilerGUI extends JSplitPane {
 
     public TilesetCompilerGUI(TilesetCompilerController controller) {
         super(JSplitPane.HORIZONTAL_SPLIT);
-        Dimension tileDimension = Utils.getScaledTileDimension(8, 28);
+        Dimension tileDimension = Utils.getScaledTileDimension(12, 28);
         paintPanel = new PaintPanel(controller, tileDimension.width, tileDimension.height);
         tilesetsPanel = new TilesetsPanel(controller);
         tilesetsPanel.setTabPlacement(JTabbedPane.TOP);

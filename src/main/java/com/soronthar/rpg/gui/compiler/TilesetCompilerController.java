@@ -27,8 +27,7 @@ public class TilesetCompilerController extends Controller {
             }
         });
 
-        for (int i = 0; i < tilesetFiles.length; i++) {
-            File tilesetFile = tilesetFiles[i];
+        for (File tilesetFile : tilesetFiles) {
             image = new ImageLoader().load("tilesets/" + tilesetFile.getName());
             TileSet tileSet = new TileSet(tilesetFile.getName(), image);
             model.getTilesets().put(tileSet);
@@ -38,4 +37,7 @@ public class TilesetCompilerController extends Controller {
     }
 
 
+    public BufferedImage getTilesetImage() {
+        return this.getPaintPanel().getCanvas().getLayerImage(0);
+    }
 }

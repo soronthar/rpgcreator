@@ -96,4 +96,8 @@ public class PaintCanvas extends JPanel {
         g.clearRect(p.x, p.y, Tile.TILE_SIZE, Tile.TILE_SIZE);
         g.dispose();
     }
+
+    public BufferedImage getLayerImage(int layer) {
+        return layers[layer];
+    }
 }

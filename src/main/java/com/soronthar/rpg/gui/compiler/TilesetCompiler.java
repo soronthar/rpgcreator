@@ -2,9 +2,15 @@ package com.soronthar.rpg.gui.compiler;
 
 import com.soronthar.rpg.gui.builder.Model;
 import com.soronthar.rpg.gui.builder.actions.ActionsManager;
+import org.soronthar.error.TechnicalException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class TilesetCompiler extends JFrame {
 
@@ -13,14 +19,32 @@ public class TilesetCompiler extends JFrame {
         this.setSize(new Dimension(1024, 736));
         this.setTitle("Tileset Compiler");
 
-        TilesetCompilerController controller = new TilesetCompilerController(new Model());
+        final TilesetCompilerController controller = new TilesetCompilerController(new Model());
 
         Container contentPane = new TilesetCompilerGUI(controller);
         this.setContentPane(contentPane);
 
+
         //(RAF) this is the last thing that should be done.
         controller.loadTilesets();
 
+        JMenu menu = new JMenu("Tileset");
+        menu.add(new JMenuItem(new AbstractAction("Save") {
+            @Override
+            public void actionPerformed(ActionEvent ev) {
+                BufferedImage image = controller.getTilesetImage();
+                File file = new File("test.png");
+                try {
+                    ImageIO.write(image, "png", file);
+                } catch (IOException e) {
+                    throw new TechnicalException(e);
+                }
+            }
+        }));
+
+        JMenuBar bar = new JMenuBar();
+        bar.add(menu);
+        this.setJMenuBar(bar);
     }
 
     private JMenuBar createMenu(ActionsManager controller) {
