@@ -3,6 +3,7 @@ package com.soronthar.rpg.model.project.xtream;
 import com.soronthar.rpg.model.objects.sprites.Facing;
 import com.soronthar.rpg.model.objects.sprites.MobNpc;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.sprites.StandingNpc;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;
@@ -26,6 +27,7 @@ public class SpriteConverter implements Converter {
             writer.addAttribute("frames", ((MobNpc) sprite).getFrameMapName());
         } else {
             writer.addAttribute("type", "sprite");
+            writer.addAttribute("frames", ((StandingNpc) sprite).getFrameMapName());
         }
         writer.endNode();
     }
@@ -43,7 +45,8 @@ public class SpriteConverter implements Converter {
             sprite = new MobNpc(id, new Point(x, y), Facing.valueOf(facing));
             ((MobNpc) sprite).setFrameMapName(reader.getAttribute("frames"));
         } else {
-            sprite = new Sprite(id, new Point(x, y), Facing.valueOf(facing));
+            sprite = new StandingNpc(id, new Point(x, y), Facing.valueOf(facing));
+            ((StandingNpc) sprite).setFrameMapName(reader.getAttribute("frames"));
         }
 
         sprite.setVisible(isVisible);

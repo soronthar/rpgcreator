@@ -1,8 +1,11 @@
 package com.soronthar.rpg.gui.builder.panes;
 
 import com.soronthar.rpg.gui.builder.Controller;
+import com.soronthar.rpg.model.objects.SpecialObject;
 import com.soronthar.rpg.model.objects.sprites.MobNpc;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.sprites.StandingNpc;
+import com.soronthar.rpg.model.scenery.Scenery;
 
 import javax.swing.*;
 import java.awt.FlowLayout;
@@ -24,16 +27,49 @@ class SpriteEditDialog extends JDialog {
         this.add(isVisible);
         this.add(isSolid);
         this.add(new JLabel("Frame Map Image:"));
-        final JTextField image = new JTextField(((MobNpc) sprite).getFrameMapName());
+        final JTextField image = new JTextField();
+
         this.add(image);
+        final JComboBox comboBox=new JComboBox(new String[]{"Npc","Mob"});
+        this.add(comboBox);
+
+        if (sprite instanceof MobNpc) {
+            image.setText(((MobNpc) sprite).getFrameMapName());
+            comboBox.setSelectedIndex(1);
+        } else {
+            comboBox.setSelectedIndex(0);
+            image.setText(((StandingNpc) sprite).getFrameMapName());
+        }
+
+        
         JButton button = new JButton("OK");
         this.add(button);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sprite.setVisible(isVisible.isSelected());
-                sprite.setSolid(isSolid.isSelected());
+                Scenery activeScenery = controller.getModel().getActiveScenery();
+                if (comboBox.getSelectedItem().equals("Mob") && sprite instanceof StandingNpc) {
+                    activeScenery.removeSpriteAt(point);
+                    MobNpc newSprite = new MobNpc(sprite.getId(), point, sprite.getFacing());
+                    activeScenery.addSprite(newSprite);
+                    newSprite.setVisible(isVisible.isSelected());
+                    newSprite.setSolid(isSolid.isSelected());
+                    newSprite.setFrameMapName(image.getText());
+                } else if (comboBox.getSelectedItem().equals("Npc") && sprite instanceof MobNpc) {
+                    activeScenery.removeSpriteAt(point);
+                    StandingNpc newSprite = new StandingNpc(sprite.getId(), point, sprite.getFacing());
+                    activeScenery.addSprite(newSprite);
+                    newSprite.setVisible(isVisible.isSelected());
+                    newSprite.setSolid(isSolid.isSelected());
+                    newSprite.setFrameMapName(image.getText());
+                } else if (sprite instanceof MobNpc) {
+                    sprite.setVisible(isVisible.isSelected());
+                    sprite.setSolid(isSolid.isSelected());
                     ((MobNpc) sprite).setFrameMapName(image.getText());
+                } else {
+                    ((StandingNpc) sprite).setFrameMapName(image.getText());
+                }
+
                 setVisible(false);
             }
         });
