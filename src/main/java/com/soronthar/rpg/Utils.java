@@ -1,5 +1,6 @@
 package com.soronthar.rpg;
 
+import com.soronthar.rpg.model.objects.sprites.Facing;
 import com.soronthar.rpg.model.tiles.Tile;
 import org.soronthar.geom.Dimension;
 import org.soronthar.geom.Point;
@@ -29,5 +30,18 @@ public class Utils {
 
     public static Dimension getScaledTileDimension(int x, int y) {
         return getTileDimension().scale(x, y);
+    }
+
+    public static java.awt.Point getTileLocationForPoint(Facing facing, java.awt.Point location) {
+        java.awt.Point newLocation = new java.awt.Point(location);
+        java.awt.Point tileLocationDelta = new java.awt.Point(location.x % Tile.TILE_SIZE, location.y % Tile.TILE_SIZE);
+        if (facing == Facing.UP) {
+            tileLocationDelta.y *= -1;
+        } else if (facing == Facing.LEFT) {
+            tileLocationDelta.x *= -1;
+        }
+
+        newLocation.translate(tileLocationDelta.x, tileLocationDelta.y);
+        return newLocation;
     }
 }

@@ -17,8 +17,8 @@
             <obstacle x="8" y="1"/>
             <sprite id="alltrue" facing="DOWN" x="4" y="0" solid="true" visible="true" type="npc"
                     frames="miscsprite.png"/>
-            <sprite id="notsolid" facing="DOWN" x="5" y="0" solid="false" visible="true" type="sprite"/>
-            <sprite id="notvisible" facing="DOWN" x="6" y="0" solid="true" visible="false" type="sprite"/>
+            <sprite id="notsolid" facing="DOWN" x="5" y="0" solid="false" visible="true" type="sprite" frames=""/>
+            <sprite id="notvisible" facing="DOWN" x="6" y="0" solid="true" visible="false" type="sprite" frames=""/>
             <jumpPoint x="6" y="2" target="2"/>
             <heroStartingPoint x="5" y="8"/>
         </scenery>

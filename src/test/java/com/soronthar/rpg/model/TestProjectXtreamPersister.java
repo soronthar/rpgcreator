@@ -4,6 +4,7 @@ import com.soronthar.rpg.model.objects.SpecialObject;
 import com.soronthar.rpg.model.objects.sprites.Facing;
 import com.soronthar.rpg.model.objects.sprites.MobNpc;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.sprites.StandingNpc;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.project.ProjectPersister;
 import com.soronthar.rpg.model.scenery.DrawnTile;
@@ -58,10 +59,10 @@ public class TestProjectXtreamPersister extends TestCase {
             }
         }
         firstScenery.addSprite(new MobNpc("alltrue", new Point(4, 0), Facing.LEFT));
-        Sprite notsolid = new Sprite("notsolid", new Point(5, 0));
+        Sprite notsolid = new StandingNpc("notsolid", new Point(5, 0));
         notsolid.setSolid(false);
         firstScenery.addSprite(notsolid);
-        Sprite notvisible = new Sprite("notvisible", new Point(6, 0));
+        Sprite notvisible = new StandingNpc("notvisible", new Point(6, 0));
         notvisible.setVisible(false);
         firstScenery.addSprite(notvisible);
 
@@ -122,7 +123,7 @@ public class TestProjectXtreamPersister extends TestCase {
         assertTrue(sprite.isVisible());
 
         SpecialObject specialAt = scenery.getSpecialAt(sprite.getLocation());
-        assertEquals(sprite,specialAt);
+        assertEquals(sprite, specialAt);
 
         sprite = sprites.get("alltrue");
         assertNotNull(sprite);

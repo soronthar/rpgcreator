@@ -1,659 +1,662 @@
 <project name="FirstProject.xml">
-  <fileVersion>0.1</fileVersion>
-  <sceneries>
-    <scenery id="1336686674947" name="Town" width="640" height="480">
-      <layer index="0">
-        <drawnTile pos="0,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="0,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="608,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="0,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="0,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="0,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="0,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="0,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="0,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="0,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="0,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="0,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="0,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="0,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="0,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="640,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="672,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="640,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="32,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="96,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="128,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="160,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="192,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="224,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="256,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="288,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="320,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="352,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="384,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="416,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="448,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="480,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="512,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="544,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="576,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="64,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="0,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-      </layer>
-      <layer index="1">
-        <drawnTile pos="64,96" tileSetName="A5" tile="32,0" dimension="32x32"/>
-        <drawnTile pos="64,128" tileSetName="A5" tile="32,0" dimension="32x32"/>
-        <drawnTile pos="96,128" tileSetName="A5" tile="64,0" dimension="32x32"/>
-        <drawnTile pos="32,128" tileSetName="A5" tile="0,0" dimension="32x32"/>
-        <drawnTile pos="32,160" tileSetName="A5" tile="0,32" dimension="32x32"/>
-        <drawnTile pos="64,160" tileSetName="A5" tile="32,0" dimension="32x32"/>
-        <drawnTile pos="96,160" tileSetName="A5" tile="64,32" dimension="32x32"/>
-      </layer>
-      <layer index="2">
-        <drawnTile pos="64,32" tileSetName="stuff" tile="64,0" dimension="32x32"/>
-        <drawnTile pos="96,64" tileSetName="stuff" tile="96,32" dimension="32x32"/>
-        <drawnTile pos="32,64" tileSetName="stuff" tile="32,32" dimension="32x32"/>
-        <drawnTile pos="64,64" tileSetName="stuff" tile="64,64" dimension="32x32"/>
-        <drawnTile pos="64,96" tileSetName="stuff" tile="64,96" dimension="32x32"/>
-        <drawnTile pos="96,96" tileSetName="stuff" tile="96,96" dimension="32x32"/>
-        <drawnTile pos="32,96" tileSetName="stuff" tile="32,64" dimension="32x32"/>
-        <drawnTile pos="32,128" tileSetName="stuff" tile="0,160" dimension="32x32"/>
-        <drawnTile pos="96,128" tileSetName="stuff" tile="128,160" dimension="32x32"/>
-        <drawnTile pos="64,160" tileSetName="stuff" tile="64,224" dimension="32x32"/>
-        <drawnTile pos="64,128" tileSetName="stuff" tile="0,288" dimension="32x32"/>
-        <drawnTile pos="0,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="32,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="64,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="96,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="128,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="160,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="192,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="224,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="256,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="288,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="320,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="352,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="384,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="416,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="448,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="480,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="512,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="544,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="576,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,32" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,64" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,96" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,128" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,192" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,224" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,256" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,288" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,320" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,352" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,384" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,416" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="608,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="576,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="544,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="512,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="480,480" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="448,480" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="416,480" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="384,480" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="352,480" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="320,480" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="288,480" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="288,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="256,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="320,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="352,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="384,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="416,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="448,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="480,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="0,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="0,416" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="0,384" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="0,352" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="0,320" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="0,288" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="0,256" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="0,224" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="0,192" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="0,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="0,128" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="0,96" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="0,64" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="0,32" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="32,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="64,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="96,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="128,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="224,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="128,160" tileSetName="stuff" tile="0,480" dimension="32x32"/>
-        <drawnTile pos="576,32" tileSetName="stuff" tile="160,384" dimension="32x32"/>
-        <drawnTile pos="544,32" tileSetName="stuff" tile="160,384" dimension="32x32"/>
-        <drawnTile pos="512,32" tileSetName="stuff" tile="160,384" dimension="32x32"/>
-        <drawnTile pos="480,32" tileSetName="stuff" tile="160,384" dimension="32x32"/>
-        <drawnTile pos="512,96" tileSetName="stuff" tile="160,384" dimension="32x32"/>
-        <drawnTile pos="512,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="544,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="576,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="320,32" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="320,64" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="320,96" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="320,128" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="320,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="352,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="384,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="416,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="448,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
-        <drawnTile pos="448,32" tileSetName="stuff" tile="160,384" dimension="32x32"/>
-        <drawnTile pos="416,32" tileSetName="stuff" tile="160,384" dimension="32x32"/>
-        <drawnTile pos="384,32" tileSetName="stuff" tile="160,384" dimension="32x32"/>
-        <drawnTile pos="480,96" tileSetName="stuff" tile="160,384" dimension="32x32"/>
-        <drawnTile pos="448,96" tileSetName="stuff" tile="160,384" dimension="32x32"/>
-        <drawnTile pos="416,96" tileSetName="stuff" tile="160,384" dimension="32x32"/>
-        <drawnTile pos="384,96" tileSetName="stuff" tile="160,384" dimension="32x32"/>
-        <drawnTile pos="352,96" tileSetName="stuff" tile="160,384" dimension="32x32"/>
-        <drawnTile pos="352,32" tileSetName="stuff" tile="128,384" dimension="32x32"/>
-      </layer>
-      <layer index="3">
-        <drawnTile pos="448,160" tileSetName="stuff" tile="0,352" dimension="32x32"/>
-        <drawnTile pos="448,192" tileSetName="stuff" tile="0,384" dimension="32x32"/>
-      </layer>
-      <layer index="4">
-        <drawnTile pos="640,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
-        <drawnTile pos="640,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
-      </layer>
-      <obstacle x="32" y="96"/>
-      <obstacle x="0" y="0"/>
-      <obstacle x="416" y="32"/>
-      <obstacle x="32" y="0"/>
-      <obstacle x="0" y="96"/>
-      <obstacle x="608" y="384"/>
-      <obstacle x="384" y="480"/>
-      <obstacle x="608" y="224"/>
-      <obstacle x="0" y="352"/>
-      <obstacle x="288" y="0"/>
-      <obstacle x="64" y="0"/>
-      <obstacle x="416" y="448"/>
-      <obstacle x="96" y="448"/>
-      <obstacle x="352" y="160"/>
-      <obstacle x="96" y="128"/>
-      <obstacle x="128" y="0"/>
-      <obstacle x="384" y="32"/>
-      <obstacle x="608" y="64"/>
-      <obstacle x="0" y="256"/>
-      <obstacle x="256" y="0"/>
-      <obstacle x="416" y="480"/>
-      <obstacle x="384" y="448"/>
-      <obstacle x="0" y="320"/>
-      <obstacle x="320" y="160"/>
-      <obstacle x="544" y="448"/>
-      <obstacle x="0" y="416"/>
-      <obstacle x="480" y="32"/>
-      <obstacle x="0" y="160"/>
-      <obstacle x="512" y="32"/>
-      <obstacle x="32" y="160"/>
-      <obstacle x="512" y="448"/>
-      <obstacle x="96" y="64"/>
-      <obstacle x="352" y="96"/>
-      <obstacle x="352" y="0"/>
-      <obstacle x="544" y="32"/>
-      <obstacle x="480" y="448"/>
-      <obstacle x="608" y="128"/>
-      <obstacle x="608" y="448"/>
-      <obstacle x="160" y="0"/>
-      <obstacle x="448" y="32"/>
-      <obstacle x="128" y="160"/>
-      <obstacle x="576" y="32"/>
-      <obstacle x="224" y="448"/>
-      <obstacle x="576" y="448"/>
-      <obstacle x="320" y="96"/>
-      <obstacle x="608" y="192"/>
-      <obstacle x="320" y="0"/>
-      <obstacle x="608" y="32"/>
-      <obstacle x="608" y="288"/>
-      <obstacle x="448" y="448"/>
-      <obstacle x="0" y="448"/>
-      <obstacle x="32" y="448"/>
-      <obstacle x="544" y="160"/>
-      <obstacle x="64" y="32"/>
-      <obstacle x="288" y="448"/>
-      <obstacle x="64" y="448"/>
-      <obstacle x="0" y="192"/>
-      <obstacle x="256" y="480"/>
-      <obstacle x="96" y="96"/>
-      <obstacle x="416" y="0"/>
-      <obstacle x="0" y="32"/>
-      <obstacle x="512" y="160"/>
-      <obstacle x="96" y="0"/>
-      <obstacle x="416" y="96"/>
-      <obstacle x="0" y="288"/>
-      <obstacle x="128" y="448"/>
-      <obstacle x="608" y="416"/>
-      <obstacle x="608" y="160"/>
-      <obstacle x="64" y="128"/>
-      <obstacle x="192" y="0"/>
-      <obstacle x="256" y="448"/>
-      <obstacle x="448" y="160"/>
-      <obstacle x="32" y="128"/>
-      <obstacle x="384" y="0"/>
-      <obstacle x="320" y="64"/>
-      <obstacle x="576" y="160"/>
-      <obstacle x="288" y="480"/>
-      <obstacle x="0" y="128"/>
-      <obstacle x="384" y="96"/>
-      <obstacle x="544" y="0"/>
-      <obstacle x="32" y="64"/>
-      <obstacle x="320" y="128"/>
-      <obstacle x="608" y="256"/>
-      <obstacle x="352" y="32"/>
-      <obstacle x="0" y="64"/>
-      <obstacle x="512" y="0"/>
-      <obstacle x="416" y="160"/>
-      <obstacle x="512" y="96"/>
-      <obstacle x="96" y="160"/>
-      <obstacle x="352" y="448"/>
-      <obstacle x="608" y="320"/>
-      <obstacle x="480" y="96"/>
-      <obstacle x="320" y="480"/>
-      <obstacle x="480" y="0"/>
-      <obstacle x="608" y="0"/>
-      <obstacle x="0" y="384"/>
-      <obstacle x="608" y="96"/>
-      <obstacle x="320" y="32"/>
-      <obstacle x="224" y="0"/>
-      <obstacle x="576" y="0"/>
-      <obstacle x="608" y="352"/>
-      <obstacle x="0" y="224"/>
-      <obstacle x="384" y="160"/>
-      <obstacle x="320" y="448"/>
-      <obstacle x="448" y="96"/>
-      <obstacle x="448" y="0"/>
-      <obstacle x="352" y="480"/>
-      <sprite id="Sprite-2" facing="DOWN" x="320" y="320" solid="true" visible="true" type="npc" frames="miscsprite.png"/>
-      <sprite id="Sprite-0" facing="DOWN" x="224" y="224" solid="true" visible="true" type="npc" frames="miscsprite.png"/>
-      <jumpPoint x="160" y="448" target="1336686674947"/>
-      <jumpPoint x="192" y="448" target="1336686674947"/>
-      <jumpPoint x="64" y="160" target="1336692255933"/>
-      <heroStartingPoint x="288" y="256"/>
-    </scenery>
-    <scenery id="1336692255933" name="Shop" width="288" height="256">
-      <layer index="0">
-        <drawnTile pos="0,0" tileSetName="A5" tile="0,0" dimension="32x32"/>
-        <drawnTile pos="0,32" tileSetName="A5" tile="0,32" dimension="32x32"/>
-        <drawnTile pos="256,0" tileSetName="A5" tile="64,0" dimension="32x32"/>
-        <drawnTile pos="256,32" tileSetName="A5" tile="64,32" dimension="32x32"/>
-        <drawnTile pos="32,0" tileSetName="A5" tile="32,0" dimension="32x32"/>
-        <drawnTile pos="32,32" tileSetName="A5" tile="32,32" dimension="32x32"/>
-        <drawnTile pos="64,0" tileSetName="A5" tile="32,0" dimension="32x32"/>
-        <drawnTile pos="64,32" tileSetName="A5" tile="32,32" dimension="32x32"/>
-        <drawnTile pos="96,0" tileSetName="A5" tile="32,0" dimension="32x32"/>
-        <drawnTile pos="96,32" tileSetName="A5" tile="32,32" dimension="32x32"/>
-        <drawnTile pos="128,0" tileSetName="A5" tile="32,0" dimension="32x32"/>
-        <drawnTile pos="128,32" tileSetName="A5" tile="32,32" dimension="32x32"/>
-        <drawnTile pos="160,0" tileSetName="A5" tile="32,0" dimension="32x32"/>
-        <drawnTile pos="160,32" tileSetName="A5" tile="32,32" dimension="32x32"/>
-        <drawnTile pos="192,0" tileSetName="A5" tile="32,0" dimension="32x32"/>
-        <drawnTile pos="192,32" tileSetName="A5" tile="32,32" dimension="32x32"/>
-        <drawnTile pos="224,0" tileSetName="A5" tile="32,0" dimension="32x32"/>
-        <drawnTile pos="224,32" tileSetName="A5" tile="32,32" dimension="32x32"/>
-        <drawnTile pos="0,64" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="32,64" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="64,64" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="96,64" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="128,64" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="160,64" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="192,64" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="224,64" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="256,64" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="256,96" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="256,128" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="256,160" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="256,192" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="256,224" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="224,224" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="192,224" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="160,224" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="128,224" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="96,224" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="32,224" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="0,224" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="0,192" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="0,160" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="0,128" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="0,96" tileSetName="black" tile="256,0" dimension="32x32"/>
-        <drawnTile pos="32,96" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="64,96" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="96,96" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="128,96" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="160,96" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="192,96" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="224,96" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="224,128" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="224,160" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="224,192" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="192,192" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="160,192" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="128,192" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="96,192" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="64,192" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="32,160" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="32,128" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="64,128" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="96,128" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="128,128" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="160,128" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="192,128" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="192,160" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="160,160" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="128,160" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="96,160" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="64,160" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="32,192" tileSetName="A5" tile="192,192" dimension="32x32"/>
-        <drawnTile pos="64,224" tileSetName="black" tile="256,0" dimension="32x32"/>
-      </layer>
-      <obstacle x="256" y="224"/>
-      <obstacle x="0" y="96"/>
-      <obstacle x="96" y="32"/>
-      <obstacle x="0" y="160"/>
-      <obstacle x="64" y="32"/>
-      <obstacle x="0" y="64"/>
-      <obstacle x="256" y="128"/>
-      <obstacle x="128" y="224"/>
-      <obstacle x="160" y="224"/>
-      <obstacle x="0" y="192"/>
-      <obstacle x="192" y="224"/>
-      <obstacle x="0" y="32"/>
-      <obstacle x="224" y="224"/>
-      <obstacle x="32" y="32"/>
-      <obstacle x="64" y="224"/>
-      <obstacle x="256" y="192"/>
-      <obstacle x="256" y="32"/>
-      <obstacle x="96" y="224"/>
-      <obstacle x="192" y="32"/>
-      <obstacle x="0" y="224"/>
-      <obstacle x="224" y="32"/>
-      <obstacle x="256" y="96"/>
-      <obstacle x="128" y="32"/>
-      <obstacle x="256" y="160"/>
-      <obstacle x="256" y="64"/>
-      <obstacle x="0" y="128"/>
-      <obstacle x="160" y="32"/>
-      <sprite id="Sprite-0" facing="DOWN" x="128" y="64" solid="true" visible="true" type="npc" frames="miscsprite.png"/>
-      <jumpPoint x="32" y="224" target="1336686674947"/>
-      <heroStartingPoint x="32" y="192"/>
-    </scenery>
-  </sceneries>
+    <fileVersion>0.1</fileVersion>
+    <sceneries>
+        <scenery id="1336686674947" name="Town" width="640" height="480">
+            <layer index="0">
+                <drawnTile pos="0,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,0" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="0,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="608,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="0,448" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="0,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="0,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="0,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="0,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="0,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="0,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="0,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="0,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="0,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="0,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="0,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,64" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="640,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="672,96" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="640,128" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,160" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,192" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,224" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,256" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,320" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,352" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="32,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="96,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="128,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="160,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="192,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="224,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="256,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="288,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="320,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="352,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="384,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="416,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="448,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="480,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="512,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="544,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="576,416" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="64,32" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="0,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+            </layer>
+            <layer index="1">
+                <drawnTile pos="64,96" tileSetName="A5" tile="32,0" dimension="32x32"/>
+                <drawnTile pos="64,128" tileSetName="A5" tile="32,0" dimension="32x32"/>
+                <drawnTile pos="96,128" tileSetName="A5" tile="64,0" dimension="32x32"/>
+                <drawnTile pos="32,128" tileSetName="A5" tile="0,0" dimension="32x32"/>
+                <drawnTile pos="32,160" tileSetName="A5" tile="0,32" dimension="32x32"/>
+                <drawnTile pos="64,160" tileSetName="A5" tile="32,0" dimension="32x32"/>
+                <drawnTile pos="96,160" tileSetName="A5" tile="64,32" dimension="32x32"/>
+            </layer>
+            <layer index="2">
+                <drawnTile pos="64,32" tileSetName="stuff" tile="64,0" dimension="32x32"/>
+                <drawnTile pos="96,64" tileSetName="stuff" tile="96,32" dimension="32x32"/>
+                <drawnTile pos="32,64" tileSetName="stuff" tile="32,32" dimension="32x32"/>
+                <drawnTile pos="64,64" tileSetName="stuff" tile="64,64" dimension="32x32"/>
+                <drawnTile pos="64,96" tileSetName="stuff" tile="64,96" dimension="32x32"/>
+                <drawnTile pos="96,96" tileSetName="stuff" tile="96,96" dimension="32x32"/>
+                <drawnTile pos="32,96" tileSetName="stuff" tile="32,64" dimension="32x32"/>
+                <drawnTile pos="32,128" tileSetName="stuff" tile="0,160" dimension="32x32"/>
+                <drawnTile pos="96,128" tileSetName="stuff" tile="128,160" dimension="32x32"/>
+                <drawnTile pos="64,160" tileSetName="stuff" tile="64,224" dimension="32x32"/>
+                <drawnTile pos="64,128" tileSetName="stuff" tile="0,288" dimension="32x32"/>
+                <drawnTile pos="0,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="32,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="64,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="96,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="128,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="160,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="192,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="224,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="256,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="288,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="320,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="352,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="384,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="416,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="448,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="480,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="512,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="544,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="576,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,0" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,32" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,64" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,96" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,128" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,192" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,224" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,256" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,288" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,320" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,352" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,384" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,416" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="608,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="576,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="544,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="512,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="480,480" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="448,480" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="416,480" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="384,480" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="352,480" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="320,480" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="288,480" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="288,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="256,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="320,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="352,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="384,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="416,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="448,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="480,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="0,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="0,416" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="0,384" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="0,352" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="0,320" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="0,288" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="0,256" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="0,224" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="0,192" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="0,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="0,128" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="0,96" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="0,64" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="0,32" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="32,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="64,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="96,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="128,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="224,448" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="128,160" tileSetName="stuff" tile="0,480" dimension="32x32"/>
+                <drawnTile pos="576,32" tileSetName="stuff" tile="160,384" dimension="32x32"/>
+                <drawnTile pos="544,32" tileSetName="stuff" tile="160,384" dimension="32x32"/>
+                <drawnTile pos="512,32" tileSetName="stuff" tile="160,384" dimension="32x32"/>
+                <drawnTile pos="480,32" tileSetName="stuff" tile="160,384" dimension="32x32"/>
+                <drawnTile pos="512,96" tileSetName="stuff" tile="160,384" dimension="32x32"/>
+                <drawnTile pos="512,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="544,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="576,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="320,32" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="320,64" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="320,96" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="320,128" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="320,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="352,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="384,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="416,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="448,160" tileSetName="stuff" tile="128,416" dimension="32x32"/>
+                <drawnTile pos="448,32" tileSetName="stuff" tile="160,384" dimension="32x32"/>
+                <drawnTile pos="416,32" tileSetName="stuff" tile="160,384" dimension="32x32"/>
+                <drawnTile pos="384,32" tileSetName="stuff" tile="160,384" dimension="32x32"/>
+                <drawnTile pos="480,96" tileSetName="stuff" tile="160,384" dimension="32x32"/>
+                <drawnTile pos="448,96" tileSetName="stuff" tile="160,384" dimension="32x32"/>
+                <drawnTile pos="416,96" tileSetName="stuff" tile="160,384" dimension="32x32"/>
+                <drawnTile pos="384,96" tileSetName="stuff" tile="160,384" dimension="32x32"/>
+                <drawnTile pos="352,96" tileSetName="stuff" tile="160,384" dimension="32x32"/>
+                <drawnTile pos="352,32" tileSetName="stuff" tile="128,384" dimension="32x32"/>
+            </layer>
+            <layer index="3">
+                <drawnTile pos="448,160" tileSetName="stuff" tile="0,352" dimension="32x32"/>
+                <drawnTile pos="448,192" tileSetName="stuff" tile="0,384" dimension="32x32"/>
+            </layer>
+            <layer index="4">
+                <drawnTile pos="640,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
+                <drawnTile pos="640,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+            </layer>
+            <obstacle x="0" y="0"/>
+            <obstacle x="32" y="96"/>
+            <obstacle x="416" y="32"/>
+            <obstacle x="0" y="96"/>
+            <obstacle x="32" y="0"/>
+            <obstacle x="608" y="384"/>
+            <obstacle x="0" y="352"/>
+            <obstacle x="608" y="224"/>
+            <obstacle x="384" y="480"/>
+            <obstacle x="288" y="0"/>
+            <obstacle x="64" y="0"/>
+            <obstacle x="416" y="448"/>
+            <obstacle x="96" y="448"/>
+            <obstacle x="352" y="160"/>
+            <obstacle x="96" y="128"/>
+            <obstacle x="128" y="0"/>
+            <obstacle x="384" y="32"/>
+            <obstacle x="608" y="64"/>
+            <obstacle x="0" y="256"/>
+            <obstacle x="256" y="0"/>
+            <obstacle x="416" y="480"/>
+            <obstacle x="384" y="448"/>
+            <obstacle x="0" y="320"/>
+            <obstacle x="320" y="160"/>
+            <obstacle x="544" y="448"/>
+            <obstacle x="480" y="32"/>
+            <obstacle x="0" y="416"/>
+            <obstacle x="512" y="32"/>
+            <obstacle x="0" y="160"/>
+            <obstacle x="32" y="160"/>
+            <obstacle x="512" y="448"/>
+            <obstacle x="352" y="96"/>
+            <obstacle x="96" y="64"/>
+            <obstacle x="352" y="0"/>
+            <obstacle x="544" y="32"/>
+            <obstacle x="480" y="448"/>
+            <obstacle x="608" y="128"/>
+            <obstacle x="608" y="448"/>
+            <obstacle x="160" y="0"/>
+            <obstacle x="448" y="32"/>
+            <obstacle x="576" y="32"/>
+            <obstacle x="128" y="160"/>
+            <obstacle x="224" y="448"/>
+            <obstacle x="576" y="448"/>
+            <obstacle x="320" y="96"/>
+            <obstacle x="608" y="192"/>
+            <obstacle x="320" y="0"/>
+            <obstacle x="608" y="32"/>
+            <obstacle x="608" y="288"/>
+            <obstacle x="448" y="448"/>
+            <obstacle x="0" y="448"/>
+            <obstacle x="32" y="448"/>
+            <obstacle x="544" y="160"/>
+            <obstacle x="64" y="32"/>
+            <obstacle x="288" y="448"/>
+            <obstacle x="64" y="448"/>
+            <obstacle x="0" y="192"/>
+            <obstacle x="256" y="480"/>
+            <obstacle x="96" y="96"/>
+            <obstacle x="416" y="0"/>
+            <obstacle x="0" y="32"/>
+            <obstacle x="512" y="160"/>
+            <obstacle x="96" y="0"/>
+            <obstacle x="416" y="96"/>
+            <obstacle x="0" y="288"/>
+            <obstacle x="128" y="448"/>
+            <obstacle x="608" y="416"/>
+            <obstacle x="608" y="160"/>
+            <obstacle x="64" y="128"/>
+            <obstacle x="192" y="0"/>
+            <obstacle x="256" y="448"/>
+            <obstacle x="448" y="160"/>
+            <obstacle x="32" y="128"/>
+            <obstacle x="384" y="0"/>
+            <obstacle x="320" y="64"/>
+            <obstacle x="576" y="160"/>
+            <obstacle x="288" y="480"/>
+            <obstacle x="0" y="128"/>
+            <obstacle x="384" y="96"/>
+            <obstacle x="544" y="0"/>
+            <obstacle x="32" y="64"/>
+            <obstacle x="320" y="128"/>
+            <obstacle x="608" y="256"/>
+            <obstacle x="352" y="32"/>
+            <obstacle x="0" y="64"/>
+            <obstacle x="512" y="0"/>
+            <obstacle x="416" y="160"/>
+            <obstacle x="512" y="96"/>
+            <obstacle x="96" y="160"/>
+            <obstacle x="352" y="448"/>
+            <obstacle x="608" y="320"/>
+            <obstacle x="480" y="96"/>
+            <obstacle x="320" y="480"/>
+            <obstacle x="480" y="0"/>
+            <obstacle x="608" y="0"/>
+            <obstacle x="0" y="384"/>
+            <obstacle x="608" y="96"/>
+            <obstacle x="320" y="32"/>
+            <obstacle x="224" y="0"/>
+            <obstacle x="576" y="0"/>
+            <obstacle x="384" y="160"/>
+            <obstacle x="0" y="224"/>
+            <obstacle x="608" y="352"/>
+            <obstacle x="320" y="448"/>
+            <obstacle x="448" y="96"/>
+            <obstacle x="448" y="0"/>
+            <obstacle x="352" y="480"/>
+            <sprite id="Sprite-2" facing="DOWN" x="320" y="320" solid="true" visible="true" type="npc"
+                    frames="miscsprite.png"/>
+            <sprite id="Sprite-0" facing="DOWN" x="224" y="224" solid="true" visible="true" type="npc"
+                    frames="miscsprite.png"/>
+            <jumpPoint x="160" y="448" target="1336686674947"/>
+            <jumpPoint x="192" y="448" target="1336686674947"/>
+            <jumpPoint x="64" y="160" target="1336692255933"/>
+            <heroStartingPoint x="288" y="256"/>
+        </scenery>
+        <scenery id="1336692255933" name="Shop" width="288" height="256">
+            <layer index="0">
+                <drawnTile pos="0,0" tileSetName="A5" tile="0,0" dimension="32x32"/>
+                <drawnTile pos="0,32" tileSetName="A5" tile="0,32" dimension="32x32"/>
+                <drawnTile pos="256,0" tileSetName="A5" tile="64,0" dimension="32x32"/>
+                <drawnTile pos="256,32" tileSetName="A5" tile="64,32" dimension="32x32"/>
+                <drawnTile pos="32,0" tileSetName="A5" tile="32,0" dimension="32x32"/>
+                <drawnTile pos="32,32" tileSetName="A5" tile="32,32" dimension="32x32"/>
+                <drawnTile pos="64,0" tileSetName="A5" tile="32,0" dimension="32x32"/>
+                <drawnTile pos="64,32" tileSetName="A5" tile="32,32" dimension="32x32"/>
+                <drawnTile pos="96,0" tileSetName="A5" tile="32,0" dimension="32x32"/>
+                <drawnTile pos="96,32" tileSetName="A5" tile="32,32" dimension="32x32"/>
+                <drawnTile pos="128,0" tileSetName="A5" tile="32,0" dimension="32x32"/>
+                <drawnTile pos="128,32" tileSetName="A5" tile="32,32" dimension="32x32"/>
+                <drawnTile pos="160,0" tileSetName="A5" tile="32,0" dimension="32x32"/>
+                <drawnTile pos="160,32" tileSetName="A5" tile="32,32" dimension="32x32"/>
+                <drawnTile pos="192,0" tileSetName="A5" tile="32,0" dimension="32x32"/>
+                <drawnTile pos="192,32" tileSetName="A5" tile="32,32" dimension="32x32"/>
+                <drawnTile pos="224,0" tileSetName="A5" tile="32,0" dimension="32x32"/>
+                <drawnTile pos="224,32" tileSetName="A5" tile="32,32" dimension="32x32"/>
+                <drawnTile pos="0,64" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="32,64" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="64,64" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="96,64" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="128,64" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="160,64" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="192,64" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="224,64" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="256,64" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="256,96" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="256,128" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="256,160" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="256,192" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="256,224" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="224,224" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="192,224" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="160,224" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="128,224" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="96,224" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="32,224" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="0,224" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="0,192" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="0,160" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="0,128" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="0,96" tileSetName="black" tile="256,0" dimension="32x32"/>
+                <drawnTile pos="32,96" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="64,96" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="96,96" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="128,96" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="160,96" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="192,96" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="224,96" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="224,128" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="224,160" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="224,192" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="192,192" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="160,192" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="128,192" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="96,192" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="64,192" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="32,160" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="32,128" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="64,128" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="96,128" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="128,128" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="160,128" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="192,128" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="192,160" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="160,160" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="128,160" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="96,160" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="64,160" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="32,192" tileSetName="A5" tile="192,192" dimension="32x32"/>
+                <drawnTile pos="64,224" tileSetName="black" tile="256,0" dimension="32x32"/>
+            </layer>
+            <obstacle x="256" y="224"/>
+            <obstacle x="0" y="96"/>
+            <obstacle x="96" y="32"/>
+            <obstacle x="0" y="160"/>
+            <obstacle x="64" y="32"/>
+            <obstacle x="256" y="128"/>
+            <obstacle x="0" y="64"/>
+            <obstacle x="128" y="224"/>
+            <obstacle x="160" y="224"/>
+            <obstacle x="0" y="192"/>
+            <obstacle x="192" y="224"/>
+            <obstacle x="0" y="32"/>
+            <obstacle x="224" y="224"/>
+            <obstacle x="32" y="32"/>
+            <obstacle x="64" y="224"/>
+            <obstacle x="256" y="192"/>
+            <obstacle x="256" y="32"/>
+            <obstacle x="96" y="224"/>
+            <obstacle x="192" y="32"/>
+            <obstacle x="0" y="224"/>
+            <obstacle x="224" y="32"/>
+            <obstacle x="256" y="96"/>
+            <obstacle x="128" y="32"/>
+            <obstacle x="256" y="160"/>
+            <obstacle x="0" y="128"/>
+            <obstacle x="256" y="64"/>
+            <obstacle x="160" y="32"/>
+            <sprite id="Sprite-0" facing="DOWN" x="128" y="64" solid="true" visible="true" type="sprite"
+                    frames="miscsprite.png"/>
+            <jumpPoint x="32" y="224" target="1336686674947"/>
+            <heroStartingPoint x="32" y="192"/>
+        </scenery>
+    </sceneries>
 </project>

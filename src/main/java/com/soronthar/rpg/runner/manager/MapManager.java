@@ -166,7 +166,7 @@ public class MapManager {
     }
 
     private boolean hasCollition(SpecialObject sprite, Point tileLocation) {
-        return specialsPerPoint.haveSolidAt(tileLocation);
+        return sprite.isSolid() && specialsPerPoint.haveSolidAt(tileLocation);
     }
 
     public Hero getHero() {

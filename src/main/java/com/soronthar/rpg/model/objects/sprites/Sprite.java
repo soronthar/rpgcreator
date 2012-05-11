@@ -1,5 +1,6 @@
 package com.soronthar.rpg.model.objects.sprites;
 
+import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.model.objects.SpecialObject;
 import com.soronthar.rpg.model.objects.sprites.frames.FrameStrategy;
 import com.soronthar.rpg.model.objects.sprites.frames.NullFrameStrategy;
@@ -8,10 +9,8 @@ import com.soronthar.rpg.model.tiles.Tile;
 import java.awt.*;
 
 
-public class Sprite extends SpecialObject {
+public abstract class Sprite extends SpecialObject {
     private String id;
-    private boolean solid = true;
-    private boolean visible = true;
     private FrameStrategy strategy = new NullFrameStrategy();
 
     private Facing facing = Facing.DOWN;
@@ -30,38 +29,12 @@ public class Sprite extends SpecialObject {
         this.facing = facing;
     }
 
-    private Point getTileLocationForPoint(Point location) {
-        Point newLocation = new Point(location);
-        Point tileLocationDelta = new Point(location.x % Tile.TILE_SIZE, location.y % Tile.TILE_SIZE);
-        if (facing == Facing.UP) {
-            tileLocationDelta.y *= -1;
-        } else if (facing == Facing.LEFT) {
-            tileLocationDelta.x *= -1;
-        }
-
-        newLocation.translate(tileLocationDelta.x, tileLocationDelta.y);
-        return newLocation;
-    }
-
     public Point getTileLocation() {
-        return getTileLocationForPoint(this.location);
+        return Utils.getTileLocationForPoint(facing, this.location);
     }
 
     public Facing getFacing() {
         return facing;
-    }
-
-    public boolean isSolid() {
-        return solid;
-    }
-
-    public void setSolid(boolean solid) {
-        this.solid = solid;
-    }
-
-
-    public boolean isVisible() {
-        return visible;
     }
 
 
@@ -73,9 +46,6 @@ public class Sprite extends SpecialObject {
         return id;
     }
 
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
 
     protected void setFrameStrategy(FrameStrategy strategy) {
         this.strategy = strategy;
