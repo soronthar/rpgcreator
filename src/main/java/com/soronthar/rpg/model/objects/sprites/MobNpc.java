@@ -6,7 +6,7 @@ import com.soronthar.rpg.model.tiles.Tile;
 import java.awt.*;
 
 public class MobNpc extends Sprite {
-    private static final int STEP_SIZE = Tile.TILE_SIZE / 2;
+    public static final int STEP_SIZE = Tile.TILE_SIZE / 2;
     private String imageName;
 
     public MobNpc(String id, Point location, Facing facing) {

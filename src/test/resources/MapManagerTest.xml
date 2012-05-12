@@ -8,6 +8,10 @@
             <heroStartingPoint x="0" y="0"/>
         </scenery>
         <scenery id="2" name="Second" width="320" height="160">
+            <sprite id="solidA" facing="RIGHT" x="32" y="64" solid="true" visible="true" type="mob" frames="cat.png"/>
+            <sprite id="solidB" facing="DOWN" x="64" y="64" solid="true" visible="true" type="npc" frames="cat.png"/>
+            <sprite id="nonsolidA" facing="DOWN" x="64" y="32" solid="false" visible="true" type="mob"
+                    frames="cat.png"/>
             <heroStartingPoint x="32" y="32"/>
         </scenery>
     </sceneries>

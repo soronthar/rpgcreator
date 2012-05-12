@@ -2,9 +2,8 @@ package com.soronthar.rpg.runner.manager;
 
 import com.soronthar.rpg.model.objects.sprites.Hero;
 import com.soronthar.rpg.model.scenery.Scenery;
-import junit.framework.Assert;
 
-import java.awt.Point;
+import java.awt.*;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -36,7 +35,7 @@ class HeroMover {
     public void toBottomRight() {
         hero.setLocation(bottomRight);
     }
-    
+
     public void toTopRight() {
         hero.setLocation(topRight);
     }

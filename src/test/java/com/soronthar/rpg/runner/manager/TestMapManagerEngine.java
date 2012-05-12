@@ -6,8 +6,7 @@ import com.soronthar.rpg.model.scenery.Scenery;
 import com.soronthar.rpg.model.tiles.Tile;
 
 import java.awt.*;
-import java.util.*;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * All the test of movements beyond the borders are using 1 and 2 steps to guarantee that no matter the speed
@@ -19,7 +18,6 @@ public class TestMapManagerEngine extends BaseMapManagerTest {
      * There are some subtle movement bugs that may creep in when the step size is a fraction of a tile
      * When reading this test, bear in mind that each tile now need two steps. This means that the
      * tile (2,4) is in the location (4,8).
-     *
      */
     public void testEdgeMovementWithSmallSteps() {
         int stepSize = Tile.TILE_SIZE / 2;
@@ -79,7 +77,6 @@ public class TestMapManagerEngine extends BaseMapManagerTest {
     }
 
 
-
     public void testJumpPoints() {
         MapManager manager = createMapManager();
 
@@ -117,7 +114,7 @@ public class TestMapManagerEngine extends BaseMapManagerTest {
         manager.init();
         HeroMover mover = new HeroMover(manager, stepSize);
 
-        Scenery scenery= manager.getActiveScenery();
+        Scenery scenery = manager.getActiveScenery();
 
         Collection<Point> obstacles = scenery.getObstacles();
         for (Point point : obstacles) {
@@ -151,38 +148,60 @@ public class TestMapManagerEngine extends BaseMapManagerTest {
         MapManager manager = createMapManager();
         manager.init();
         HeroMover mover = new HeroMover(manager, stepSize);
-        Scenery scenery= manager.getActiveScenery();
 
         assertTrue(manager.specialsPerPoint.haveSolidAt(new Point(64, 64)));//64,64 => 2,2
 
-        mover.setLocation(1,2);
+        mover.setLocation(1, 2);
         mover.right();
-        mover.assertLocation().at(1,2);
+        mover.assertLocation().at(1, 2);
 
-        mover.setLocation(2,1);
+        mover.setLocation(2, 1);
         mover.down();
-        mover.assertLocation().at(2,1);
+        mover.assertLocation().at(2, 1);
 
-        mover.setLocation(2,3);
+        mover.setLocation(2, 3);
         mover.up();
-        mover.assertLocation().at(2,3);
+        mover.assertLocation().at(2, 3);
 
-        mover.setLocation(3,2);
+        mover.setLocation(3, 2);
         mover.left();
-        mover.assertLocation().at(3,2);
-
+        mover.assertLocation().at(3, 2);
     }
 
 
-    public void testHeroLocationIsCloned() {
-        Hero hero=new Hero(new Point(0,0));
-        Point location=new Point(1,2);
-        hero.setLocation(location);
-        assertNotSame(location,hero.getLocation());
+    public void testCollision() {
+        MapManager manager = createMapManager();
+        manager.init();
+        manager.setActiveScenery(manager.getScenery(2));
 
-        location.translate(5,5);
-        assertEquals(new Point(6,7),location);
-        assertEquals(new Point(1,2),hero.getLocation());
+        Sprite solidA = manager.getActiveScenery().getSpriteMap().get("solidA");
+        solidA.setSpeed(Tile.TILE_SIZE, 0);
+        assertEquals(new Point(32, 64), solidA.getLocation());
+
+        Sprite nonsolidA = manager.getActiveScenery().getSpriteMap().get("nonsolidA");
+        nonsolidA.setSpeed(0, Tile.TILE_SIZE);
+        assertEquals(new Point(64, 32), nonsolidA.getLocation());
+
+        Sprite solidB = manager.getActiveScenery().getSpriteMap().get("solidB");
+        assertEquals(new Point(64, 64), solidB.getLocation());
+
+        manager.update(System.currentTimeMillis());
+        assertEquals(new Point(32, 64), solidA.getLocation());
+        assertEquals(new Point(64, 64), nonsolidA.getLocation());
+        assertEquals(new Point(64, 64), solidB.getLocation());
+
+
+    }
+
+    public void testHeroLocationIsCloned() {
+        Hero hero = new Hero(new Point(0, 0));
+        Point location = new Point(1, 2);
+        hero.setLocation(location);
+        assertNotSame(location, hero.getLocation());
+
+        location.translate(5, 5);
+        assertEquals(new Point(6, 7), location);
+        assertEquals(new Point(1, 2), hero.getLocation());
     }
 
 

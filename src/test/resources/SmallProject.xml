@@ -15,10 +15,10 @@
                 <drawnTile pos="4,0" tileSetName="TILESET" tile="0,4" dimension="32x32"/>
             </layer>
             <obstacle x="8" y="1"/>
-            <sprite id="alltrue" facing="DOWN" x="4" y="0" solid="true" visible="true" type="npc"
+            <sprite id="alltrue" facing="DOWN" x="4" y="0" solid="true" visible="true" type="mob"
                     frames="miscsprite.png"/>
-            <sprite id="notsolid" facing="DOWN" x="5" y="0" solid="false" visible="true" type="sprite" frames=""/>
-            <sprite id="notvisible" facing="DOWN" x="6" y="0" solid="true" visible="false" type="sprite" frames=""/>
+            <sprite id="notsolid" facing="DOWN" x="5" y="0" solid="false" visible="true" type="npc" frames=""/>
+            <sprite id="notvisible" facing="DOWN" x="6" y="0" solid="true" visible="false" type="npc" frames=""/>
             <jumpPoint x="6" y="2" target="2"/>
             <heroStartingPoint x="5" y="8"/>
         </scenery>

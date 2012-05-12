@@ -23,10 +23,10 @@ public class SpriteConverter implements Converter {
         writer.addAttribute("solid", Boolean.toString(sprite.isSolid()));
         writer.addAttribute("visible", Boolean.toString(sprite.isVisible()));
         if (sprite instanceof MobNpc) {
-            writer.addAttribute("type", "npc");
+            writer.addAttribute("type", "mob");
             writer.addAttribute("frames", ((MobNpc) sprite).getFrameMapName());
         } else {
-            writer.addAttribute("type", "sprite");
+            writer.addAttribute("type", "npc");
             writer.addAttribute("frames", ((StandingNpc) sprite).getFrameMapName());
         }
         writer.endNode();
@@ -35,13 +35,13 @@ public class SpriteConverter implements Converter {
     public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
         int x = Integer.parseInt(reader.getAttribute("x"));
         int y = Integer.parseInt(reader.getAttribute("y"));
-        boolean isVisible=Boolean.valueOf(reader.getAttribute("visible"));
-        boolean isSolid=Boolean.valueOf(reader.getAttribute("solid"));
+        boolean isVisible = Boolean.valueOf(reader.getAttribute("visible"));
+        boolean isSolid = Boolean.valueOf(reader.getAttribute("solid"));
         String facing = reader.getAttribute("facing");
         String id = reader.getAttribute("id");
         String type = reader.getAttribute("type");
         Sprite sprite;
-        if (type.equals("npc")) {
+        if (type.equals("mob")) {
             sprite = new MobNpc(id, new Point(x, y), Facing.valueOf(facing));
             ((MobNpc) sprite).setFrameMapName(reader.getAttribute("frames"));
         } else {
