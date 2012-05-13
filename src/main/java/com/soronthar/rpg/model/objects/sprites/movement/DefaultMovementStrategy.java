@@ -7,12 +7,11 @@ import com.soronthar.rpg.model.tiles.Tile;
 import java.awt.*;
 
 //TODO: create a test for this.. and all the other strategies
-public class DefaultMovementStrategy implements MovementStrategy {
+public class DefaultMovementStrategy extends BaseMovementStrategy {
     public static final int STEP_SIZE = Tile.TILE_SIZE / 2;
-    private Sprite sprite;
 
     public DefaultMovementStrategy(Sprite sprite) {
-        this.sprite = sprite;
+        super(sprite);
     }
 
     @Override
@@ -31,22 +30,6 @@ public class DefaultMovementStrategy implements MovementStrategy {
                 goRight();
                 break;
         }
-    }
-
-    private void goUp() {
-        sprite.setSpeed(0, -STEP_SIZE);
-    }
-
-    private void goDown() {
-        sprite.setSpeed(0, STEP_SIZE);
-    }
-
-    private void goLeft() {
-        sprite.setSpeed(-STEP_SIZE, 0);
-    }
-
-    private void goRight() {
-        sprite.setSpeed(STEP_SIZE, 0);
     }
 
     @Override
@@ -80,6 +63,22 @@ public class DefaultMovementStrategy implements MovementStrategy {
         } else if (location.x == 0 && facing == Facing.LEFT) {
             goDown();
         }
-
     }
+
+    private void goUp() {
+        sprite.setSpeed(0, -STEP_SIZE);
+    }
+
+    private void goDown() {
+        sprite.setSpeed(0, STEP_SIZE);
+    }
+
+    private void goLeft() {
+        sprite.setSpeed(-STEP_SIZE, 0);
+    }
+
+    private void goRight() {
+        sprite.setSpeed(STEP_SIZE, 0);
+    }
+
 }

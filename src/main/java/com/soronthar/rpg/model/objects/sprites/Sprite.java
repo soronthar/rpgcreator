@@ -16,8 +16,6 @@ public abstract class Sprite extends SpecialObject {
     private MovementStrategy movementStrategy = MovementStrategy.NO_MOVE;
 
     private Facing facing = Facing.DOWN;
-    private int dx;
-    private int dy;
     private int steps;
 
     public Sprite(String id, Point location) {
@@ -62,7 +60,7 @@ public abstract class Sprite extends SpecialObject {
     }
 
     protected void move() {
-        this.location.translate(dx, dy);
+        this.location.translate(movementStrategy.getDx(), movementStrategy.getDy());
         increaseSteps();
     }
 
@@ -71,22 +69,22 @@ public abstract class Sprite extends SpecialObject {
     }
 
     public int getDx() {
-        return dx;
+        return movementStrategy.getDx();
     }
 
     public int getDy() {
-        return dy;
+        return movementStrategy.getDy();
     }
 
     protected void determineFacing() {
         Facing newFacing = facing;
-        if (dx > 0) {
+        if (getDx() > 0) {
             newFacing = Facing.RIGHT;
-        } else if (dx < 0) {
+        } else if (getDx() < 0) {
             newFacing = Facing.LEFT;
-        } else if (dy > 0) {
+        } else if (getDy() > 0) {
             newFacing = Facing.DOWN;
-        } else if (dy < 0) {
+        } else if (getDy() < 0) {
             newFacing = Facing.UP;
         }
 
@@ -101,7 +99,7 @@ public abstract class Sprite extends SpecialObject {
     }
 
     public boolean isSpeedZero() {
-        return this.dx == 0 && this.dy == 0;
+        return !movementStrategy.isMoving();
     }
 
     public int getSteps() {
@@ -109,7 +107,7 @@ public abstract class Sprite extends SpecialObject {
     }
 
     public boolean isMoving() {
-        return getDx() != 0 || getDy() != 0;
+        return movementStrategy.isMoving();
     }
 
     boolean isMovingBetweenTiles() {
@@ -120,26 +118,7 @@ public abstract class Sprite extends SpecialObject {
     }
 
     public void setSpeed(int dx, int dy) {
-        if (facing == Facing.UP || facing == Facing.DOWN) {
-            if (dy != 0) {
-                this.dy = dy;
-                this.dx = 0;
-            } else {
-                this.dy = 0;
-                this.dx = dx;
-            }
-        }
-
-
-        if (facing == Facing.LEFT || facing == Facing.RIGHT) {
-            if (dx != 0) {
-                this.dx = dx;
-                this.dy = 0;
-            } else {
-                this.dx = 0;
-                this.dy = dy;
-            }
-        }
+        movementStrategy.setSpeed(dx, dy);
     }
 
     public void update(long elapsedTime) {
