@@ -17,13 +17,6 @@ public class StandingNpc extends Sprite {
         super(id, point, facing);
     }
 
-    @Override
-    public void setSpeed(int dx, int dy) {
-    }
-
-    public void move() {
-    }
-
     public void setFrameMapName(String imageName) {
         this.imageName = imageName;
         if (StringUtils.isEmptyOrNullValue(imageName)) {

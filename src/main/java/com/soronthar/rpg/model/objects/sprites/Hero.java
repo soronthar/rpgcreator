@@ -9,4 +9,12 @@ public class Hero extends Sprite {
         super("hero", location);
         setFrameStrategy(new WholeImageFrameStrategy("hero.png"));
     }
+
+
+    //TODO: perhaps a special strategy can be created and registered on the hero, to make unnecessary
+    //TODO: to publish the move metod to the world.
+    @Override
+    public void move() {
+        super.move();
+    }
 }

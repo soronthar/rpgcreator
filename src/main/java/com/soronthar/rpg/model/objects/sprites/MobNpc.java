@@ -1,31 +1,18 @@
 package com.soronthar.rpg.model.objects.sprites;
 
 import com.soronthar.rpg.model.objects.sprites.frames.WholeImageFrameStrategy;
-import com.soronthar.rpg.model.tiles.Tile;
+import com.soronthar.rpg.model.objects.sprites.movement.DefaultMovementStrategy;
 
 import java.awt.*;
 
 public class MobNpc extends Sprite {
-    public static final int STEP_SIZE = Tile.TILE_SIZE / 2;
     private String imageName;
 
     public MobNpc(String id, Point location, Facing facing) {
-        super(id, location);
-        setFrameMapName("miscsprite.png");
-        switch (facing) {
-            case UP:
-                goUp();
-                break;
-            case DOWN:
-                goDown();
-                break;
-            case LEFT:
-                goLeft();
-                break;
-            case RIGHT:
-                goRight();
-                break;
-        }
+        super(id, location, facing);
+        setFrameMapName("cat.png");  //TODO: this should NOT be here
+        setMovementStrategy(new DefaultMovementStrategy(this));
+        getMovementStrategy().init();
     }
 
     public void setFrameMapName(String imageName) {
@@ -33,56 +20,6 @@ public class MobNpc extends Sprite {
         setFrameStrategy(new WholeImageFrameStrategy(imageName));
     }
 
-
-    @Override
-    public void handleCollitionAt(Point tileLocation) {
-        switch (getFacing()) {
-            case UP:
-                goLeft();
-                break;
-            case DOWN:
-                goRight();
-                break;
-            case LEFT:
-                goDown();
-                break;
-            case RIGHT:
-                goUp();
-                break;
-        }
-    }
-
-
-    @Override
-    public void handleAtEdge(Rectangle bounds) {
-        Point location = this.getLocation();
-        if (location.y == 0 && getFacing() == Facing.UP) {
-            goLeft();
-        } else if (location.y == bounds.height && getFacing() == Facing.DOWN) {
-            goRight();
-        } else if (location.x == bounds.width && getFacing() == Facing.RIGHT) {
-            goUp();
-        } else if (location.x == 0 && getFacing() == Facing.LEFT) {
-            goDown();
-        }
-
-    }
-
-    private void goUp() {
-        setSpeed(0, -STEP_SIZE);
-    }
-
-    private void goDown() {
-        setSpeed(0, STEP_SIZE);
-    }
-
-    private void goLeft() {
-        setSpeed(-STEP_SIZE, 0);
-    }
-
-    private void goRight() {
-        setSpeed(STEP_SIZE, 0);
-    }
 
     public String getFrameMapName() {
         return imageName;

@@ -128,8 +128,8 @@ public class TestProjectXtreamPersister extends TestCase {
         sprite = sprites.get("alltrue");
         assertNotNull(sprite);
         assertTrue(sprite instanceof MobNpc);
-        assertEquals(Facing.DOWN, sprite.getFacing());
-        assertEquals("miscsprite.png", ((MobNpc) sprite).getFrameMapName());
+        assertEquals(Facing.LEFT, sprite.getFacing());
+        assertEquals("cat.png", ((MobNpc) sprite).getFrameMapName());
         assertTrue(sprite.isSolid());
         assertTrue(sprite.isVisible());
         assertTrue(sprite.isMoving());

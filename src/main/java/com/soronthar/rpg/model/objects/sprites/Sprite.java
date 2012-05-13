@@ -4,6 +4,7 @@ import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.model.objects.SpecialObject;
 import com.soronthar.rpg.model.objects.sprites.frames.FrameStrategy;
 import com.soronthar.rpg.model.objects.sprites.frames.NullFrameStrategy;
+import com.soronthar.rpg.model.objects.sprites.movement.MovementStrategy;
 import com.soronthar.rpg.model.tiles.Tile;
 
 import java.awt.*;
@@ -12,6 +13,7 @@ import java.awt.*;
 public abstract class Sprite extends SpecialObject {
     private String id;
     private FrameStrategy strategy = new NullFrameStrategy();
+    private MovementStrategy movementStrategy = MovementStrategy.NO_MOVE;
 
     private Facing facing = Facing.DOWN;
     private int dx;
@@ -145,14 +147,6 @@ public abstract class Sprite extends SpecialObject {
         move();
     }
 
-    public void handleCollitionAt(Point tileLocation) {     //todo: test that this is being called
-    }
-
-    public void handleAtEdge(Rectangle bounds) {//todo: test that this is being called
-
-    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -168,5 +162,21 @@ public abstract class Sprite extends SpecialObject {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    public void handleCollisionAt(Point tileLocation) {
+        getMovementStrategy().handleCollisionAt(tileLocation);
+    }
+
+    public void handleAtEdge(Rectangle bounds) {
+        getMovementStrategy().handleAtEdge(bounds);
+    }
+
+    public MovementStrategy getMovementStrategy() {
+        return movementStrategy;
+    }
+
+    public void setMovementStrategy(MovementStrategy movementStrategy) {
+        this.movementStrategy = movementStrategy;
     }
 }

@@ -195,7 +195,7 @@ public class MapManager {
 
             if (hasCollition(sprite, tileLocation)) {
                 sprite.setLocation(oldLocation);
-                sprite.handleCollitionAt(tileLocation);
+                sprite.handleCollisionAt(tileLocation);
             }
 
             specialsPerPoint.remove(oldLocation, sprite);
