@@ -2,6 +2,7 @@ package com.soronthar.rpg.runner.manager;
 
 import com.soronthar.rpg.model.objects.sprites.Hero;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.sprites.StandingNpc;
 import com.soronthar.rpg.model.scenery.Scenery;
 import com.soronthar.rpg.model.tiles.Tile;
 import com.soronthar.rpg.model.tiles.TileSetBag;
@@ -20,6 +21,8 @@ public class ScreenManager extends Canvas {
     private Point relativeCenter;
     private Dimension imageSize;
     public static final TileSetBag TILE_SETS = new TileSetBagPersister().loadTilesets();
+    private boolean showDialog = false;
+    private DialogManager dialog;
 
 
     public ScreenManager() {
@@ -74,8 +77,17 @@ public class ScreenManager extends Canvas {
 
         g.drawImage(getImage(4), 0, 0, null);
 
+        if (showDialog) {
+            showTextDialog(g);
+        }
+
+
         g.dispose();
         bufferStrategy.show();
+    }
+
+    private void showTextDialog(Graphics g) {
+        this.dialog.paint(g);
     }
 
     private void drawSprite(Sprite sprite, Graphics g) {
@@ -115,4 +127,21 @@ public class ScreenManager extends Canvas {
         return newPosition;
     }
 
+    public boolean isShowingDialog() {
+        return showDialog;
+    }
+
+    public void advanceDialog() {
+        if (dialog.isFinished()) {
+            this.showDialog = false;
+            this.dialog = null;
+        } else {
+            dialog.advance();
+        }
+    }
+
+    public void showDialogFor(StandingNpc npc) {
+        this.dialog = new DialogManager("sign", this.viewPort, this.getGraphics().getFontMetrics());
+        this.showDialog = true;
+    }
 }

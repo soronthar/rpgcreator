@@ -3,8 +3,10 @@ package com.soronthar.rpg.runner.manager;
 import com.soronthar.rpg.model.JumpPoint;
 import com.soronthar.rpg.model.objects.Obstacle;
 import com.soronthar.rpg.model.objects.SpecialObject;
+import com.soronthar.rpg.model.objects.sprites.Facing;
 import com.soronthar.rpg.model.objects.sprites.Hero;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.sprites.StandingNpc;
 import com.soronthar.rpg.model.scenery.Scenery;
 import com.soronthar.rpg.model.scenery.SceneryBag;
 import com.soronthar.rpg.model.tiles.Tile;
@@ -65,6 +67,36 @@ public class MapManager {
         return sceneries.get(id);
     }
 
+    public boolean isHeroFacingNPC() {
+        Point location = getHeroFacingTile();
+
+        return specialsPerPoint.haveNPCAt(location);
+    }
+
+    private Point getHeroFacingTile() {
+        Point location = this.getHero().getTileLocation();
+        Facing facing = this.getHero().getFacing();
+        switch (facing) {
+            case DOWN:
+                location.translate(0, Tile.TILE_SIZE);
+                break;
+            case UP:
+                location.translate(0, -Tile.TILE_SIZE);
+                break;
+            case LEFT:
+                location.translate(-Tile.TILE_SIZE, 0);
+                break;
+            case RIGHT:
+                location.translate(Tile.TILE_SIZE, 0);
+                break;
+        }
+        return location;
+    }
+
+    public StandingNpc getNPCToInteract() {
+        return specialsPerPoint.getNpcAt(getHeroFacingTile());
+    }
+
     public class SpecialsPerPoint {
         Map<Point, List<SpecialObject>> spriteMap = new HashMap<Point, List<SpecialObject>>();
 
@@ -99,6 +131,31 @@ public class MapManager {
             if (sprites != null) {
                 sprites.remove(object);
             }
+        }
+
+        public boolean haveNPCAt(Point location) {
+            List<SpecialObject> sprites = spriteMap.get(location);
+            if (sprites == null || sprites.isEmpty()) return false;
+
+            boolean result = false;
+            for (Iterator<SpecialObject> iterator = sprites.iterator(); iterator.hasNext() && !result; ) {
+                SpecialObject next = iterator.next();
+                result = next instanceof StandingNpc;
+            }
+
+            return result;
+        }
+
+        public StandingNpc getNpcAt(Point heroFacingLocation) {
+            List<SpecialObject> sprites = spriteMap.get(heroFacingLocation);
+            StandingNpc result = null;
+            for (Iterator<SpecialObject> iterator = sprites.iterator(); iterator.hasNext() || result == null; ) {
+                SpecialObject next = iterator.next();
+                if (next instanceof StandingNpc) {
+                    result = (StandingNpc) next;
+                }
+            }
+            return result;
         }
     }
 

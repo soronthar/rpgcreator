@@ -1,6 +1,7 @@
 package com.soronthar.rpg.runner.manager;
 
 
+import com.soronthar.rpg.model.objects.sprites.StandingNpc;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.scenery.Scenery;
 import com.soronthar.rpg.model.tiles.Tile;
@@ -21,8 +22,9 @@ public class GameManager {
     private GameAction moveRight;
     private GameAction moveUp;
     private GameAction moveDown;
-    private boolean isRunning = true;
+    private GameAction action;
 
+    private boolean isRunning = true;
     private JFrame frame;
     private static final int DELAY = 100;
     public static final int STEP_SIZE = Tile.TILE_SIZE / 2;
@@ -49,11 +51,13 @@ public class GameManager {
         moveRight = new GameAction("moveRight");
         moveUp = new GameAction("moveUp");
         moveDown = new GameAction("moveDown");
+        action = new GameAction("action", GameAction.DETECT_INITAL_PRESS_ONLY);
         InputManager inputManager = new InputManager(frame);
         inputManager.mapToKey(moveLeft, KeyEvent.VK_LEFT);
         inputManager.mapToKey(moveRight, KeyEvent.VK_RIGHT);
         inputManager.mapToKey(moveDown, KeyEvent.VK_DOWN);
         inputManager.mapToKey(moveUp, KeyEvent.VK_UP);
+        inputManager.mapToKey(action, KeyEvent.VK_SPACE);
     }
 
     private void createAndInitializeFrame() {
@@ -135,6 +139,7 @@ public class GameManager {
      * @param elapsedTime
      */
     private void updateGame(long elapsedTime) {
+
         checkInput();
         updateMap(elapsedTime);
         screenManager.paint(mapManager.getHero(), mapManager.getSprites());
@@ -142,7 +147,23 @@ public class GameManager {
 
 
     private void checkInput() {
-        checkMovementKeys();
+        checkAction();
+        if (!screenManager.isShowingDialog()) {
+            checkMovementKeys();
+        }
+    }
+
+    private void checkAction() {
+        if (action.isPressed()) {
+            if (screenManager.isShowingDialog()) {
+                screenManager.advanceDialog();
+            } else {
+                if (mapManager.isHeroFacingNPC()) {
+                    StandingNpc npc = mapManager.getNPCToInteract();
+                    screenManager.showDialogFor(npc);
+                }
+            }
+        }
     }
 
     private void checkMovementKeys() {
