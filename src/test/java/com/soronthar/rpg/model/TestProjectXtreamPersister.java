@@ -58,7 +58,10 @@ public class TestProjectXtreamPersister extends TestCase {
                 firstScenery.setTile(tileSet.getTile(new Point(0, i), Tile.TILE_DIMENSION), i, new org.soronthar.geom.Point(i, 0));
             }
         }
-        firstScenery.addSprite(new MobNpc("alltrue", new Point(4, 0), Facing.LEFT));
+        MobNpc alltrue = new MobNpc("alltrue", new Point(4, 0), Facing.LEFT);
+        alltrue.setFramesImage("cat.png");
+        firstScenery.addSprite(alltrue);
+
         Sprite notsolid = new StandingNpc("notsolid", new Point(5, 0));
         notsolid.setSolid(false);
         firstScenery.addSprite(notsolid);
