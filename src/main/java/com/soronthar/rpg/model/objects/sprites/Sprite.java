@@ -4,19 +4,22 @@ import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.model.objects.SpecialObject;
 import com.soronthar.rpg.model.objects.sprites.frames.FrameStrategy;
 import com.soronthar.rpg.model.objects.sprites.frames.NullFrameStrategy;
+import com.soronthar.rpg.model.objects.sprites.frames.WholeImageFrameStrategy;
 import com.soronthar.rpg.model.objects.sprites.movement.MovementStrategy;
 import com.soronthar.rpg.model.tiles.Tile;
+import org.soronthar.util.StringUtils;
 
 import java.awt.*;
 
 
-public abstract class Sprite extends SpecialObject {
+public class Sprite extends SpecialObject {
     private String id;
     private FrameStrategy strategy = new NullFrameStrategy();
     private MovementStrategy movementStrategy = MovementStrategy.NO_MOVE;
 
     private Facing facing = Facing.DOWN;
     private int steps;
+    protected String imageName = "";
 
     public Sprite(String id, Point location) {
         super(location);
@@ -157,5 +160,18 @@ public abstract class Sprite extends SpecialObject {
 
     public void setMovementStrategy(MovementStrategy movementStrategy) {
         this.movementStrategy = movementStrategy;
+    }
+
+    public void setFramesImage(String imageName) {
+        this.imageName = imageName;
+        if (StringUtils.isEmptyOrNullValue(imageName)) {
+            setFrameStrategy(new NullFrameStrategy());
+        } else {
+            setFrameStrategy(new WholeImageFrameStrategy(imageName));
+        }
+    }
+
+    public String getFramesImageName() {
+        return imageName;
     }
 }

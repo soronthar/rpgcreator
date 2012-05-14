@@ -24,10 +24,10 @@ public class SpriteConverter implements Converter {
         writer.addAttribute("visible", Boolean.toString(sprite.isVisible()));
         if (sprite instanceof MobNpc) {
             writer.addAttribute("type", "mob");
-            writer.addAttribute("frames", ((MobNpc) sprite).getFrameMapName());
+            writer.addAttribute("frames", ((MobNpc) sprite).getFramesImageName());
         } else {
             writer.addAttribute("type", "npc");
-            writer.addAttribute("frames", ((StandingNpc) sprite).getFrameMapName());
+            writer.addAttribute("frames", ((StandingNpc) sprite).getFramesImageName());
         }
         writer.endNode();
     }
@@ -43,10 +43,10 @@ public class SpriteConverter implements Converter {
         Sprite sprite;
         if (type.equals("mob")) {
             sprite = new MobNpc(id, new Point(x, y), Facing.valueOf(facing));
-            ((MobNpc) sprite).setFrameMapName(reader.getAttribute("frames"));
+            ((MobNpc) sprite).setFramesImage(reader.getAttribute("frames"));
         } else {
             sprite = new StandingNpc(id, new Point(x, y), Facing.valueOf(facing));
-            ((StandingNpc) sprite).setFrameMapName(reader.getAttribute("frames"));
+            ((StandingNpc) sprite).setFramesImage(reader.getAttribute("frames"));
         }
 
         sprite.setVisible(isVisible);
