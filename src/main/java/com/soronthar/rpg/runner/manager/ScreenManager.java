@@ -141,7 +141,7 @@ public class ScreenManager extends Canvas {
     }
 
     public void showDialogFor(StandingNpc npc) {
-        this.dialog = new DialogManager("sign", this.viewPort, this.getGraphics().getFontMetrics());
+        this.dialog = new DialogManager(npc.getId(), this.viewPort, this.getGraphics().getFontMetrics());
         this.showDialog = true;
     }
 }

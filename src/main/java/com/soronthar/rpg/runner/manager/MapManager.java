@@ -67,10 +67,10 @@ public class MapManager {
         return sceneries.get(id);
     }
 
-    public boolean isHeroFacingNPC() {
+    public boolean isHeroFacingActiveNPC() {
         Point location = getHeroFacingTile();
 
-        return specialsPerPoint.haveNPCAt(location);
+        return specialsPerPoint.haveActiveNPCAt(location);
     }
 
     private Point getHeroFacingTile() {
@@ -133,14 +133,14 @@ public class MapManager {
             }
         }
 
-        public boolean haveNPCAt(Point location) {
+        public boolean haveActiveNPCAt(Point location) {
             List<SpecialObject> sprites = spriteMap.get(location);
             if (sprites == null || sprites.isEmpty()) return false;
 
             boolean result = false;
             for (Iterator<SpecialObject> iterator = sprites.iterator(); iterator.hasNext() && !result; ) {
                 SpecialObject next = iterator.next();
-                result = next instanceof StandingNpc;
+                result = ((Sprite) next).canInteract();
             }
 
             return result;

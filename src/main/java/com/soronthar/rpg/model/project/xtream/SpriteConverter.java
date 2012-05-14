@@ -24,11 +24,11 @@ public class SpriteConverter implements Converter {
         writer.addAttribute("visible", Boolean.toString(sprite.isVisible()));
         if (sprite instanceof MobNpc) {
             writer.addAttribute("type", "mob");
-            writer.addAttribute("frames", ((MobNpc) sprite).getFramesImageName());
         } else {
             writer.addAttribute("type", "npc");
-            writer.addAttribute("frames", ((StandingNpc) sprite).getFramesImageName());
         }
+        writer.addAttribute("frames", sprite.getFramesImageName());
+        writer.addAttribute("can-interact", Boolean.toString(sprite.canInteract()));
         writer.endNode();
     }
 
@@ -43,11 +43,11 @@ public class SpriteConverter implements Converter {
         Sprite sprite;
         if (type.equals("mob")) {
             sprite = new MobNpc(id, new Point(x, y), Facing.valueOf(facing));
-            ((MobNpc) sprite).setFramesImage(reader.getAttribute("frames"));
         } else {
             sprite = new StandingNpc(id, new Point(x, y), Facing.valueOf(facing));
-            ((StandingNpc) sprite).setFramesImage(reader.getAttribute("frames"));
         }
+        sprite.setFramesImage(reader.getAttribute("frames"));
+        sprite.setCanInteract(Boolean.valueOf(reader.getAttribute("can-interact")));
 
         sprite.setVisible(isVisible);
         sprite.setSolid(isSolid);

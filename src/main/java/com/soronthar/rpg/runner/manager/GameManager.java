@@ -158,7 +158,7 @@ public class GameManager {
             if (screenManager.isShowingDialog()) {
                 screenManager.advanceDialog();
             } else {
-                if (mapManager.isHeroFacingNPC()) {
+                if (mapManager.isHeroFacingActiveNPC()) {
                     StandingNpc npc = mapManager.getNPCToInteract();
                     screenManager.showDialogFor(npc);
                 }

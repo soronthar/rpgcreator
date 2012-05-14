@@ -19,6 +19,7 @@ public class Sprite extends SpecialObject {
 
     private Facing facing = Facing.DOWN;
     private int steps;
+    private boolean canInteract = false;
     protected String imageName = "";
 
     public Sprite(String id, Point location) {
@@ -34,6 +35,14 @@ public class Sprite extends SpecialObject {
 
     public Point getTileLocation() {
         return Utils.getTileLocationForPoint(facing, this.location);
+    }
+
+    public boolean canInteract() {
+        return canInteract;
+    }
+
+    public void setCanInteract(boolean canInteract) {
+        this.canInteract = canInteract;
     }
 
     public Facing getFacing() {

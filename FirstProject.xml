@@ -542,9 +542,9 @@
             <obstacle x="448" y="0"/>
             <obstacle x="352" y="480"/>
             <sprite id="Sprite-2" facing="DOWN" x="448" y="160" solid="true" visible="false" type="npc"
-                    frames="miscsprite.png"/>
+                    frames="miscsprite.png" can-interact="true"/>
             <sprite id="Sprite-0" facing="DOWN" x="224" y="224" solid="true" visible="true" type="mob"
-                    frames="miscsprite.png"/>
+                    frames="miscsprite.png" can-interact="false"/>
             <jumpPoint x="160" y="448" target="1336686674947"/>
             <jumpPoint x="192" y="448" target="1336686674947"/>
             <jumpPoint x="64" y="160" target="1336692255933"/>
@@ -653,7 +653,7 @@
             <obstacle x="256" y="64"/>
             <obstacle x="160" y="32"/>
             <sprite id="Sprite-0" facing="DOWN" x="128" y="64" solid="true" visible="true" type="npc"
-                    frames="miscsprite.png"/>
+                    frames="miscsprite.png" can-interact="true"/>
             <jumpPoint x="32" y="224" target="1336686674947"/>
             <heroStartingPoint x="32" y="192"/>
         </scenery>
