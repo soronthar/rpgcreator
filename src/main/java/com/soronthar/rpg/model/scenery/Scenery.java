@@ -54,8 +54,8 @@ public class Scenery implements Serializable {
             String tileSetName = tile.getTilesetName();
             Point tilePointInTileSet = tile.getPoint();
 
-            int width = Utils.pixetToTile(tileDimension.width);
-            int height = Utils.pixetToTile(tileDimension.height);
+            int width = Utils.pixelToTile(tileDimension.width);
+            int height = Utils.pixelToTile(tileDimension.height);
 
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {

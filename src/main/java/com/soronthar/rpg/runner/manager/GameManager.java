@@ -160,7 +160,8 @@ public class GameManager {
             } else {
                 if (mapManager.isHeroFacingActiveNPC()) {
                     StandingNpc npc = mapManager.getNPCToInteract();
-                    screenManager.showDialogFor(npc);
+                    Scenery scenery = mapManager.getActiveScenery();
+                    screenManager.showDialogFor(scenery, npc);
                 }
             }
         }

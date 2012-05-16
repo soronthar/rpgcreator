@@ -20,8 +20,12 @@ public class Utils {
         return Tile.TILE_SIZE * (pixels / Tile.TILE_SIZE);
     }
 
-    public static int pixetToTile(int pixels) {
+    public static int pixelToTile(int pixels) {
         return pixels / Tile.TILE_SIZE;
+    }
+
+    public static int tileTopixel(int tile) {
+        return tile * Tile.TILE_SIZE;
     }
 
     public static Dimension getTileDimension() {
