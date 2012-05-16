@@ -29,9 +29,11 @@ public class GameManager {
     private static final int DELAY = 100;
     public static final int STEP_SIZE = Tile.TILE_SIZE / 2;
     private final MapManager mapManager;
+    private Project project;
 
 
     public GameManager(Project project) {
+        this.project = project;
         screenManager = new ScreenManager();
         mapManager = new MapManager(project.getSceneries());
         mapManager.addSceneryListener(new PropertyChangeListener() {
@@ -42,6 +44,7 @@ public class GameManager {
             }
         });
         mapManager.init();
+
         createAndInitializeFrame();
         initializeInputManager();
     }
@@ -159,9 +162,10 @@ public class GameManager {
                 screenManager.advanceDialog();
             } else {
                 if (mapManager.isHeroFacingActiveNPC()) {
+                    mapManager.getHero().setSpeed(0, 0);
                     StandingNpc npc = mapManager.getNPCToInteract();
                     Scenery scenery = mapManager.getActiveScenery();
-                    screenManager.showDialogFor(scenery, npc);
+                    screenManager.showDialogFor(project, scenery, npc);
                 }
             }
         }
@@ -189,5 +193,4 @@ public class GameManager {
     private void updateMap(long elapsedTime) {
         mapManager.update(elapsedTime);
     }
-
 }

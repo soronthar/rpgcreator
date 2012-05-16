@@ -4,7 +4,7 @@ import com.soronthar.rpg.model.project.ProjectPersister;
 import com.soronthar.rpg.runner.manager.GameManager;
 
 
-public class SceneryRunner {
+public class Runner {
 
     public static void main(String[] args) throws Exception {
         String project = "test.xml";

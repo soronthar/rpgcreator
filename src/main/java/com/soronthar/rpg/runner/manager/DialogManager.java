@@ -40,7 +40,7 @@ public class DialogManager {
 
         linesToDraw = new ArrayList<String>();
 
-        File text = new File("resources/" + textFile + ".txt");
+        File text = new File(textFile + ".txt");
         List list;
         try {
             list = FileUtils.readLines(text, "UTF-8");

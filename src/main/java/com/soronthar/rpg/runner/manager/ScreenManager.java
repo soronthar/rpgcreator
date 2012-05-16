@@ -3,6 +3,7 @@ package com.soronthar.rpg.runner.manager;
 import com.soronthar.rpg.model.objects.sprites.Hero;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.soronthar.rpg.model.objects.sprites.StandingNpc;
+import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.scenery.Scenery;
 import com.soronthar.rpg.model.tiles.Tile;
 import com.soronthar.rpg.model.tiles.TileSetBag;
@@ -140,8 +141,8 @@ public class ScreenManager extends Canvas {
         }
     }
 
-    public void showDialogFor(Scenery scenery, StandingNpc npc) {
-        this.dialog = new DialogManager(scenery.getId() + "/" + npc.getId(), this.viewPort, this.getGraphics().getFontMetrics());
+    public void showDialogFor(Project project, Scenery scenery, StandingNpc npc) {
+        this.dialog = new DialogManager("projects/"+project.getName()+"/scenery/"+scenery.getId() + "/" + npc.getId(), this.viewPort, this.getGraphics().getFontMetrics());
         this.showDialog = true;
     }
 }

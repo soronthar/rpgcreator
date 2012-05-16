@@ -55,7 +55,7 @@ public class ProjectPersister {
 
     public Project load(String projectName) {
         try {
-            return load(new FileReader(projectName));
+            return load(new FileReader("projects/"+projectName+"/"+projectName+".xml"));
         } catch (FileNotFoundException e) {
             throw new TechnicalException(e);
         }
