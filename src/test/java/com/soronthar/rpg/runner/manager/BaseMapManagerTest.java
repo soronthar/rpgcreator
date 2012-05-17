@@ -18,8 +18,8 @@ public abstract class BaseMapManagerTest extends TestCase {
     protected MapManager createMapManager() {
         try {
             ProjectPersister persister = new ProjectPersister();
-            File file = new File(this.getClass().getResource("/MapManagerTest.xml").toURI());
-            Project project = persister.load(file.getAbsolutePath());
+            File file = new File(this.getClass().getResource("/projects/MapManagerTest").toURI());
+            Project project = persister.load(file.getName());
             return new MapManager(project.getSceneries());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);

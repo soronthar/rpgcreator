@@ -13,12 +13,16 @@ public class LoadProjectAction extends ShowDialogAction {
     }
 
     public void actionPerformed(ActionEvent e) {
-        JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
+        JFileChooser fc = new JFileChooser(System.getProperty("user.dir")+"/projects");
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        fc.setMultiSelectionEnabled(false);
+
         int returnVal = fc.showOpenDialog(getFrame());
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
-            getController().loadProject(file.getAbsolutePath());
+            getController().loadProject(file.getName());
         }
     }
 }

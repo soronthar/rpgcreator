@@ -35,7 +35,7 @@ public class ProjectPersister {
 
     public void save(Project project) {
         try {
-            FileWriter writer = new FileWriter(project.getName());
+            FileWriter writer = new FileWriter(buildProjectPath(project.getName()));
             save(project, writer);
             writer.close();
         } catch (IOException e) {
@@ -55,9 +55,13 @@ public class ProjectPersister {
 
     public Project load(String projectName) {
         try {
-            return load(new FileReader("projects/"+projectName+"/"+projectName+".xml"));
+            return load(new FileReader(buildProjectPath(projectName)));
         } catch (FileNotFoundException e) {
             throw new TechnicalException(e);
         }
+    }
+
+    public static String buildProjectPath(String projectName) {
+        return "projects/"+projectName+"/"+projectName+".xml";
     }
 }

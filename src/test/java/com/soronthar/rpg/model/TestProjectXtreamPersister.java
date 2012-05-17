@@ -32,7 +32,7 @@ public class TestProjectXtreamPersister extends TestCase {
         StringWriter out = new StringWriter();
         persister.save(project, out);
 
-        File file = new File(this.getClass().getResource("/SmallProject.xml").toURI());
+        File file = new File(this.getClass().getResource("/projects/SmallProject/SmallProject.xml").toURI());
 
         String testProject = FileUtils.readFileToString(file, "UTF-8");
         //line endings, tabs and whitespaces at the begining of the lines may fool the equals method,
@@ -85,7 +85,7 @@ public class TestProjectXtreamPersister extends TestCase {
         }
 
 
-        Project project = new Project("Test Project");
+        Project project = new Project("SmallProject");
         project.addScenery(firstScenery);
         project.addScenery(secondScenery);
         return project;
@@ -93,18 +93,17 @@ public class TestProjectXtreamPersister extends TestCase {
 
     public void testLoadByPath() throws FileNotFoundException, URISyntaxException {
         ProjectPersister persister = new ProjectPersister();
-        File file = new File(this.getClass().getResource("/SmallProject.xml").toURI());
-        assertLoadedProject(persister.load(file.getAbsolutePath()));
+        assertLoadedProject(persister.load("SmallProject"));
     }
 
     public void testLoadByReader() throws FileNotFoundException, URISyntaxException {
         ProjectPersister persister = new ProjectPersister();
-        File file = new File(this.getClass().getResource("/SmallProject.xml").toURI());
+        File file = new File(ProjectPersister.buildProjectPath("SmallProject"));
         assertLoadedProject(persister.load(new FileReader(file)));
     }
 
     private void assertLoadedProject(Project project) {
-        assertEquals("Test Project", project.getName());
+        assertEquals("SmallProject", project.getName());
         assertEquals(2, project.getSceneries().size());
         Scenery nonexistent = project.getScenery(0);
         assertNull(nonexistent);
