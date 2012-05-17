@@ -320,7 +320,6 @@
         <drawnTile pos="64,32" tileSetName="stuff" tile="64,0" dimension="32x32"/>
         <drawnTile pos="96,64" tileSetName="stuff" tile="96,32" dimension="32x32"/>
         <drawnTile pos="32,64" tileSetName="stuff" tile="32,32" dimension="32x32"/>
-        <drawnTile pos="64,64" tileSetName="stuff" tile="64,64" dimension="32x32"/>
         <drawnTile pos="64,96" tileSetName="stuff" tile="64,96" dimension="32x32"/>
         <drawnTile pos="96,96" tileSetName="stuff" tile="96,96" dimension="32x32"/>
         <drawnTile pos="32,96" tileSetName="stuff" tile="32,64" dimension="32x32"/>
@@ -434,16 +433,21 @@
       <layer index="4">
         <drawnTile pos="640,288" tileSetName="A5" tile="192,320" dimension="32x32"/>
         <drawnTile pos="640,384" tileSetName="A5" tile="192,320" dimension="32x32"/>
+        <drawnTile pos="64,32" tileSetName="stuff" tile="64,0" dimension="32x32"/>
+        <drawnTile pos="96,64" tileSetName="stuff" tile="96,32" dimension="32x32"/>
+        <drawnTile pos="32,64" tileSetName="stuff" tile="32,32" dimension="32x32"/>
+        <drawnTile pos="64,64" tileSetName="stuff" tile="64,32" dimension="32x32"/>
       </layer>
-      <obstacle x="32" y="96"/>
       <obstacle x="0" y="0"/>
+      <obstacle x="32" y="96"/>
       <obstacle x="416" y="32"/>
-      <obstacle x="32" y="0"/>
       <obstacle x="0" y="96"/>
+      <obstacle x="32" y="0"/>
       <obstacle x="608" y="384"/>
-      <obstacle x="384" y="480"/>
-      <obstacle x="608" y="224"/>
       <obstacle x="0" y="352"/>
+      <obstacle x="608" y="224"/>
+      <obstacle x="384" y="480"/>
+      <obstacle x="64" y="96"/>
       <obstacle x="288" y="0"/>
       <obstacle x="64" y="0"/>
       <obstacle x="416" y="448"/>
@@ -460,13 +464,12 @@
       <obstacle x="0" y="320"/>
       <obstacle x="320" y="160"/>
       <obstacle x="544" y="448"/>
-      <obstacle x="0" y="416"/>
       <obstacle x="480" y="32"/>
-      <obstacle x="0" y="160"/>
+      <obstacle x="0" y="416"/>
       <obstacle x="512" y="32"/>
+      <obstacle x="0" y="160"/>
       <obstacle x="32" y="160"/>
       <obstacle x="512" y="448"/>
-      <obstacle x="96" y="64"/>
       <obstacle x="352" y="96"/>
       <obstacle x="352" y="0"/>
       <obstacle x="544" y="32"/>
@@ -475,8 +478,8 @@
       <obstacle x="608" y="448"/>
       <obstacle x="160" y="0"/>
       <obstacle x="448" y="32"/>
-      <obstacle x="128" y="160"/>
       <obstacle x="576" y="32"/>
+      <obstacle x="128" y="160"/>
       <obstacle x="224" y="448"/>
       <obstacle x="576" y="448"/>
       <obstacle x="320" y="96"/>
@@ -488,7 +491,6 @@
       <obstacle x="0" y="448"/>
       <obstacle x="32" y="448"/>
       <obstacle x="544" y="160"/>
-      <obstacle x="64" y="32"/>
       <obstacle x="288" y="448"/>
       <obstacle x="64" y="448"/>
       <obstacle x="0" y="192"/>
@@ -515,7 +517,6 @@
       <obstacle x="0" y="128"/>
       <obstacle x="384" y="96"/>
       <obstacle x="544" y="0"/>
-      <obstacle x="32" y="64"/>
       <obstacle x="320" y="128"/>
       <obstacle x="608" y="256"/>
       <obstacle x="352" y="32"/>
@@ -535,9 +536,9 @@
       <obstacle x="320" y="32"/>
       <obstacle x="224" y="0"/>
       <obstacle x="576" y="0"/>
-      <obstacle x="608" y="352"/>
-      <obstacle x="0" y="224"/>
       <obstacle x="384" y="160"/>
+      <obstacle x="0" y="224"/>
+      <obstacle x="608" y="352"/>
       <obstacle x="320" y="448"/>
       <obstacle x="448" y="96"/>
       <obstacle x="448" y="0"/>
@@ -629,8 +630,8 @@
       <obstacle x="96" y="32"/>
       <obstacle x="0" y="160"/>
       <obstacle x="64" y="32"/>
-      <obstacle x="0" y="64"/>
       <obstacle x="256" y="128"/>
+      <obstacle x="0" y="64"/>
       <obstacle x="128" y="224"/>
       <obstacle x="160" y="224"/>
       <obstacle x="0" y="192"/>
@@ -648,8 +649,8 @@
       <obstacle x="256" y="96"/>
       <obstacle x="128" y="32"/>
       <obstacle x="256" y="160"/>
-      <obstacle x="256" y="64"/>
       <obstacle x="0" y="128"/>
+      <obstacle x="256" y="64"/>
       <obstacle x="160" y="32"/>
       <sprite id="Sprite-0" facing="DOWN" x="128" y="64" solid="true" visible="true" type="npc" frames="miscsprite.png" can-interact="true"/>
       <jumpPoint x="32" y="224" target="1336686674947"/>

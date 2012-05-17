@@ -4,9 +4,6 @@ import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.project.ProjectPersister;
 import junit.framework.TestCase;
 
-import java.io.File;
-import java.net.URISyntaxException;
-
 public abstract class BaseMapManagerTest extends TestCase {
     protected MapManager initManager() {
         MapManager manager = createMapManager();
@@ -16,13 +13,8 @@ public abstract class BaseMapManagerTest extends TestCase {
     }
 
     protected MapManager createMapManager() {
-        try {
             ProjectPersister persister = new ProjectPersister();
-            File file = new File(this.getClass().getResource("/projects/MapManagerTest").toURI());
-            Project project = persister.load(file.getName());
+            Project project = persister.load("MapManagerTest");
             return new MapManager(project.getSceneries());
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

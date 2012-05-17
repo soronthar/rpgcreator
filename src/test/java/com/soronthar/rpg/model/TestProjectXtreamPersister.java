@@ -32,7 +32,7 @@ public class TestProjectXtreamPersister extends TestCase {
         StringWriter out = new StringWriter();
         persister.generateProjectXML(project, out);
 
-        File file = new File(this.getClass().getResource("/projects/SmallProject/SmallProject.xml").toURI());
+        File file = new File(ProjectPersister.buildProjectFilePath("SmallProject"));
 
         String testProject = FileUtils.readFileToString(file, "UTF-8");
         //line endings, tabs and whitespaces at the begining of the lines may fool the equals method,
@@ -43,11 +43,17 @@ public class TestProjectXtreamPersister extends TestCase {
     }
 
     public void testSaveByPath() throws URISyntaxException, IOException {
+        String projectName = "AnotherSmallProject";
+        File file = new File(ProjectPersister.buildProjectFilePath(projectName));
+        FileUtils.deleteQuietly(file);
+
         //TODO:read the resulting XML and compare it with the SmallProject xml
-        Project project = createTestProject();
+        Project project = createTestProject(projectName);
         ProjectPersister persister = new ProjectPersister();
         persister.save(project);
-        assertLoadedProject(persister.load(project.getName()));
+        assertLoadedProject(persister.load(project.getName()), projectName);
+
+        FileUtils.deleteQuietly(file);
     }
 
     private Project createTestProject() {
@@ -118,22 +124,27 @@ public class TestProjectXtreamPersister extends TestCase {
 //            assertTrue(sceneryFile.exists());
 //            assertTrue(sceneryFile.isDirectory());
 //        }
-
+        if (file.exists()) {
+            FileUtils.deleteQuietly(parentFile);
+        }
     }
     
     public void testLoadByPath() throws FileNotFoundException, URISyntaxException {
         ProjectPersister persister = new ProjectPersister();
-        assertLoadedProject(persister.load("SmallProject"));
+        String smallProject = "SmallProject";
+        Project project = new ProjectPersister().load(smallProject);
+
+        assertLoadedProject(project,smallProject);
     }
 
     public void testLoadByReader() throws FileNotFoundException, URISyntaxException {
         ProjectPersister persister = new ProjectPersister();
         File file = new File(ProjectPersister.buildProjectFilePath("SmallProject"));
-        assertLoadedProject(persister.load(new FileReader(file)));
+        assertLoadedProject(persister.load(new FileReader(file)),"SmallProject");
     }
 
-    private void assertLoadedProject(Project project) {
-        assertEquals("SmallProject", project.getName());
+    private void assertLoadedProject(Project project,String projectName) {
+        assertEquals(projectName, project.getName());
         assertEquals(2, project.getSceneries().size());
         Scenery nonexistent = project.getScenery(0);
         assertNull(nonexistent);

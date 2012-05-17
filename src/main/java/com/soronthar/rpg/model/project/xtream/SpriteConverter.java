@@ -17,9 +17,6 @@ public class SpriteConverter implements Converter {
         Sprite sprite = (Sprite) o;
         writer.startNode("sprite");
         writer.addAttribute("id", sprite.getId());
-        writer.addAttribute("facing", sprite.getFacing().name());
-        writer.addAttribute("x", Integer.toString(sprite.getLocation().x));
-        writer.addAttribute("y", Integer.toString(sprite.getLocation().y));
         writer.addAttribute("solid", Boolean.toString(sprite.isSolid()));
         writer.addAttribute("visible", Boolean.toString(sprite.isVisible()));
         if (sprite instanceof MobNpc) {
@@ -29,28 +26,41 @@ public class SpriteConverter implements Converter {
         }
         writer.addAttribute("frames", sprite.getFramesImageName());
         writer.addAttribute("can-interact", Boolean.toString(sprite.canInteract()));
+        writer.startNode("location");
+        writer.addAttribute("x", Integer.toString(sprite.getLocation().x));
+        writer.addAttribute("y", Integer.toString(sprite.getLocation().y));
+        writer.addAttribute("facing", sprite.getFacing().name());
+        writer.endNode();
         writer.endNode();
     }
 
     public Object unmarshal(HierarchicalStreamReader reader, UnmarshallingContext context) {
-        int x = Integer.parseInt(reader.getAttribute("x"));
-        int y = Integer.parseInt(reader.getAttribute("y"));
         boolean isVisible = Boolean.valueOf(reader.getAttribute("visible"));
         boolean isSolid = Boolean.valueOf(reader.getAttribute("solid"));
-        String facing = reader.getAttribute("facing");
         String id = reader.getAttribute("id");
         String type = reader.getAttribute("type");
+        String frames = reader.getAttribute("frames");
+        String attribute = reader.getAttribute("can-interact");
+
+        reader.moveDown();
+
+        int x = Integer.parseInt(reader.getAttribute("x"));
+        int y = Integer.parseInt(reader.getAttribute("y"));
+        String facing = reader.getAttribute("facing");
         Sprite sprite;
         if (type.equals("mob")) {
             sprite = new MobNpc(id, new Point(x, y), Facing.valueOf(facing));
         } else {
             sprite = new StandingNpc(id, new Point(x, y), Facing.valueOf(facing));
         }
-        sprite.setFramesImage(reader.getAttribute("frames"));
-        sprite.setCanInteract(Boolean.valueOf(reader.getAttribute("can-interact")));
+        sprite.setFramesImage(frames);
+        sprite.setCanInteract(Boolean.valueOf(attribute));
 
         sprite.setVisible(isVisible);
         sprite.setSolid(isSolid);
+
+        reader.moveUp();
+
         return sprite;
     }
 
