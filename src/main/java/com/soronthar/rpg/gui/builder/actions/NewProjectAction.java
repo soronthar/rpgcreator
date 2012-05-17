@@ -21,7 +21,7 @@ public class NewProjectAction extends ShowDialogAction {
                 JOptionPane.PLAIN_MESSAGE);
 
         if (!StringUtils.isEmpty(projectName)) {
-            getController().createNewProject(projectName + ".xml");
+            getController().createNewProject(projectName);
         }
     }
 }

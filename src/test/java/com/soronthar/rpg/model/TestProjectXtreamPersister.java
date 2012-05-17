@@ -30,7 +30,7 @@ public class TestProjectXtreamPersister extends TestCase {
 
         ProjectPersister persister = new ProjectPersister();
         StringWriter out = new StringWriter();
-        persister.save(project, out);
+        persister.generateProjectXML(project, out);
 
         File file = new File(this.getClass().getResource("/projects/SmallProject/SmallProject.xml").toURI());
 
@@ -51,6 +51,11 @@ public class TestProjectXtreamPersister extends TestCase {
     }
 
     private Project createTestProject() {
+        return createTestProject("SmallProject");
+    }
+    
+    
+    private Project createTestProject(String projectName) {
         TileSet tileSet = new TileSet("TILESET", new BufferedImage(Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 20, BufferedImage.TYPE_INT_ARGB));
         Scenery firstScenery = new Scenery(1, "first");
         for (int i = 0; i < LayersArray.LAYER_COUNT; i++) {
@@ -85,12 +90,37 @@ public class TestProjectXtreamPersister extends TestCase {
         }
 
 
-        Project project = new Project("SmallProject");
+        Project project = new Project(projectName);
         project.addScenery(firstScenery);
         project.addScenery(secondScenery);
         return project;
     }
 
+    public void testSaveNewProject() {
+        String newProjectName = "TestSaveNewProject";
+        File file = new File(ProjectPersister.buildProjectFilePath(newProjectName));
+        File parentFile = file.getParentFile();
+        assertNotNull(parentFile);
+        if (file.exists()) {
+            FileUtils.deleteQuietly(parentFile);
+        }
+        
+        Project testProject = createTestProject(newProjectName);
+        ProjectPersister persister = new ProjectPersister();
+        persister.save(testProject);
+
+        assertTrue(file.exists());
+        assertEquals(newProjectName, parentFile.getName());
+
+//        SceneryBag sceneries = testProject.getSceneries();
+//        for(Scenery scenery:sceneries) {
+//            File sceneryFile=new File(parentFile,Long.toString(scenery.getId()));
+//            assertTrue(sceneryFile.exists());
+//            assertTrue(sceneryFile.isDirectory());
+//        }
+
+    }
+    
     public void testLoadByPath() throws FileNotFoundException, URISyntaxException {
         ProjectPersister persister = new ProjectPersister();
         assertLoadedProject(persister.load("SmallProject"));
@@ -98,7 +128,7 @@ public class TestProjectXtreamPersister extends TestCase {
 
     public void testLoadByReader() throws FileNotFoundException, URISyntaxException {
         ProjectPersister persister = new ProjectPersister();
-        File file = new File(ProjectPersister.buildProjectPath("SmallProject"));
+        File file = new File(ProjectPersister.buildProjectFilePath("SmallProject"));
         assertLoadedProject(persister.load(new FileReader(file)));
     }
 

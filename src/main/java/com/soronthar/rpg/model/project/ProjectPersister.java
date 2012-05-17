@@ -35,15 +35,20 @@ public class ProjectPersister {
 
     public void save(Project project) {
         try {
-            FileWriter writer = new FileWriter(buildProjectPath(project.getName()));
-            save(project, writer);
+            File projectPath=new File(buildProjectPath(project.getName()));
+            if (!projectPath.exists()) {
+                projectPath.mkdirs();
+            }
+            
+            FileWriter writer = new FileWriter(buildProjectFilePath(project.getName()));
+            generateProjectXML(project, writer);
             writer.close();
         } catch (IOException e) {
             throw new TechnicalException(e);
         }
     }
 
-    public void save(Project project, Writer out) {
+    public void generateProjectXML(Project project, Writer out) {
         XStream xstream = createXStream();
         xstream.toXML(project, out);
     }
@@ -55,13 +60,17 @@ public class ProjectPersister {
 
     public Project load(String projectName) {
         try {
-            return load(new FileReader(buildProjectPath(projectName)));
+            return load(new FileReader(buildProjectFilePath(projectName)));
         } catch (FileNotFoundException e) {
             throw new TechnicalException(e);
         }
     }
 
-    public static String buildProjectPath(String projectName) {
-        return "projects/"+projectName+"/"+projectName+".xml";
+    public static String buildProjectFilePath(String projectName) {
+        return buildProjectPath(projectName) + "/" + projectName + ".xml";
+    }
+
+    private static String buildProjectPath(String projectName) {
+        return "projects/" + projectName;
     }
 }
