@@ -73,6 +73,7 @@ public class TestProjectXtreamPersister extends TestCase {
         alltrue.setFramesImage("cat.png");
         alltrue.setCanInteract(true);
         alltrue.setText("text");
+        alltrue.getActions().setShowDialog(true);
         firstScenery.addSprite(alltrue);
 
         Sprite notsolid = new StandingNpc("notsolid", new Point(5, 0));
@@ -171,6 +172,8 @@ public class TestProjectXtreamPersister extends TestCase {
         assertFalse(sprite.isMoving());
         assertTrue(sprite.isVisible());
         assertFalse(sprite.canInteract());
+        assertFalse(sprite.getActions().isShowDialog());
+
 
         SpecialObject specialAt = scenery.getSpecialAt(sprite.getLocation());
         assertEquals(sprite, specialAt);
@@ -179,11 +182,13 @@ public class TestProjectXtreamPersister extends TestCase {
         assertNotNull(sprite);
         assertTrue(sprite instanceof MobNpc);
         assertEquals(Facing.LEFT, sprite.getFacing());
-        assertEquals("cat.png", ((MobNpc) sprite).getFramesImageName());
+        assertEquals("cat.png", sprite.getFramesImageName());
         assertTrue(sprite.isSolid());
         assertTrue(sprite.isVisible());
         assertTrue(sprite.isMoving());
         assertTrue(sprite.canInteract());
+        assertTrue(sprite.getActions().isShowDialog());
+
 
 
         sprite = sprites.get("notvisible");
@@ -194,6 +199,7 @@ public class TestProjectXtreamPersister extends TestCase {
         assertFalse(sprite.isMoving());
         assertFalse(sprite.isVisible());
         assertFalse(sprite.canInteract());
+        assertFalse(sprite.getActions().isShowDialog());
 
         Collection<Point> obstacles = scenery.getObstacles();
         assertEquals(1, obstacles.size());

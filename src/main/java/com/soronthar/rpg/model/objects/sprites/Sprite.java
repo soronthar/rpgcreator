@@ -22,6 +22,7 @@ public class Sprite extends SpecialObject {
     private boolean canInteract = false;
     protected String imageName = "";
     private String text="";
+    private SpriteActions actions=new SpriteActions();
 
 
     public Sprite(String id, Point location) {
@@ -192,5 +193,13 @@ public class Sprite extends SpecialObject {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public SpriteActions getActions() {
+        return actions;
+    }
+
+    public void setActions(SpriteActions actions) {
+        this.actions = actions;
     }
 }

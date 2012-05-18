@@ -1,9 +1,6 @@
 package com.soronthar.rpg.model.project.xtream;
 
-import com.soronthar.rpg.model.objects.sprites.Facing;
-import com.soronthar.rpg.model.objects.sprites.MobNpc;
-import com.soronthar.rpg.model.objects.sprites.Sprite;
-import com.soronthar.rpg.model.objects.sprites.StandingNpc;
+import com.soronthar.rpg.model.objects.sprites.*;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;
@@ -13,6 +10,11 @@ import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import java.awt.*;
 
 public class SpriteConverter implements Converter {
+
+    public static final String ON_ACTION = "on-action";
+    public static final String ACTION_SHOW_TEXT = "show-text";
+    public static final String TEXT = "text";
+
     public void marshal(Object o, HierarchicalStreamWriter writer, MarshallingContext context) {
         Sprite sprite = (Sprite) o;
         writer.startNode("special");
@@ -32,9 +34,16 @@ public class SpriteConverter implements Converter {
         writer.addAttribute("facing", sprite.getFacing().name());
         writer.endNode();
 
-        writer.startNode("text");
+        writer.startNode(TEXT);
         writer.addAttribute("type","fixed");
         writer.setValue(sprite.getText());
+        writer.endNode();
+
+        writer.startNode(ON_ACTION);
+        if (sprite.getActions().isShowDialog()) {
+            writer.startNode(ACTION_SHOW_TEXT);
+            writer.endNode();
+        }
         writer.endNode();
 
         writer.endNode();
@@ -68,8 +77,18 @@ public class SpriteConverter implements Converter {
         reader.moveUp();
         while (reader.hasMoreChildren()) {
             reader.moveDown();
-            if (reader.getNodeName().equals("text")) {
+            if (reader.getNodeName().equals(TEXT)) {
                 sprite.setText(reader.getValue());
+            } else if (reader.getNodeName().equals(ON_ACTION)) {
+                SpriteActions actions=new SpriteActions();
+                while (reader.hasMoreChildren()) {
+                    reader.moveDown();
+                    if (reader.getNodeName().equals(ACTION_SHOW_TEXT)) {
+                        actions.setShowDialog(true);
+                    }
+                    reader.moveUp();
+                    sprite.setActions(actions);
+                }
             }
             reader.moveUp();
         }

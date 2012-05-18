@@ -157,7 +157,7 @@ public class GameManager {
     }
 
     private void checkAction() {
-        if (action.isPressed()) {
+        if (action.isPressed()) {//TODO: delegate the key capture to the component being displayed.
             if (screenManager.isShowingDialog()) {
                 screenManager.advanceDialog();
             } else {

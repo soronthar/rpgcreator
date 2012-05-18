@@ -25,10 +25,12 @@
             <special id="notsolid" solid="false" visible="true" type="npc" frames="" can-interact="false">
                 <location x="5" y="0" facing="DOWN"/>
                 <text type="fixed">text</text>
+                <on-action/>
             </special>
             <special id="notvisible" solid="true" visible="false" type="npc" frames="" can-interact="false">
                 <location x="6" y="0" facing="DOWN"/>
                 <text type="fixed">text</text>
+                <on-action/>
             </special>
             <jumpPoint x="6" y="2" target="2"/>
             <heroStartingPoint x="5" y="8"/>
