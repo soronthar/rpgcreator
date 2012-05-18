@@ -15,7 +15,7 @@ import java.awt.*;
 public class SpriteConverter implements Converter {
     public void marshal(Object o, HierarchicalStreamWriter writer, MarshallingContext context) {
         Sprite sprite = (Sprite) o;
-        writer.startNode("sprite");
+        writer.startNode("special");
         writer.addAttribute("id", sprite.getId());
         writer.addAttribute("solid", Boolean.toString(sprite.isSolid()));
         writer.addAttribute("visible", Boolean.toString(sprite.isVisible()));

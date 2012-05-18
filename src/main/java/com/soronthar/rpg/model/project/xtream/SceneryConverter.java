@@ -22,7 +22,7 @@ public class SceneryConverter implements Converter {
     private static final String JUMP_POINT = "jumpPoint";
     private static final String TARGET = "target";
     private static final String OBSTACLE = "obstacle";
-    private static final String SPRITE = "sprite";
+    private static final String SPECIAL = "special";
     private static final String NAME = "name";
     private static final String WIDTH = "width";
     private static final String HEIGHT = "height";
@@ -87,7 +87,7 @@ public class SceneryConverter implements Converter {
                     scenery.setTile(drawnTile.getTile(), index, drawnTile.getPoint());
                     reader.moveUp();
                 }
-            } else if (reader.getNodeName().equals(SPRITE)) {
+            } else if (reader.getNodeName().equals(SPECIAL)) {
                 Sprite sprite = (Sprite) context.convertAnother(scenery, Sprite.class);
                 scenery.addSprite(sprite);
             } else if (reader.getNodeName().equals(OBSTACLE)) {
