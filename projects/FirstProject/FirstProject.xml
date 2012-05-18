@@ -545,7 +545,8 @@
             <obstacle x="352" y="480"/>
             <special id="Sprite-2" solid="true" visible="false" type="npc" frames="miscsprite.png">
                 <location x="448" y="160" facing="DOWN"/>
-                <text>This is a text from the file that will be displayed at the sign, with some lenght.
+                <on-action>
+                    <show-text>This is a text from the file that will be displayed at the sign, with some lenght.
 How? I don&apos;t have any idea. Really.
 but it has to be a long text to verify the painting on the screen, so here goes a Java stacktrace that is long and wide:
 java.lang.NullPointerException
@@ -567,9 +568,7 @@ at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDisp
 at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:382)
 at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:310)
 at org.apache.struts.action.RequestProcessor.doForward(RequestProcessor.java:1069)
-at</text>
-                <on-action>
-                    <show-text/>
+at</show-text>
                 </on-action>
             </special>
             <special id="Sprite-0" solid="true" visible="true" type="mob" frames="miscsprite.png">
@@ -684,7 +683,9 @@ at</text>
             <obstacle x="160" y="32"/>
             <special id="Sprite-0" solid="true" visible="true" type="npc" frames="miscsprite.png">
                 <location x="128" y="64" facing="DOWN"/>
-                <text>This should be a shop</text>
+                <on-action>
+                    <show-text>This should be a shop</show-text>
+                </on-action>
             </special>
             <jumpPoint x="32" y="224" target="1336686674947"/>
             <heroStartingPoint x="32" y="192"/>

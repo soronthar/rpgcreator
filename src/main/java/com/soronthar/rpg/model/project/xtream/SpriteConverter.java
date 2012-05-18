@@ -33,17 +33,13 @@ public class SpriteConverter implements Converter {
         writer.addAttribute("facing", sprite.getFacing().name());
         writer.endNode();
 
-        writer.startNode(TEXT);
-        writer.addAttribute("type","fixed");
-        writer.setValue(sprite.getText());
-        writer.endNode();
-
         writer.startNode(ON_ACTION);
         SpriteActions actions = sprite.getActions();
 
         for (SpriteActions.SpriteAction spriteAction : actions) {
             if (spriteAction instanceof SpriteActions.ShowText) {
                 writer.startNode(ACTION_SHOW_TEXT);
+                writer.setValue(((SpriteActions.ShowText) spriteAction).getText());
                 writer.endNode();
             }
         }
@@ -78,14 +74,12 @@ public class SpriteConverter implements Converter {
         reader.moveUp();
         while (reader.hasMoreChildren()) {
             reader.moveDown();
-            if (reader.getNodeName().equals(TEXT)) {
-                sprite.setText(reader.getValue());
-            } else if (reader.getNodeName().equals(ON_ACTION)) {
+            if (reader.getNodeName().equals(ON_ACTION)) {
                 SpriteActions actions=new SpriteActions();
                 while (reader.hasMoreChildren()) {
                     reader.moveDown();
                     if (reader.getNodeName().equals(ACTION_SHOW_TEXT)) {
-                        actions.add(new SpriteActions.ShowText(""));
+                        actions.add(new SpriteActions.ShowText(reader.getValue()));
                     }
                     reader.moveUp();
                     sprite.setActions(actions);

@@ -2,6 +2,7 @@ package com.soronthar.rpg.runner.manager;
 
 import com.soronthar.rpg.model.objects.sprites.Hero;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.sprites.SpriteActions;
 import com.soronthar.rpg.model.objects.sprites.StandingNpc;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.scenery.Scenery;
@@ -142,7 +143,9 @@ public class ScreenManager extends Canvas {
     }
 
     public void showDialogFor(Project project, Scenery scenery, StandingNpc npc) {
-        this.dialog = new DialogManager(npc.getText(), this.viewPort, this.getGraphics().getFontMetrics());
+        SpriteActions.SpriteAction next = npc.getActions().iterator().next();
+
+        this.dialog = new DialogManager(((SpriteActions.ShowText) next).getText(), this.viewPort, this.getGraphics().getFontMetrics());
 //        this.dialog = new DialogManager("projects/"+project.getName()+"/scenery/"+scenery.getId() + "/" + npc.getId(), this.viewPort, this.getGraphics().getFontMetrics());
         this.showDialog = true;
     }

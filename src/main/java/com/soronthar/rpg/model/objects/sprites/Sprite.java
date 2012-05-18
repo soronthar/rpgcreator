@@ -20,7 +20,6 @@ public class Sprite extends SpecialObject {
     private Facing facing = Facing.DOWN;
     private int steps;
     protected String imageName = "";
-    private String text="";
     private SpriteActions actions=new SpriteActions();
 
 
@@ -180,14 +179,6 @@ public class Sprite extends SpecialObject {
 
     public String getFramesImageName() {
         return imageName;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
     public SpriteActions getActions() {

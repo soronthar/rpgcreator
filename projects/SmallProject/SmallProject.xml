@@ -17,19 +17,16 @@
             <obstacle x="8" y="1"/>
             <special id="alltrue" solid="true" visible="true" type="mob" frames="cat.png">
                 <location x="4" y="0" facing="LEFT"/>
-                <text type="fixed">text</text>
                 <on-action>
-                    <show-text/>
+                    <show-text>text</show-text>
                 </on-action>
             </special>
             <special id="notsolid" solid="false" visible="true" type="npc" frames="">
                 <location x="5" y="0" facing="DOWN"/>
-                <text type="fixed">text</text>
                 <on-action/>
             </special>
             <special id="notvisible" solid="true" visible="false" type="npc" frames="">
                 <location x="6" y="0" facing="DOWN"/>
-                <text type="fixed">text</text>
                 <on-action/>
             </special>
             <jumpPoint x="6" y="2" target="2"/>

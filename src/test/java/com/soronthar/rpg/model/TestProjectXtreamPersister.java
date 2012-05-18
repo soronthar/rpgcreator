@@ -69,18 +69,15 @@ public class TestProjectXtreamPersister extends TestCase {
         }
         MobNpc alltrue = new MobNpc("alltrue", new Point(4, 0), Facing.LEFT);
         alltrue.setFramesImage("cat.png");
-        alltrue.setText("text");
-        alltrue.getActions().add(new SpriteActions.ShowText(""));
+        alltrue.getActions().add(new SpriteActions.ShowText("text"));
         firstScenery.addSprite(alltrue);
 
         Sprite notsolid = new StandingNpc("notsolid", new Point(5, 0));
         notsolid.setSolid(false);
-        notsolid.setText("text");
         firstScenery.addSprite(notsolid);
 
         Sprite notvisible = new StandingNpc("notvisible", new Point(6, 0));
         notvisible.setVisible(false);
-        notvisible.setText("text");
         firstScenery.addSprite(notvisible);
 
         firstScenery.addObstacleAt(new Point(8, 1));
@@ -188,9 +185,6 @@ public class TestProjectXtreamPersister extends TestCase {
 
         SpriteActions.SpriteAction spriteAction = actions.get(0);
         assertTrue(spriteAction instanceof SpriteActions.ShowText);
-
-
-
 
         sprite = sprites.get("notvisible");
         assertNotNull(sprite);
