@@ -40,9 +40,13 @@ public class SpriteConverter implements Converter {
         writer.endNode();
 
         writer.startNode(ON_ACTION);
-        if (sprite.getActions().isShowDialog()) {
-            writer.startNode(ACTION_SHOW_TEXT);
-            writer.endNode();
+        SpriteActions actions = sprite.getActions();
+
+        for (SpriteActions.SpriteAction spriteAction : actions) {
+            if (spriteAction instanceof SpriteActions.ShowText) {
+                writer.startNode(ACTION_SHOW_TEXT);
+                writer.endNode();
+            }
         }
         writer.endNode();
 
@@ -84,7 +88,7 @@ public class SpriteConverter implements Converter {
                 while (reader.hasMoreChildren()) {
                     reader.moveDown();
                     if (reader.getNodeName().equals(ACTION_SHOW_TEXT)) {
-                        actions.setShowDialog(true);
+                        actions.add(new SpriteActions.ShowText(""));
                     }
                     reader.moveUp();
                     sprite.setActions(actions);

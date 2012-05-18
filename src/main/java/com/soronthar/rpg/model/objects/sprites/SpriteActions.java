@@ -1,13 +1,21 @@
 package com.soronthar.rpg.model.objects.sprites;
 
-public class SpriteActions {
-    private boolean showDialog;
+import java.util.ArrayList;
 
-    public void setShowDialog(boolean showDialog) {
-        this.showDialog = showDialog;
-    }
+public class SpriteActions extends ArrayList<SpriteActions.SpriteAction> {
 
-    public boolean isShowDialog() {
-        return showDialog;
+    /** Marker interface */
+    public static interface SpriteAction {}
+
+    public static class ShowText implements SpriteAction{
+        private String text;
+
+        public ShowText(String text) {
+            this.text = text;
+        }
+
+        public String getText() {
+            return text;
+        }
     }
 }

@@ -1,10 +1,7 @@
 package com.soronthar.rpg.model;
 
 import com.soronthar.rpg.model.objects.SpecialObject;
-import com.soronthar.rpg.model.objects.sprites.Facing;
-import com.soronthar.rpg.model.objects.sprites.MobNpc;
-import com.soronthar.rpg.model.objects.sprites.Sprite;
-import com.soronthar.rpg.model.objects.sprites.StandingNpc;
+import com.soronthar.rpg.model.objects.sprites.*;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.project.ProjectPersister;
 import com.soronthar.rpg.model.scenery.DrawnTile;
@@ -22,6 +19,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class TestProjectXtreamPersister extends TestCase {
@@ -73,7 +71,7 @@ public class TestProjectXtreamPersister extends TestCase {
         alltrue.setFramesImage("cat.png");
         alltrue.setCanInteract(true);
         alltrue.setText("text");
-        alltrue.getActions().setShowDialog(true);
+        alltrue.getActions().add(new SpriteActions.ShowText(""));
         firstScenery.addSprite(alltrue);
 
         Sprite notsolid = new StandingNpc("notsolid", new Point(5, 0));
@@ -172,8 +170,7 @@ public class TestProjectXtreamPersister extends TestCase {
         assertFalse(sprite.isMoving());
         assertTrue(sprite.isVisible());
         assertFalse(sprite.canInteract());
-        assertFalse(sprite.getActions().isShowDialog());
-
+        assertTrue(sprite.getActions().isEmpty());
 
         SpecialObject specialAt = scenery.getSpecialAt(sprite.getLocation());
         assertEquals(sprite, specialAt);
@@ -187,7 +184,13 @@ public class TestProjectXtreamPersister extends TestCase {
         assertTrue(sprite.isVisible());
         assertTrue(sprite.isMoving());
         assertTrue(sprite.canInteract());
-        assertTrue(sprite.getActions().isShowDialog());
+
+        List<SpriteActions.SpriteAction> actions=sprite.getActions();
+        assertEquals(1,actions.size());
+
+        SpriteActions.SpriteAction spriteAction = actions.get(0);
+        assertTrue(spriteAction instanceof SpriteActions.ShowText);
+
 
 
 
@@ -199,7 +202,7 @@ public class TestProjectXtreamPersister extends TestCase {
         assertFalse(sprite.isMoving());
         assertFalse(sprite.isVisible());
         assertFalse(sprite.canInteract());
-        assertFalse(sprite.getActions().isShowDialog());
+        assertTrue(sprite.getActions().isEmpty());
 
         Collection<Point> obstacles = scenery.getObstacles();
         assertEquals(1, obstacles.size());
