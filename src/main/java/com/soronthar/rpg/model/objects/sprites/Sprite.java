@@ -21,6 +21,8 @@ public class Sprite extends SpecialObject {
     private int steps;
     private boolean canInteract = false;
     protected String imageName = "";
+    private String text="";
+
 
     public Sprite(String id, Point location) {
         super(location);
@@ -182,5 +184,13 @@ public class Sprite extends SpecialObject {
 
     public String getFramesImageName() {
         return imageName;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

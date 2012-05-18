@@ -142,7 +142,8 @@ public class ScreenManager extends Canvas {
     }
 
     public void showDialogFor(Project project, Scenery scenery, StandingNpc npc) {
-        this.dialog = new DialogManager("projects/"+project.getName()+"/scenery/"+scenery.getId() + "/" + npc.getId(), this.viewPort, this.getGraphics().getFontMetrics());
+        this.dialog = new DialogManager(npc.getText(), this.viewPort, this.getGraphics().getFontMetrics());
+//        this.dialog = new DialogManager("projects/"+project.getName()+"/scenery/"+scenery.getId() + "/" + npc.getId(), this.viewPort, this.getGraphics().getFontMetrics());
         this.showDialog = true;
     }
 }

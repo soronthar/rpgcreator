@@ -1,14 +1,12 @@
 package com.soronthar.rpg.runner.manager;
 
 
-import org.apache.commons.io.FileUtils;
-import org.soronthar.error.TechnicalException;
 import org.soronthar.util.StringUtils;
 
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -41,12 +39,14 @@ public class DialogManager {
         linesToDraw = new ArrayList<String>();
 
         File text = new File(textFile + ".txt");
-        List list;
-        try {
-            list = FileUtils.readLines(text, "UTF-8");
-        } catch (IOException e) {
-            throw new TechnicalException(e);
-        }
+        String[] split = textFile.split("\r?\n");
+
+        List list= Arrays.asList(split);
+//        try {
+//            list = FileUtils.readLines(text, "UTF-8");
+//        } catch (IOException e) {
+//            throw new TechnicalException(e);
+//        }
 
         int lineWidth = width - (2 * fontWidth);
         String head = "", tail = "";

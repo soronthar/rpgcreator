@@ -545,6 +545,29 @@
             <obstacle x="352" y="480"/>
             <special id="Sprite-2" solid="true" visible="false" type="npc" frames="miscsprite.png" can-interact="true">
                 <location x="448" y="160" facing="DOWN"/>
+                <text>This is a text from the file that will be displayed at the sign, with some lenght.
+How? I don&apos;t have any idea. Really.
+but it has to be a long text to verify the painting on the screen, so here goes a Java stacktrace that is long and wide:
+java.lang.NullPointerException
+at com.consisint.acsele.template.server.TransformadorFila.hasParentValue(TransformadorFila.java:435)
+at com.consisint.acsele.template.api.Property.listTransformers(Property.java:224)
+at org.apache.jsp.inspections.maintenance.writepropertyinsp_jsp.evaluateParentChild(writepropertyinsp_jsp.java:109)
+at org.apache.jsp.inspections.maintenance.writepropertyinsp_jsp.fillDependsFatherChilds(writepropertyinsp_jsp.java:52)
+at org.apache.jsp.inspections.maintenance.writepropertyinsp_jsp._jspService(writepropertyinsp_jsp.java:272)
+at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:369)
+at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:322)
+at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:249)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
+at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:638)
+at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:444)
+at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:382)
+at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:310)
+at org.apache.struts.action.RequestProcessor.doForward(RequestProcessor.java:1069)
+at</text>
             </special>
             <special id="Sprite-0" solid="true" visible="true" type="mob" frames="miscsprite.png" can-interact="false">
                 <location x="224" y="224" facing="DOWN"/>
@@ -658,6 +681,7 @@
             <obstacle x="160" y="32"/>
             <special id="Sprite-0" solid="true" visible="true" type="npc" frames="miscsprite.png" can-interact="true">
                 <location x="128" y="64" facing="DOWN"/>
+                <text>This should be a shop</text>
             </special>
             <jumpPoint x="32" y="224" target="1336686674947"/>
             <heroStartingPoint x="32" y="192"/>

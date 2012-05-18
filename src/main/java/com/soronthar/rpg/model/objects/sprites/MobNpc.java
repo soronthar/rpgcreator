@@ -11,4 +11,6 @@ public class MobNpc extends Sprite {
         setMovementStrategy(new DefaultMovementStrategy(this));
         getMovementStrategy().init();
     }
+
+
 }

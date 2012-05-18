@@ -31,6 +31,12 @@ public class SpriteConverter implements Converter {
         writer.addAttribute("y", Integer.toString(sprite.getLocation().y));
         writer.addAttribute("facing", sprite.getFacing().name());
         writer.endNode();
+
+        writer.startNode("text");
+        writer.addAttribute("type","fixed");
+        writer.setValue(sprite.getText());
+        writer.endNode();
+
         writer.endNode();
     }
 
@@ -60,6 +66,13 @@ public class SpriteConverter implements Converter {
         sprite.setSolid(isSolid);
 
         reader.moveUp();
+        while (reader.hasMoreChildren()) {
+            reader.moveDown();
+            if (reader.getNodeName().equals("text")) {
+                sprite.setText(reader.getValue());
+            }
+            reader.moveUp();
+        }
 
         return sprite;
     }
