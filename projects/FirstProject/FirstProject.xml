@@ -543,7 +543,7 @@
             <obstacle x="448" y="96"/>
             <obstacle x="448" y="0"/>
             <obstacle x="352" y="480"/>
-            <special id="Sprite-2" solid="true" visible="false" type="npc" frames="miscsprite.png" can-interact="true">
+            <special id="Sprite-2" solid="true" visible="false" type="npc" frames="miscsprite.png">
                 <location x="448" y="160" facing="DOWN"/>
                 <text>This is a text from the file that will be displayed at the sign, with some lenght.
 How? I don&apos;t have any idea. Really.
@@ -568,8 +568,11 @@ at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatche
 at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:310)
 at org.apache.struts.action.RequestProcessor.doForward(RequestProcessor.java:1069)
 at</text>
+                <on-action>
+                    <show-text/>
+                </on-action>
             </special>
-            <special id="Sprite-0" solid="true" visible="true" type="mob" frames="miscsprite.png" can-interact="false">
+            <special id="Sprite-0" solid="true" visible="true" type="mob" frames="miscsprite.png">
                 <location x="224" y="224" facing="DOWN"/>
             </special>
             <jumpPoint x="160" y="448" target="1336686674947"/>
@@ -679,7 +682,7 @@ at</text>
             <obstacle x="0" y="128"/>
             <obstacle x="256" y="64"/>
             <obstacle x="160" y="32"/>
-            <special id="Sprite-0" solid="true" visible="true" type="npc" frames="miscsprite.png" can-interact="true">
+            <special id="Sprite-0" solid="true" visible="true" type="npc" frames="miscsprite.png">
                 <location x="128" y="64" facing="DOWN"/>
                 <text>This should be a shop</text>
             </special>

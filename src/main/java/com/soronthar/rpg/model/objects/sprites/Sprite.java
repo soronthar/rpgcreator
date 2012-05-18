@@ -19,7 +19,6 @@ public class Sprite extends SpecialObject {
 
     private Facing facing = Facing.DOWN;
     private int steps;
-    private boolean canInteract = false;
     protected String imageName = "";
     private String text="";
     private SpriteActions actions=new SpriteActions();
@@ -41,11 +40,7 @@ public class Sprite extends SpecialObject {
     }
 
     public boolean canInteract() {
-        return canInteract;
-    }
-
-    public void setCanInteract(boolean canInteract) {
-        this.canInteract = canInteract;
+        return !actions.isEmpty();
     }
 
     public Facing getFacing() {

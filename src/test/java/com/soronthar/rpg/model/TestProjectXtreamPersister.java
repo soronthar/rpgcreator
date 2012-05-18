@@ -69,14 +69,12 @@ public class TestProjectXtreamPersister extends TestCase {
         }
         MobNpc alltrue = new MobNpc("alltrue", new Point(4, 0), Facing.LEFT);
         alltrue.setFramesImage("cat.png");
-        alltrue.setCanInteract(true);
         alltrue.setText("text");
         alltrue.getActions().add(new SpriteActions.ShowText(""));
         firstScenery.addSprite(alltrue);
 
         Sprite notsolid = new StandingNpc("notsolid", new Point(5, 0));
         notsolid.setSolid(false);
-        notsolid.setCanInteract(false);
         notsolid.setText("text");
         firstScenery.addSprite(notsolid);
 

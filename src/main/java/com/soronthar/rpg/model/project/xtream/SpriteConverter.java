@@ -27,7 +27,6 @@ public class SpriteConverter implements Converter {
             writer.addAttribute("type", "npc");
         }
         writer.addAttribute("frames", sprite.getFramesImageName());
-        writer.addAttribute("can-interact", Boolean.toString(sprite.canInteract()));
         writer.startNode("location");
         writer.addAttribute("x", Integer.toString(sprite.getLocation().x));
         writer.addAttribute("y", Integer.toString(sprite.getLocation().y));
@@ -59,7 +58,6 @@ public class SpriteConverter implements Converter {
         String id = reader.getAttribute("id");
         String type = reader.getAttribute("type");
         String frames = reader.getAttribute("frames");
-        String attribute = reader.getAttribute("can-interact");
 
         reader.moveDown();
 
@@ -73,7 +71,6 @@ public class SpriteConverter implements Converter {
             sprite = new StandingNpc(id, new Point(x, y), Facing.valueOf(facing));
         }
         sprite.setFramesImage(frames);
-        sprite.setCanInteract(Boolean.valueOf(attribute));
 
         sprite.setVisible(isVisible);
         sprite.setSolid(isSolid);
