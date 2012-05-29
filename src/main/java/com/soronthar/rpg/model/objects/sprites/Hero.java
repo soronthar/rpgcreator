@@ -19,4 +19,8 @@ public class Hero extends Sprite {
     public void move() {
         super.move();
     }
+
+    public void stop() {
+        this.setSpeed(0,0);
+    }
 }

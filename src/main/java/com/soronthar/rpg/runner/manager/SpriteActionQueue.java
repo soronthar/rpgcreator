@@ -15,7 +15,7 @@ public class SpriteActionQueue {
         queue.addAll(actions);
     }
 
-    public void executeAction(GameManager gameManager) {
+    public void executeAction(GameEngine gameManager) {
         if (this.currentAction == null || this.currentAction.isFinished()) {
             this.currentAction = queue.poll();
         }

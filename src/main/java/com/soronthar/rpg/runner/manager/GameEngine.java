@@ -4,7 +4,6 @@ package com.soronthar.rpg.runner.manager;
 import com.soronthar.rpg.model.objects.sprites.StandingNpc;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.scenery.Scenery;
-import com.soronthar.rpg.model.tiles.Tile;
 import com.soronthar.rpg.runner.GameAction;
 
 import javax.swing.*;
@@ -16,24 +15,22 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.reflect.InvocationTargetException;
 
-public class GameManager implements InputController {
+public class GameEngine {
     private ScreenManager screenManager;
-    private GameAction moveLeft;
-    private GameAction moveRight;
-    private GameAction moveUp;
-    private GameAction moveDown;
-    private GameAction action;
+
 
     private boolean isRunning = true;
     private JFrame frame;
     private static final int DELAY = 100;
-    public static final int STEP_SIZE = Tile.TILE_SIZE / 2;
     private final MapManager mapManager;
     private Project project;
+
+    private HeroMovementManager heroMovementManager;
+    private GameAction action;
     private InputManager inputManager;
 
 
-    public GameManager(Project project) {
+    public GameEngine(Project project) {
         this.project = project;
         screenManager = new ScreenManager();
         mapManager = new MapManager(project.getSceneries());
@@ -46,35 +43,23 @@ public class GameManager implements InputController {
         });
         mapManager.init();
 
+        heroMovementManager = new HeroMovementManager(mapManager);
         createAndInitializeFrame();
         initializeInputManager();
+
     }
 
     private void initializeInputManager() {
-        moveLeft = new GameAction("moveLeft");
-        moveRight = new GameAction("moveRight");
-        moveUp = new GameAction("moveUp");
-        moveDown = new GameAction("moveDown");
         action = new GameAction("action", GameAction.DETECT_INITAL_PRESS_ONLY);
 
-        frame.setFocusTraversalKeysEnabled(false);// allow input of keys normally used for focus traversal
-
-
         inputManager = new InputManager();
-        inputManager.mapToKey(moveLeft, KeyEvent.VK_LEFT);
-        inputManager.mapToKey(moveRight, KeyEvent.VK_RIGHT);
-        inputManager.mapToKey(moveDown, KeyEvent.VK_DOWN);
-        inputManager.mapToKey(moveUp, KeyEvent.VK_UP);
+        inputManager.addMaps(heroMovementManager.getInputManager());
         inputManager.mapToKey(action, KeyEvent.VK_SPACE);
 
+
         frame.addKeyListener(inputManager);
-
     }
 
-    @Override
-    public InputManager getInputManager() {
-        return inputManager;
-    }
 
     private void createAndInitializeFrame() {
         frame = new JFrame();
@@ -83,17 +68,18 @@ public class GameManager implements InputController {
         frame.add(screenManager);
         frame.pack();
         frame.setVisible(true);
+        frame.setFocusTraversalKeysEnabled(false);// allow input of keys normally used for focus traversal
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 isRunning = false;
             }
         });
+        initializeDoubleBuffering();
     }
 
 
     public void executeMainLoop() {
-        initializeDoubleBuffering();
 
         try {
             mailLoop();
@@ -164,9 +150,7 @@ public class GameManager implements InputController {
 
     private void checkInput() {
         checkAction();
-        if (!actionQueue.isActive()) {
-            checkMovementKeys();
-        }
+        heroMovementManager.checkMovementKeys();
     }
 
     private SpriteActionQueue actionQueue = new SpriteActionQueue();
@@ -174,41 +158,28 @@ public class GameManager implements InputController {
 
     private void checkAction() {
         if (action.isPressed()) {
+
             if (mapManager.isHeroFacingActiveNPC()) {
+                inputManager.resetAllGameActions();
+                heroMovementManager.stopHero();
+                inputManager.removeAll(heroMovementManager.getInputManager());
 
                 StandingNpc npc = mapManager.getNPCToInteract();
                 if (!flag) {
                     actionQueue.setActions(npc.getActions());
-                    flag=true;
+                    flag = true;
                 }
 
                 actionQueue.executeAction(this);
 
                 if (!actionQueue.isActive()) {
                     flag = false;
+                    inputManager.addMaps(heroMovementManager.getInputManager());
                 }
             }
         }
     }
 
-    private void checkMovementKeys() {
-        int speedX = 0;
-        int speedY = 0;
-        if (moveLeft.isPressed()) {
-            speedX -= STEP_SIZE;
-        }
-        if (moveRight.isPressed()) {
-            speedX += STEP_SIZE;
-        }
-        if (moveUp.isPressed()) {
-            speedY -= STEP_SIZE;
-        }
-        if (moveDown.isPressed()) {
-            speedY += STEP_SIZE;
-        }
-
-        mapManager.getHero().setSpeed(speedX, speedY);
-    }
 
     private void updateMap(long elapsedTime) {
         mapManager.update(elapsedTime);

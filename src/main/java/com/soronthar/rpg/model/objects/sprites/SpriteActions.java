@@ -1,7 +1,7 @@
 package com.soronthar.rpg.model.objects.sprites;
 
 
-import com.soronthar.rpg.runner.manager.GameManager;
+import com.soronthar.rpg.runner.manager.GameEngine;
 import com.soronthar.rpg.runner.manager.ScreenManager;
 import com.soronthar.rpg.runner.manager.SpriteActionQueue;
 
@@ -13,7 +13,7 @@ public class SpriteActions extends ArrayList<SpriteActions.SpriteAction> {
      * Marker interface
      */
     public static interface SpriteAction {
-        void execute(GameManager gameManager, SpriteActionQueue actionQueue);
+        void execute(GameEngine gameManager, SpriteActionQueue actionQueue);
 
         boolean isFinished();
     }
@@ -37,7 +37,7 @@ public class SpriteActions extends ArrayList<SpriteActions.SpriteAction> {
         }
 
         @Override
-        public void execute(GameManager gameManager, SpriteActionQueue actionQueue) {
+        public void execute(GameEngine gameManager, SpriteActionQueue actionQueue) {
             this.screenManager = gameManager.getScreenManager();
 //            gameManager.giveInputControlTo(screenManager);
             if (screenManager.isShowingDialog()) {

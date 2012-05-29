@@ -122,4 +122,24 @@ public class InputManager implements KeyListener {
         // make sure the key isn't processed for anything else
         e.consume();
     }
+
+    public void addMaps(InputManager inputManager) {
+        GameAction[] actions = inputManager.keyActions;
+        for (int i = 0; i < actions.length; i++) {
+            GameAction gameAction = actions[i];
+            if (gameAction!=null) {
+                this.keyActions[i]=gameAction;
+            }
+        }
+    }
+
+    public void removeAll(InputManager inputManager) {
+        GameAction[] actions = inputManager.keyActions;
+        for (int i = 0; i < actions.length; i++) {
+            GameAction gameAction = actions[i];
+            if (gameAction!=null) {
+                this.keyActions[i]=null;
+            }
+        }
+    }
 }

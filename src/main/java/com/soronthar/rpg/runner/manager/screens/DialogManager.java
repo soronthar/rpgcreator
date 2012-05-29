@@ -1,4 +1,4 @@
-package com.soronthar.rpg.runner.manager;
+package com.soronthar.rpg.runner.manager.screens;
 
 
 import org.soronthar.util.StringUtils;
