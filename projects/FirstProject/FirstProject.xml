@@ -558,17 +558,20 @@ at org.apache.jsp.inspections.maintenance.writepropertyinsp_jsp._jspService(writ
 at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
 at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
 at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:369)
-at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:322)
-at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:249)
-at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
-at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290)
-at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
-at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:638)
-at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:444)
-at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:382)
-at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:310)
-at org.apache.struts.action.RequestProcessor.doForward(RequestProcessor.java:1069)
 at</show-text>
+<show-text>Again, this is a big text file that will be displayed at the sign, with some lenght.
+Here goes the Java stacktrace that is long and wide:
+java.lang.NullPointerException
+at com.consisint.acsele.template.server.TransformadorFila.hasParentValue(TransformadorFila.java:435)
+at com.consisint.acsele.template.api.Property.listTransformers(Property.java:224)
+at org.apache.jsp.inspections.maintenance.writepropertyinsp_jsp.evaluateParentChild(writepropertyinsp_jsp.java:109)
+at org.apache.jsp.inspections.maintenance.writepropertyinsp_jsp.fillDependsFatherChilds(writepropertyinsp_jsp.java:52)
+at org.apache.jsp.inspections.maintenance.writepropertyinsp_jsp._jspService(writepropertyinsp_jsp.java:272)
+at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+at javax.servlet.http.HttpServlet.service(HttpServlet.java:717)
+at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:369)
+at</show-text>
+                    <show-text>Wow, that was long, wasn't it?</show-text>
                 </on-action>
             </special>
             <special id="Sprite-0" solid="true" visible="true" type="mob" frames="miscsprite.png">

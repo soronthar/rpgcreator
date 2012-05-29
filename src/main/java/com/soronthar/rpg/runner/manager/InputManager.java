@@ -2,7 +2,6 @@ package com.soronthar.rpg.runner.manager;
 
 import com.soronthar.rpg.runner.GameAction;
 
-import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -22,20 +21,6 @@ public class InputManager implements KeyListener {
 
     private GameAction[] keyActions =
             new GameAction[NUM_KEY_CODES];
-
-    /**
-     * Creates a new InputManager that listens to input from the
-     * specified component.
-     */
-    public InputManager(JFrame comp) {
-        comp.addKeyListener(this);
-
-        // allow input of the TAB key and other keys normally
-        // used for focus traversal
-        comp.setFocusTraversalKeysEnabled(false);
-
-    }
-
 
     /**
      * Maps a GameAction to a specific key. The key codes are

@@ -16,7 +16,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.reflect.InvocationTargetException;
 
-public class GameManager {
+public class GameManager implements InputController {
     private ScreenManager screenManager;
     private GameAction moveLeft;
     private GameAction moveRight;
@@ -30,6 +30,7 @@ public class GameManager {
     public static final int STEP_SIZE = Tile.TILE_SIZE / 2;
     private final MapManager mapManager;
     private Project project;
+    private InputManager inputManager;
 
 
     public GameManager(Project project) {
@@ -55,12 +56,24 @@ public class GameManager {
         moveUp = new GameAction("moveUp");
         moveDown = new GameAction("moveDown");
         action = new GameAction("action", GameAction.DETECT_INITAL_PRESS_ONLY);
-        InputManager inputManager = new InputManager(frame);
+
+        frame.setFocusTraversalKeysEnabled(false);// allow input of keys normally used for focus traversal
+
+
+        inputManager = new InputManager();
         inputManager.mapToKey(moveLeft, KeyEvent.VK_LEFT);
         inputManager.mapToKey(moveRight, KeyEvent.VK_RIGHT);
         inputManager.mapToKey(moveDown, KeyEvent.VK_DOWN);
         inputManager.mapToKey(moveUp, KeyEvent.VK_UP);
         inputManager.mapToKey(action, KeyEvent.VK_SPACE);
+
+        frame.addKeyListener(inputManager);
+
+    }
+
+    @Override
+    public InputManager getInputManager() {
+        return inputManager;
     }
 
     private void createAndInitializeFrame() {
@@ -151,21 +164,28 @@ public class GameManager {
 
     private void checkInput() {
         checkAction();
-        if (!screenManager.isShowingDialog()) {
+        if (!actionQueue.isActive()) {
             checkMovementKeys();
         }
     }
 
+    private SpriteActionQueue actionQueue = new SpriteActionQueue();
+    private boolean flag = false;
+
     private void checkAction() {
-        if (action.isPressed()) {//TODO: delegate the key capture to the component being displayed.
-            if (screenManager.isShowingDialog()) {
-                screenManager.advanceDialog();
-            } else {
-                if (mapManager.isHeroFacingActiveNPC()) {
-                    mapManager.getHero().setSpeed(0, 0);
-                    StandingNpc npc = mapManager.getNPCToInteract();
-                    Scenery scenery = mapManager.getActiveScenery();
-                    screenManager.showDialogFor(project, scenery, npc);
+        if (action.isPressed()) {
+            if (mapManager.isHeroFacingActiveNPC()) {
+
+                StandingNpc npc = mapManager.getNPCToInteract();
+                if (!flag) {
+                    actionQueue.setActions(npc.getActions());
+                    flag=true;
+                }
+
+                actionQueue.executeAction(this);
+
+                if (!actionQueue.isActive()) {
+                    flag = false;
                 }
             }
         }
@@ -193,4 +213,9 @@ public class GameManager {
     private void updateMap(long elapsedTime) {
         mapManager.update(elapsedTime);
     }
+
+    public ScreenManager getScreenManager() {
+        return screenManager;
+    }
+
 }

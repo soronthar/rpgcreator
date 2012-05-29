@@ -94,7 +94,7 @@ public class DialogManager {
     }
 
     public boolean isFinished() {
-        return currentLine + linesToShow > linesToDraw.size();
+        return currentLine >= linesToDraw.size();
     }
 
     public void advance() {

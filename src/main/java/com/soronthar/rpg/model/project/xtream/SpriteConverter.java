@@ -75,14 +75,12 @@ public class SpriteConverter implements Converter {
         while (reader.hasMoreChildren()) {
             reader.moveDown();
             if (reader.getNodeName().equals(ON_ACTION)) {
-                SpriteActions actions=new SpriteActions();
                 while (reader.hasMoreChildren()) {
                     reader.moveDown();
                     if (reader.getNodeName().equals(ACTION_SHOW_TEXT)) {
-                        actions.add(new SpriteActions.ShowText(reader.getValue()));
+                        sprite.getActions().add(new SpriteActions.ShowText(reader.getValue()));
                     }
                     reader.moveUp();
-                    sprite.setActions(actions);
                 }
             }
             reader.moveUp();

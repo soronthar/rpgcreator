@@ -19,6 +19,7 @@
                 <location x="4" y="0" facing="LEFT"/>
                 <on-action>
                     <show-text>text</show-text>
+                    <show-text>text2</show-text>
                 </on-action>
             </special>
             <special id="notsolid" solid="false" visible="true" type="npc" frames="">

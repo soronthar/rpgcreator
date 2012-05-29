@@ -2,20 +2,19 @@ package com.soronthar.rpg.runner.manager;
 
 import com.soronthar.rpg.model.objects.sprites.Hero;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
-import com.soronthar.rpg.model.objects.sprites.SpriteActions;
-import com.soronthar.rpg.model.objects.sprites.StandingNpc;
-import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.scenery.Scenery;
 import com.soronthar.rpg.model.tiles.Tile;
 import com.soronthar.rpg.model.tiles.TileSetBag;
 import com.soronthar.rpg.model.tiles.TileSetBagPersister;
+import com.soronthar.rpg.runner.GameAction;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-public class ScreenManager extends Canvas {
+public class ScreenManager extends Canvas implements InputController {
     private BufferedImage[] layers;
 
     private Rectangle viewPortBounds;
@@ -23,14 +22,21 @@ public class ScreenManager extends Canvas {
     private Point relativeCenter;
     private Dimension imageSize;
     public static final TileSetBag TILE_SETS = new TileSetBagPersister().loadTilesets();
-    private boolean showDialog = false;
     private DialogManager dialog;
+    private InputManager inputManager;
 
 
     public ScreenManager() {
         //Ignore repaints and focus so we are in complete control over the rendering
         this.setIgnoreRepaint(true);
         this.setFocusable(false);
+        inputManager=new InputManager();
+        inputManager.mapToKey(new GameAction("Avance Dialog"), KeyEvent.VK_SPACE);
+    }
+
+    @Override
+    public InputManager getInputManager() {
+        return this.inputManager;
     }
 
     public void setScenery(Scenery scenery) {
@@ -79,7 +85,7 @@ public class ScreenManager extends Canvas {
 
         g.drawImage(getImage(4), 0, 0, null);
 
-        if (showDialog) {
+        if (isShowingDialog()) {
             showTextDialog(g);
         }
 
@@ -130,23 +136,18 @@ public class ScreenManager extends Canvas {
     }
 
     public boolean isShowingDialog() {
-        return showDialog;
+        return this.dialog!=null && !this.dialog.isFinished();
     }
 
     public void advanceDialog() {
         if (dialog.isFinished()) {
-            this.showDialog = false;
             this.dialog = null;
         } else {
             dialog.advance();
         }
     }
 
-    public void showDialogFor(Project project, Scenery scenery, StandingNpc npc) {
-        SpriteActions.SpriteAction next = npc.getActions().iterator().next();
-
-        this.dialog = new DialogManager(((SpriteActions.ShowText) next).getText(), this.viewPort, this.getGraphics().getFontMetrics());
-//        this.dialog = new DialogManager("projects/"+project.getName()+"/scenery/"+scenery.getId() + "/" + npc.getId(), this.viewPort, this.getGraphics().getFontMetrics());
-        this.showDialog = true;
+    public void showDialog(String text) {
+        this.dialog = new DialogManager(text, this.viewPort, this.getGraphics().getFontMetrics());
     }
 }
