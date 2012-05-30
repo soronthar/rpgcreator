@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="gdx-backend-jogl">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/gdx-backend-jogl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gdx.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/gdx-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
