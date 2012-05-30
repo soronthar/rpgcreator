@@ -4,7 +4,7 @@ import com.soronthar.rpg.model.objects.sprites.Hero;
 import com.soronthar.rpg.model.objects.sprites.Sprite;
 import com.soronthar.rpg.model.scenery.Scenery;
 import com.soronthar.rpg.model.tiles.Tile;
-import com.soronthar.rpg.runner.manager.screens.DialogManager;
+import com.soronthar.rpg.runner.manager.screens.DialogScreenManager;
 import com.soronthar.rpg.runner.manager.screens.MapScreenManager;
 
 import java.awt.*;
@@ -16,15 +16,13 @@ public class ScreenManager extends Canvas {
     private Rectangle viewPortBounds;
     private Rectangle viewPort;
     private Point relativeCenter;
-    private DialogManager dialog;
-    private MapScreenManager mapScreenManager=new MapScreenManager();
-
+    private MapScreenManager mapScreenManager = new MapScreenManager();
+    private DialogScreenManager dialogScreenManager = new DialogScreenManager();
 
     public ScreenManager() {
         //Ignore repaints and focus so we are in complete control over the rendering
         this.setIgnoreRepaint(true);
         this.setFocusable(false);
-
     }
 
     //TODO: make the runner to draw the sceneries on a fixed size, filling up with "black" squares
@@ -32,7 +30,7 @@ public class ScreenManager extends Canvas {
         mapScreenManager.setScenery(scenery);
 
         Dimension imageSize = mapScreenManager.getImageSize();
-        Dimension dimension=mapScreenManager.getDimension();
+        Dimension dimension = mapScreenManager.getDimension();
 
         Dimension viewSize = new Dimension(dimension.width, dimension.height);
         this.setPreferredSize(viewSize);
@@ -44,26 +42,18 @@ public class ScreenManager extends Canvas {
     }
 
 
-
     public void paint(Hero player, List<Sprite> sprites) {
         centerAround(player.getLocation());
 
         BufferStrategy bufferStrategy = getBufferStrategy();
         Graphics g = bufferStrategy.getDrawGraphics();
-        mapScreenManager.paint(g,viewPort,player,sprites);
 
-
-        if (isShowingDialog()) {
-            showTextDialog(g);
-        }
-
+        mapScreenManager.paint(g, viewPort, player, sprites);
+        dialogScreenManager.paint(g);
         g.dispose();
         bufferStrategy.show();
     }
 
-    private void showTextDialog(Graphics g) {
-        this.dialog.paint(g);
-    }
 
     /**
      * StepBits are used to work on "tiles" instead of pixels. The calculations are more precise that way
@@ -92,19 +82,15 @@ public class ScreenManager extends Canvas {
         return newPosition;
     }
 
-    public boolean isShowingDialog() {
-        return this.dialog!=null && !this.dialog.isFinished();
-    }
-
     public void advanceDialog() {
-        if (dialog.isFinished()) {
-            this.dialog = null;
-        } else {
-            dialog.advance();
-        }
+        this.dialogScreenManager.advanceDialog();
     }
 
     public void showDialog(String text) {
-        this.dialog = new DialogManager(text, this.viewPort, this.getGraphics().getFontMetrics());
+        this.dialogScreenManager.showDialog(text, this.viewPort, this.getGraphics().getFontMetrics());
+    }
+
+    public boolean isShowingDialog() {
+        return this.dialogScreenManager.isShowingDialog();
     }
 }
