@@ -3,10 +3,14 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/gdx-backend-jogl.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/gdx.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gdx-openal.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gdx-natives.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gdx-backend-jogl-natives.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/lib/gdx-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gdx-backend-jogl-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

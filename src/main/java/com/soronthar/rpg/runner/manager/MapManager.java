@@ -19,7 +19,7 @@ import java.util.List;
 
 public class MapManager {
     public static final String SCENERY = "scenery";
-    Hero hero;
+    Hero hero=new Hero(new Point(0,0));
     List<Sprite> sprites = new ArrayList<Sprite>(); //TODO: Sprites are being registered in the list and in the map
     SpecialsPerPoint specialsPerPoint = new SpecialsPerPoint();
     PropertyChangeSupport pcs = new PropertyChangeSupport(this);
@@ -46,7 +46,7 @@ public class MapManager {
         this.specialsPerPoint.clear();
 
         screenBounds = new Rectangle(activeScenery.getWidth() - Tile.TILE_SIZE, activeScenery.getHeight() - Tile.TILE_SIZE);
-        this.hero = new Hero(activeScenery.getHeroStartingPoint());
+        this.hero.setLocation(activeScenery.getHeroStartingPoint());
         for (Sprite sprite : activeScenery.getSprites()) {
             this.sprites.add(sprite);
             this.specialsPerPoint.add(sprite.getLocation(), sprite);

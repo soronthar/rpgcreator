@@ -129,6 +129,10 @@ public class Sprite extends SpecialObject {
     public void setSpeed(int dx, int dy) {
         movementStrategy.setSpeed(dx, dy);
     }
+    
+    public Point getSpeed() {
+        return new Point(movementStrategy.getDx(),movementStrategy.getDy());
+    }
 
     public void update(long elapsedTime) {
         determineFacing();

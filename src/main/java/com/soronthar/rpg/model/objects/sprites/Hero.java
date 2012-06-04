@@ -6,6 +6,8 @@ import com.soronthar.rpg.model.objects.sprites.movement.BaseMovementStrategy;
 import java.awt.*;
 
 public class Hero extends Sprite {
+    private Object speed;
+
     public Hero(Point location) {
         super("hero", location);
         setFrameStrategy(new WholeImageFrameStrategy("hero.png"));
@@ -23,4 +25,5 @@ public class Hero extends Sprite {
     public void stop() {
         this.setSpeed(0,0);
     }
+
 }

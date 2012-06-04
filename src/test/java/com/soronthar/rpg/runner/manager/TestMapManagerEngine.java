@@ -101,7 +101,7 @@ public class TestMapManagerEngine extends BaseMapManagerTest {
         assertEquals(2, listener.getTimesCalled());
         Scenery secondScenery = manager.getScenery(2);
         Hero secondHero = manager.getHero();
-        assertNotSame(hero, secondHero);
+        assertSame(hero, secondHero);
         assertEquals(secondScenery, manager.getActiveScenery());
         assertEquals(secondScenery, listener.getLastNewValue());
         assertEquals(secondScenery.getHeroStartingPoint(), secondHero.getLocation());
