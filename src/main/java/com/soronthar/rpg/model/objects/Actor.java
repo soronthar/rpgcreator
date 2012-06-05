@@ -2,12 +2,12 @@ package com.soronthar.rpg.model.objects;
 
 import java.awt.*;
 
-public abstract class SpecialObject {
+public abstract class Actor {
     protected Point location;
     private boolean solid = true;
     private boolean visible = true;
 
-    public SpecialObject(Point location) {
+    public Actor(Point location) {
         this.location = location;
     }
 

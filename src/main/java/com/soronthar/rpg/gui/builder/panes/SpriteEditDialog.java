@@ -1,9 +1,9 @@
 package com.soronthar.rpg.gui.builder.panes;
 
 import com.soronthar.rpg.gui.builder.Controller;
-import com.soronthar.rpg.model.objects.sprites.MobNpc;
-import com.soronthar.rpg.model.objects.sprites.Sprite;
-import com.soronthar.rpg.model.objects.sprites.StandingNpc;
+import com.soronthar.rpg.model.objects.actors.MobNpc;
+import com.soronthar.rpg.model.objects.actors.Sprite;
+import com.soronthar.rpg.model.objects.actors.StandingNpc;
 import com.soronthar.rpg.model.scenery.Scenery;
 
 import javax.swing.*;

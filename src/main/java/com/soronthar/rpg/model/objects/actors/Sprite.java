@@ -1,18 +1,18 @@
-package com.soronthar.rpg.model.objects.sprites;
+package com.soronthar.rpg.model.objects.actors;
 
 import com.soronthar.rpg.Utils;
-import com.soronthar.rpg.model.objects.SpecialObject;
-import com.soronthar.rpg.model.objects.sprites.frames.FrameStrategy;
-import com.soronthar.rpg.model.objects.sprites.frames.NullFrameStrategy;
-import com.soronthar.rpg.model.objects.sprites.frames.WholeImageFrameStrategy;
-import com.soronthar.rpg.model.objects.sprites.movement.MovementStrategy;
+import com.soronthar.rpg.model.objects.Actor;
+import com.soronthar.rpg.model.objects.actors.frames.FrameStrategy;
+import com.soronthar.rpg.model.objects.actors.frames.NullFrameStrategy;
+import com.soronthar.rpg.model.objects.actors.frames.WholeImageFrameStrategy;
+import com.soronthar.rpg.model.objects.actors.movement.MovementStrategy;
 import com.soronthar.rpg.model.tiles.Tile;
 import org.soronthar.util.StringUtils;
 
 import java.awt.*;
 
 
-public class Sprite extends SpecialObject {
+public class Sprite extends Actor {
     private String id;
     private FrameStrategy strategy = new NullFrameStrategy();
     private MovementStrategy movementStrategy = MovementStrategy.NO_MOVE;
@@ -60,7 +60,7 @@ public class Sprite extends SpecialObject {
         this.strategy = strategy;
     }
 
-    protected FrameStrategy getFrameStrategy() {
+    public FrameStrategy getFrameStrategy() {
         return this.strategy;
     }
 

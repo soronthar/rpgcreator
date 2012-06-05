@@ -1,4 +1,4 @@
-package com.soronthar.rpg.model.objects.sprites.movement;
+package com.soronthar.rpg.model.objects.actors.movement;
 
 import java.awt.*;
 

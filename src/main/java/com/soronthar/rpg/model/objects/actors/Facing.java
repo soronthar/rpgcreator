@@ -1,4 +1,4 @@
-package com.soronthar.rpg.model.objects.sprites;
+package com.soronthar.rpg.model.objects.actors;
 
 public enum Facing {
     UP(Axis.X, 0), DOWN(Axis.X, 1), LEFT(Axis.Y, 2), RIGHT(Axis.Y, 3);

@@ -1,6 +1,6 @@
-package com.soronthar.rpg.model.objects.sprites;
+package com.soronthar.rpg.model.objects.actors;
 
-import com.soronthar.rpg.model.objects.sprites.movement.DefaultMovementStrategy;
+import com.soronthar.rpg.model.objects.actors.movement.DefaultMovementStrategy;
 
 import java.awt.*;
 

@@ -1,7 +1,7 @@
-package com.soronthar.rpg.model.objects.sprites;
+package com.soronthar.rpg.model.objects.actors;
 
-import com.soronthar.rpg.model.objects.sprites.frames.WholeImageFrameStrategy;
-import com.soronthar.rpg.model.objects.sprites.movement.BaseMovementStrategy;
+import com.soronthar.rpg.model.objects.actors.frames.WholeImageFrameStrategy;
+import com.soronthar.rpg.model.objects.actors.movement.BaseMovementStrategy;
 
 import java.awt.*;
 

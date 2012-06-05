@@ -2,8 +2,8 @@ package com.soronthar.rpg.gui.builder.panes;
 
 import com.soronthar.rpg.gui.builder.Controller;
 import com.soronthar.rpg.model.JumpPoint;
-import com.soronthar.rpg.model.objects.SpecialObject;
-import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.Actor;
+import com.soronthar.rpg.model.objects.actors.Sprite;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
@@ -24,7 +24,7 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
         final Point point = normalizePointToTile(e.getPoint());
 
         if (SwingUtilities.isMiddleMouseButton(e) || (SwingUtilities.isLeftMouseButton(e) && e.isControlDown())) {
-            final SpecialObject specialObject = controller.getModel().getActiveScenery().getSpecialAt(point);
+            final Actor specialObject = controller.getModel().getActiveScenery().getSpecialAt(point);
             if (specialObject instanceof JumpPoint) {
                 final JDialog dialog = new JumpPointEditDialog((JumpPoint) specialObject,point,controller);
                 dialog.setVisible(true);

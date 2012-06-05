@@ -1,7 +1,7 @@
 package com.soronthar.rpg.model;
 
-import com.soronthar.rpg.model.objects.SpecialObject;
-import com.soronthar.rpg.model.objects.sprites.*;
+import com.soronthar.rpg.model.objects.Actor;
+import com.soronthar.rpg.model.objects.actors.*;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.project.ProjectPersister;
 import com.soronthar.rpg.model.scenery.DrawnTile;
@@ -168,7 +168,7 @@ public class TestProjectXtreamPersister extends TestCase {
         assertFalse(sprite.canInteract());
         assertTrue(sprite.getActions().isEmpty());
 
-        SpecialObject specialAt = scenery.getSpecialAt(sprite.getLocation());
+        Actor specialAt = scenery.getSpecialAt(sprite.getLocation());
         assertEquals(sprite, specialAt);
 
         sprite = sprites.get("alltrue");

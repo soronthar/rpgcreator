@@ -1,7 +1,7 @@
-package com.soronthar.rpg.model.objects.sprites.movement;
+package com.soronthar.rpg.model.objects.actors.movement;
 
-import com.soronthar.rpg.model.objects.sprites.Facing;
-import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.actors.Facing;
+import com.soronthar.rpg.model.objects.actors.Sprite;
 
 import java.awt.*;
 

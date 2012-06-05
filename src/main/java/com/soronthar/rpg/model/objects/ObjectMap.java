@@ -1,10 +1,12 @@
 package com.soronthar.rpg.model.objects;
 
 import com.soronthar.rpg.model.JumpPoint;
-import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.actors.Sprite;
 
 import java.awt.*;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ObjectMap {
     private Map<Point, Sprite> spritesByPoint = new HashMap<Point, Sprite>();
@@ -14,7 +16,7 @@ public class ObjectMap {
     private Map<Point, Obstacle> obstacles = new HashMap<Point, Obstacle>();
 
 
-    public void add(SpecialObject specialObject) {
+    public void add(Actor specialObject) {
         if (specialObject instanceof JumpPoint) {
             this.jumpPoints.put(specialObject.getLocation(), (JumpPoint) specialObject);
         } else if (specialObject instanceof Obstacle) {
@@ -49,8 +51,8 @@ public class ObjectMap {
     }
 
 
-    public SpecialObject getObjectAt(Point point) {
-        SpecialObject object = jumpPoints.get(point);
+    public Actor getObjectAt(Point point) {
+        Actor object = jumpPoints.get(point);
         if (object == null) {
             object = obstacles.get(point);
             if (object == null) {

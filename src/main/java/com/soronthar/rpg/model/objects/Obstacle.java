@@ -3,7 +3,7 @@ package com.soronthar.rpg.model.objects;
 
 import java.awt.*;
 
-public class Obstacle extends SpecialObject {
+public class Obstacle extends Actor {
 
 
     public Obstacle(Point location) {

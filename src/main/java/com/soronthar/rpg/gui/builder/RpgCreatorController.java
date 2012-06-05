@@ -3,7 +3,7 @@ package com.soronthar.rpg.gui.builder;
 import com.soronthar.rpg.gui.builder.actions.ActionsManager;
 import com.soronthar.rpg.gui.builder.components.scenery.SceneryTree;
 import com.soronthar.rpg.model.JumpPoint;
-import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.actors.Sprite;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.project.ProjectPersister;
 import com.soronthar.rpg.model.scenery.*;

@@ -1,7 +1,7 @@
 package com.soronthar.rpg.model.project.xtream;
 
 import com.soronthar.rpg.model.JumpPoint;
-import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.actors.Sprite;
 import com.soronthar.rpg.model.scenery.DrawnTile;
 import com.soronthar.rpg.model.scenery.Scenery;
 import com.thoughtworks.xstream.converters.Converter;

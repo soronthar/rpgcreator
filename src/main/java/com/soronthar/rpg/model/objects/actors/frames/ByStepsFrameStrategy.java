@@ -1,6 +1,6 @@
-package com.soronthar.rpg.model.objects.sprites.frames;
+package com.soronthar.rpg.model.objects.actors.frames;
 
-import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.actors.Sprite;
 
 import java.awt.*;
 

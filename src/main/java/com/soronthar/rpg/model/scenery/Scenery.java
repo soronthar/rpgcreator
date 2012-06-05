@@ -2,10 +2,10 @@ package com.soronthar.rpg.model.scenery;
 
 import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.model.JumpPoint;
+import com.soronthar.rpg.model.objects.Actor;
 import com.soronthar.rpg.model.objects.ObjectMap;
 import com.soronthar.rpg.model.objects.Obstacle;
-import com.soronthar.rpg.model.objects.SpecialObject;
-import com.soronthar.rpg.model.objects.sprites.Sprite;
+import com.soronthar.rpg.model.objects.actors.Sprite;
 import com.soronthar.rpg.model.tiles.Tile;
 import org.soronthar.geom.Dimension;
 
@@ -139,7 +139,7 @@ public class Scenery implements Serializable {
         objects.removeObjectAt(point);
     }
 
-    public SpecialObject getSpecialAt(Point point) {
+    public Actor getSpecialAt(Point point) {
         return objects.getObjectAt(point);
     }
 

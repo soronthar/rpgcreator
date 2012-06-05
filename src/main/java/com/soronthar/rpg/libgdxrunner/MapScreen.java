@@ -9,8 +9,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.soronthar.rpg.libgdxrunner.actors.Hero;
+import com.soronthar.rpg.libgdxrunner.actors.HeroActor;
 import com.soronthar.rpg.libgdxrunner.actors.ObstacleActor;
+import com.soronthar.rpg.model.objects.actors.Hero;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.project.ProjectPersister;
 import com.soronthar.rpg.model.scenery.DrawnTile;
@@ -30,7 +31,7 @@ public class MapScreen implements Screen {
     private Texture textureL;
     private Texture textureH;
     private Stage stage;
-    private Hero actor;
+    private HeroActor actor;
     private final FPSLogger log = new FPSLogger();
 
 
@@ -74,7 +75,8 @@ public class MapScreen implements Screen {
         int width = Gdx.graphics.getWidth();
         stage = new Stage(width, height, true);
         stage.getCamera().position.set(heroPos.x, heroPos.y, 0);
-        actor = new Hero(heroPos);
+        actor = new HeroActor(new Hero(heroPos));
+
         Collection<Point> obstacles = scenery.getObstacles();
         Group group = new Group("obstacles");
         Iterator<Point> iterator = obstacles.iterator();

@@ -11,10 +11,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.soronthar.rpg.libgdxrunner.LibGdxRunner;
+import com.soronthar.rpg.model.objects.actors.Hero;
+import com.soronthar.rpg.model.objects.actors.frames.FrameStrategy;
 
-public class Hero extends Image implements InputProcessor {
+public class HeroActor extends Actor implements InputProcessor {
     private ShapeRenderer heroRenderer = new ShapeRenderer();
     public static final double DELAY = 0.1;
     public static final int STEP = 16;
@@ -27,17 +28,8 @@ public class Hero extends Image implements InputProcessor {
 
     float tick;
     private BitmapFont font;
-    private final Texture spriteSheet;
     private final TextureRegion[][] split;
-
-    public Hero(java.awt.Point heroPos) {
-        this.x = heroPos.x;
-        this.y = heroPos.y;
-        font = new BitmapFont();
-        spriteSheet = new Texture(Gdx.files.internal("resources/sprites/herop2.png"));
-        split = TextureRegion.split(spriteSheet, 32, 32);
-
-    }
+    private FrameStrategy frameStrategy;
 
     @Override
     public void act(float delta) {
@@ -72,6 +64,16 @@ public class Hero extends Image implements InputProcessor {
         } else {
             tick += delta;
         }
+    }
+
+    public HeroActor(Hero hero) {
+        this.x = hero.getLocation().x;
+        this.y = hero.getLocation().y;
+        font = new BitmapFont();
+        Texture spriteSheet = new Texture(Gdx.files.internal("resources/sprites/herop2.png"));
+        split = TextureRegion.split(spriteSheet, 32, 32);
+        this.frameStrategy=hero.getFrameStrategy();
+
     }
 
     @Override

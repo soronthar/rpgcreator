@@ -1,6 +1,6 @@
 package com.soronthar.rpg;
 
-import com.soronthar.rpg.model.objects.sprites.Facing;
+import com.soronthar.rpg.model.objects.actors.Facing;
 import com.soronthar.rpg.model.tiles.Tile;
 import org.soronthar.geom.Dimension;
 import org.soronthar.geom.Point;
