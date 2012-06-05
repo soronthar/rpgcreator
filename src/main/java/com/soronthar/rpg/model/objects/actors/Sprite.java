@@ -2,19 +2,14 @@ package com.soronthar.rpg.model.objects.actors;
 
 import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.model.objects.Actor;
-import com.soronthar.rpg.model.objects.actors.frames.FrameStrategy;
-import com.soronthar.rpg.model.objects.actors.frames.NullFrameStrategy;
-import com.soronthar.rpg.model.objects.actors.frames.WholeImageFrameStrategy;
 import com.soronthar.rpg.model.objects.actors.movement.MovementStrategy;
 import com.soronthar.rpg.model.tiles.Tile;
-import org.soronthar.util.StringUtils;
 
 import java.awt.*;
 
 
 public class Sprite extends Actor {
     private String id;
-    private FrameStrategy strategy = new NullFrameStrategy();
     private MovementStrategy movementStrategy = MovementStrategy.NO_MOVE;
 
     private Facing facing = Facing.DOWN;
@@ -46,23 +41,11 @@ public class Sprite extends Actor {
         return facing;
     }
 
-
-    public Image getFrame() {
-        return strategy.getFrame(this);
-    }
-
     public String getId() {
         return id;
     }
 
 
-    protected void setFrameStrategy(FrameStrategy strategy) {
-        this.strategy = strategy;
-    }
-
-    public FrameStrategy getFrameStrategy() {
-        return this.strategy;
-    }
 
     public void setLocation(Point location) {
         this.location = (Point) location.clone();
@@ -174,11 +157,6 @@ public class Sprite extends Actor {
 
     public void setFramesImage(String imageName) {
         this.imageName = imageName;
-        if (StringUtils.isEmptyOrNullValue(imageName)) {
-            setFrameStrategy(new NullFrameStrategy());
-        } else {
-            setFrameStrategy(new WholeImageFrameStrategy(imageName));
-        }
     }
 
     public String getFramesImageName() {

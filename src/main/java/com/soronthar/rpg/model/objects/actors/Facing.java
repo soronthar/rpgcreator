@@ -15,7 +15,7 @@ public enum Facing {
         return this.axis == facing.axis;
     }
 
-    public int getXPosInAnim() {
+    public int index() {
         return xPosInAnim;
     }
 }

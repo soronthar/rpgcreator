@@ -10,8 +10,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.soronthar.rpg.libgdxrunner.actors.HeroActor;
+import com.soronthar.rpg.libgdxrunner.actors.Mob;
 import com.soronthar.rpg.libgdxrunner.actors.ObstacleActor;
 import com.soronthar.rpg.model.objects.actors.Hero;
+import com.soronthar.rpg.model.objects.actors.Sprite;
 import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.project.ProjectPersister;
 import com.soronthar.rpg.model.scenery.DrawnTile;
@@ -44,7 +46,6 @@ public class MapScreen implements Screen {
         spriteBatch.begin();
         spriteBatch.draw(textureL, 0, 0, 0, 0, 1024, 512);
         spriteBatch.end();
-
         stage.act(delta);
         stage.getCamera().position.set(actor.x, actor.y, 0);
         stage.draw();
@@ -53,8 +54,6 @@ public class MapScreen implements Screen {
         spriteBatch.draw(textureH, 0, 0, 0, 0, 1024, 512);
         spriteBatch.end();
         log.log();
-
-
     }
 
 
@@ -78,17 +77,23 @@ public class MapScreen implements Screen {
         actor = new HeroActor(new Hero(heroPos));
 
         Collection<Point> obstacles = scenery.getObstacles();
-        Group group = new Group("obstacles");
+        Group obstaclesGroup = new Group("obstacles");
         Iterator<Point> iterator = obstacles.iterator();
         for (; iterator.hasNext(); ) {
             Point loc = iterator.next();
             loc.setLocation(loc.x, scenery.getHeight() - loc.y);
-            group.addActor(new ObstacleActor(loc));
+            obstaclesGroup.addActor(new ObstacleActor(loc));
         }
 
-        stage.addActor(group);
+        Group mobsGroup=new Group("mobs");
+        Collection<Sprite> sprites = scenery.getSprites();
+        for (Sprite sprite : sprites) {
+            mobsGroup.addActor(new Mob(sprite.getId(), sprite));
+        }
+
+        stage.addActor(mobsGroup);
         stage.addActor(actor);
-        Gdx.input.setInputProcessor(actor);
+        stage.addActor(obstaclesGroup);
     }
 
     private void createTextureForScenery(Scenery scenery) {
