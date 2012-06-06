@@ -163,7 +163,6 @@ public class TestProjectXtreamPersister extends TestCase {
         assertEquals(Facing.DOWN, sprite.getFacing());
         assertFalse(sprite instanceof MobNpc);
         assertFalse(sprite.isSolid());
-        assertFalse(sprite.isMoving());
         assertTrue(sprite.isVisible());
         assertFalse(sprite.canInteract());
         assertTrue(sprite.getActions().isEmpty());
@@ -178,7 +177,6 @@ public class TestProjectXtreamPersister extends TestCase {
         assertEquals("cat.png", sprite.getFramesImageName());
         assertTrue(sprite.isSolid());
         assertTrue(sprite.isVisible());
-        assertTrue(sprite.isMoving());
         assertTrue(sprite.canInteract());
 
         List<SpriteActions.SpriteAction> actions=sprite.getActions();
@@ -197,7 +195,6 @@ public class TestProjectXtreamPersister extends TestCase {
         assertFalse(sprite instanceof MobNpc);
         assertEquals(Facing.DOWN, sprite.getFacing());
         assertTrue(sprite.isSolid());
-        assertFalse(sprite.isMoving());
         assertFalse(sprite.isVisible());
         assertFalse(sprite.canInteract());
         assertTrue(sprite.getActions().isEmpty());
