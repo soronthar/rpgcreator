@@ -34,14 +34,15 @@ public class MobMovementController implements MovementController {
                 facing = 0;
             }
 
-            float oldX = actor.x;
-            float oldY = actor.y;
-            actor.x += dx;
-            actor.y += dy;
+            float newX = actor.x+dx;
+            float newY = actor.y+dy;
 
-            Actor hit = actor.getStage().hit(actor.x, actor.y);
+            Actor hit = actor.getStage().hit(newX, newY);
             if (hit != null && !hit.equals(actor)) {
-                handleCollision(oldX, oldY);
+                handleCollision(newX, newY);
+            } else {
+                actor.x = newX;
+                actor.y = newY;
             }
             steps++;
 
@@ -52,9 +53,7 @@ public class MobMovementController implements MovementController {
         }
     }
 
-    protected void handleCollision(float oldX, float oldY) {
-        actor.x = oldX;
-        actor.y = oldY;
+    protected void handleCollision(float newX, float newY) {
         switch (facing) {
             case 0:
                 goLeft();

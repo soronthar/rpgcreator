@@ -13,9 +13,7 @@ public class HeroMovementController extends MobMovementController implements Inp
     }
 
     @Override
-    protected void handleCollision(float oldX, float oldY) {
-        actor.x = oldX;
-        actor.y = oldY;
+    protected void handleCollision(float newX, float newY) {
         dx=0;
         dy=0;
     }
