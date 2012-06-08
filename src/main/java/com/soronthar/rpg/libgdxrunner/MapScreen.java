@@ -7,11 +7,13 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.soronthar.rpg.libgdxrunner.actors.HeroActor;
 import com.soronthar.rpg.libgdxrunner.actors.Mob;
 import com.soronthar.rpg.libgdxrunner.actors.ObstacleActor;
+import com.soronthar.rpg.model.JumpPoint;
 import com.soronthar.rpg.model.objects.actors.Hero;
 import com.soronthar.rpg.model.objects.actors.Sprite;
 import com.soronthar.rpg.model.project.Project;
@@ -33,25 +35,42 @@ public class MapScreen implements Screen {
     private Texture textureL;
     private Texture textureH;
     private Stage stage;
-    private HeroActor actor;
     private final FPSLogger log = new FPSLogger();
+    private Scenery scenery;
+    private HeroActor heroActor;
+    private final Project project = new ProjectPersister().load("FirstProject");
+
+//    private BitmapFont font = new BitmapFont(Gdx.files.internal("resources/fonts/arial-black-10.fnt"),false);
+
 
 
     @Override
     public void render(float delta) {
+
+        Collection<JumpPoint> jumpPoints = scenery.getJumpPoints();
+        for (JumpPoint jumpPoint : jumpPoints) {
+            Vector2 vector=new Vector2((float) jumpPoint.getLocation().x, this.scenery.getHeight() - (float) jumpPoint.getLocation().y-32);
+            heroActor.toLocalCoordinates(vector);
+            if (heroActor.hit(vector.x,  vector.y)!=null) {
+                long targetId = jumpPoint.getTargetId();
+                setScenery(project.getScenery(targetId));
+            }
+        }
+
         GL10 gl = Gdx.graphics.getGL10();
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-
         SpriteBatch spriteBatch = stage.getSpriteBatch();
         spriteBatch.begin();
-        spriteBatch.draw(textureL, 0, 0, 0, 0, 1024, 512);
+        spriteBatch.draw(textureL, 0, 0, 0, 0, scenery.getWidth(), scenery.getHeight());
         spriteBatch.end();
         stage.act(delta);
-        stage.getCamera().position.set(actor.x, actor.y, 0);
+
+
+        stage.getCamera().position.set(heroActor.x, heroActor.y, 0);
         stage.draw();
 
         spriteBatch.begin();
-        spriteBatch.draw(textureH, 0, 0, 0, 0, 1024, 512);
+        spriteBatch.draw(textureH, 0, 0, 0, 0, scenery.getWidth(), scenery.getHeight());
         spriteBatch.end();
         log.log();
     }
@@ -66,24 +85,30 @@ public class MapScreen implements Screen {
 
     @Override
     public void show() {
-        Project firstProject = new ProjectPersister().load("FirstProject");
-        Scenery scenery = firstProject.getSceneries().iterator().next();
+        scenery = project.getSceneries().iterator().next();
+        if (stage!=null) stage.clear();
+        setScenery(scenery);
 
+    }
+
+    private void setScenery(Scenery scenery) {
+        this.scenery=scenery;
         createTextureForScenery(scenery);
         Point heroPos = scenery.getHeroStartingPoint();
+        heroPos.y=this.scenery.getHeight()-32-heroPos.y;
 
         int height = Gdx.graphics.getHeight();
         int width = Gdx.graphics.getWidth();
         stage = new Stage(width, height, true);
         stage.getCamera().position.set(heroPos.x, heroPos.y, 0);
-        actor = new HeroActor(new Hero(heroPos));
+        heroActor = new HeroActor(new Hero(heroPos));
 
         Collection<Point> obstacles = scenery.getObstacles();
         Group obstaclesGroup = new Group("obstacles");
         Iterator<Point> iterator = obstacles.iterator();
         for (; iterator.hasNext(); ) {
-            Point loc = iterator.next();
-            loc.setLocation(loc.x, scenery.getHeight() - loc.y);
+            Point loc = new Point(iterator.next());
+            loc.setLocation(loc.x, scenery.getHeight() - loc.y - 32);
             obstaclesGroup.addActor(new ObstacleActor(loc));
         }
 
@@ -92,10 +117,13 @@ public class MapScreen implements Screen {
         for (Sprite sprite : sprites) {
             mobsGroup.addActor(new Mob(sprite.getId(), sprite));
         }
-
+//
         stage.addActor(mobsGroup);
-        stage.addActor(actor);
+        stage.addActor(heroActor);
         stage.addActor(obstaclesGroup);
+
+
+
     }
 
     private void createTextureForScenery(Scenery scenery) {
