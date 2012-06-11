@@ -1,8 +1,8 @@
 package com.soronthar.rpg;
 
-import com.sixlegs.png.PngImage;
 import org.soronthar.error.TechnicalException;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class ImageLoader {
     public BufferedImage load(String fileName) {
         BufferedImage image;
         try {
-            image = new PngImage().read(new java.io.File(resourceDirectory, fileName));
+            image = ImageIO.read(new java.io.File(resourceDirectory, fileName));
         } catch (IOException e) {
             throw new TechnicalException(e);
         }

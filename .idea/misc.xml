@@ -36,10 +36,10 @@
     <option name="OPEN_IN_BROWSER" value="true" />
   </component>
   <component name="MavenProjectsManager">
-    <option name="originalFiles">
-      <list>
+    <option name="ignoredFiles">
+      <set>
         <option value="$PROJECT_DIR$/pom.xml" />
-      </list>
+      </set>
     </option>
   </component>
   <component name="ModuleEditorState">
