@@ -21,6 +21,7 @@ public class DebugRenderer implements ActorRenderer {
 
     @Override
     public void draw(SpriteBatch batch, float parentAlpha) {
+        batch.end();
         outliner.setProjectionMatrix(batch.getProjectionMatrix());
         outliner.begin(ShapeRenderer.ShapeType.Rectangle);
         outliner.setColor(Color.BLUE);
@@ -32,6 +33,7 @@ public class DebugRenderer implements ActorRenderer {
         outliner.filledCircle(actor.x, actor.y, 5);
         outliner.end();
 
+        batch.begin();
         font.draw(batch, Integer.toString((int) actor.x), actor.x + 3, actor.y + 30);
         font.draw(batch, Integer.toString((int) actor.y), actor.x + 3, actor.y + 15);
     }

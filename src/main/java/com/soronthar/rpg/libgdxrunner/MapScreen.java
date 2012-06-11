@@ -8,10 +8,10 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.soronthar.rpg.libgdxrunner.actors.HeroActor;
+import com.soronthar.rpg.libgdxrunner.actors.LayerActor;
 import com.soronthar.rpg.libgdxrunner.actors.Mob;
 import com.soronthar.rpg.libgdxrunner.actors.ObstacleActor;
 import com.soronthar.rpg.model.JumpPoint;
@@ -40,10 +40,6 @@ public class MapScreen implements Screen {
     private Scenery scenery;
     private HeroActor heroActor;
     private final Project project = new ProjectPersister().load("FirstProject");
-
-//    private BitmapFont font = new BitmapFont(Gdx.files.internal("resources/fonts/arial-black-10.fnt"),false);
-
-
 
     @Override
     public void render(float delta) {
@@ -78,7 +74,9 @@ public class MapScreen implements Screen {
 
     @Override
     public void show() {
-        scenery = project.getSceneries().iterator().next();
+        Iterator<Scenery> iterator = project.getSceneries().iterator();
+        iterator.next();
+        scenery = iterator.next();
         setScenery(scenery);
 
     }
@@ -114,21 +112,11 @@ public class MapScreen implements Screen {
             mobsGroup.addActor(new Mob(sprite.getId(), sprite));
         }
 
-        stage.addActor(new com.badlogic.gdx.scenes.scene2d.ui.Image(textureL) {
-            @Override
-            public Actor hit(float x, float y) {
-                return null;
-            }
-        });
+        stage.addActor(new LayerActor(textureL));
         stage.addActor(mobsGroup);
         stage.addActor(heroActor);
         stage.addActor(obstaclesGroup);
-        stage.addActor(new com.badlogic.gdx.scenes.scene2d.ui.Image(textureH) {
-            @Override
-            public Actor hit(float x, float y) {
-                return null;
-            }
-        });
+        stage.addActor(new LayerActor(textureH));
     }
 
     private void createTextureForScenery(Scenery scenery) {
