@@ -6,8 +6,9 @@ import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.soronthar.rpg.libgdxrunner.actors.HeroActor;
@@ -46,10 +47,12 @@ public class MapScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        GL10 gl = Gdx.graphics.getGL10();
+        gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
         Collection<JumpPoint> jumpPoints = scenery.getJumpPoints();
         for (JumpPoint jumpPoint : jumpPoints) {
-            Vector2 vector=new Vector2((float) jumpPoint.getLocation().x, this.scenery.getHeight() - (float) jumpPoint.getLocation().y-32);
+            Vector2 vector=new Vector2((float) jumpPoint.getLocation().x, this.scenery.getHeight() - (float) jumpPoint.getLocation().y);
             heroActor.toLocalCoordinates(vector);
             if (heroActor.hit(vector.x,  vector.y)!=null) {
                 long targetId = jumpPoint.getTargetId();
@@ -57,21 +60,11 @@ public class MapScreen implements Screen {
             }
         }
 
-        GL10 gl = Gdx.graphics.getGL10();
-        gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-        SpriteBatch spriteBatch = stage.getSpriteBatch();
-        spriteBatch.begin();
-        spriteBatch.draw(textureL, 0, 0, 0, 0, scenery.getWidth(), scenery.getHeight());
-        spriteBatch.end();
+
         stage.act(delta);
-
-
         stage.getCamera().position.set(heroActor.x, heroActor.y, 0);
         stage.draw();
 
-        spriteBatch.begin();
-        spriteBatch.draw(textureH, 0, 0, 0, 0, scenery.getWidth(), scenery.getHeight());
-        spriteBatch.end();
         log.log();
     }
 
@@ -86,7 +79,6 @@ public class MapScreen implements Screen {
     @Override
     public void show() {
         scenery = project.getSceneries().iterator().next();
-        if (stage!=null) stage.clear();
         setScenery(scenery);
 
     }
@@ -95,12 +87,14 @@ public class MapScreen implements Screen {
         this.scenery=scenery;
         createTextureForScenery(scenery);
         Point heroPos = scenery.getHeroStartingPoint();
-        heroPos.y=this.scenery.getHeight()-32-heroPos.y;
+        heroPos.y=this.scenery.getHeight()-heroPos.y;
 
         int height = Gdx.graphics.getHeight();
         int width = Gdx.graphics.getWidth();
+        if (stage!=null) stage.clear();
         stage = new Stage(width, height, true);
         stage.getCamera().position.set(heroPos.x, heroPos.y, 0);
+
         heroActor = new HeroActor(new Hero(heroPos));
 
         Collection<Point> obstacles = scenery.getObstacles();
@@ -108,28 +102,41 @@ public class MapScreen implements Screen {
         Iterator<Point> iterator = obstacles.iterator();
         for (; iterator.hasNext(); ) {
             Point loc = new Point(iterator.next());
-            loc.setLocation(loc.x, scenery.getHeight() - loc.y - 32);
+            loc.setLocation(loc.x, scenery.getHeight() - loc.y);
             obstaclesGroup.addActor(new ObstacleActor(loc));
         }
+        obstaclesGroup.addActor(new ObstacleActor(new Point(0,0)));
+
 
         Group mobsGroup=new Group("mobs");
         Collection<Sprite> sprites = scenery.getSprites();
         for (Sprite sprite : sprites) {
             mobsGroup.addActor(new Mob(sprite.getId(), sprite));
         }
-//
+
+        stage.addActor(new com.badlogic.gdx.scenes.scene2d.ui.Image(textureL) {
+            @Override
+            public Actor hit(float x, float y) {
+                return null;
+            }
+        });
         stage.addActor(mobsGroup);
         stage.addActor(heroActor);
         stage.addActor(obstaclesGroup);
-
-
-
+        stage.addActor(new com.badlogic.gdx.scenes.scene2d.ui.Image(textureH) {
+            @Override
+            public Actor hit(float x, float y) {
+                return null;
+            }
+        });
     }
 
     private void createTextureForScenery(Scenery scenery) {
         TileSetBag tileSets = new TileSetBagPersister().loadTilesets();
-        Pixmap layerPixmapL = new Pixmap(1024, 512, Pixmap.Format.RGBA8888);
-        Pixmap layerPixmapH = new Pixmap(1024, 512, Pixmap.Format.RGBA8888);
+        int w= MathUtils.nextPowerOfTwo(scenery.getWidth());
+        int h= MathUtils.nextPowerOfTwo(scenery.getHeight());
+        Pixmap layerPixmapL = new Pixmap(w, h, Pixmap.Format.RGBA8888);
+        Pixmap layerPixmapH = new Pixmap(w, h, Pixmap.Format.RGBA8888);
         LayersArray layers = scenery.getLayers();
 
         for (Layer layer : layers) {

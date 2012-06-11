@@ -5,7 +5,7 @@ import com.soronthar.rpg.libgdxrunner.actors.Mob;
 import com.soronthar.rpg.model.tiles.Tile;
 
 public class MobMovementController implements MovementController {
-    public static final int STEP = Tile.TILE_SIZE / 2;
+    public static final int STEP = Tile.TILE_SIZE / 4;
     public static final double DELAY = 0.1;
 
     protected Actor actor;

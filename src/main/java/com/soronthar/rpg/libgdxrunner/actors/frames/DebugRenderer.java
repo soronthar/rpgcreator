@@ -15,7 +15,7 @@ public class DebugRenderer implements ActorRenderer {
     public DebugRenderer(Color color, Actor actor) {
         font = new BitmapFont();
         font.setColor(color);
-        this.actor=actor;
+        this.actor = actor;
 
     }
 
@@ -25,6 +25,11 @@ public class DebugRenderer implements ActorRenderer {
         outliner.begin(ShapeRenderer.ShapeType.Rectangle);
         outliner.setColor(Color.BLUE);
         outliner.rect(actor.x, actor.y, 32, 32);
+        outliner.end();
+
+        outliner.begin(ShapeRenderer.ShapeType.FilledCircle);
+        outliner.setColor(Color.RED);
+        outliner.filledCircle(actor.x, actor.y, 5);
         outliner.end();
 
         font.draw(batch, Integer.toString((int) actor.x), actor.x + 3, actor.y + 30);

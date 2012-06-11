@@ -17,7 +17,7 @@ public class LibGdxRunnerDesktop {
             project = args[0];
         }
 
-//        new JoglApplication(new LibGdxRunner(project),"Runner",1024,768,false);
+//        new LwjglApplication(new LibGdxRunner(),"Runner",482,320,false);
         new JoglApplication(new LibGdxRunner(),"Runner",1024,768,false);
 //        new JoglApplication(new LibGdxRunner(),"Runner",480,320,false);
     }
