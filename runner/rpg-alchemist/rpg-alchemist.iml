@@ -27,7 +27,8 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="old-rpgcreator" exported="" />
+    <orderEntry type="library" name="Libdir" level="project" />
+    <orderEntry type="module" module-name="adventure" />
   </component>
 </module>
 
