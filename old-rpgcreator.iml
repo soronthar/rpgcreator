@@ -5,10 +5,10 @@
     <output-test url="file://$MODULE_DIR$/old-creator/target/test-classes" />
     <content url="file://$MODULE_DIR$/old-creator">
       <sourceFolder url="file://$MODULE_DIR$/old-creator/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/old-creator/src/test/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/old-creator/src/main" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/old-creator/resources" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/old-creator/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/old-creator/src/test/resources" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/old-creator/src/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/old-creator/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -41,7 +41,6 @@
     </orderEntry>
     <orderEntry type="library" name="gdx-backend-jogl" level="project" />
     <orderEntry type="library" name="Libdir" level="project" />
-    <orderEntry type="module" module-name="adventure" exported="" />
   </component>
 </module>
 

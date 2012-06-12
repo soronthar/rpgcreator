@@ -28,7 +28,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="old-rpgcreator" exported="" />
-    <orderEntry type="module" module-name="adventure" exported="" />
   </component>
 </module>
 
