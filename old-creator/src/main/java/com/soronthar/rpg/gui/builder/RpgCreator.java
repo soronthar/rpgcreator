@@ -9,7 +9,7 @@ public class RpgCreator extends JFrame {
 
     private RpgCreator() throws HeadlessException {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(new Dimension(1024, 768));
+        this.setSize(new Dimension(1024, 600));
         this.setTitle("RPG Creator");
 
         RpgCreatorController controller = new RpgCreatorController(new Model());
