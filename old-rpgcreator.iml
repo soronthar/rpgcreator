@@ -41,6 +41,7 @@
     </orderEntry>
     <orderEntry type="library" name="gdx-backend-jogl" level="project" />
     <orderEntry type="library" name="Libdir" level="project" />
+    <orderEntry type="module" module-name="adventure" exported="" />
   </component>
 </module>
 
