@@ -1,7 +1,7 @@
 package com.soronthar.rpg.gui.builder.components.paint;
 
+import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.gui.image.TranslucentImage;
-import com.soronthar.rpg.model.tiles.Tile;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

@@ -1,6 +1,8 @@
 package com.soronthar.rpg.model.tiles;
 
 import com.soronthar.rpg.ImageLoader;
+import com.soronthar.rpg.adventure.tileset.TileSet;
+import com.soronthar.rpg.adventure.tileset.TileSetBag;
 import org.soronthar.error.ExceptionHandler;
 
 import java.awt.image.BufferedImage;

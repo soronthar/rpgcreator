@@ -1,7 +1,7 @@
 package com.soronthar.rpg.libgdxrunner;
 
 import com.badlogic.gdx.graphics.Pixmap;
-import com.soronthar.rpg.model.tiles.Tile;
+import com.soronthar.rpg.adventure.tileset.Tile;
 import org.soronthar.geom.Dimension;
 
 import java.awt.*;

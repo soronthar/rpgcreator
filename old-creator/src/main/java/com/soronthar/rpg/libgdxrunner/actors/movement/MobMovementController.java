@@ -1,8 +1,8 @@
 package com.soronthar.rpg.libgdxrunner.actors.movement;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.libgdxrunner.actors.Mob;
-import com.soronthar.rpg.model.tiles.Tile;
 
 public class MobMovementController implements MovementController {
     public static final int STEP = Tile.TILE_SIZE / 4;

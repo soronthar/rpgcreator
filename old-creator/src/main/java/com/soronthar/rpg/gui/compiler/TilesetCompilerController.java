@@ -1,9 +1,9 @@
 package com.soronthar.rpg.gui.compiler;
 
 import com.soronthar.rpg.ImageLoader;
+import com.soronthar.rpg.adventure.tileset.TileSet;
 import com.soronthar.rpg.gui.builder.Controller;
 import com.soronthar.rpg.gui.builder.Model;
-import com.soronthar.rpg.model.tiles.TileSet;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

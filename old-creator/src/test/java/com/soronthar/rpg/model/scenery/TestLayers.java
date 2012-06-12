@@ -1,6 +1,9 @@
 package com.soronthar.rpg.model.scenery;
 
-import com.soronthar.rpg.model.tiles.Tile;
+import com.soronthar.rpg.adventure.scenery.DrawnTile;
+import com.soronthar.rpg.adventure.scenery.Layer;
+import com.soronthar.rpg.adventure.scenery.LayersArray;
+import com.soronthar.rpg.adventure.tileset.Tile;
 import junit.framework.TestCase;
 import org.soronthar.geom.Dimension;
 

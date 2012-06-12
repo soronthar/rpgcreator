@@ -1,7 +1,7 @@
-package com.soronthar.rpg;
+package com.soronthar.rpg.utils;
 
-import com.soronthar.rpg.model.objects.actors.Facing;
-import com.soronthar.rpg.model.tiles.Tile;
+import com.soronthar.rpg.adventure.scenery.objects.actors.Facing;
+import com.soronthar.rpg.adventure.tileset.Tile;
 import org.soronthar.geom.Dimension;
 import org.soronthar.geom.Point;
 

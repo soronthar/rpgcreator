@@ -1,6 +1,6 @@
 package com.soronthar.rpg.gui.builder.components.tiles;
 
-import com.soronthar.rpg.model.tiles.Tile;
+import com.soronthar.rpg.adventure.tileset.Tile;
 import org.soronthar.geom.Dimension;
 import org.soronthar.geom.Point;
 

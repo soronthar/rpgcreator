@@ -1,6 +1,7 @@
-package com.soronthar.rpg.model.scenery;
+package com.soronthar.rpg.adventure.scenery;
 
-import com.soronthar.rpg.model.tiles.Tile;
+
+import com.soronthar.rpg.adventure.tileset.Tile;
 
 import java.awt.*;
 import java.io.Serializable;

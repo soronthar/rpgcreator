@@ -1,7 +1,7 @@
 package com.soronthar.rpg.model.project.xtream;
 
-import com.soronthar.rpg.model.scenery.Scenery;
-import com.soronthar.rpg.model.scenery.SceneryBag;
+import com.soronthar.rpg.adventure.scenery.Scenery;
+import com.soronthar.rpg.adventure.scenery.SceneryBag;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;

@@ -1,11 +1,11 @@
 package com.soronthar.rpg.gui.builder.panes;
 
-import com.soronthar.rpg.Utils;
+import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.adventure.tileset.TileSet;
+import com.soronthar.rpg.adventure.tileset.TileSetBag;
 import com.soronthar.rpg.gui.builder.Controller;
 import com.soronthar.rpg.gui.builder.components.tiles.TilePanel;
-import com.soronthar.rpg.model.tiles.Tile;
-import com.soronthar.rpg.model.tiles.TileSet;
-import com.soronthar.rpg.model.tiles.TileSetBag;
+import com.soronthar.rpg.utils.Utils;
 import org.soronthar.geom.Dimension;
 import org.soronthar.geom.Point;
 
@@ -13,7 +13,7 @@ import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.event.MouseEvent;
 
-import static com.soronthar.rpg.Utils.normalizePointToTile;
+import static com.soronthar.rpg.utils.Utils.normalizePointToTile;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 

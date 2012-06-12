@@ -1,12 +1,12 @@
-package com.soronthar.rpg.model.scenery;
+package com.soronthar.rpg.adventure.scenery;
 
-import com.soronthar.rpg.Utils;
-import com.soronthar.rpg.model.JumpPoint;
-import com.soronthar.rpg.model.objects.Actor;
-import com.soronthar.rpg.model.objects.ObjectMap;
-import com.soronthar.rpg.model.objects.Obstacle;
-import com.soronthar.rpg.model.objects.actors.Sprite;
-import com.soronthar.rpg.model.tiles.Tile;
+import com.soronthar.rpg.adventure.scenery.objects.Actor;
+import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
+import com.soronthar.rpg.adventure.scenery.objects.ObjectMap;
+import com.soronthar.rpg.adventure.scenery.objects.Obstacle;
+import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
+import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.utils.Utils;
 import org.soronthar.geom.Dimension;
 
 import java.awt.*;

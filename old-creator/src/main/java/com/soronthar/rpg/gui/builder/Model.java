@@ -1,12 +1,12 @@
 package com.soronthar.rpg.gui.builder;
 
+import com.soronthar.rpg.adventure.project.Project;
+import com.soronthar.rpg.adventure.scenery.LayersArray;
+import com.soronthar.rpg.adventure.scenery.Scenery;
+import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.adventure.tileset.TileSet;
+import com.soronthar.rpg.adventure.tileset.TileSetBag;
 import com.soronthar.rpg.gui.builder.components.paint.Palette;
-import com.soronthar.rpg.model.project.Project;
-import com.soronthar.rpg.model.scenery.LayersArray;
-import com.soronthar.rpg.model.scenery.Scenery;
-import com.soronthar.rpg.model.tiles.Tile;
-import com.soronthar.rpg.model.tiles.TileSet;
-import com.soronthar.rpg.model.tiles.TileSetBag;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

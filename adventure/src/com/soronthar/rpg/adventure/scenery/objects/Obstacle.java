@@ -1,4 +1,4 @@
-package com.soronthar.rpg.model.objects;
+package com.soronthar.rpg.adventure.scenery.objects;
 
 
 import java.awt.*;

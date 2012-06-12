@@ -1,7 +1,8 @@
 package com.soronthar.rpg.model.project;
 
+import com.soronthar.rpg.adventure.project.Project;
+import com.soronthar.rpg.adventure.scenery.DrawnTile;
 import com.soronthar.rpg.model.project.xtream.*;
-import com.soronthar.rpg.model.scenery.DrawnTile;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import org.soronthar.error.TechnicalException;

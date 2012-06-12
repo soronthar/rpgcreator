@@ -1,8 +1,8 @@
 package com.soronthar.rpg.gui.builder.components.layers;
 
-import com.soronthar.rpg.Utils;
+import com.soronthar.rpg.adventure.scenery.LayersArray;
 import com.soronthar.rpg.gui.builder.RpgCreatorController;
-import com.soronthar.rpg.model.scenery.LayersArray;
+import com.soronthar.rpg.utils.Utils;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;

@@ -1,7 +1,7 @@
-package com.soronthar.rpg.model.objects.actors;
+package com.soronthar.rpg.adventure.scenery.objects.actors;
 
-import com.soronthar.rpg.Utils;
-import com.soronthar.rpg.model.objects.Actor;
+import com.soronthar.rpg.adventure.scenery.objects.Actor;
+import com.soronthar.rpg.utils.Utils;
 
 import java.awt.*;
 

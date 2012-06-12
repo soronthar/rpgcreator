@@ -1,7 +1,7 @@
-package com.soronthar.rpg.model.project;
+package com.soronthar.rpg.adventure.project;
 
-import com.soronthar.rpg.model.scenery.Scenery;
-import com.soronthar.rpg.model.scenery.SceneryBag;
+import com.soronthar.rpg.adventure.scenery.Scenery;
+import com.soronthar.rpg.adventure.scenery.SceneryBag;
 
 import java.io.Serializable;
 

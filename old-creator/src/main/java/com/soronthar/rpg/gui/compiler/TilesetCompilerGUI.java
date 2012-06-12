@@ -1,8 +1,8 @@
 package com.soronthar.rpg.gui.compiler;
 
-import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.gui.builder.panes.PaintPanel;
 import com.soronthar.rpg.gui.builder.panes.TilesetsPanel;
+import com.soronthar.rpg.utils.Utils;
 import org.soronthar.geom.Dimension;
 
 import javax.swing.*;

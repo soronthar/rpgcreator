@@ -1,10 +1,10 @@
 package com.soronthar.rpg.gui.builder.components.paint;
 
+import com.soronthar.rpg.adventure.scenery.LayersArray;
+import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.gui.builder.Model;
 import com.soronthar.rpg.gui.builder.components.tiles.GlassSelectLayer;
 import com.soronthar.rpg.gui.image.TranslucentImage;
-import com.soronthar.rpg.model.scenery.LayersArray;
-import com.soronthar.rpg.model.tiles.Tile;
 import org.soronthar.geom.Dimension;
 
 import javax.swing.*;

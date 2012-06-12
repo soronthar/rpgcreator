@@ -1,8 +1,8 @@
 package com.soronthar.rpg.gui.builder.panes;
 
+import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.gui.builder.Controller;
 import com.soronthar.rpg.gui.builder.components.paint.PaintCanvas;
-import com.soronthar.rpg.model.scenery.Scenery;
 
 import javax.swing.*;
 import java.awt.*;

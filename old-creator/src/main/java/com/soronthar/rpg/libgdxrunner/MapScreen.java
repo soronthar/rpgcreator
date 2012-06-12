@@ -10,27 +10,27 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.soronthar.rpg.adventure.project.Project;
+import com.soronthar.rpg.adventure.scenery.DrawnTile;
+import com.soronthar.rpg.adventure.scenery.Layer;
+import com.soronthar.rpg.adventure.scenery.LayersArray;
+import com.soronthar.rpg.adventure.scenery.Scenery;
+import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
+import com.soronthar.rpg.adventure.scenery.objects.actors.Hero;
+import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
+import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.libgdxrunner.actors.HeroActor;
 import com.soronthar.rpg.libgdxrunner.actors.LayerActor;
 import com.soronthar.rpg.libgdxrunner.actors.Mob;
 import com.soronthar.rpg.libgdxrunner.actors.ObstacleActor;
-import com.soronthar.rpg.model.JumpPoint;
-import com.soronthar.rpg.model.objects.actors.Hero;
-import com.soronthar.rpg.model.objects.actors.Sprite;
-import com.soronthar.rpg.model.project.Project;
 import com.soronthar.rpg.model.project.ProjectPersister;
-import com.soronthar.rpg.model.scenery.DrawnTile;
-import com.soronthar.rpg.model.scenery.Layer;
-import com.soronthar.rpg.model.scenery.LayersArray;
-import com.soronthar.rpg.model.scenery.Scenery;
-import com.soronthar.rpg.model.tiles.Tile;
 import org.soronthar.error.ApplicationException;
 
 import java.awt.*;
 import java.util.Collection;
 import java.util.Iterator;
 
-import static com.soronthar.rpg.Utils.normalizePointToTile;
+import static com.soronthar.rpg.utils.Utils.normalizePointToTile;
 
 public class MapScreen implements Screen {
     private Texture textureL;

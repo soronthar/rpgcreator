@@ -4,24 +4,24 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.libgdxrunner.LibGdxRunner;
 import com.soronthar.rpg.libgdxrunner.actors.frames.ActorRenderer;
 import com.soronthar.rpg.libgdxrunner.actors.frames.DebugRenderer;
 import com.soronthar.rpg.libgdxrunner.actors.frames.MobActorRenderer;
 import com.soronthar.rpg.libgdxrunner.actors.movement.MobMovementController;
 import com.soronthar.rpg.libgdxrunner.actors.movement.MovementController;
-import com.soronthar.rpg.model.tiles.Tile;
 
 public class Mob extends Actor {
     private ActorRenderer renderer;
     private MovementController mover;
 
-    public Mob(String name, com.soronthar.rpg.model.objects.Actor actor) {
+    public Mob(String name, com.soronthar.rpg.adventure.scenery.objects.Actor actor) {
         super(name);
         this.x = actor.getLocation().x;
         this.y = actor.getLocation().y;
         this.width= Tile.TILE_SIZE;
-        this.height=Tile.TILE_SIZE;
+        this.height= Tile.TILE_SIZE;
 
         if (LibGdxRunner.DEBUG) {
             this.renderer = new DebugRenderer(Color.PINK, this);

@@ -5,11 +5,11 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.libgdxrunner.LibGdxRunner;
 import com.soronthar.rpg.libgdxrunner.actors.frames.ActorRenderer;
 import com.soronthar.rpg.libgdxrunner.actors.frames.DebugRenderer;
 import com.soronthar.rpg.libgdxrunner.actors.frames.EmptyRenderer;
-import com.soronthar.rpg.model.tiles.Tile;
 
 import java.awt.*;
 
@@ -21,7 +21,7 @@ public class ObstacleActor extends Actor {
         this.x=loc.x;
         this.y=loc.y;
         this.width=Tile.TILE_SIZE;
-        this.height=Tile.TILE_SIZE;
+        this.height= Tile.TILE_SIZE;
         BitmapFont font = new BitmapFont();
         font.setColor(Color.GREEN);
         if (LibGdxRunner.DEBUG) {

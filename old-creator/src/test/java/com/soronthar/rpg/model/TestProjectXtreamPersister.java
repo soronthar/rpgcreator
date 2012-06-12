@@ -1,15 +1,16 @@
 package com.soronthar.rpg.model;
 
-import com.soronthar.rpg.model.objects.Actor;
-import com.soronthar.rpg.model.objects.actors.*;
-import com.soronthar.rpg.model.project.Project;
+import com.soronthar.rpg.adventure.project.Project;
+import com.soronthar.rpg.adventure.scenery.DrawnTile;
+import com.soronthar.rpg.adventure.scenery.Layer;
+import com.soronthar.rpg.adventure.scenery.LayersArray;
+import com.soronthar.rpg.adventure.scenery.Scenery;
+import com.soronthar.rpg.adventure.scenery.objects.Actor;
+import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
+import com.soronthar.rpg.adventure.scenery.objects.actors.*;
+import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.adventure.tileset.TileSet;
 import com.soronthar.rpg.model.project.ProjectPersister;
-import com.soronthar.rpg.model.scenery.DrawnTile;
-import com.soronthar.rpg.model.scenery.Layer;
-import com.soronthar.rpg.model.scenery.LayersArray;
-import com.soronthar.rpg.model.scenery.Scenery;
-import com.soronthar.rpg.model.tiles.Tile;
-import com.soronthar.rpg.model.tiles.TileSet;
 import junit.framework.TestCase;
 import org.apache.commons.io.FileUtils;
 import org.soronthar.error.TechnicalException;

@@ -1,4 +1,4 @@
-package com.soronthar.rpg.model.scenery;
+package com.soronthar.rpg.adventure.scenery;
 
 import java.util.Iterator;
 

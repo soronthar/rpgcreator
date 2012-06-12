@@ -1,14 +1,14 @@
 package com.soronthar.rpg.gui.builder;
 
+import com.soronthar.rpg.adventure.scenery.Scenery;
+import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
+import com.soronthar.rpg.adventure.scenery.objects.actors.Facing;
+import com.soronthar.rpg.adventure.scenery.objects.actors.MobNpc;
+import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.adventure.tileset.TileSet;
+import com.soronthar.rpg.adventure.tileset.TileSetBag;
 import com.soronthar.rpg.gui.builder.panes.PaintPanel;
 import com.soronthar.rpg.gui.builder.panes.TilesetsPanel;
-import com.soronthar.rpg.model.JumpPoint;
-import com.soronthar.rpg.model.objects.actors.Facing;
-import com.soronthar.rpg.model.objects.actors.MobNpc;
-import com.soronthar.rpg.model.scenery.Scenery;
-import com.soronthar.rpg.model.tiles.Tile;
-import com.soronthar.rpg.model.tiles.TileSet;
-import com.soronthar.rpg.model.tiles.TileSetBag;
 import com.soronthar.rpg.model.tiles.TileSetBagPersister;
 import org.soronthar.error.ApplicationException;
 import org.soronthar.geom.Dimension;
@@ -16,7 +16,7 @@ import org.soronthar.geom.Dimension;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static com.soronthar.rpg.Utils.normalizePointToTile;
+import static com.soronthar.rpg.utils.Utils.normalizePointToTile;
 
 public class Controller {
     protected Model model;

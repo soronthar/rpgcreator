@@ -1,7 +1,7 @@
 package com.soronthar.rpg.gui.builder.components.scenery;
 
+import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.gui.builder.RpgCreatorController;
-import com.soronthar.rpg.model.scenery.Scenery;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;

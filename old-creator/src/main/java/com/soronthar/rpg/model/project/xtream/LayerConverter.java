@@ -1,7 +1,7 @@
 package com.soronthar.rpg.model.project.xtream;
 
-import com.soronthar.rpg.model.scenery.DrawnTile;
-import com.soronthar.rpg.model.scenery.Layer;
+import com.soronthar.rpg.adventure.scenery.DrawnTile;
+import com.soronthar.rpg.adventure.scenery.Layer;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import org.soronthar.util.xstream.ConverterAdapter;

@@ -1,6 +1,7 @@
 package com.soronthar.rpg;
 
-import com.soronthar.rpg.model.tiles.Tile;
+import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.utils.Utils;
 import junit.framework.TestCase;
 
 public class TestUtils extends TestCase {

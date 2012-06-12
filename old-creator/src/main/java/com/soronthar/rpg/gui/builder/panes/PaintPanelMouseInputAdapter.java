@@ -1,16 +1,16 @@
 package com.soronthar.rpg.gui.builder.panes;
 
+import com.soronthar.rpg.adventure.scenery.objects.Actor;
+import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
+import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
 import com.soronthar.rpg.gui.builder.Controller;
-import com.soronthar.rpg.model.JumpPoint;
-import com.soronthar.rpg.model.objects.Actor;
-import com.soronthar.rpg.model.objects.actors.Sprite;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-import static com.soronthar.rpg.Utils.normalizePointToTile;
+import static com.soronthar.rpg.utils.Utils.normalizePointToTile;
 
 class PaintPanelMouseInputAdapter extends MouseInputAdapter {
     private Controller controller;

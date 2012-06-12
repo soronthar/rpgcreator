@@ -1,4 +1,4 @@
-package com.soronthar.rpg.model.tiles;
+package com.soronthar.rpg.adventure.tileset;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;

@@ -1,4 +1,4 @@
-package com.soronthar.rpg.model.objects.actors;
+package com.soronthar.rpg.adventure.scenery.objects.actors;
 
 
 import java.util.ArrayList;

@@ -1,10 +1,10 @@
 package com.soronthar.rpg.gui.builder.components.scenery;
 
-import com.soronthar.rpg.Utils;
+import com.soronthar.rpg.adventure.project.Project;
+import com.soronthar.rpg.adventure.scenery.Scenery;
+import com.soronthar.rpg.adventure.scenery.SceneryBag;
 import com.soronthar.rpg.gui.builder.RpgCreatorController;
-import com.soronthar.rpg.model.project.Project;
-import com.soronthar.rpg.model.scenery.Scenery;
-import com.soronthar.rpg.model.scenery.SceneryBag;
+import com.soronthar.rpg.utils.Utils;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;

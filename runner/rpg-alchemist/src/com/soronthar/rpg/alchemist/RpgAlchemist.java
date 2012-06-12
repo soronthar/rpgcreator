@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.soronthar.rpg.model.project.Project;
+import com.soronthar.rpg.adventure.project.Project;
 
 public class RpgAlchemist implements ApplicationListener {
 	private OrthographicCamera camera;

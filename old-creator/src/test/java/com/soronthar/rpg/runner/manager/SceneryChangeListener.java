@@ -1,6 +1,6 @@
 package com.soronthar.rpg.runner.manager;
 
-import com.soronthar.rpg.model.scenery.Scenery;
+import com.soronthar.rpg.adventure.scenery.Scenery;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

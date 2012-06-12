@@ -1,7 +1,6 @@
-package com.soronthar.rpg.model.objects;
+package com.soronthar.rpg.adventure.scenery.objects;
 
-import com.soronthar.rpg.model.JumpPoint;
-import com.soronthar.rpg.model.objects.actors.Sprite;
+import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
 
 import java.awt.*;
 import java.util.Collection;

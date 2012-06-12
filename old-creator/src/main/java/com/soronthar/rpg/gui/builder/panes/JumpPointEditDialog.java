@@ -1,10 +1,10 @@
 package com.soronthar.rpg.gui.builder.panes;
 
+import com.soronthar.rpg.adventure.project.Project;
+import com.soronthar.rpg.adventure.scenery.Scenery;
+import com.soronthar.rpg.adventure.scenery.SceneryBag;
+import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.gui.builder.Controller;
-import com.soronthar.rpg.model.JumpPoint;
-import com.soronthar.rpg.model.project.Project;
-import com.soronthar.rpg.model.scenery.Scenery;
-import com.soronthar.rpg.model.scenery.SceneryBag;
 
 import javax.swing.*;
 import java.awt.*;

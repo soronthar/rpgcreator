@@ -1,9 +1,9 @@
 package com.soronthar.rpg.model.project.xtream;
 
-import com.soronthar.rpg.model.JumpPoint;
-import com.soronthar.rpg.model.objects.actors.Sprite;
-import com.soronthar.rpg.model.scenery.DrawnTile;
-import com.soronthar.rpg.model.scenery.Scenery;
+import com.soronthar.rpg.adventure.scenery.DrawnTile;
+import com.soronthar.rpg.adventure.scenery.Scenery;
+import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
+import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;

@@ -1,7 +1,7 @@
 package com.soronthar.rpg.gui.builder.components.tiles;
 
-import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.gui.image.TranslucentImage;
+import com.soronthar.rpg.utils.Utils;
 import org.soronthar.geom.Dimension;
 
 import javax.swing.*;

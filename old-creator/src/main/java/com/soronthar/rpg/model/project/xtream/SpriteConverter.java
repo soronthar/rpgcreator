@@ -1,6 +1,6 @@
 package com.soronthar.rpg.model.project.xtream;
 
-import com.soronthar.rpg.model.objects.actors.*;
+import com.soronthar.rpg.adventure.scenery.objects.actors.*;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;

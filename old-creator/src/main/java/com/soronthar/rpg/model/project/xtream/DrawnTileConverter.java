@@ -1,7 +1,7 @@
 package com.soronthar.rpg.model.project.xtream;
 
-import com.soronthar.rpg.model.scenery.DrawnTile;
-import com.soronthar.rpg.model.tiles.Tile;
+import com.soronthar.rpg.adventure.scenery.DrawnTile;
+import com.soronthar.rpg.adventure.tileset.Tile;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;

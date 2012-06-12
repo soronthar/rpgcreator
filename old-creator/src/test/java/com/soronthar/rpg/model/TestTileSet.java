@@ -1,7 +1,7 @@
 package com.soronthar.rpg.model;
 
-import com.soronthar.rpg.model.tiles.Tile;
-import com.soronthar.rpg.model.tiles.TileSet;
+import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.adventure.tileset.TileSet;
 import junit.framework.TestCase;
 
 import java.awt.image.BufferedImage;
