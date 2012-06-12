@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/old-creator/src/main" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/old-creator/resources" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/old-creator/src/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/old-creator/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

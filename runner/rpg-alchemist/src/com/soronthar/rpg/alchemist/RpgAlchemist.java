@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.soronthar.rpg.model.project.Project;
 
 public class RpgAlchemist implements ApplicationListener {
 	private OrthographicCamera camera;
@@ -18,6 +19,7 @@ public class RpgAlchemist implements ApplicationListener {
 	
 	@Override
 	public void create() {		
+        new Project("");
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
 		
