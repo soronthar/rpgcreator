@@ -4,11 +4,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.soronthar.rpg.adventure.scenery.objects.actors.MobNpc;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.alchemist.RpgAlchemist;
 import com.soronthar.rpg.alchemist.actors.frames.ActorRenderer;
 import com.soronthar.rpg.alchemist.actors.frames.DebugRenderer;
 import com.soronthar.rpg.alchemist.actors.frames.MobActorRenderer;
+import com.soronthar.rpg.alchemist.actors.movement.EmptyMover;
 import com.soronthar.rpg.alchemist.actors.movement.MobMovementController;
 import com.soronthar.rpg.alchemist.actors.movement.MovementController;
 
@@ -28,7 +30,11 @@ public class Mob extends Actor {
         } else {
             this.renderer = new MobActorRenderer("herop2.png", this);
         }
-        mover = new MobMovementController(this);
+        if (actor instanceof MobNpc) {
+            mover = new MobMovementController(this);
+        } else {
+            mover = new EmptyMover();
+        }
     }
 
     protected void setRenderer(ActorRenderer renderer) {

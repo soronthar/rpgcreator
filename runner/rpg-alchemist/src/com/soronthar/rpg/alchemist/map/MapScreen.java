@@ -2,6 +2,7 @@ package com.soronthar.rpg.alchemist.map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -24,6 +25,7 @@ import com.soronthar.rpg.alchemist.actors.HeroActor;
 import com.soronthar.rpg.alchemist.actors.LayerActor;
 import com.soronthar.rpg.alchemist.actors.Mob;
 import com.soronthar.rpg.alchemist.actors.ObstacleActor;
+import com.soronthar.rpg.alchemist.model.SceneryReader;
 import com.soronthar.rpg.alchemist.tileset.TileSet;
 import com.soronthar.rpg.alchemist.tileset.TileSetBag;
 import com.soronthar.rpg.alchemist.tileset.TileSetBagPersister;
@@ -54,8 +56,7 @@ public class MapScreen implements Screen {
             Vector2 vector=new Vector2((float) jumpPoint.getLocation().getX(), this.scenery.getHeight() - (float) jumpPoint.getLocation().getY());
             heroActor.toLocalCoordinates(vector);
             if (heroActor.hit(vector.x,  vector.y)!=null) {
-                long targetId = jumpPoint.getTargetId();
-                setScenery(project.getScenery(targetId));
+                setScenery(jumpPoint.getTargetId());
             }
         }
 
@@ -65,6 +66,13 @@ public class MapScreen implements Screen {
         stage.draw();
 
         log.log();
+    }
+
+    private void setScenery(long id) {
+        FileHandle sceneryFile = Gdx.files.internal("projects/" + project.getName() + "/sceneries/s" + id + "/scenery.json");
+        scenery = new SceneryReader().read(sceneryFile.reader());
+        setScenery(scenery);
+//        setScenery(project.getScenery(id));
     }
 
 
@@ -79,9 +87,7 @@ public class MapScreen implements Screen {
     public void show() {
         Iterator<Scenery> iterator = project.getSceneries().iterator();
         iterator.next();
-        scenery = iterator.next();
-        setScenery(scenery);
-
+        setScenery(iterator.next().getId());
     }
 
     private void setScenery(Scenery scenery) {

@@ -38,4 +38,8 @@ public class Layer implements Iterable<DrawnTile> {
     public DrawnTile getTileAt(Point point) {
         return this.drawnTiles.get(point);
     }
+
+    public int tileCount() {
+        return this.drawnTiles.size();
+    }
 }
