@@ -11,6 +11,7 @@ import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.*;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.adventure.tileset.TileSet;
+import com.soronthar.rpg.utils.Dimension;
 import com.soronthar.rpg.utils.Point;
 import junit.framework.TestCase;
 import org.apache.commons.io.FileUtils;
@@ -68,6 +69,7 @@ public class TestProjectXtreamPersister extends TestCase {
                 firstScenery.setTile(tileSet.getTile(new Point(0, i), Tile.TILE_DIMENSION.toAWT()), i, new Point(i, 0));
             }
         }
+        firstScenery.setDimension(new Dimension(640,480));
         MobNpc alltrue = new MobNpc("alltrue", new Point(4, 0), Facing.LEFT);
         alltrue.setFramesImage("cat.png");
         alltrue.getActions().add(new SpriteActions.ShowText("text"));
@@ -88,6 +90,7 @@ public class TestProjectXtreamPersister extends TestCase {
         firstScenery.addJumpPoint(new JumpPoint(new Point(6, 2), 2));
 
         Scenery secondScenery = new Scenery(2, "second");
+        secondScenery.setDimension(new Dimension(640,480));
         for (int i = 0; i < LayersArray.LAYER_COUNT; i++) {
             if (i != LayersArray.SPRITE_LAYER_INDEX) {
                 secondScenery.setTile(tileSet.getTile(new Point(1, i), Tile.TILE_DIMENSION.toAWT()), i, new Point(i, 1));

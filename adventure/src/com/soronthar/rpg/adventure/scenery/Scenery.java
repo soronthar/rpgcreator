@@ -36,8 +36,9 @@ public class Scenery implements Serializable {
         this.id = id;
         this.heroStartingPoint = new Point(0, 0);
         this.name = name;
-        this.dimension = new Dimension(WIDTH, HEIGHT);
+        this.dimension = new Dimension(0, 0);
     }
+
 
     public String getName() {
         return name;
@@ -162,5 +163,6 @@ public class Scenery implements Serializable {
     }
 
     public void setDimension(Dimension dimension) {
+        this.dimension=dimension;
     }
 }

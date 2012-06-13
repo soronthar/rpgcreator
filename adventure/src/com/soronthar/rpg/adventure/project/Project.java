@@ -16,6 +16,9 @@ public class Project implements Serializable {
         this.sceneries = new SceneryBag();
     }
 
+    public Project() {
+    }
+
     public String getName() {
         return name;
     }
@@ -34,5 +37,9 @@ public class Project implements Serializable {
 
     public String getFileVersion() {
         return fileVersion;
+    }
+
+    public void setName(String name) {
+        this.name=name;
     }
 }
