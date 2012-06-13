@@ -3,12 +3,15 @@ package com.soronthar.rpg.utils;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Facing;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import org.soronthar.geom.Dimension;
-import org.soronthar.geom.Point;
 
 
 public class Utils {
 
-    public static Point normalizePointToTile(java.awt.Point point) {
+    public static java.awt.Point normalizePointToTile(java.awt.Point point) {
+        return normalizePointToTile(Point.fromAWT(point)).toAWT();
+        
+    }
+    public static Point normalizePointToTile(Point point) {
         Point p = new Point();
         p.x = normalizeDimensionToTile(point.x);
         p.y = normalizeDimensionToTile(point.y);
@@ -36,9 +39,9 @@ public class Utils {
         return getTileDimension().scale(x, y);
     }
 
-    public static java.awt.Point getTileLocationForPoint(Facing facing, java.awt.Point location) {
-        java.awt.Point newLocation = new java.awt.Point(location);
-        java.awt.Point tileLocationDelta = new java.awt.Point(location.x % Tile.TILE_SIZE, location.y % Tile.TILE_SIZE);
+    public static Point getTileLocationForPoint(Facing facing,Point location) {
+        Point newLocation = location.clone();
+        Point tileLocationDelta = new Point(location.x % Tile.TILE_SIZE, location.y % Tile.TILE_SIZE);
         if (facing == Facing.UP) {
             tileLocationDelta.y *= -1;
         } else if (facing == Facing.LEFT) {

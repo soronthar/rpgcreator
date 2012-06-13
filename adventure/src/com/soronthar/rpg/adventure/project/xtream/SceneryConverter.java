@@ -4,6 +4,7 @@ import com.soronthar.rpg.adventure.scenery.DrawnTile;
 import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
+import com.soronthar.rpg.utils.Point;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;
@@ -11,7 +12,6 @@ import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import org.soronthar.geom.Dimension;
 
-import java.awt.*;
 import java.util.Collection;
 
 public class SceneryConverter implements Converter {
@@ -41,8 +41,8 @@ public class SceneryConverter implements Converter {
         Collection<Point> obstacles = scenery.getObstacles();
         for (Point obstacle : obstacles) {
             writer.startNode(OBSTACLE);
-            writer.addAttribute(X_COORD, Integer.toString(obstacle.x));
-            writer.addAttribute(Y_COORD, Integer.toString(obstacle.y));
+            writer.addAttribute(X_COORD, Integer.toString(obstacle.getX()));
+            writer.addAttribute(Y_COORD, Integer.toString(obstacle.getY()));
             writer.endNode();
         }
 
@@ -53,16 +53,16 @@ public class SceneryConverter implements Converter {
 
         for (JumpPoint jump : scenery.getJumpPoints()) {
             writer.startNode(JUMP_POINT);
-            writer.addAttribute(X_COORD, Integer.toString(jump.getLocation().x));
-            writer.addAttribute(Y_COORD, Integer.toString(jump.getLocation().y));
+            writer.addAttribute(X_COORD, Integer.toString(jump.getLocation().getX()));
+            writer.addAttribute(Y_COORD, Integer.toString(jump.getLocation().getY()));
             writer.addAttribute(TARGET, Long.toString(jump.getTargetId()));
             writer.endNode();
         }
 
 
         writer.startNode(HERO_STARTING_POINT);
-        writer.addAttribute(X_COORD, Integer.toString(scenery.getHeroStartingPoint().x));
-        writer.addAttribute(Y_COORD, Integer.toString(scenery.getHeroStartingPoint().y));
+        writer.addAttribute(X_COORD, Integer.toString(scenery.getHeroStartingPoint().getX()));
+        writer.addAttribute(Y_COORD, Integer.toString(scenery.getHeroStartingPoint().getY()));
         writer.endNode();
 
     }

@@ -8,8 +8,8 @@ public class RpgAlchemistDesktop {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "rpg-alchemist";
 		cfg.useGL20 = false;
-		cfg.width = 200;
-		cfg.height = 100;
+		cfg.width = 480;
+		cfg.height = 320;
 		
 		new LwjglApplication(new RpgAlchemist(), cfg);
 	}

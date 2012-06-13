@@ -2,12 +2,12 @@ package com.soronthar.rpg.adventure.project.xtream;
 
 import com.soronthar.rpg.adventure.scenery.DrawnTile;
 import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.utils.Point;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;
 import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
-import org.soronthar.geom.Point;
 
 public class DrawnTileConverter implements Converter {
     public void marshal(Object o, HierarchicalStreamWriter writer, MarshallingContext context) {

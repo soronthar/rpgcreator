@@ -65,6 +65,19 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../lib/sorontharutil-1.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../lib/xmlParserAPIs-2.6.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../lib/xstream-1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../../lib/xstream-1.2.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
 

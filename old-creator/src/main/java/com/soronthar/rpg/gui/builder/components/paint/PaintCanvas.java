@@ -80,12 +80,12 @@ public class PaintCanvas extends JPanel {
         glassLayer.clearSelectSquare();
     }
 
-    public void drawTileOnPoint(Point p) {
+    public void drawTileOnPoint(com.soronthar.rpg.utils.Point p ) {
         BufferedImage tile;
         tile = model.getDrawingPen();
         if (tile != null) {
             Graphics2D g = (Graphics2D) layers[model.getActiveLayerIndex()].getGraphics();
-            g.drawImage(tile, p.x, p.y, null);
+            g.drawImage(tile, p.getX(), p.getY(), null);
             g.dispose();
         }
     }

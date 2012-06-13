@@ -1,8 +1,8 @@
 package com.soronthar.rpg.adventure.tileset;
 
+import com.soronthar.rpg.utils.Point;
 import org.soronthar.geom.Dimension;
 
-import java.awt.*;
 import java.io.Serializable;
 
 public class Tile implements Serializable {

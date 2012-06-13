@@ -48,7 +48,7 @@ class JumpPointEditDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Scenery selectedItem = (Scenery) combo.getSelectedItem();
-                controller.getModel().getActiveScenery().addJumpPoint(new JumpPoint(point, selectedItem.getId()));
+                controller.getModel().getActiveScenery().addJumpPoint(new JumpPoint(point.x,point.y, selectedItem.getId()));
                 setVisible(false);
             }
         });

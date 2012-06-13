@@ -1,13 +1,12 @@
 package com.soronthar.rpg.adventure.project.xtream;
 
 import com.soronthar.rpg.adventure.scenery.objects.actors.*;
+import com.soronthar.rpg.utils.Point;
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;
 import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
-
-import java.awt.*;
 
 public class SpriteConverter implements Converter {
 
@@ -28,8 +27,8 @@ public class SpriteConverter implements Converter {
         }
         writer.addAttribute("frames", sprite.getFramesImageName());
         writer.startNode("location");
-        writer.addAttribute("x", Integer.toString(sprite.getLocation().x));
-        writer.addAttribute("y", Integer.toString(sprite.getLocation().y));
+        writer.addAttribute("x", Integer.toString(sprite.getLocation().getX()));
+        writer.addAttribute("y", Integer.toString(sprite.getLocation().getY()));
         writer.addAttribute("facing", sprite.getFacing().name());
         writer.endNode();
 

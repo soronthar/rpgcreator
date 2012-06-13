@@ -1,10 +1,9 @@
 package com.soronthar.rpg.adventure.scenery;
 
 import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.utils.Point;
 import junit.framework.TestCase;
 import org.soronthar.geom.Dimension;
-
-import java.awt.*;
 
 public class TestLayers extends TestCase {
 

@@ -32,7 +32,7 @@ public class TilePanel extends JPanel {
 
     public void tileSelectedEvent(Tile tileInfo) {
         if (tilePalette.getName().equals(tileInfo.getTilesetName())) {
-            glassLayer.drawSelectOutline(tileInfo.getPoint(), tileInfo.getDimension());
+            glassLayer.drawSelectOutline(tileInfo.getPoint().toAWT(), tileInfo.getDimension());
             getParent().repaint();
         }
     }

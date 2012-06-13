@@ -7,10 +7,10 @@ import com.soronthar.rpg.gui.builder.Controller;
 import com.soronthar.rpg.gui.builder.components.tiles.TilePanel;
 import com.soronthar.rpg.utils.Utils;
 import org.soronthar.geom.Dimension;
-import org.soronthar.geom.Point;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 import static com.soronthar.rpg.utils.Utils.normalizePointToTile;
@@ -75,7 +75,7 @@ public class TilesetsPanel extends JTabbedPane {
 
         @Override
         public void mouseDragged(MouseEvent e) {
-            Point point = normalizePointToTile(e.getPoint());
+            Point point =  normalizePointToTile(e.getPoint());
             if (this.lastPoint.equals(point)) return;
 
             this.lastPoint = point;
@@ -85,11 +85,11 @@ public class TilesetsPanel extends JTabbedPane {
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            Point point = normalizePointToTile(e.getPoint());
+            Point point =  normalizePointToTile(e.getPoint());
             if (point.x >= this.tilePanel.getWidth() || point.y >= this.tilePanel.getHeight()) return;
 
             calculateNewSelection(this.startPoint, point);
-            Tile tile = new Tile(tilePanel.getName(), topLeft, dimension);
+            Tile tile = new Tile(tilePanel.getName(), com.soronthar.rpg.utils.Point.fromAWT(topLeft), dimension);
 
             this.tilePanel.tileSelectedEvent(tile);
             controller.setDrawingPen(tile);

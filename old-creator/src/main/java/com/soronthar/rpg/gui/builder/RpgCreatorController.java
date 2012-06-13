@@ -7,10 +7,10 @@ import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
 import com.soronthar.rpg.gui.builder.actions.ActionsManager;
 import com.soronthar.rpg.gui.builder.components.scenery.SceneryTree;
+import com.soronthar.rpg.utils.Point;
 import org.soronthar.error.TechnicalException;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.Collection;
 
 import static com.soronthar.rpg.utils.Utils.normalizePointToTile;

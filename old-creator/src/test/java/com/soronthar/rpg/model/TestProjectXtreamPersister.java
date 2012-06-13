@@ -11,11 +11,11 @@ import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.*;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.adventure.tileset.TileSet;
+import com.soronthar.rpg.utils.Point;
 import junit.framework.TestCase;
 import org.apache.commons.io.FileUtils;
 import org.soronthar.error.TechnicalException;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URISyntaxException;
@@ -65,7 +65,7 @@ public class TestProjectXtreamPersister extends TestCase {
         Scenery firstScenery = new Scenery(1, "first");
         for (int i = 0; i < LayersArray.LAYER_COUNT; i++) {
             if (i != LayersArray.SPRITE_LAYER_INDEX) {
-                firstScenery.setTile(tileSet.getTile(new Point(0, i), Tile.TILE_DIMENSION), i, new org.soronthar.geom.Point(i, 0));
+                firstScenery.setTile(tileSet.getTile(new Point(0, i), Tile.TILE_DIMENSION), i, new Point(i, 0));
             }
         }
         MobNpc alltrue = new MobNpc("alltrue", new Point(4, 0), Facing.LEFT);
@@ -90,7 +90,7 @@ public class TestProjectXtreamPersister extends TestCase {
         Scenery secondScenery = new Scenery(2, "second");
         for (int i = 0; i < LayersArray.LAYER_COUNT; i++) {
             if (i != LayersArray.SPRITE_LAYER_INDEX) {
-                secondScenery.setTile(tileSet.getTile(new Point(1, i), Tile.TILE_DIMENSION), i, new org.soronthar.geom.Point(i, 1));
+                secondScenery.setTile(tileSet.getTile(new Point(1, i), Tile.TILE_DIMENSION), i, new Point(i, 1));
             }
         }
 
@@ -203,8 +203,8 @@ public class TestProjectXtreamPersister extends TestCase {
         Collection<Point> obstacles = scenery.getObstacles();
         assertEquals(1, obstacles.size());
         Point point = obstacles.iterator().next();
-        assertEquals(8, point.x);
-        assertEquals(1, point.y);
+        assertEquals(8, point.getX());
+        assertEquals(1, point.getY());
 
         assertEquals(new Point(5, 8), scenery.getHeroStartingPoint());
 
@@ -246,14 +246,14 @@ public class TestProjectXtreamPersister extends TestCase {
             String fixtureId = identifyScenery(scenery, i);
             assertNotNull(fixtureId, drawnTile);
             Point point = drawnTile.getPoint();
-            assertEquals(fixtureId, i, point.x);
-            assertEquals(fixtureId, index, point.y);
+            assertEquals(fixtureId, i, point.getX());
+            assertEquals(fixtureId, index, point.getY());
 
             Tile tile = drawnTile.getTile();
             assertEquals(fixtureId, "TILESET", tile.getTilesetName());
             Point point1 = tile.getPoint();
-            assertEquals(fixtureId, index, point1.x);
-            assertEquals(fixtureId, i, point1.y);
+            assertEquals(fixtureId, index, point1.getX());
+            assertEquals(fixtureId, i, point1.getY());
             assertEquals(fixtureId, Tile.TILE_DIMENSION, tile.getDimension());
         }
 

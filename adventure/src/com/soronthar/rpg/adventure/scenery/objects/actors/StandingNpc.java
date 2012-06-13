@@ -1,6 +1,7 @@
 package com.soronthar.rpg.adventure.scenery.objects.actors;
 
-import java.awt.*;
+
+import com.soronthar.rpg.utils.Point;
 
 public class StandingNpc extends Sprite {
 
@@ -12,4 +13,7 @@ public class StandingNpc extends Sprite {
         super(id, point, facing);
     }
 
+    public StandingNpc(String id, java.awt.Point point, Facing facing) {
+        super(id, Point.fromAWT(point), facing);
+    }
 }

@@ -27,10 +27,10 @@ import com.soronthar.rpg.alchemist.actors.ObstacleActor;
 import com.soronthar.rpg.alchemist.tileset.TileSet;
 import com.soronthar.rpg.alchemist.tileset.TileSetBag;
 import com.soronthar.rpg.alchemist.tileset.TileSetBagPersister;
+import com.soronthar.rpg.utils.Point;
 import com.soronthar.rpg.utils.Utils;
 import org.soronthar.error.ApplicationException;
 
-import java.awt.*;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -50,7 +50,7 @@ public class MapScreen implements Screen {
 
         Collection<JumpPoint> jumpPoints = scenery.getJumpPoints();
         for (JumpPoint jumpPoint : jumpPoints) {
-            Vector2 vector=new Vector2((float) jumpPoint.getLocation().x, this.scenery.getHeight() - (float) jumpPoint.getLocation().y);
+            Vector2 vector=new Vector2((float) jumpPoint.getLocation().getX(), this.scenery.getHeight() - (float) jumpPoint.getLocation().getY());
             heroActor.toLocalCoordinates(vector);
             if (heroActor.hit(vector.x,  vector.y)!=null) {
                 long targetId = jumpPoint.getTargetId();
@@ -87,13 +87,13 @@ public class MapScreen implements Screen {
         this.scenery=scenery;
         createTextureForScenery(scenery);
         Point heroPos = scenery.getHeroStartingPoint();
-        heroPos.y=this.scenery.getHeight()-heroPos.y;
+        heroPos.setY(this.scenery.getHeight()-heroPos.getY());
 
         int height = Gdx.graphics.getHeight();
         int width = Gdx.graphics.getWidth();
         if (stage!=null) stage.clear();
         stage = new Stage(width, height, true);
-        stage.getCamera().position.set(heroPos.x, heroPos.y, 0);
+        stage.getCamera().position.set(heroPos.getX(), heroPos.getY(), 0);
 
         heroActor = new HeroActor(new Hero(heroPos));
 
@@ -101,8 +101,8 @@ public class MapScreen implements Screen {
         Group obstaclesGroup = new Group("obstacles");
         Iterator<Point> iterator = obstacles.iterator();
         for (; iterator.hasNext(); ) {
-            Point loc = new Point(iterator.next());
-            loc.setLocation(loc.x, scenery.getHeight() - loc.y);
+            Point loc = iterator.next().clone();
+            loc.setLocation(loc.getX(), scenery.getHeight() - loc.getY());
             obstaclesGroup.addActor(new ObstacleActor(loc));
         }
         obstaclesGroup.addActor(new ObstacleActor(new Point(0,0)));
@@ -155,7 +155,7 @@ public class MapScreen implements Screen {
                 Point tilesetPoint = info.getPoint();
 
                 Point p = Utils.normalizePointToTile(drawnTile.getPoint());
-                layerPixmap.drawPixmap(image, p.x, p.y, tilesetPoint.x, tilesetPoint.y, dimension.width, dimension.height);
+                layerPixmap.drawPixmap(image, p.getX(), p.getY(), tilesetPoint.getX(), tilesetPoint.getY(), dimension.width, dimension.height);
             }
         }
     }

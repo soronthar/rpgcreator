@@ -3,6 +3,7 @@ package com.soronthar.rpg.gui.builder.panes;
 import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.gui.builder.Controller;
 import com.soronthar.rpg.gui.builder.components.paint.PaintCanvas;
+import com.soronthar.rpg.utils.Point;
 
 import javax.swing.*;
 import java.awt.*;
@@ -73,7 +74,7 @@ public class PaintPanel extends JScrollPane {
     }
 
     public void handleEraseTileEvent(Point p) {
-        this.getCanvas().eraseTileOnPoint(p);
+        this.getCanvas().eraseTileOnPoint(p.toAWT());
         this.repaint();
     }
 

@@ -6,10 +6,10 @@ import com.soronthar.rpg.adventure.scenery.objects.ObjectMap;
 import com.soronthar.rpg.adventure.scenery.objects.Obstacle;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
 import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.utils.Point;
 import com.soronthar.rpg.utils.Utils;
 import org.soronthar.geom.Dimension;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
@@ -59,11 +59,11 @@ public class Scenery implements Serializable {
 
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
-                    Point pointInTileset = new Point(tilePointInTileSet);
+                    Point pointInTileset = tilePointInTileSet.clone();
                     pointInTileset.translate(i * Tile.TILE_SIZE, j * Tile.TILE_SIZE);
                     Tile fragment = new Tile(tileSetName, pointInTileset, Tile.TILE_DIMENSION);
 
-                    Point pointInScenery = new Point(p);
+                    Point pointInScenery = p.clone();
                     pointInScenery.translate(i * Tile.TILE_SIZE, j * Tile.TILE_SIZE);
                     layers.layerAt(layer).addTile(new DrawnTile(pointInScenery, fragment));
                 }
@@ -103,7 +103,7 @@ public class Scenery implements Serializable {
     }
 
     public Point getHeroStartingPoint() {
-        return new Point(heroStartingPoint);
+        return heroStartingPoint.clone();
     }
 
     public void setHeroStartingPoint(Point heroStartingPoint) {
@@ -139,12 +139,21 @@ public class Scenery implements Serializable {
         objects.removeObjectAt(point);
     }
 
+    @Deprecated
+    public Actor getSpecialAt(java.awt.Point point) {
+        return getSpecialAt(Point.fromAWT(point));
+    }
+
     public Actor getSpecialAt(Point point) {
         return objects.getObjectAt(point);
     }
 
     public long getId() {
         return id;
+    }
+
+    public void removeSpriteAt(java.awt.Point p) {
+        removeSpriteAt(Point.fromAWT(p));
     }
 
     public void removeSpriteAt(Point p) {

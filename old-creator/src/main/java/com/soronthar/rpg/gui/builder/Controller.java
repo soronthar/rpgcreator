@@ -10,10 +10,10 @@ import com.soronthar.rpg.adventure.tileset.TileSetBag;
 import com.soronthar.rpg.gui.builder.panes.PaintPanel;
 import com.soronthar.rpg.gui.builder.panes.TilesetsPanel;
 import com.soronthar.rpg.model.tiles.TileSetBagPersister;
+import com.soronthar.rpg.utils.Point;
 import org.soronthar.error.ApplicationException;
 import org.soronthar.geom.Dimension;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static com.soronthar.rpg.utils.Utils.normalizePointToTile;
@@ -33,6 +33,11 @@ public class Controller {
         if (activeTile != null) {
             notifyChangeDrawingPen(activeTile);
         }
+    }
+
+    @Deprecated
+    public void addTileToActiveSceneryAtPoint(java.awt.Point point) {
+        addTileToActiveSceneryAtPoint(Point.fromAWT(point));
     }
 
     public void addTileToActiveSceneryAtPoint(Point p) {
@@ -60,6 +65,10 @@ public class Controller {
                 }
             }
         }
+    }
+
+    public void removeTileAtPoint(java.awt.Point point) {
+        removeTileAtPoint(Point.fromAWT(point));
     }
 
     public void removeTileAtPoint(Point p) {
@@ -94,7 +103,7 @@ public class Controller {
             BufferedImage image = tileSet.image();
             Point point = info.getPoint();
             Dimension dimension = info.getDimension();
-            drawingPen = image.getSubimage(point.x, point.y, dimension.width, dimension.height);
+            drawingPen = image.getSubimage(point.getX(), point.getY(), dimension.width, dimension.height);
         }
         model.setDrawingPen(drawingPen);
     }

@@ -1,7 +1,7 @@
 package com.soronthar.rpg.adventure.scenery.objects;
 
 
-import java.awt.*;
+import com.soronthar.rpg.utils.Point;
 
 public class Obstacle extends Actor {
 

@@ -10,16 +10,14 @@ import com.soronthar.rpg.alchemist.RpgAlchemist;
 import com.soronthar.rpg.alchemist.actors.frames.ActorRenderer;
 import com.soronthar.rpg.alchemist.actors.frames.DebugRenderer;
 import com.soronthar.rpg.alchemist.actors.frames.EmptyRenderer;
-
-import java.awt.*;
-
+import com.soronthar.rpg.utils.Point;
 
 public class ObstacleActor extends Actor {
     private ActorRenderer frameStrategy;
 
     public ObstacleActor(Point loc) {
-        this.x=loc.x;
-        this.y=loc.y;
+        this.x=loc.getX();
+        this.y=loc.getY();
         this.width=Tile.TILE_SIZE;
         this.height= Tile.TILE_SIZE;
         BitmapFont font = new BitmapFont();

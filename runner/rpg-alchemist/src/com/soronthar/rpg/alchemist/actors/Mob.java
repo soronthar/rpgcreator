@@ -18,8 +18,8 @@ public class Mob extends Actor {
 
     public Mob(String name, com.soronthar.rpg.adventure.scenery.objects.Actor actor) {
         super(name);
-        this.x = actor.getLocation().x;
-        this.y = actor.getLocation().y;
+        this.x = actor.getLocation().getX();
+        this.y = actor.getLocation().getY();
         this.width= Tile.TILE_SIZE;
         this.height= Tile.TILE_SIZE;
 

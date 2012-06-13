@@ -1,6 +1,6 @@
 package com.soronthar.rpg.adventure.scenery.objects;
 
-import java.awt.*;
+import com.soronthar.rpg.utils.Point;
 
 public abstract class Actor {
     protected Point location;
@@ -12,7 +12,7 @@ public abstract class Actor {
     }
 
     public Point getLocation() {
-        return new Point(location);
+        return location.clone();
     }
 
     public void setLocation(Point location) {

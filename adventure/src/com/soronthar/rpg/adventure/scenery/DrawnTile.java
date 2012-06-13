@@ -2,8 +2,8 @@ package com.soronthar.rpg.adventure.scenery;
 
 
 import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.utils.Point;
 
-import java.awt.*;
 import java.io.Serializable;
 
 public class DrawnTile implements Serializable {
