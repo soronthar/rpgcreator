@@ -11,6 +11,7 @@ import com.soronthar.rpg.utils.Point;
 import org.soronthar.error.TechnicalException;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Collection;
 
 import static com.soronthar.rpg.utils.Utils.normalizePointToTile;
@@ -146,9 +147,9 @@ public class RpgCreatorController extends Controller {
         this.builderGUI = builderGUI;
     }
 
-    public void setScenerySize(long id, org.soronthar.geom.Dimension dimension) {
+    public void setScenerySize(long id, Dimension dimension) {
         Scenery scenery = this.model.getProject().getScenery(id);
-        scenery.setDimension(dimension);
+        scenery.setDimension(com.soronthar.rpg.utils.Dimension.fromAWT(dimension));
         this.paintPanel.clearMap();
         drawScenery(model.getActiveScenery());//TODO: nasty bug... is it possible to change the size of an inactive scenery?
     }

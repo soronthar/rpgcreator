@@ -1,8 +1,6 @@
 package com.soronthar.rpg.gui.builder.components.tiles;
 
 import com.soronthar.rpg.adventure.tileset.Tile;
-import org.soronthar.geom.Dimension;
-import org.soronthar.geom.Point;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +30,7 @@ public class TilePanel extends JPanel {
 
     public void tileSelectedEvent(Tile tileInfo) {
         if (tilePalette.getName().equals(tileInfo.getTilesetName())) {
-            glassLayer.drawSelectOutline(tileInfo.getPoint().toAWT(), tileInfo.getDimension());
+            glassLayer.drawSelectOutline(tileInfo.getPoint().toAWT(), tileInfo.getDimension().toAWT());
             getParent().repaint();
         }
     }

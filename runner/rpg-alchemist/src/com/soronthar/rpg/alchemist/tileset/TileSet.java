@@ -2,8 +2,8 @@ package com.soronthar.rpg.alchemist.tileset;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.utils.Dimension;
 import com.soronthar.rpg.utils.Point;
-import org.soronthar.geom.Dimension;
 
 public class TileSet {
     private Pixmap image;

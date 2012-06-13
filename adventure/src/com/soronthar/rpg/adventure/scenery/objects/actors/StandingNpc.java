@@ -13,6 +13,7 @@ public class StandingNpc extends Sprite {
         super(id, point, facing);
     }
 
+    @Deprecated
     public StandingNpc(String id, java.awt.Point point, Facing facing) {
         super(id, Point.fromAWT(point), facing);
     }

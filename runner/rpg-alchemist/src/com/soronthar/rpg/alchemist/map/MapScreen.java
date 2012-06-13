@@ -27,6 +27,7 @@ import com.soronthar.rpg.alchemist.actors.ObstacleActor;
 import com.soronthar.rpg.alchemist.tileset.TileSet;
 import com.soronthar.rpg.alchemist.tileset.TileSetBag;
 import com.soronthar.rpg.alchemist.tileset.TileSetBagPersister;
+import com.soronthar.rpg.utils.Dimension;
 import com.soronthar.rpg.utils.Point;
 import com.soronthar.rpg.utils.Utils;
 import org.soronthar.error.ApplicationException;
@@ -146,7 +147,7 @@ public class MapScreen implements Screen {
         for (DrawnTile drawnTile : sceneryLayer) {
             Tile info = drawnTile.getTile();
             if (info != null) {
-                org.soronthar.geom.Dimension dimension = info.getDimension();
+                Dimension dimension = info.getDimension();
                 TileSet tileSet = tileSets.get(info.getTilesetName());
                 if (tileSet == null) {
                     throw new ApplicationException("Tileset " + info.getTilesetName() + " is not loaded");
@@ -155,7 +156,7 @@ public class MapScreen implements Screen {
                 Point tilesetPoint = info.getPoint();
 
                 Point p = Utils.normalizePointToTile(drawnTile.getPoint());
-                layerPixmap.drawPixmap(image, p.getX(), p.getY(), tilesetPoint.getX(), tilesetPoint.getY(), dimension.width, dimension.height);
+                layerPixmap.drawPixmap(image, p.getX(), p.getY(), tilesetPoint.getX(), tilesetPoint.getY(), dimension.getWidth(), dimension.getHeight());
             }
         }
     }

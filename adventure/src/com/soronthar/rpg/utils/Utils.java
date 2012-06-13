@@ -2,7 +2,6 @@ package com.soronthar.rpg.utils;
 
 import com.soronthar.rpg.adventure.scenery.objects.actors.Facing;
 import com.soronthar.rpg.adventure.tileset.Tile;
-import org.soronthar.geom.Dimension;
 
 
 public class Utils {
@@ -32,7 +31,7 @@ public class Utils {
     }
 
     public static Dimension getTileDimension() {
-        return (Dimension) Tile.TILE_DIMENSION.clone();
+        return Tile.TILE_DIMENSION.clone();
     }
 
     public static Dimension getScaledTileDimension(int x, int y) {

@@ -18,9 +18,9 @@ public class LayerPanel extends JScrollPane {
 
     public LayerPanel(final RpgCreatorController controller) {
         layersTable = new JTable(new MyTableModel());
-        layersTable.setMinimumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
-        layersTable.setMaximumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
-        layersTable.setPreferredScrollableViewportSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
+        layersTable.setMinimumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49).toAWT());
+        layersTable.setMaximumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49).toAWT());
+        layersTable.setPreferredScrollableViewportSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49).toAWT());
         layersTable.setFillsViewportHeight(true);
         setViewportView(layersTable);
         layersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

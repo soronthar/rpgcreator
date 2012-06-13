@@ -6,7 +6,6 @@ import com.soronthar.rpg.adventure.tileset.TileSetBag;
 import com.soronthar.rpg.gui.builder.Controller;
 import com.soronthar.rpg.gui.builder.components.tiles.TilePanel;
 import com.soronthar.rpg.utils.Utils;
-import org.soronthar.geom.Dimension;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
@@ -22,9 +21,9 @@ public class TilesetsPanel extends JTabbedPane {
 
     public TilesetsPanel(Controller controller) {
         this.setTabPlacement(JTabbedPane.BOTTOM);
-        this.setMinimumSize(Utils.getScaledTileDimension(12, 8).addPadding(23, 49));
-        this.setMaximumSize(Utils.getScaledTileDimension(12, 12).addPadding(23, 49));
-        this.setPreferredSize(Utils.getScaledTileDimension(12, 12).addPadding(23, 49));
+        this.setMinimumSize(Utils.getScaledTileDimension(12, 8).addPadding(23, 49).toAWT());
+        this.setMaximumSize(Utils.getScaledTileDimension(12, 12).addPadding(23, 49).toAWT());
+        this.setPreferredSize(Utils.getScaledTileDimension(12, 12).addPadding(23, 49).toAWT());
         controller.setTilesetPanel(this);
         this.controller = controller;
     }
@@ -69,7 +68,7 @@ public class TilesetsPanel extends JTabbedPane {
             startPoint = normalizePointToTile(e.getPoint());
             topLeft = startPoint;
             lastPoint = startPoint;
-            dimension = Utils.getTileDimension();
+            dimension = Utils.getTileDimension().toAWT();
             tilePanel.selectTileAt(topLeft, dimension);
         }
 
@@ -89,7 +88,7 @@ public class TilesetsPanel extends JTabbedPane {
             if (point.x >= this.tilePanel.getWidth() || point.y >= this.tilePanel.getHeight()) return;
 
             calculateNewSelection(this.startPoint, point);
-            Tile tile = new Tile(tilePanel.getName(), com.soronthar.rpg.utils.Point.fromAWT(topLeft), dimension);
+            Tile tile = new Tile(tilePanel.getName(), topLeft, dimension);
 
             this.tilePanel.tileSelectedEvent(tile);
             controller.setDrawingPen(tile);

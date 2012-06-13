@@ -2,7 +2,6 @@ package com.soronthar.rpg.gui.builder.components.tiles;
 
 import com.soronthar.rpg.gui.image.TranslucentImage;
 import com.soronthar.rpg.utils.Utils;
-import org.soronthar.geom.Dimension;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +34,7 @@ public class GlassSelectLayer extends JPanel {
     }
 
     public void drawSelectSquareAtPoint(Point point) {
-        drawSelectOutline(point, Utils.getTileDimension());
+        drawSelectOutline(point, Utils.getTileDimension().toAWT());
     }
 
     public void drawSelectOutline(Point topLeft, Dimension dimension) {

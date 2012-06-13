@@ -21,8 +21,8 @@ public class SceneryTree extends JTree {
 
         super(new SceneryTreeModel());
 
-        this.setMinimumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
-        this.setMaximumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49));
+        this.setMinimumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49).toAWT());
+        this.setMaximumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49).toAWT());
 
         controller.setSceneryTree(this);
         this.addTreeSelectionListener(new TreeSelectionListener() {

@@ -65,7 +65,7 @@ public class TestProjectXtreamPersister extends TestCase {
         Scenery firstScenery = new Scenery(1, "first");
         for (int i = 0; i < LayersArray.LAYER_COUNT; i++) {
             if (i != LayersArray.SPRITE_LAYER_INDEX) {
-                firstScenery.setTile(tileSet.getTile(new Point(0, i), Tile.TILE_DIMENSION), i, new Point(i, 0));
+                firstScenery.setTile(tileSet.getTile(new Point(0, i), Tile.TILE_DIMENSION.toAWT()), i, new Point(i, 0));
             }
         }
         MobNpc alltrue = new MobNpc("alltrue", new Point(4, 0), Facing.LEFT);
@@ -90,7 +90,7 @@ public class TestProjectXtreamPersister extends TestCase {
         Scenery secondScenery = new Scenery(2, "second");
         for (int i = 0; i < LayersArray.LAYER_COUNT; i++) {
             if (i != LayersArray.SPRITE_LAYER_INDEX) {
-                secondScenery.setTile(tileSet.getTile(new Point(1, i), Tile.TILE_DIMENSION), i, new Point(i, 1));
+                secondScenery.setTile(tileSet.getTile(new Point(1, i), Tile.TILE_DIMENSION.toAWT()), i, new Point(i, 1));
             }
         }
 

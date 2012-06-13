@@ -12,8 +12,8 @@ import com.soronthar.rpg.gui.builder.panes.TilesetsPanel;
 import com.soronthar.rpg.model.tiles.TileSetBagPersister;
 import com.soronthar.rpg.utils.Point;
 import org.soronthar.error.ApplicationException;
-import org.soronthar.geom.Dimension;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static com.soronthar.rpg.utils.Utils.normalizePointToTile;
@@ -102,7 +102,7 @@ public class Controller {
             }
             BufferedImage image = tileSet.image();
             Point point = info.getPoint();
-            Dimension dimension = info.getDimension();
+            Dimension dimension = info.getDimension().toAWT();
             drawingPen = image.getSubimage(point.getX(), point.getY(), dimension.width, dimension.height);
         }
         model.setDrawingPen(drawingPen);

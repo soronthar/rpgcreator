@@ -9,7 +9,7 @@ public class MobNpc extends Sprite {
         super(id, location, facing);
     }
 
-
+    @Deprecated
     public MobNpc(String id, java.awt.Point point, Facing facing) {
         super(id, Point.fromAWT(point), facing);
     }

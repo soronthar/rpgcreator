@@ -1,7 +1,7 @@
 package com.soronthar.rpg.adventure.tileset;
 
+import com.soronthar.rpg.utils.Dimension;
 import com.soronthar.rpg.utils.Point;
-import org.soronthar.geom.Dimension;
 
 import java.io.Serializable;
 
@@ -19,6 +19,11 @@ public class Tile implements Serializable {
         this.dimension = dimension;
     }
 
+    @Deprecated
+    public Tile(String tilesetName, java.awt.Point point, java.awt.Dimension dimension) {
+        this(tilesetName, Point.fromAWT(point),Dimension.fromAWT(dimension));
+    }
+
     public String getTilesetName() {
         return tilesetName;
     }
@@ -28,7 +33,7 @@ public class Tile implements Serializable {
     }
 
     public Dimension getDimension() {
-        return (Dimension) dimension.clone();
+        return dimension.clone();
     }
 
     public String toString() {

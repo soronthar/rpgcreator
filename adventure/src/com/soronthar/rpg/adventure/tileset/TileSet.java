@@ -1,7 +1,7 @@
 package com.soronthar.rpg.adventure.tileset;
 
+import com.soronthar.rpg.utils.Dimension;
 import com.soronthar.rpg.utils.Point;
-import org.soronthar.geom.Dimension;
 
 import java.awt.image.BufferedImage;
 
@@ -36,7 +36,7 @@ public class TileSet {
         return name;
     }
 
-    public Tile getTile(Point topLeft, Dimension dimension) {
-        return new Tile(name, topLeft, dimension);
+    public Tile getTile(Point topLeft, java.awt.Dimension dimension) {
+        return new Tile(name, topLeft, Dimension.fromAWT(dimension));
     }
 }

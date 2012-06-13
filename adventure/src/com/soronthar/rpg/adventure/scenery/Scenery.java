@@ -6,9 +6,9 @@ import com.soronthar.rpg.adventure.scenery.objects.ObjectMap;
 import com.soronthar.rpg.adventure.scenery.objects.Obstacle;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
 import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.utils.Dimension;
 import com.soronthar.rpg.utils.Point;
 import com.soronthar.rpg.utils.Utils;
-import org.soronthar.geom.Dimension;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -54,8 +54,8 @@ public class Scenery implements Serializable {
             String tileSetName = tile.getTilesetName();
             Point tilePointInTileSet = tile.getPoint();
 
-            int width = Utils.pixelToTile(tileDimension.width);
-            int height = Utils.pixelToTile(tileDimension.height);
+            int width = Utils.pixelToTile(tileDimension.getWidth());
+            int height = Utils.pixelToTile(tileDimension.getHeight());
 
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
@@ -78,16 +78,12 @@ public class Scenery implements Serializable {
         return this.name;
     }
 
-    public void setDimension(Dimension dimension) {
-        this.dimension = dimension;
-    }
-
     public int getWidth() {
-        return this.dimension.width;
+        return this.dimension.getWidth();
     }
 
     public int getHeight() {
-        return this.dimension.height;
+        return this.dimension.getHeight();
     }
 
     public Layer getLayer(int i) {
@@ -152,6 +148,7 @@ public class Scenery implements Serializable {
         return id;
     }
 
+    @Deprecated
     public void removeSpriteAt(java.awt.Point p) {
         removeSpriteAt(Point.fromAWT(p));
     }
@@ -162,5 +159,8 @@ public class Scenery implements Serializable {
 
     public Map<String, Sprite> getSpriteMap() {
         return objects.getSpritesById();
+    }
+
+    public void setDimension(Dimension dimension) {
     }
 }
