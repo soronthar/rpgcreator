@@ -18,19 +18,19 @@ public class Mob extends Actor {
     private ActorRenderer renderer;
     private MovementController mover;
 
-    public Mob(String name, com.soronthar.rpg.adventure.scenery.objects.Actor actor) {
+    public Mob(String name, com.soronthar.rpg.adventure.scenery.objects.actors.Sprite  sprite) {
         super(name);
-        this.x = actor.getLocation().getX();
-        this.y = actor.getLocation().getY();
+        this.x = sprite.getLocation().getX();
+        this.y = sprite.getLocation().getY();
         this.width= Tile.TILE_SIZE;
         this.height= Tile.TILE_SIZE;
 
         if (RpgAlchemist.DEBUG) {
             this.renderer = new DebugRenderer(Color.PINK, this);
         } else {
-            this.renderer = new MobActorRenderer("herop2.png", this);
+            this.renderer = new MobActorRenderer(sprite.getFramesImageName(), this);
         }
-        if (actor instanceof MobNpc) {
+        if (sprite instanceof MobNpc) {
             mover = new MobMovementController(this);
         } else {
             mover = new EmptyMover();
@@ -67,10 +67,8 @@ public class Mob extends Actor {
     @Override
     public Actor hit(float x, float y) {
         Rectangle rect = new Rectangle(x, y, 32, 32);
-        return !(rect.x >= width ||
-                rect.x + rect.width <= 0 ||
-                rect.y >= height ||
-                rect.y + rect.height <= 0) ? this : null;
+        boolean b = rect.x < width && rect.x + rect.width > 0 && rect.y < height && rect.y + rect.height > 0;
+        return b ? this : null;
     }
 
     public boolean isMoving() {

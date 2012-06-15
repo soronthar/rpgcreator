@@ -61,9 +61,8 @@ public class SceneryReader {
         }
 
         scenery.setHeroStartingPoint(parsePoint((String)map.get("heroStartingPoint")));
-//        { "id":"Sprite-0", "solid":"true", "visible":"true", "type":"npc", "frames":"miscsprite.png", "pos":"128,64", "facing":"DOWN" }
 
-        Array<OrderedMap> sprites = (Array<OrderedMap>) map.get("specials");
+        Array<OrderedMap> sprites = (Array<OrderedMap>) map.get("sprites");
         for (Iterator<OrderedMap> iterator = sprites.iterator(); iterator.hasNext(); ) {
             OrderedMap spriteInfo = iterator.next();
             String spriteId= (String) spriteInfo.get("id");
