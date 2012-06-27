@@ -62,7 +62,7 @@ public class TestProjectXtreamPersister extends TestCase {
     
     
     private Project createTestProject(String projectName) {
-        TileSet tileSet = new TileSet("TILESET", new BufferedImage(Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 20, BufferedImage.TYPE_INT_ARGB));
+        TileSet tileSet = new TileSet("TILESET", "TILESET", new BufferedImage(Tile.TILE_SIZE * 10, Tile.TILE_SIZE * 20, BufferedImage.TYPE_INT_ARGB));
         Scenery firstScenery = new Scenery(1, "first");
         for (int i = 0; i < LayersArray.LAYER_COUNT; i++) {
             if (i != LayersArray.SPRITE_LAYER_INDEX) {

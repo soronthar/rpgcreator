@@ -2,12 +2,14 @@ package com.soronthar.rpg.alchemist.model;
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.OrderedMap;
 import com.soronthar.rpg.adventure.project.Project;
 import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.utils.Dimension;
 
 import java.io.Reader;
+import java.util.Iterator;
 
 //TODO: The tilesets are not being loaded
 public class ProjectReader {
@@ -24,6 +26,13 @@ public class ProjectReader {
             String[] dim=size.split("x");
             scenery.setDimension(new Dimension(Integer.parseInt(dim[0]),Integer.parseInt(dim[1])));
             project.addScenery(scenery);
+        }
+
+        OrderedMap<String,String> tilesets= (OrderedMap) map.get("tilesets");
+        ObjectMap.Keys tilesetNames= tilesets.keys();
+        for (Iterator iterator = tilesetNames.iterator(); iterator.hasNext(); ) {
+            String key = (String) iterator.next();
+            project.addTileset(key,tilesets.get(key));
         }
 
         return project;

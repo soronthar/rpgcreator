@@ -6,12 +6,14 @@ import com.soronthar.rpg.utils.Point;
 import java.awt.image.BufferedImage;
 
 public class TileSet {
-    private BufferedImage image;
+    private BufferedImage image;     //TODO: remove image from here
     private String name;
+    private String resourceName;
 
-    public TileSet(String name, BufferedImage image) {
+    public TileSet(String name, String resourceName, BufferedImage image) {
         this.image = image;
         this.name = name;
+        this.resourceName=resourceName;
     }
 
     public BufferedImage image() {
@@ -38,5 +40,9 @@ public class TileSet {
 
     public Tile getTile(Point topLeft, java.awt.Dimension dimension) {
         return new Tile(name, topLeft, Dimension.fromAWT(dimension));
+    }
+
+    public String getResourceName() {
+        return resourceName;
     }
 }

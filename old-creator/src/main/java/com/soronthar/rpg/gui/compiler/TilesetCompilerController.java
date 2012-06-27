@@ -29,7 +29,7 @@ public class TilesetCompilerController extends Controller {
 
         for (File tilesetFile : tilesetFiles) {
             image = new ImageLoader().load("tilesets/" + tilesetFile.getName());
-            TileSet tileSet = new TileSet(tilesetFile.getName(), image);
+            TileSet tileSet = new TileSet(tilesetFile.getName(), tilesetFile.getName(),image);
             model.getTilesets().put(tileSet);
         }
         tilesetsPanel.setTileSets(model.getTilesets());

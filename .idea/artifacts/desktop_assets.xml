@@ -1,8 +1,10 @@
 <component name="ArtifactManager">
   <artifact build-on-make="true" name="desktop-assets">
-    <output-path>$PROJECT_DIR$/creator/rpg-demiurge-desktop/bin</output-path>
+    <output-path>$PROJECT_DIR$/runner/bin</output-path>
     <root id="root">
       <element id="module-output" name="rpg-alchemist" />
+      <element id="module-output" name="adventure" />
+      <element id="module-output" name="rpg-alchemist-desktop" />
     </root>
   </artifact>
 </component>

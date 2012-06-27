@@ -109,6 +109,7 @@ public class SceneryWriter {
         writeAttribute(jw, "tile", renderPoint(tile.getPoint()));
         writeAttribute(jw, "dimension", renderDimension(tile.getDimension()));
         writeTileLocations(jw, tile, tileMap);
+
         jw.pop();
     }
 

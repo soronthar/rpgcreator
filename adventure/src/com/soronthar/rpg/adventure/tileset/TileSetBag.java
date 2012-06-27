@@ -18,4 +18,8 @@ public class TileSetBag implements Iterable<TileSet> {
     public Iterator<TileSet> iterator() {
         return map.values().iterator();
     }
+
+    public int size() {
+        return map.size();
+    }
 }

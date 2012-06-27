@@ -24,8 +24,9 @@ public class TileSetBagPersister {
             Enumeration<?> enumeration = tilesetsDef.propertyNames();
             while (enumeration.hasMoreElements()) {
                 String key = (String) enumeration.nextElement();
-                image = new ImageLoader().load("tilesets/" + tilesetsDef.getProperty(key));
-                TileSet tileSet = new TileSet(key, image);
+                String resourceName = tilesetsDef.getProperty(key);
+                image = new ImageLoader().load("tilesets/" + resourceName);
+                TileSet tileSet = new TileSet(key, resourceName,image);
                 tileSets.put(tileSet);
             }
         } catch (IOException e) {

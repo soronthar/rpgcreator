@@ -25,9 +25,9 @@ public class ProjectPersister {
         xstream.alias("drawntile", DrawnTile.class);
 
         xstream.alias("point", Point.class);
-
         xstream.useAttributeFor("name", String.class);
         xstream.alias("project", Project.class);
+        xstream.omitField(Project.class, "tileSetBag");
         xstream.omitField(Project.class, "path");
         return xstream;
     }

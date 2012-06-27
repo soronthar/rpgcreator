@@ -12,7 +12,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.soronthar.rpg.adventure.project.Project;
-import com.soronthar.rpg.adventure.project.ProjectPersister;
 import com.soronthar.rpg.adventure.scenery.DrawnTile;
 import com.soronthar.rpg.adventure.scenery.Layer;
 import com.soronthar.rpg.adventure.scenery.LayersArray;
@@ -25,10 +24,10 @@ import com.soronthar.rpg.alchemist.actors.HeroActor;
 import com.soronthar.rpg.alchemist.actors.LayerActor;
 import com.soronthar.rpg.alchemist.actors.Mob;
 import com.soronthar.rpg.alchemist.actors.ObstacleActor;
+import com.soronthar.rpg.alchemist.model.ProjectReader;
 import com.soronthar.rpg.alchemist.model.SceneryReader;
-import com.soronthar.rpg.alchemist.tileset.TileSet;
-import com.soronthar.rpg.alchemist.tileset.TileSetBag;
 import com.soronthar.rpg.alchemist.tileset.TileSetBagPersister;
+import com.soronthar.rpg.alchemist.tileset.TileSetMap;
 import com.soronthar.rpg.utils.Dimension;
 import com.soronthar.rpg.utils.Point;
 import com.soronthar.rpg.utils.Utils;
@@ -44,7 +43,7 @@ public class MapScreen implements Screen {
     private final FPSLogger log = new FPSLogger();
     private Scenery scenery;
     private HeroActor heroActor;
-    private final Project project = new ProjectPersister().load(Gdx.files.internal("projects/FirstProject/FirstProject.xml").reader());
+    private final Project project = new ProjectReader().read(Gdx.files.internal("projects/FirstProject/FirstProject.json").reader());
 
     @Override
     public void render(float delta) {
@@ -129,7 +128,7 @@ public class MapScreen implements Screen {
     }
 
     private void createTextureForScenery(Scenery scenery) {
-        TileSetBag tileSets = new TileSetBagPersister().loadTilesets();
+        TileSetMap tileSets = new TileSetBagPersister().fillTilesetBag(project.getTileSetBag());
         int w= MathUtils.nextPowerOfTwo(scenery.getWidth());
         int h= MathUtils.nextPowerOfTwo(scenery.getHeight());
         Pixmap layerPixmapL = new Pixmap(w, h, Pixmap.Format.RGBA8888);
@@ -149,16 +148,15 @@ public class MapScreen implements Screen {
         layerPixmapL.dispose();
     }
 
-    private void drawScenery(TileSetBag tileSets, Pixmap layerPixmap, Layer sceneryLayer) {
+    private void drawScenery(TileSetMap tileSets, Pixmap layerPixmap, Layer sceneryLayer) {
         for (DrawnTile drawnTile : sceneryLayer) {
             Tile info = drawnTile.getTile();
             if (info != null) {
                 Dimension dimension = info.getDimension();
-                TileSet tileSet = tileSets.get(info.getTilesetName());
-                if (tileSet == null) {
+                Pixmap image =  tileSets.get(info.getTilesetName());
+                if (image == null) {
                     throw new ApplicationException("Tileset " + info.getTilesetName() + " is not loaded");
                 }
-                Pixmap image = tileSet.image();
                 Point tilesetPoint = info.getPoint();
 
                 Point p = Utils.normalizePointToTile(drawnTile.getPoint());
