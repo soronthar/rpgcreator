@@ -1,12 +1,12 @@
 package com.soronthar.rpg.gui.builder;
 
 import com.soronthar.rpg.adventure.project.Project;
-import com.soronthar.rpg.adventure.project.ProjectPersister;
 import com.soronthar.rpg.adventure.scenery.*;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
 import com.soronthar.rpg.gui.builder.actions.ActionsManager;
 import com.soronthar.rpg.gui.builder.components.scenery.SceneryTree;
+import com.soronthar.rpg.model.project.ProjectPersister;
 import com.soronthar.rpg.utils.Point;
 import org.soronthar.error.TechnicalException;
 

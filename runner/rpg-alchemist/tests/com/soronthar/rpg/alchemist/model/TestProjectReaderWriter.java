@@ -8,6 +8,7 @@ import com.soronthar.rpg.adventure.tileset.TileSetBag;
 import junit.framework.TestCase;
 
 import java.io.StringReader;
+import java.io.StringWriter;
 
 public class TestProjectReaderWriter extends TestCase {
 
@@ -47,31 +48,39 @@ public class TestProjectReaderWriter extends TestCase {
         assertNotNull(black);
         assertEquals(black.getName(),"black");
         assertEquals(black.getResourceName(),"Shop-Blacksmith.png");
-
-
     }
 
+    public void testWriter() {
+        ProjectReader projectReader=new ProjectReader();
+        Project project=projectReader.read(new StringReader(TEST_STRING));
+        
+        StringWriter writer=new StringWriter();
+        ProjectWriter projectWriter=new ProjectWriter();
+        projectWriter.write(project,writer);
+        
+        assertEquals(TEST_STRING,writer.toString());
+    }
 
-    private static final String TEST_STRING="{\n" +
-            "    \"name\":\"First Project\",\n" +
-            "    \"tilesets\":\n" +
-            "        {\n" +
-            "            \"A5\":\"Shop-TileA5.png\",\n" +
-            "            \"stuff\":\"Town-Rural.png\",\n" +
-            "            \"black\":\"Shop-Blacksmith.png\"\n" +
-            "        }\n" +
-            "    ,\n" +
-            "    \"sceneries\":[\n" +
-            "        {\n" +
-            "            \"id\":\"1336686674947\",\n" +
-            "            \"name\":\"Town\",\n" +
-            "            \"size\":\"640x480\"\n" +
-            "        },\n" +
-            "        {\n" +
-            "            \"id\":\"1336692255933\",\n" +
-            "            \"name\":\"Shop\",\n" +
-            "            \"size\":\"288x256\"\n" +
-            "        }\n" +
-            "    ]\n" +
+    private static final String TEST_STRING="{" +
+            "\"name\":\"First Project\"," +
+            "\"tilesets\":" +
+            "{" +
+            "\"A5\":\"Shop-TileA5.png\"," +
+            "\"stuff\":\"Town-Rural.png\"," +
+            "\"black\":\"Shop-Blacksmith.png\"" +
+            "}" +
+            "," +
+            "\"sceneries\":[" +
+            "{" +
+            "\"id\":\"1336686674947\"," +
+            "\"name\":\"Town\"," +
+            "\"size\":\"640x480\"" +
+            "}," +
+            "{" +
+            "\"id\":\"1336692255933\"," +
+            "\"name\":\"Shop\"," +
+            "\"size\":\"288x256\"" +
+            "}" +
+            "]" +
             "}";
 }

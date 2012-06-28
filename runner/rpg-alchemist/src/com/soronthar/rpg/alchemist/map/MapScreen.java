@@ -52,7 +52,9 @@ public class MapScreen implements Screen {
 
         Collection<JumpPoint> jumpPoints = scenery.getJumpPoints();
         for (JumpPoint jumpPoint : jumpPoints) {
-            Vector2 vector=new Vector2((float) jumpPoint.getLocation().getX(), this.scenery.getHeight() - (float) jumpPoint.getLocation().getY());
+            int y = jumpPoint.getLocation().getY();
+            int x = jumpPoint.getLocation().getX();
+            Vector2 vector=new Vector2((float) x, this.scenery.getHeight() - (float) y);
             heroActor.toLocalCoordinates(vector);
             if (heroActor.hit(vector.x,  vector.y)!=null) {
                 setScenery(jumpPoint.getTargetId());

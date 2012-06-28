@@ -1,4 +1,4 @@
-package com.soronthar.rpg.adventure.project.xtream;
+package com.soronthar.rpg.model.project.xtream;
 
 import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.adventure.scenery.SceneryBag;

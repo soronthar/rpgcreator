@@ -1,4 +1,4 @@
-package com.soronthar.rpg.adventure.project.xtream;
+package com.soronthar.rpg.model.project.xtream;
 
 import com.soronthar.rpg.adventure.scenery.DrawnTile;
 import com.soronthar.rpg.adventure.scenery.Layer;

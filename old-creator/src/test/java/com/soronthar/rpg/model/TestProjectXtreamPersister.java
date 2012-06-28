@@ -1,7 +1,6 @@
 package com.soronthar.rpg.model;
 
 import com.soronthar.rpg.adventure.project.Project;
-import com.soronthar.rpg.adventure.project.ProjectPersister;
 import com.soronthar.rpg.adventure.scenery.DrawnTile;
 import com.soronthar.rpg.adventure.scenery.Layer;
 import com.soronthar.rpg.adventure.scenery.LayersArray;
@@ -11,6 +10,7 @@ import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.*;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.adventure.tileset.TileSet;
+import com.soronthar.rpg.model.project.ProjectPersister;
 import com.soronthar.rpg.utils.Dimension;
 import com.soronthar.rpg.utils.Point;
 import junit.framework.TestCase;
