@@ -1,8 +1,9 @@
 package com.soronthar.rpg.adventure.scenery.objects;
 
-import com.soronthar.rpg.utils.Point;
 
-public abstract class Actor {
+import com.soronthar.rpg.util.Point;
+
+public abstract class  Actor {
     protected Point location;
     private boolean solid = true;
     private boolean visible = true;

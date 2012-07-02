@@ -1,7 +1,7 @@
 package com.soronthar.rpg.adventure.tileset;
 
-import com.soronthar.rpg.utils.Dimension;
-import com.soronthar.rpg.utils.Point;
+import com.soronthar.rpg.util.Dimension;
+import com.soronthar.rpg.util.Point;
 
 import java.io.Serializable;
 

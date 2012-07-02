@@ -2,7 +2,7 @@ package com.soronthar.rpg.adventure.scenery;
 
 
 import com.soronthar.rpg.adventure.tileset.Tile;
-import com.soronthar.rpg.utils.Point;
+import com.soronthar.rpg.util.Point;
 
 import java.io.Serializable;
 

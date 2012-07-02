@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/creator/rpg-demiurge/bin" />
+    <output-test url="file://$MODULE_DIR$/out/test/old-rpgcreator" />
     <content url="file://$MODULE_DIR$/old-creator">
       <sourceFolder url="file://$MODULE_DIR$/old-creator/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/old-creator/resources" isTestSource="false" />
@@ -39,6 +41,7 @@
     <orderEntry type="library" name="Libdir" level="project" />
     <orderEntry type="module" module-name="adventure" exported="" />
     <orderEntry type="module" module-name="rpg-alchemist" exported="" />
+    <orderEntry type="library" name="gdx" level="project" />
   </component>
 </module>
 

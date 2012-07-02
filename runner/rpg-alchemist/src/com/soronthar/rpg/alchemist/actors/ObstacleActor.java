@@ -10,7 +10,7 @@ import com.soronthar.rpg.alchemist.RpgAlchemist;
 import com.soronthar.rpg.alchemist.actors.frames.ActorRenderer;
 import com.soronthar.rpg.alchemist.actors.frames.DebugRenderer;
 import com.soronthar.rpg.alchemist.actors.frames.EmptyRenderer;
-import com.soronthar.rpg.utils.Point;
+import com.soronthar.rpg.util.Point;
 
 public class ObstacleActor extends Actor {
     private ActorRenderer frameStrategy;

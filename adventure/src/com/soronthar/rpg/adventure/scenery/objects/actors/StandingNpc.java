@@ -1,7 +1,7 @@
 package com.soronthar.rpg.adventure.scenery.objects.actors;
 
 
-import com.soronthar.rpg.utils.Point;
+import com.soronthar.rpg.util.Point;
 
 public class StandingNpc extends Sprite {
 

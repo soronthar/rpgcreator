@@ -1,22 +1,22 @@
 package com.soronthar.rpg.adventure.scenery;
 
+import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.adventure.scenery.objects.Actor;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.ObjectMap;
 import com.soronthar.rpg.adventure.scenery.objects.Obstacle;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
 import com.soronthar.rpg.adventure.tileset.Tile;
-import com.soronthar.rpg.utils.Dimension;
-import com.soronthar.rpg.utils.Point;
-import com.soronthar.rpg.utils.Utils;
+import com.soronthar.rpg.util.Dimension;
+import com.soronthar.rpg.util.Point;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 
 public class Scenery implements Serializable {
-    public static final int WIDTH = 640;
-    public static final int HEIGHT = 480;
+    public static final int WIDTH = 512;
+    public static final int HEIGHT = 256;
 
     private long id;
     private Dimension dimension;

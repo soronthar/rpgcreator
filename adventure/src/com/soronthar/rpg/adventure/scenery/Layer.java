@@ -1,7 +1,7 @@
 package com.soronthar.rpg.adventure.scenery;
 
 
-import com.soronthar.rpg.utils.Point;
+import com.soronthar.rpg.util.Point;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;

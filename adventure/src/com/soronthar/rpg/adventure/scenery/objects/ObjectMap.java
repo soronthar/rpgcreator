@@ -1,7 +1,7 @@
 package com.soronthar.rpg.adventure.scenery.objects;
 
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
-import com.soronthar.rpg.utils.Point;
+import com.soronthar.rpg.util.Point;
 
 import java.util.Collection;
 import java.util.HashMap;
