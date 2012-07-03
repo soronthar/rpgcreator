@@ -49,18 +49,19 @@ public class SceneryReader {
         Array<String> obstacles = (Array<String>) map.get("obstacles");
         for (Iterator<String> iterator = obstacles.iterator(); iterator.hasNext(); ) {
             String obstacle = iterator.next();
-            scenery.addObstacleAt(parsePoint(obstacle));
+            scenery.addObstacleAt(convert(parsePoint(obstacle)));
         }
 
         Array<OrderedMap> jumps = (Array<OrderedMap>) map.get("jumps");
         for (Iterator iterator = jumps.iterator(); iterator.hasNext(); ) {
             OrderedMap jumpInfo = (OrderedMap) iterator.next();
-            Point pos = parsePoint((String) jumpInfo.get("pos"));
+            Point pos = convert(parsePoint((String) jumpInfo.get("pos")));
             long target = Long.parseLong((String) jumpInfo.get("target"));
             scenery.addJumpPoint(new JumpPoint(pos, target));
         }
 
-        scenery.setHeroStartingPoint(parsePoint((String)map.get("heroStartingPoint")));
+//        scenery.setHeroStartingPoint(parsePoint((String)map.get("heroStartingPoint")));
+        scenery.setHeroStartingPoint(convert(parsePoint((String)map.get("heroStartingPoint"))));
 
         Array<OrderedMap> sprites = (Array<OrderedMap>) map.get("sprites");
         for (Iterator<OrderedMap> iterator = sprites.iterator(); iterator.hasNext(); ) {
@@ -70,7 +71,7 @@ public class SceneryReader {
             boolean isVisible=Boolean.valueOf((String) spriteInfo.get("visible"));
             String type= (String) spriteInfo.get("type");
             String frames= (String) spriteInfo.get("frames");
-            Point point=parsePoint((String) spriteInfo.get("pos"));
+            Point point=convert(parsePoint((String) spriteInfo.get("pos")));
             Facing facing=Facing.valueOf((String) spriteInfo.get("facing"));
             Sprite sprite;
             if (type.equals("npc")) {
@@ -87,6 +88,12 @@ public class SceneryReader {
         return scenery;
 
 
+    }
+
+    private Point convert(Point point) {
+        point.setX(point.getX()*Tile.TILE_SIZE);
+        point.setY(point.getY()*Tile.TILE_SIZE);
+        return point;
     }
 
     private Point parsePoint(String point) {

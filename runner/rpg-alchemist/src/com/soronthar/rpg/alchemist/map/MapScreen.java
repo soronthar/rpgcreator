@@ -54,7 +54,7 @@ public class MapScreen implements Screen {
         for (JumpPoint jumpPoint : jumpPoints) {
             int y = jumpPoint.getLocation().getY();
             int x = jumpPoint.getLocation().getX();
-            Vector2 vector=new Vector2((float) x, this.scenery.getHeight() - (float) y);
+            Vector2 vector=new Vector2((float) x, (float) y);
             heroActor.toLocalCoordinates(vector);
             if (heroActor.hit(vector.x,  vector.y)!=null) {
                 setScenery(jumpPoint.getTargetId());
@@ -95,8 +95,7 @@ public class MapScreen implements Screen {
         this.scenery=scenery;
         createTextureForScenery(scenery);
         Point heroPos = scenery.getHeroStartingPoint();
-        heroPos.setY(this.scenery.getHeight()-heroPos.getY());
-
+        System.out.println("MapScreen.setScenery:99 - heroPos = " + heroPos);
         int height = Gdx.graphics.getHeight();
         int width = Gdx.graphics.getWidth();
         if (stage!=null) stage.clear();
@@ -110,7 +109,6 @@ public class MapScreen implements Screen {
         Iterator<Point> iterator = obstacles.iterator();
         for (; iterator.hasNext(); ) {
             Point loc = iterator.next().clone();
-            loc.setLocation(loc.getX(), scenery.getHeight() - loc.getY());
             obstaclesGroup.addActor(new ObstacleActor(loc));
         }
         obstaclesGroup.addActor(new ObstacleActor(new Point(0,0)));

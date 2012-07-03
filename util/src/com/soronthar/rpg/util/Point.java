@@ -89,4 +89,12 @@ public class Point implements Cloneable {
     public void flipX() {
         x *= -1;
     }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }
