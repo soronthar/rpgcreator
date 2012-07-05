@@ -3,35 +3,34 @@ package com.soronthar.rpg.demiurge.legacy.gui.builder;
 import com.soronthar.rpg.adventure.tileset.TileSet;
 import com.soronthar.rpg.adventure.tileset.TileSetBag;
 import com.soronthar.rpg.demiurge.legacy.ImageLoader;
-import org.soronthar.error.ExceptionHandler;
 
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.Properties;
+import java.io.File;
+import java.io.FilenameFilter;
 
 public class TileSetBagPersister {
 
     public TileSetBag loadTilesets() {
         TileSetBag tileSets = new TileSetBag();
 
-        try {
-            Properties tilesetsDef = new Properties();
-            tilesetsDef.load(new FileInputStream("tileset.properties"));
-            BufferedImage image;
+        File dir = new ImageLoader().getDirectoryFor("tilesets");
 
-            Enumeration<?> enumeration = tilesetsDef.propertyNames();
-            while (enumeration.hasMoreElements()) {
-                String key = (String) enumeration.nextElement();
-                String resourceName = tilesetsDef.getProperty(key);
-                image = new ImageLoader().load("tilesets/" + resourceName);
-                TileSet tileSet = new TileSet(key, resourceName,image);
-                tileSets.put(tileSet);
+        BufferedImage image;
+
+        File[] tilesetFiles = dir.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith(".png");
             }
-        } catch (IOException e) {
-            ExceptionHandler.handleException(e);
+        });
+
+        for (File tilesetFile : tilesetFiles) {
+            String resourceName = tilesetFile.getName();
+            image = new ImageLoader().load("tilesets/" + resourceName);
+            TileSet tileSet = new TileSet(resourceName, resourceName, image);
+            tileSets.put(tileSet);
         }
+
         return tileSets;
     }
 }

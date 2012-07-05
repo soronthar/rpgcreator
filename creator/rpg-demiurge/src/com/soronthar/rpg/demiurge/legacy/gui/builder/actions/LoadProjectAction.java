@@ -13,7 +13,7 @@ public class LoadProjectAction extends ShowDialogAction {
     }
 
     public void actionPerformed(ActionEvent e) {
-        JFileChooser fc = new JFileChooser(System.getProperty("user.dir")+"/projects");
+        JFileChooser fc = new JFileChooser(System.getProperty("user.dir")+"/resources/projects");
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
         fc.setMultiSelectionEnabled(false);

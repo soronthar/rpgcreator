@@ -6,6 +6,7 @@ import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.adventure.tileset.TileSet;
 import com.soronthar.rpg.adventure.tileset.TileSetBag;
+import com.soronthar.rpg.demiurge.legacy.ImageLoader;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.paint.Palette;
 
 import java.awt.*;
@@ -103,7 +104,10 @@ public class Model {
     }
 
     public void setTileSets(TileSetBag tileSets) {
-        this.tileSets = tileSets;
+        this.tileSets = tileSets.clone();
+        for (TileSet tileSet : this.tileSets) {
+            tileSet.setImage(new ImageLoader().load("tilesets/" + tileSet.getResourceName()));
+        }
     }
 
     public Tile getActiveTile() {

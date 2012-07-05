@@ -100,6 +100,7 @@ public class Controller {
             if (tileSet == null) {
                 throw new ApplicationException("Tileset " + info.getTilesetName() + " is not loaded");
             }
+
             BufferedImage image = tileSet.image();
             Point point = info.getPoint();
             Dimension dimension = info.getDimension().toAWT();

@@ -3,6 +3,7 @@ package com.soronthar.rpg.persister;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.OrderedMap;
+import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Facing;
@@ -18,21 +19,35 @@ import java.util.Iterator;
 
 //TODO: there is duplication between this class and ProjectReader
 public class SceneryReader {
+
+    public Scenery read(Scenery scenery, Reader reader) {
+        OrderedMap map = parseSceneryDataFromJSON(reader);
+        return fillSceneryData(scenery, map);
+    }
+
     public Scenery read(Reader reader) {
-        JsonReader jsonReader=new JsonReader();
-        OrderedMap map = (OrderedMap) jsonReader.parse(reader);
+        OrderedMap map = parseSceneryDataFromJSON(reader);
 
         long id = Long.parseLong((String) map.get("id"));
         String name = (String) map.get("name");
         Scenery scenery=new Scenery(id,name);
-        scenery.setDimension(parseDimension((String) map.get("size")));
+        return fillSceneryData(scenery, map);
+    }
+
+    private OrderedMap parseSceneryDataFromJSON(Reader reader) {
+        JsonReader jsonReader=new JsonReader();
+        return (OrderedMap) jsonReader.parse(reader);
+    }
+
+    private Scenery fillSceneryData(Scenery scenery, OrderedMap data) {
+        scenery.setDimension(parseDimension((String) data.get("size")));
 
         int index=0;
-        for (OrderedMap layerInfo : (Array<OrderedMap>) map.get("layers")) {
+        for (OrderedMap layerInfo : (Array<OrderedMap>) data.get("layers")) {
             for (OrderedMap tileInfo : (Array<OrderedMap>) layerInfo.get("tiles")) {
                 String tilesetName= (String) tileInfo.get("tileSetName");
                 Dimension dimension= parseDimension((String) tileInfo.get("dimension"));
-                
+
                 Point tilePos= parsePoint((String) tileInfo.get("tile"));
 
                 Tile tile=new Tile(tilesetName, tilePos, dimension);
@@ -46,13 +61,13 @@ public class SceneryReader {
             index++;
         }
 
-        Array<String> obstacles = (Array<String>) map.get("obstacles");
+        Array<String> obstacles = (Array<String>) data.get("obstacles");
         for (Iterator<String> iterator = obstacles.iterator(); iterator.hasNext(); ) {
             String obstacle = iterator.next();
             scenery.addObstacleAt(convert(parsePoint(obstacle)));
         }
 
-        Array<OrderedMap> jumps = (Array<OrderedMap>) map.get("jumps");
+        Array<OrderedMap> jumps = (Array<OrderedMap>) data.get("jumps");
         for (Iterator iterator = jumps.iterator(); iterator.hasNext(); ) {
             OrderedMap jumpInfo = (OrderedMap) iterator.next();
             Point pos = convert(parsePoint((String) jumpInfo.get("pos")));
@@ -60,10 +75,10 @@ public class SceneryReader {
             scenery.addJumpPoint(new JumpPoint(pos, target));
         }
 
-//        scenery.setHeroStartingPoint(parsePoint((String)map.get("heroStartingPoint")));
-        scenery.setHeroStartingPoint(convert(parsePoint((String)map.get("heroStartingPoint"))));
+//        scenery.setHeroStartingPoint(parsePoint((String)data.get("heroStartingPoint")));
+        scenery.setHeroStartingPoint(convert(parsePoint((String)data.get("heroStartingPoint"))));
 
-        Array<OrderedMap> sprites = (Array<OrderedMap>) map.get("sprites");
+        Array<OrderedMap> sprites = (Array<OrderedMap>) data.get("sprites");
         for (Iterator<OrderedMap> iterator = sprites.iterator(); iterator.hasNext(); ) {
             OrderedMap spriteInfo = iterator.next();
             String spriteId= (String) spriteInfo.get("id");
@@ -86,13 +101,11 @@ public class SceneryReader {
         }
 
         return scenery;
-
-
     }
 
     private Point convert(Point point) {
-        point.setX(point.getX()*Tile.TILE_SIZE);
-        point.setY(point.getY()*Tile.TILE_SIZE);
+        point.setX(Utils.tileTopixel(point.getX()));
+        point.setY(Utils.tileTopixel(point.getY()));
         return point;
     }
 

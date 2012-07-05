@@ -6,7 +6,7 @@ import com.soronthar.rpg.util.Point;
 import java.awt.image.BufferedImage;
 
 public class TileSet {
-    private BufferedImage image;     //TODO: remove image from here
+    private BufferedImage image;
     private String name;
     private String resourceName;
 
@@ -44,5 +44,9 @@ public class TileSet {
 
     public String getResourceName() {
         return resourceName;
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
     }
 }

@@ -49,7 +49,8 @@ public class RpgCreatorController extends Controller {
             this.paintPanel.clearMap();
 
             Project project = new ProjectPersister().load(projectName);
-//            Project project = new ProjectPersister().load(projectName);
+            model.setTileSets(project.getTileSetBag());
+
             SceneryBag sceneryBag = project.getSceneries();
             if (sceneryBag.size() > 0) {
                 Scenery activeScenery = sceneryBag.iterator().next();
