@@ -4,6 +4,7 @@ import com.soronthar.rpg.adventure.project.Project;
 import com.soronthar.rpg.adventure.scenery.*;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
+import com.soronthar.rpg.demiurge.components.tilesets.TilesetsModel;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.ActionsManager;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.scenery.SceneryTree;
 import com.soronthar.rpg.persister.ProjectPersister;
@@ -21,9 +22,11 @@ public class RpgCreatorController extends Controller {
     private JPanel builderGUI;
     protected SceneryTree sceneryTree;
     private ActionsManager actionManager;
+    private TilesetsModel tilesetModel;
 
     public RpgCreatorController(Model model) {
         super(model);
+        this.tilesetModel = new TilesetsModel();
     }
 
     public void toggleLayerVisibility(int layerIndex) {
@@ -50,7 +53,7 @@ public class RpgCreatorController extends Controller {
 
             Project project = new ProjectPersister().load(projectName);
             model.setTileSets(project.getTileSetBag());
-
+            this.tilesetModel.setTileSets(project.getTileSetBag());
             SceneryBag sceneryBag = project.getSceneries();
             if (sceneryBag.size() > 0) {
                 Scenery activeScenery = sceneryBag.iterator().next();
@@ -157,5 +160,9 @@ public class RpgCreatorController extends Controller {
 
     public void setActionManager(ActionsManager actionManager) {
         this.actionManager = actionManager;
+    }
+
+    public TilesetsModel getTilesetModel() {
+        return tilesetModel;
     }
 }

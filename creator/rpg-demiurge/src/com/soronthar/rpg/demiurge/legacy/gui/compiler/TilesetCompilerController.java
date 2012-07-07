@@ -1,6 +1,7 @@
 package com.soronthar.rpg.demiurge.legacy.gui.compiler;
 
 import com.soronthar.rpg.adventure.tileset.TileSet;
+import com.soronthar.rpg.adventure.tileset.TileSetBag;
 import com.soronthar.rpg.demiurge.legacy.ImageLoader;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.Controller;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.Model;
@@ -15,7 +16,7 @@ public class TilesetCompilerController extends Controller {
         super(model);    //To change body of overridden methods use File | Settings | File Templates.
     }
 
-    public void loadTilesets() {
+    public TileSetBag loadTilesets() {
         File dir = new ImageLoader().getDirectoryFor("tilesets");
 
         BufferedImage image;
@@ -32,7 +33,7 @@ public class TilesetCompilerController extends Controller {
             TileSet tileSet = new TileSet(tilesetFile.getName(), tilesetFile.getName(),image);
             model.getTilesets().put(tileSet);
         }
-        tilesetsPanel.setTileSets(model.getTilesets());
+        return model.getTilesets();
 
     }
 

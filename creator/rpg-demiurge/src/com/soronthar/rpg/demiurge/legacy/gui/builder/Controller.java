@@ -8,7 +8,6 @@ import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.adventure.tileset.TileSet;
 import com.soronthar.rpg.adventure.tileset.TileSetBag;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.panes.PaintPanel;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.panes.TilesetsPanel;
 import com.soronthar.rpg.util.Point;
 import org.soronthar.error.ApplicationException;
 
@@ -20,7 +19,6 @@ import static com.soronthar.rpg.Utils.normalizePointToTile;
 
 public class Controller {
     protected Model model;
-    protected TilesetsPanel tilesetsPanel;
     protected PaintPanel paintPanel;
 
     public Controller(Model model) {
@@ -93,7 +91,7 @@ public class Controller {
         }
     }
 
-    protected void notifyChangeDrawingPen(Tile info) {
+    public void notifyChangeDrawingPen(Tile info) {
         BufferedImage drawingPen = null;
         if (info != null) {
             TileSet tileSet = model.getTileSet(info.getTilesetName());
@@ -109,16 +107,12 @@ public class Controller {
         model.setDrawingPen(drawingPen);
     }
 
-    public void loadTilesets() {
+    public TileSetBag loadTilesets() {
         TileSetBag tileSets = new TileSetBagPersister().loadTilesets();
         model.setTileSets(tileSets);
-        tilesetsPanel.setTileSets(model.getTilesets());
+        return tileSets;
     }
 
-
-    public void setTilesetPanel(TilesetsPanel tilesetsPanel) {
-        this.tilesetsPanel = tilesetsPanel;
-    }
 
     public void setPaintPanel(PaintPanel paintPanel) {
         this.paintPanel = paintPanel;

@@ -39,7 +39,11 @@ public class TileSet {
     }
 
     public Tile getTile(Point topLeft, java.awt.Dimension dimension) {
-        return new Tile(name, topLeft, Dimension.fromAWT(dimension));
+        return getTile(topLeft, Dimension.fromAWT(dimension));
+    }
+
+    public Tile getTile(Point topLeft, Dimension dimension) {
+        return new Tile(name, topLeft, dimension);
     }
 
     public String getResourceName() {

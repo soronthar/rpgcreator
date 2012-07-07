@@ -29,7 +29,7 @@ public class Tile implements Serializable {
     }
 
     public Point getPoint() {
-        return (Point) point.clone();
+        return point.clone();
     }
 
     public Dimension getDimension() {

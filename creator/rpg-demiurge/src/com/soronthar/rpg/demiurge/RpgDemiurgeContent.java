@@ -8,6 +8,8 @@ import com.javadocking.dockable.DefaultDockable;
 import com.javadocking.dockable.Dockable;
 import com.javadocking.dockable.DockingMode;
 import com.javadocking.model.FloatDockModel;
+import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.demiurge.components.tilesets.TilesetsPanel;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.Model;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.RpgCreatorController;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.ActionsManager;
@@ -15,7 +17,6 @@ import com.soronthar.rpg.demiurge.legacy.gui.builder.components.layers.LayerPane
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.scenery.SceneryTree;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.panes.BuilderToolBar;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.panes.PaintPanel;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.panes.TilesetsPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,11 +46,18 @@ class RpgDemiurgeContent extends JPanel {
         controller.setMainGUI(this);
     }
 
-    private void createComponents(RpgCreatorController controller, ActionsManager actionsManager) {
+    private void createComponents(final RpgCreatorController controller, ActionsManager actionsManager) {
         paintPanel = new PaintPanel(controller);
         toolBar = new BuilderToolBar(actionsManager);
         toolBar.setEnabled(false);
-        tilesetsPanel = new TilesetsPanel(controller);
+        tilesetsPanel = new TilesetsPanel(controller.getTilesetModel());
+        tilesetsPanel.addPropertyChangeListener(TilesetsPanel.TILE,new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                controller.setDrawingPen((Tile) evt.getNewValue());
+            }
+        });
+
         sceneryTree = new SceneryTree(controller);
         layerPanel = new LayerPanel(controller);
         statusBar = new ColoredJPanel(Color.lightGray);
