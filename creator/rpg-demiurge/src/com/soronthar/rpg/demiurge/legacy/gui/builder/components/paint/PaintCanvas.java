@@ -1,7 +1,6 @@
 package com.soronthar.rpg.demiurge.legacy.gui.builder.components.paint;
 
 import com.soronthar.rpg.adventure.scenery.LayersArray;
-import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.Model;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.tiles.GlassSelectLayer;
 import com.soronthar.rpg.demiurge.legacy.gui.image.TranslucentImage;
@@ -81,8 +80,7 @@ public class PaintCanvas extends JPanel {
     }
 
     public void drawTileOnPoint(com.soronthar.rpg.util.Point p ) {
-        BufferedImage tile;
-        tile = model.getDrawingPen();
+        BufferedImage tile = model.getDrawingPen();
         if (tile != null) {
             Graphics2D g = (Graphics2D) layers[model.getActiveLayerIndex()].getGraphics();
             g.drawImage(tile, p.getX(), p.getY(), null);
@@ -91,9 +89,11 @@ public class PaintCanvas extends JPanel {
     }
 
     public void eraseTileOnPoint(Point p) {
+        BufferedImage tile = model.getDrawingPen();
+
         Graphics2D g;
         g = (Graphics2D) layers[model.getActiveLayerIndex()].getGraphics();
-        g.clearRect(p.x, p.y, Tile.TILE_SIZE, Tile.TILE_SIZE);
+        g.clearRect(p.x, p.y, tile.getWidth(), tile.getHeight());
         g.dispose();
     }
 
