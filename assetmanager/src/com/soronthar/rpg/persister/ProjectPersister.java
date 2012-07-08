@@ -58,6 +58,29 @@ public class ProjectPersister {
     }
 
     public void save(Project project) {
-        //To change body of created methods use File | Settings | File Templates.
+        String projectName=project.getName();
+        File projectDir=new File("resources/projects/"+projectName);
+        File projectFile=new File(projectDir,projectName+".json");
+
+        ProjectWriter projectWriter=new ProjectWriter();
+        try {
+            FileWriter projectFileWriter = new FileWriter(projectFile);
+            projectWriter.write(project,projectFileWriter);
+
+            SceneryBag sceneries = project.getSceneries();
+            SceneryWriter sceneryWriter = new SceneryWriter();
+            for(Scenery scenery:sceneries) {
+                File sceneryDir=new File(projectDir,"scenery/s"+scenery.getId());
+                File sceneryFile=new File(sceneryDir,"scenery.json");
+                FileWriter sceneryFileWriter = new FileWriter(sceneryFile);
+                sceneryWriter.write(scenery, sceneryFileWriter);
+                sceneryFileWriter.close();
+            }
+            projectFileWriter.close();
+        } catch (FileNotFoundException e) {
+            ExceptionHandler.handleException(e);
+        } catch (IOException e) {
+            ExceptionHandler.handleException(e);
+        }
     }
 }
