@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class SpriteEditDialog extends JDialog {
+public class SpriteEditDialog extends JDialog {
 
     public SpriteEditDialog(final Sprite sprite, final Point point, final Controller controller) {
         super(getAncestor(controller), "Edit Sprite", true);

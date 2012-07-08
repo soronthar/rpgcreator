@@ -28,7 +28,7 @@ public class TilesetsPanel extends JTabbedPane {
         this.setPreferredSize(Utils.getScaledTileDimension(12, 12).addPadding(23, 49).toAWT());
 
         setTileSets(model.getTileSets());
-        this.model.addPropertyChangeListener(TilesetsModel.ALL_TILESETS,new PropertyChangeListener() {
+        this.model.addChangeListener(TilesetsModel.ALL_TILESETS, new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 setTileSets(TilesetsPanel.this.model.getTileSets());

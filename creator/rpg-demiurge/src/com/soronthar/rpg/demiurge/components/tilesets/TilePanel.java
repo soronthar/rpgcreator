@@ -1,6 +1,6 @@
 package com.soronthar.rpg.demiurge.components.tilesets;
 
-import com.soronthar.rpg.demiurge.legacy.gui.builder.components.tiles.GlassSelectLayer;
+import com.soronthar.rpg.demiurge.components.GlassSelectLayer;
 
 import javax.swing.*;
 import java.awt.*;

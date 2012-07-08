@@ -9,14 +9,15 @@ import com.javadocking.dockable.Dockable;
 import com.javadocking.dockable.DockingMode;
 import com.javadocking.model.FloatDockModel;
 import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.demiurge.components.ColoredJPanel;
+import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;
+import com.soronthar.rpg.demiurge.components.paint.PaintPanel;
 import com.soronthar.rpg.demiurge.components.tilesets.TilesetsPanel;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.Model;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.RpgCreatorController;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.ActionsManager;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.layers.LayerPanel;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.scenery.SceneryTree;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.panes.BuilderToolBar;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.panes.PaintPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,7 +48,8 @@ class RpgDemiurgeContent extends JPanel {
     }
 
     private void createComponents(final RpgCreatorController controller, ActionsManager actionsManager) {
-        paintPanel = new PaintPanel(controller);
+        PaintCanvasModel canvasModel = new PaintCanvasModel();
+        paintPanel = new PaintPanel(controller, canvasModel);
         toolBar = new BuilderToolBar(actionsManager);
         toolBar.setEnabled(false);
         tilesetsPanel = new TilesetsPanel(controller.getTilesetModel());
@@ -63,7 +65,7 @@ class RpgDemiurgeContent extends JPanel {
         statusBar = new ColoredJPanel(Color.lightGray);
         final JLabel label = new JLabel("0,0");
         statusBar.add(label);
-        controller.getModel().addChangeListener(Model.LOCATION, new PropertyChangeListener() {
+        canvasModel.addChangeListener(PaintCanvasModel.LOCATION, new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 Point point = (Point) evt.getNewValue();
@@ -152,17 +154,6 @@ class RpgDemiurgeContent extends JPanel {
         g.weighty = 0;
         g.fill = GridBagConstraints.HORIZONTAL;
         contentPane.add(toolbar, g);
-    }
-
-    private static class ColoredJPanel extends JPanel {
-        public ColoredJPanel(Color color) {
-            this.setBackground(color);
-        }
-
-        @Override
-        public Dimension getPreferredSize() {
-            return new Dimension(200, 200);
-        }
     }
 
 

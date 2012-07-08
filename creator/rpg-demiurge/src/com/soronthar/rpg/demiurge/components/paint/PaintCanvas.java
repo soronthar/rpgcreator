@@ -1,8 +1,8 @@
-package com.soronthar.rpg.demiurge.legacy.gui.builder.components.paint;
+package com.soronthar.rpg.demiurge.components.paint;
 
 import com.soronthar.rpg.adventure.scenery.LayersArray;
+import com.soronthar.rpg.demiurge.components.GlassSelectLayer;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.Model;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.components.tiles.GlassSelectLayer;
 import com.soronthar.rpg.demiurge.legacy.gui.image.TranslucentImage;
 import org.soronthar.geom.Dimension;
 
@@ -19,12 +19,13 @@ public class PaintCanvas extends JPanel {
     private TranslucentImage[] layers = new TranslucentImage[LayersArray.LAYER_COUNT + 1];
 
     private Model model;
+    PaintCanvasModel canvasModel;
 
-
-    public PaintCanvas(int w, int h, Model model) {
+    public PaintCanvas(int w, int h, Model model,PaintCanvasModel canvasModel) {
+        this.canvasModel=canvasModel;
         this.setCanvasSize(new Dimension(w, h));
         this.model = model;
-        this.model.addChangeListener(Model.LOCATION, new PropertyChangeListener() {
+        this.canvasModel.addChangeListener(PaintCanvasModel.LOCATION, new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 Point location = (Point) evt.getNewValue();

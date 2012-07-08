@@ -19,7 +19,7 @@ import java.util.Vector;
 * Time: 03:54 AM
 * To change this template use File | Settings | File Templates.
 */
-class JumpPointEditDialog extends JDialog {
+public class JumpPointEditDialog extends JDialog {
 
     public JumpPointEditDialog(JumpPoint jumpPoint, final Point point, final Controller controller) {
         super(getAncestor(controller), "Edit JumpPoint", true);

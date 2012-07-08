@@ -1,9 +1,11 @@
-package com.soronthar.rpg.demiurge.legacy.gui.builder.panes;
+package com.soronthar.rpg.demiurge.components.paint;
 
 import com.soronthar.rpg.adventure.scenery.objects.Actor;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.Controller;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.panes.JumpPointEditDialog;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.panes.SpriteEditDialog;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
@@ -15,9 +17,11 @@ import static com.soronthar.rpg.Utils.normalizePointToTile;
 
 class PaintPanelMouseInputAdapter extends MouseInputAdapter {
     private Controller controller;
+    private PaintCanvasModel model;
 
-    public PaintPanelMouseInputAdapter(Controller controller) {
+    public PaintPanelMouseInputAdapter(Controller controller,PaintCanvasModel model) {
         this.controller = controller;
+        this.model=model;
     }
 
 
@@ -83,7 +87,7 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
             } else {
                 removeTile(point);
             }
-            controller.getModel().setPointerLocation(normalizePointToTile(e.getPoint()));
+            model.setPointerLocation(normalizePointToTile(e.getPoint()));
             forceRepaint(e);
         }
     }
@@ -91,7 +95,7 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
 
     private void movePaintPointer(MouseEvent e) {
         if (controller.getPaintPanel().isEnabled()) {
-            controller.getModel().setPointerLocation(normalizePointToTile(e.getPoint()));
+            model.setPointerLocation(normalizePointToTile(e.getPoint()));
             forceRepaint(e);
         }
     }

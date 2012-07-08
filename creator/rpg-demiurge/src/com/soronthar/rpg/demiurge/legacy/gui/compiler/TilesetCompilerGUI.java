@@ -2,9 +2,10 @@ package com.soronthar.rpg.demiurge.legacy.gui.compiler;
 
 import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;
+import com.soronthar.rpg.demiurge.components.paint.PaintPanel;
 import com.soronthar.rpg.demiurge.components.tilesets.TilesetsModel;
 import com.soronthar.rpg.demiurge.components.tilesets.TilesetsPanel;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.panes.PaintPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +19,7 @@ public class TilesetCompilerGUI extends JSplitPane {
     public TilesetCompilerGUI(final TilesetCompilerController controller) {
         super(JSplitPane.HORIZONTAL_SPLIT);
         Dimension tileDimension = Utils.getScaledTileDimension(16, 32).toAWT();
-        paintPanel = new PaintPanel(controller, tileDimension.width, tileDimension.height);
+        paintPanel = new PaintPanel(controller, new PaintCanvasModel(),tileDimension.width, tileDimension.height);
         tilesetsPanel = new TilesetsPanel(new TilesetsModel(controller.loadTilesets()));
         tilesetsPanel.addPropertyChangeListener(TilesetsPanel.TILE,new PropertyChangeListener() {
             @Override

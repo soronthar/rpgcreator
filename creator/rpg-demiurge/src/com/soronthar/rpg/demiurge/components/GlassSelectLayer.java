@@ -1,4 +1,4 @@
-package com.soronthar.rpg.demiurge.legacy.gui.builder.components.tiles;
+package com.soronthar.rpg.demiurge.components;
 
 import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.demiurge.legacy.gui.image.TranslucentImage;

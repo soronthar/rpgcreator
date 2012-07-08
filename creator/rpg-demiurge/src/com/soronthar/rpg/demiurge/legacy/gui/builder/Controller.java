@@ -7,7 +7,7 @@ import com.soronthar.rpg.adventure.scenery.objects.actors.MobNpc;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.adventure.tileset.TileSet;
 import com.soronthar.rpg.adventure.tileset.TileSetBag;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.panes.PaintPanel;
+import com.soronthar.rpg.demiurge.components.paint.PaintPanel;
 import com.soronthar.rpg.util.Point;
 import org.soronthar.error.ApplicationException;
 
