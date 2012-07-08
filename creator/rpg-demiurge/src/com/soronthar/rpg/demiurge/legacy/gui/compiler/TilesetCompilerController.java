@@ -36,9 +36,4 @@ public class TilesetCompilerController extends Controller {
         return model.getTilesets();
 
     }
-
-
-    public BufferedImage getTilesetImage() {
-        return this.getPaintPanel().getCanvas().getLayerImage(0);
-    }
 }

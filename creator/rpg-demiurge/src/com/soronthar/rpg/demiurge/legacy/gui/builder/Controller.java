@@ -41,25 +41,25 @@ public class Controller {
     public void addTileToActiveSceneryAtPoint(Point p) {
         if (model.isPaintObstacles()) {
             model.getActiveScenery().addObstacleAt(p);
-            this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
+            this.paintPanel.drawTileAtPoint(normalizePointToTile(p.toAWT()));
         } else if (model.isHeroStartMode()) {
             model.getActiveScenery().setHeroStartingPoint(p);
-            this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
+            this.paintPanel.drawTileAtPoint(normalizePointToTile(p.toAWT()));
         } else if (model.isAddJumpMode()) {
             Scenery activeScenery = model.getActiveScenery();
             activeScenery.addJumpPoint(new JumpPoint(p, activeScenery.getId()));
-            this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
+            this.paintPanel.drawTileAtPoint(normalizePointToTile(p.toAWT()));
         } else if (model.isAddSpriteMode()) {
             Scenery activeScenery = model.getActiveScenery();
             int size = activeScenery.getSpriteMap().size();
             activeScenery.addSprite(new MobNpc("Sprite-" + size, p, Facing.DOWN));
-            this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
+            this.paintPanel.drawTileAtPoint(normalizePointToTile(p.toAWT()));
         } else {
             if (!model.isInSpecialLayer()) {
                 Tile activeTile = model.getActiveTile();
                 if (activeTile != null) {
                     model.getActiveScenery().setTile(activeTile, model.getActiveLayerIndex(), p);
-                    this.paintPanel.drawTileAtPoint(normalizePointToTile(p));
+                    this.paintPanel.drawTileAtPoint(normalizePointToTile(p.toAWT()));
                 }
             }
         }
@@ -72,21 +72,21 @@ public class Controller {
     public void removeTileAtPoint(Point p) {
         if (model.isPaintObstacles()) {
             model.getActiveScenery().removeObstacleAt(p);
-            this.paintPanel.handleEraseTileEvent(p);
+            this.paintPanel.handleEraseTileEvent(p.toAWT());
         } else if (model.isHeroStartMode()) {
             model.getActiveScenery().setHeroStartingPoint(new Point(0, 0));
-            this.paintPanel.handleEraseTileEvent(p);
+            this.paintPanel.handleEraseTileEvent(p.toAWT());
         } else if (model.isAddJumpMode()) {
             model.getActiveScenery().removeJumpAt(p);
-            this.paintPanel.handleEraseTileEvent(p);
+            this.paintPanel.handleEraseTileEvent(p.toAWT());
         } else if (model.isAddSpriteMode()) {
             model.getActiveScenery().removeSpriteAt(p);
-            this.paintPanel.handleEraseTileEvent(p);
+            this.paintPanel.handleEraseTileEvent(p.toAWT());
         } else {
             if (!model.isInSpecialLayer()) {
                 Scenery activeScenery = model.getActiveScenery();
                 activeScenery.setTile(null, model.getActiveLayerIndex(), p);
-                this.paintPanel.handleEraseTileEvent(p);
+                this.paintPanel.handleEraseTileEvent(p.toAWT());
             }
         }
     }
@@ -124,11 +124,6 @@ public class Controller {
 
     public Model getModel() {
         return model;
-    }
-
-    //TODO: remove
-    public PaintPanel getPaintPanel() {
-        return paintPanel;
     }
 
 }

@@ -31,7 +31,6 @@ public class RpgCreatorController extends Controller {
 
     public void toggleLayerVisibility(int layerIndex) {
         model.toggleLayerVisibility(layerIndex);
-        this.paintPanel.getCanvas().repaint();
         this.paintPanel.repaint();
     }
 
@@ -111,28 +110,28 @@ public class RpgCreatorController extends Controller {
             Layer sceneryLayer = layers.layerAt(layerIndex);
             for (DrawnTile drawnTile : sceneryLayer) {
                 notifyChangeDrawingPen(drawnTile.getTile());
-                this.paintPanel.drawTileAtPoint(normalizePointToTile(drawnTile.getPoint()));
+                this.paintPanel.drawTileAtPoint(normalizePointToTile(drawnTile.getPoint().toAWT()));
             }
         }
 
         Collection<Point> obstacles = scenery.getObstacles();
         setMode(Model.SpecialModes.OBSTACLE);
         for (Point point : obstacles) {
-            this.paintPanel.drawTileAtPoint(normalizePointToTile(point));
+            this.paintPanel.drawTileAtPoint(normalizePointToTile(point.toAWT()));
         }
 
         setMode(Model.SpecialModes.HERO_START);
-        this.paintPanel.drawTileAtPoint(normalizePointToTile(scenery.getHeroStartingPoint()));
+        this.paintPanel.drawTileAtPoint(normalizePointToTile(scenery.getHeroStartingPoint().toAWT()));
 
         setMode(Model.SpecialModes.JUMP);
         for (JumpPoint jump : scenery.getJumpPoints()) {
-            this.paintPanel.drawTileAtPoint(normalizePointToTile(jump.getLocation()));
+            this.paintPanel.drawTileAtPoint(normalizePointToTile(jump.getLocation().toAWT()));
         }
 
         setMode(Model.SpecialModes.SPRITE);
         Collection<Sprite> sprites = scenery.getSprites();
         for (Sprite sprite : sprites) {
-            this.paintPanel.drawTileAtPoint(normalizePointToTile(sprite.getLocation()));
+            this.paintPanel.drawTileAtPoint(normalizePointToTile(sprite.getLocation().toAWT()));
         }
 
         setMode(Model.SpecialModes.NONE);

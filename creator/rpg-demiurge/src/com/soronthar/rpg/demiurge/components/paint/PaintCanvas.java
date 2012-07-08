@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+//TODO: this must be package local
 public class PaintCanvas extends JPanel {
     private GlassSelectLayer glassLayer;
     private TranslucentImage base;
@@ -32,7 +33,15 @@ public class PaintCanvas extends JPanel {
                 movePaintPointerTo(location);
             }
         });
+
+        this.canvasModel.addChangeListener(PaintCanvasModel.Action.HIDE_POINTER.name(), new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                hidePaintPointerEvent();
+            }
+        });
     }
+
 
     public void setCanvasSize(java.awt.Dimension dimension) {
         int w = dimension.width;
@@ -46,6 +55,9 @@ public class PaintCanvas extends JPanel {
         g.setColor(Color.gray); //TODO:hardwired
         g.fillRect(0, 0, w + 1, h + 1);
         g.dispose();
+
+        this.setSize(dimension);
+        this.setPreferredSize(dimension);
     }
 
 
@@ -80,11 +92,15 @@ public class PaintCanvas extends JPanel {
         glassLayer.clearSelectSquare();
     }
 
-    public void drawTileOnPoint(com.soronthar.rpg.util.Point p ) {
+    public void drawTileOnPoint(com.soronthar.rpg.util.Point point) {
+        drawTileOnPoint(point.toAWT());
+    }
+
+    public void drawTileOnPoint(Point p ) {
         BufferedImage tile = model.getDrawingPen();
         if (tile != null) {
             Graphics2D g = (Graphics2D) layers[model.getActiveLayerIndex()].getGraphics();
-            g.drawImage(tile, p.getX(), p.getY(), null);
+            g.drawImage(tile, p.x, p.y, null);
             g.dispose();
         }
     }

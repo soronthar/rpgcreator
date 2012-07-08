@@ -2,17 +2,19 @@ package com.soronthar.rpg.demiurge.components.paint;
 
 import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.Controller;
-import com.soronthar.rpg.util.Point;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public class PaintPanel extends JScrollPane {
     private PaintCanvas canvas;
     Controller controller;
     private PaintCanvasModel canvasModel;
+    private final PaintPanelMouseInputAdapter mouseInputAdapter;
 
 
     public PaintPanel(Controller controller,PaintCanvasModel canvasModel) {
@@ -20,15 +22,29 @@ public class PaintPanel extends JScrollPane {
     }
 
     //TODO: scrolls are not working as they should
-    public PaintPanel(Controller controller, PaintCanvasModel canvasModel, int w, int h) {
+    public PaintPanel(final Controller controller, PaintCanvasModel canvasModel, int w, int h) {
         this.controller = controller;
         this.canvasModel=canvasModel;
-        this.setViewportView(initializeCanvas(w, h));
+        canvas = new PaintCanvas(w, h, this.controller.getModel(), this.canvasModel);
+        mouseInputAdapter = new PaintPanelMouseInputAdapter(this.controller, this.canvasModel);
+        canvas.addMouseListener(mouseInputAdapter);
+        canvas.addMouseMotionListener(mouseInputAdapter);
+
+        this.setViewportView(canvas);
         this.setAutoscrolls(true);
         this.setBackground(Color.blue.brighter());
         this.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
         forceRepaintOnScroll();
         controller.setPaintPanel(this);
+
+        canvasModel.addChangeListener(PaintCanvasModel.LOCATION,new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                SwingUtilities.getRoot(PaintPanel.this).repaint();
+            }
+        });
+
         this.setPreferredSize(new Dimension(w, h));
     }
 
@@ -47,27 +63,6 @@ public class PaintPanel extends JScrollPane {
         });
     }
 
-    private JPanel initializeCanvas(int w, int h) {
-        JPanel panel = createPanel(w, h);
-        setMouseAdapter(panel);
-        return panel;
-    }
-
-    private JPanel createPanel(int w, int h) {
-        JPanel panel = new JPanel();
-        panel.setLayout(new OverlayLayout(panel));
-        canvas = new PaintCanvas(w, h, this.controller.getModel(),canvasModel);
-        panel.add(canvas);
-        panel.setPreferredSize(new Dimension(w, h));
-        return panel;
-    }
-
-    private void setMouseAdapter(JPanel panel) {
-        PaintPanelMouseInputAdapter mouseInputAdapter = new PaintPanelMouseInputAdapter(controller,canvasModel);
-        panel.addMouseListener(mouseInputAdapter);
-        panel.addMouseMotionListener(mouseInputAdapter);
-    }
-
     public PaintCanvas getCanvas() {
         return canvas;
     }
@@ -79,7 +74,7 @@ public class PaintPanel extends JScrollPane {
     }
 
     public void handleEraseTileEvent(Point p) {
-        this.getCanvas().eraseTileOnPoint(p.toAWT());
+        this.getCanvas().eraseTileOnPoint(p);
         this.repaint();
     }
 
@@ -91,5 +86,12 @@ public class PaintPanel extends JScrollPane {
 
     public void setCanvasSize(Dimension dimension) {
         this.getCanvas().setCanvasSize(dimension);
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        canvas.setEnabled(enabled);
+        mouseInputAdapter.setEnabled(enabled);
     }
 }

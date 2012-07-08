@@ -19,7 +19,23 @@ public class TilesetCompilerGUI extends JSplitPane {
     public TilesetCompilerGUI(final TilesetCompilerController controller) {
         super(JSplitPane.HORIZONTAL_SPLIT);
         Dimension tileDimension = Utils.getScaledTileDimension(16, 32).toAWT();
-        paintPanel = new PaintPanel(controller, new PaintCanvasModel(),tileDimension.width, tileDimension.height);
+        PaintCanvasModel canvasModel = new PaintCanvasModel();
+
+        canvasModel.addChangeListener(PaintCanvasModel.Action.DRAW.name(), new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                controller.addTileToActiveSceneryAtPoint((java.awt.Point) evt.getNewValue());
+            }
+        });
+
+        canvasModel.addChangeListener(PaintCanvasModel.Action.ERASE.name(), new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                controller.removeTileAtPoint((java.awt.Point) evt.getNewValue());
+            }
+        });
+
+        paintPanel = new PaintPanel(controller, canvasModel,tileDimension.width, tileDimension.height);
         tilesetsPanel = new TilesetsPanel(new TilesetsModel(controller.loadTilesets()));
         tilesetsPanel.addPropertyChangeListener(TilesetsPanel.TILE,new PropertyChangeListener() {
             @Override
@@ -34,5 +50,9 @@ public class TilesetCompilerGUI extends JSplitPane {
     private void addComponentsToPanel() {
         this.add(tilesetsPanel);
         this.add(paintPanel);
+    }
+
+    public PaintPanel getPaintPanel() {
+        return this.paintPanel;
     }
 }

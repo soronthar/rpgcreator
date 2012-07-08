@@ -77,6 +77,6 @@ public class SpriteEditDialog extends JDialog {
 
 
     private static JFrame getAncestor(Controller controller) {
-        return (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, controller.getPaintPanel());
+        return null;
     }
 }

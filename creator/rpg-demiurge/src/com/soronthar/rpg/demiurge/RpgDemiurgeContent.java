@@ -49,6 +49,21 @@ class RpgDemiurgeContent extends JPanel {
 
     private void createComponents(final RpgCreatorController controller, ActionsManager actionsManager) {
         PaintCanvasModel canvasModel = new PaintCanvasModel();
+
+        canvasModel.addChangeListener(PaintCanvasModel.Action.DRAW.name(), new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                controller.addTileToActiveSceneryAtPoint((java.awt.Point) evt.getNewValue());
+            }
+        });
+
+        canvasModel.addChangeListener(PaintCanvasModel.Action.ERASE.name(), new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                controller.removeTileAtPoint((java.awt.Point) evt.getNewValue());
+            }
+        });
+
         paintPanel = new PaintPanel(controller, canvasModel);
         toolBar = new BuilderToolBar(actionsManager);
         toolBar.setEnabled(false);

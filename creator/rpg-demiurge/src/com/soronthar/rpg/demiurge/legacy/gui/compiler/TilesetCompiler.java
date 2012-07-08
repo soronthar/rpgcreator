@@ -21,7 +21,7 @@ public class TilesetCompiler extends JFrame {
 
         final TilesetCompilerController controller = new TilesetCompilerController(new Model());
 
-        Container contentPane = new TilesetCompilerGUI(controller);
+        final TilesetCompilerGUI contentPane = new TilesetCompilerGUI(controller);
         this.setContentPane(contentPane);
 
 
@@ -32,7 +32,7 @@ public class TilesetCompiler extends JFrame {
         menu.add(new JMenuItem(new AbstractAction("Save") {
             @Override
             public void actionPerformed(ActionEvent ev) {
-                BufferedImage image = controller.getTilesetImage();
+                BufferedImage image = contentPane.getPaintPanel().getCanvas().getLayerImage(0);
                 File file = new File("test.png");
                 try {
                     ImageIO.write(image, "png", file);
