@@ -38,6 +38,7 @@ public class Controller {
         addTileToActiveSceneryAtPoint(Point.fromAWT(point));
     }
 
+    //TODO: a DRAW model
     public void addTileToActiveSceneryAtPoint(Point p) {
         if (model.isPaintObstacles()) {
             model.getActiveScenery().addObstacleAt(p);

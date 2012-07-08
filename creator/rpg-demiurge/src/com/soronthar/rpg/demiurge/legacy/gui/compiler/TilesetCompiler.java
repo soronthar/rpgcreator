@@ -24,16 +24,13 @@ public class TilesetCompiler extends JFrame {
         final TilesetCompilerGUI contentPane = new TilesetCompilerGUI(controller);
         this.setContentPane(contentPane);
 
-
-        //(RAF) this is the last thing that should be done.
-        controller.loadTilesets();
-
         JMenu menu = new JMenu("Tileset");
         menu.add(new JMenuItem(new AbstractAction("Save") {
             @Override
             public void actionPerformed(ActionEvent ev) {
-                BufferedImage image = contentPane.getPaintPanel().getCanvas().getLayerImage(0);
+                BufferedImage image = contentPane.getPaintPanel().getFlattenImage();
                 File file = new File("test.png");
+                System.out.println("TilesetCompiler.actionPerformed:37 - file.getAbsolutePath() = " + file.getAbsolutePath());
                 try {
                     ImageIO.write(image, "png", file);
                 } catch (IOException e) {

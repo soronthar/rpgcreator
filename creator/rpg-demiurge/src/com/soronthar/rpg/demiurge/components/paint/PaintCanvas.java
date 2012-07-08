@@ -37,7 +37,7 @@ public class PaintCanvas extends JPanel {
         this.canvasModel.addChangeListener(PaintCanvasModel.Action.HIDE_POINTER.name(), new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
-                hidePaintPointerEvent();
+                hidePaintPointer();
             }
         });
     }
@@ -88,12 +88,8 @@ public class PaintCanvas extends JPanel {
         }
     }
 
-    public void hidePaintPointerEvent() {
+    public void hidePaintPointer() {
         glassLayer.clearSelectSquare();
-    }
-
-    public void drawTileOnPoint(com.soronthar.rpg.util.Point point) {
-        drawTileOnPoint(point.toAWT());
     }
 
     public void drawTileOnPoint(Point p ) {
