@@ -20,7 +20,7 @@ public class TilesetCompilerGUI extends JSplitPane {
         super(JSplitPane.HORIZONTAL_SPLIT);
         Dimension tileDimension = Utils.getScaledTileDimension(16, 32).toAWT();
         PaintCanvasModel canvasModel = new PaintCanvasModel();
-
+        controller.setCanvasModel(canvasModel);
         canvasModel.addChangeListener(PaintCanvasModel.Action.DRAW.name(), new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {

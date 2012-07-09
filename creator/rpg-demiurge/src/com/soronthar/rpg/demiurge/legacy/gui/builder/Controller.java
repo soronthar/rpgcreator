@@ -7,7 +7,9 @@ import com.soronthar.rpg.adventure.scenery.objects.actors.MobNpc;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.adventure.tileset.TileSet;
 import com.soronthar.rpg.adventure.tileset.TileSetBag;
+import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;
 import com.soronthar.rpg.demiurge.components.paint.PaintPanel;
+import com.soronthar.rpg.demiurge.components.tilesets.TilesetsModel;
 import com.soronthar.rpg.util.Point;
 import org.soronthar.error.ApplicationException;
 
@@ -20,15 +22,22 @@ import static com.soronthar.rpg.Utils.normalizePointToTile;
 public class Controller {
     protected Model model;
     protected PaintPanel paintPanel;
+    protected PaintCanvasModel canvasModel;
+    protected TilesetsModel tilesetModel;
+
+    public void setCanvasModel(PaintCanvasModel canvasModel) {
+        this.canvasModel = canvasModel;
+    }
 
     public Controller(Model model) {
         this.model = model;
+        this.tilesetModel = new TilesetsModel();
     }
 
 
     public void setDrawingPen(Tile activeTile) {
         model.setActiveTile(activeTile);
-        if (activeTile != null) {
+        if (!model.isSpecialMode()) {
             notifyChangeDrawingPen(activeTile);
         }
     }
@@ -105,7 +114,7 @@ public class Controller {
             Dimension dimension = info.getDimension().toAWT();
             drawingPen = image.getSubimage(point.getX(), point.getY(), dimension.width, dimension.height);
         }
-        model.setDrawingPen(drawingPen);
+        getCanvasModel().setDrawingPen(drawingPen);
     }
 
     public TileSetBag loadTilesets() {
@@ -119,12 +128,15 @@ public class Controller {
         this.paintPanel = paintPanel;
     }
 
-    public void setMode(Model.SpecialModes mode) {
-        model.setMode(mode);
-    }
-
     public Model getModel() {
         return model;
     }
 
+    public TilesetsModel getTilesetModel() {
+        return tilesetModel;
+    }
+
+    public PaintCanvasModel getCanvasModel() {
+        return canvasModel;
+    }
 }

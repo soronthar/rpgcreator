@@ -4,8 +4,8 @@ import com.soronthar.rpg.adventure.project.Project;
 import com.soronthar.rpg.adventure.scenery.*;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
-import com.soronthar.rpg.demiurge.components.tilesets.TilesetsModel;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.ActionsManager;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.components.paint.Palette;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.scenery.SceneryTree;
 import com.soronthar.rpg.persister.ProjectPersister;
 import com.soronthar.rpg.util.Point;
@@ -22,11 +22,10 @@ public class RpgCreatorController extends Controller {
     private JPanel builderGUI;
     protected SceneryTree sceneryTree;
     private ActionsManager actionManager;
-    private TilesetsModel tilesetModel;
+
 
     public RpgCreatorController(Model model) {
         super(model);
-        this.tilesetModel = new TilesetsModel();
     }
 
     public void toggleLayerVisibility(int layerIndex) {
@@ -161,7 +160,26 @@ public class RpgCreatorController extends Controller {
         this.actionManager = actionManager;
     }
 
-    public TilesetsModel getTilesetModel() {
-        return tilesetModel;
+    public void setMode(Model.SpecialModes mode) {
+        model.setMode(mode);
+        switch (mode) {
+            case HERO_START:
+                this.getCanvasModel().setDrawingPen(Palette.createHeroStartDrawingPen());
+                break;
+            case JUMP:
+                this.getCanvasModel().setDrawingPen(Palette.createJumpPointDrawingPen());
+                break;
+            case OBSTACLE:
+                this.getCanvasModel().setDrawingPen(Palette.createObstacleDrawingPen());
+                break;
+            case NONE:
+                notifyChangeDrawingPen(model.getActiveTile());
+                break;
+            case SPRITE:
+                this.getCanvasModel().setDrawingPen(Palette.createSpriteDrawingPen());
+                break;
+        }
     }
+
+
 }

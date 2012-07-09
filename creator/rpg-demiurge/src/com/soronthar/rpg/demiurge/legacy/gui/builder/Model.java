@@ -20,6 +20,7 @@ public class Model {
     private Project project;
     private Scenery activeScenery = Scenery.NULL_SCENERY;
     private int activeLayerIndex;
+    private int lastActiveLayerIndex;
     private Tile activeTile;
 
     private boolean[] visibility = new boolean[LayersArray.LAYER_COUNT + 1];
@@ -119,7 +120,7 @@ public class Model {
         }
     }
 
-    private boolean isSpecialMode() {
+    public boolean isSpecialMode() {
         return mode != SpecialModes.NONE;
     }
 

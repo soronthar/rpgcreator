@@ -15,14 +15,13 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
     private Controller controller;
     private PaintCanvasModel canvasModel;
 
+    //TODO: Edit dialogs
     public PaintPanelMouseInputAdapter(Controller controller,PaintCanvasModel canvasModel) {
         this.controller = controller;
         this.canvasModel =canvasModel;
     }
 
     public void mouseClicked(MouseEvent e) {
-        final Point point = normalizePointToTile(e.getPoint());
-
 //        if (SwingUtilities.isMiddleMouseButton(e) || (SwingUtilities.isLeftMouseButton(e) && e.isControlDown())) {
 //            final Actor specialObject = controller.getModel().getActiveScenery().getSpecialAt(point);
 //            if (specialObject instanceof JumpPoint) {

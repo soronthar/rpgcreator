@@ -12,8 +12,7 @@ import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-//TODO: this must be package local
-public class PaintCanvas extends JPanel {
+class PaintCanvas extends JPanel {
     private GlassSelectLayer glassLayer;
     private TranslucentImage base;
 
@@ -22,6 +21,10 @@ public class PaintCanvas extends JPanel {
     private Model model;
     PaintCanvasModel canvasModel;
 
+    //TODO: model is used for:
+    //TODO: layer visibility
+    //TODO: active layer
+    //TODO: drawing pen
     public PaintCanvas(int w, int h, Model model,PaintCanvasModel canvasModel) {
         this.canvasModel=canvasModel;
         this.setCanvasSize(new Dimension(w, h));
@@ -80,7 +83,7 @@ public class PaintCanvas extends JPanel {
 
 
     public void movePaintPointerTo(Point p) {
-        BufferedImage tile = model.getDrawingPen();
+        BufferedImage tile = canvasModel.getDrawingPen();
         if (tile != null) {
             glassLayer.drawSelectOutline(p, new Dimension(tile.getWidth(), tile.getHeight()));
         } else {
@@ -93,7 +96,7 @@ public class PaintCanvas extends JPanel {
     }
 
     public void drawTileOnPoint(Point p ) {
-        BufferedImage tile = model.getDrawingPen();
+        BufferedImage tile = canvasModel.getDrawingPen();
         if (tile != null) {
             Graphics2D g = (Graphics2D) layers[model.getActiveLayerIndex()].getGraphics();
             g.drawImage(tile, p.x, p.y, null);
@@ -102,7 +105,7 @@ public class PaintCanvas extends JPanel {
     }
 
     public void eraseTileOnPoint(Point p) {
-        BufferedImage tile = model.getDrawingPen();
+        BufferedImage tile = canvasModel.getDrawingPen();
 
         Graphics2D g;
         g = (Graphics2D) layers[model.getActiveLayerIndex()].getGraphics();

@@ -14,8 +14,6 @@ import java.beans.PropertyChangeListener;
 
 public class PaintPanel extends JScrollPane {
     private PaintCanvas canvas;
-    Controller controller;
-    private PaintCanvasModel canvasModel;
     private final PaintPanelMouseInputAdapter mouseInputAdapter;
 
 
@@ -23,12 +21,9 @@ public class PaintPanel extends JScrollPane {
         this(controller, canvasModel, Scenery.WIDTH - 1, Scenery.HEIGHT - 1);
     }
 
-    //TODO: scrolls are not working as they should
     public PaintPanel(final Controller controller, PaintCanvasModel canvasModel, int w, int h) {
-        this.controller = controller;
-        this.canvasModel = canvasModel;
-        canvas = new PaintCanvas(w, h, this.controller.getModel(), this.canvasModel);
-        mouseInputAdapter = new PaintPanelMouseInputAdapter(this.controller, this.canvasModel);
+        canvas = new PaintCanvas(w, h, controller.getModel(), canvasModel);
+        mouseInputAdapter = new PaintPanelMouseInputAdapter(controller, canvasModel);
         canvas.addMouseListener(mouseInputAdapter);
         canvas.addMouseMotionListener(mouseInputAdapter);
 

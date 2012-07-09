@@ -1,7 +1,6 @@
 package com.soronthar.rpg.demiurge.legacy.gui.compiler;
 
 import com.soronthar.rpg.demiurge.legacy.gui.builder.Model;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.ActionsManager;
 import org.soronthar.error.TechnicalException;
 
 import javax.imageio.ImageIO;
@@ -44,28 +43,8 @@ public class TilesetCompiler extends JFrame {
         this.setJMenuBar(bar);
     }
 
-    private JMenuBar createMenu(ActionsManager controller) {
-        return new MenuBar(controller);
-    }
 
-    public class MenuBar extends JMenuBar {
-        public MenuBar(final ActionsManager actions) {
-            JMenu project = new JMenu("Project");
 
-            project.add(new JMenuItem(actions.newProjectAction()));
-            project.add(new JMenuItem(actions.loadProjectAction()));
-            project.add(new JMenuItem(actions.saveProjectAction()));
-            project.add(new JMenuItem(actions.newSceneryAction()));
-            project.addSeparator();
-            project.add(new JMenuItem(actions.exitAction()));
-
-            JMenu run = new JMenu("Run");
-            run.add(new JMenuItem(actions.runProjectAction()));
-
-            this.add(project);
-            this.add(run);
-        }
-    }
 
 
     public static void main(String[] args) throws Exception {
