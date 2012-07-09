@@ -7,7 +7,6 @@ import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.adventure.tileset.TileSet;
 import com.soronthar.rpg.adventure.tileset.TileSetBag;
 import com.soronthar.rpg.demiurge.legacy.ImageLoader;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.components.paint.Palette;
 
 import java.awt.image.BufferedImage;
 
@@ -23,18 +22,9 @@ public class Model {
     private int lastActiveLayerIndex;
     private Tile activeTile;
 
-    private boolean[] visibility = new boolean[LayersArray.LAYER_COUNT + 1];
+
     SpecialModes mode = SpecialModes.NONE;
     private BufferedImage drawingPen;
-
-    public boolean isLayerVisible(int layer) {
-        return visibility[layer];
-    }
-
-
-    public void toggleLayerVisibility(int layer) {
-        this.visibility[layer] = !this.visibility[layer];
-    }
 
 
     public boolean isPaintObstacles() {
@@ -57,31 +47,8 @@ public class Model {
         this.mode = mode;
     }
 
-    public BufferedImage getDrawingPen() {
-        BufferedImage tile;
-        if (isPaintObstacles()) {
-            tile = Palette.createObstacleDrawingPen();
-        } else if (isHeroStartMode()) {
-            tile = Palette.createHeroStartDrawingPen();
-        } else if (isAddJumpMode()) {
-            tile = Palette.createJumpPointDrawingPen();
-        } else if (isAddSpriteMode()) {
-            tile = Palette.createSpriteDrawingPen();
-        } else {
-            tile = drawingPen;
-        }
-        return tile;
-    }
-
-
-    public void setDrawingPen(BufferedImage drawingPen) {
-        this.drawingPen = drawingPen;
-    }
-
     public Model() {
-        for (int i = 0; i < visibility.length; i++) {
-            visibility[i] = true;
-        }
+
     }
 
     public TileSet getTileSet(String name) {

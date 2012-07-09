@@ -33,12 +33,39 @@ public class PaintPanel extends JScrollPane {
         this.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         forceRepaintOnScroll();
-        controller.setPaintPanel(this);
 
         canvasModel.addChangeListener(PaintCanvasModel.LOCATION, new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 SwingUtilities.getRoot(PaintPanel.this).repaint();
+            }
+        });
+
+        canvasModel.addChangeListener(PaintCanvasModel.Action.DRAW, new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                drawTileAtPoint((Point) evt.getNewValue());
+            }
+        });
+
+        canvasModel.addChangeListener(PaintCanvasModel.Action.ERASE, new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                eraseTileAtPoint((Point) evt.getNewValue());
+            }
+        });
+
+        canvasModel.addChangeListener(PaintCanvasModel.Action.CLEAR, new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                clearMap();
+            }
+        });
+
+        canvasModel.addChangeListener(PaintCanvasModel.LAYER, new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                repaint();
             }
         });
 
@@ -86,7 +113,7 @@ public class PaintPanel extends JScrollPane {
         this.repaint();
     }
 
-    public void handleEraseTileEvent(Point p) {
+    public void eraseTileAtPoint(Point p) {
         this.getCanvas().eraseTileOnPoint(p);
         this.repaint();
     }

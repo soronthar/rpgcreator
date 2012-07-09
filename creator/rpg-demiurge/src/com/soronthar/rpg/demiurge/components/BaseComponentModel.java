@@ -9,6 +9,7 @@ public abstract class BaseComponentModel {
     public void addChangeListener(String name, PropertyChangeListener listener) {
         pcs.addPropertyChangeListener(name,listener);
     }
+
     public void removePropertyChangeListener(String name, PropertyChangeListener listener) {
         pcs.removePropertyChangeListener(name, listener);
     }

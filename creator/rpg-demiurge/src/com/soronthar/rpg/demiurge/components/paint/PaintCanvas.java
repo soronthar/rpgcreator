@@ -22,9 +22,7 @@ class PaintCanvas extends JPanel {
     PaintCanvasModel canvasModel;
 
     //TODO: model is used for:
-    //TODO: layer visibility
     //TODO: active layer
-    //TODO: drawing pen
     public PaintCanvas(int w, int h, Model model,PaintCanvasModel canvasModel) {
         this.canvasModel=canvasModel;
         this.setCanvasSize(new Dimension(w, h));
@@ -43,6 +41,9 @@ class PaintCanvas extends JPanel {
                 hidePaintPointer();
             }
         });
+
+
+
     }
 
 
@@ -74,7 +75,7 @@ class PaintCanvas extends JPanel {
         g.drawImage(base, 0, 0, null);
         for (int i = 0, layersLength = layers.length; i < layersLength; i++) {
             TranslucentImage layer = layers[i];
-            if (model.isLayerVisible(i)) {
+            if (canvasModel.isLayerVisible(i)) {
                 g.drawImage(layer, 0, 0, null);
             }
         }

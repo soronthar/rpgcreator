@@ -4,6 +4,8 @@ import com.soronthar.rpg.adventure.project.Project;
 import com.soronthar.rpg.adventure.scenery.*;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
+import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;
+import com.soronthar.rpg.demiurge.components.paint.PaintPanel;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.ActionsManager;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.paint.Palette;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.scenery.SceneryTree;
@@ -16,12 +18,13 @@ import java.awt.*;
 import java.util.Collection;
 
 import static com.soronthar.rpg.Utils.normalizePointToTile;
-
+//TODO: If the "special" layer is selected, it is possible to draw on it. it shouldn;t be.
 public class RpgCreatorController extends Controller {
 
     private JPanel builderGUI;
     protected SceneryTree sceneryTree;
     private ActionsManager actionManager;
+    private PaintPanel paintPanel;
 
 
     public RpgCreatorController(Model model) {
@@ -29,8 +32,7 @@ public class RpgCreatorController extends Controller {
     }
 
     public void toggleLayerVisibility(int layerIndex) {
-        model.toggleLayerVisibility(layerIndex);
-        this.paintPanel.repaint();
+        getCanvasModel().toggleLayerVisibility(layerIndex);
     }
 
     public void setActiveLayer(int layerIndex) {
@@ -47,7 +49,7 @@ public class RpgCreatorController extends Controller {
         try {
             this.builderGUI.setEnabled(true);
             this.actionManager.setAllEnabled();
-            this.paintPanel.clearMap();
+            clearMap();
 
             Project project = new ProjectPersister().load(projectName);
             model.setTileSets(project.getTileSetBag());
@@ -66,6 +68,10 @@ public class RpgCreatorController extends Controller {
         }
     }
 
+    private void clearMap() {
+        canvasModel.registerAction(PaintCanvasModel.Action.CLEAR);
+    }
+
     public void createNewProject(String projectName) {
         Project project = new Project(projectName);
         Scenery scenery = new Scenery(System.currentTimeMillis(), "New Scenery");
@@ -75,7 +81,7 @@ public class RpgCreatorController extends Controller {
         this.builderGUI.setEnabled(true);
         this.actionManager.setAllEnabled();
 
-        this.paintPanel.clearMap();
+        clearMap();
         this.sceneryTree.clearSceneryTree(project);
         this.sceneryTree.addSceneryToProjectTree(scenery);
         this.setActiveLayer(0);
@@ -85,14 +91,14 @@ public class RpgCreatorController extends Controller {
         Scenery scenery = new Scenery(System.currentTimeMillis(), sceneryName);
         model.addScenery(scenery);
         model.setActiveScenery(scenery);
-        this.paintPanel.clearMap();
+        clearMap();
         drawScenery(scenery);
         this.sceneryTree.addSceneryToProjectTree(scenery);
     }
 
     public void selectScenery(long id) {
         model.setActiveScenery(model.getProject().getScenery(id));
-        this.paintPanel.clearMap();
+        clearMap();
         drawScenery(model.getActiveScenery());
     }
 
@@ -109,31 +115,35 @@ public class RpgCreatorController extends Controller {
             Layer sceneryLayer = layers.layerAt(layerIndex);
             for (DrawnTile drawnTile : sceneryLayer) {
                 notifyChangeDrawingPen(drawnTile.getTile());
-                this.paintPanel.drawTileAtPoint(normalizePointToTile(drawnTile.getPoint().toAWT()));
+                drawTileAt(drawnTile.getPoint().toAWT());
             }
         }
 
         Collection<Point> obstacles = scenery.getObstacles();
         setMode(Model.SpecialModes.OBSTACLE);
         for (Point point : obstacles) {
-            this.paintPanel.drawTileAtPoint(normalizePointToTile(point.toAWT()));
+            drawTileAt(point.toAWT());
         }
 
         setMode(Model.SpecialModes.HERO_START);
-        this.paintPanel.drawTileAtPoint(normalizePointToTile(scenery.getHeroStartingPoint().toAWT()));
+        drawTileAt(scenery.getHeroStartingPoint().toAWT());
 
         setMode(Model.SpecialModes.JUMP);
         for (JumpPoint jump : scenery.getJumpPoints()) {
-            this.paintPanel.drawTileAtPoint(normalizePointToTile(jump.getLocation().toAWT()));
+            drawTileAt(jump.getLocation().toAWT());
         }
 
         setMode(Model.SpecialModes.SPRITE);
         Collection<Sprite> sprites = scenery.getSprites();
         for (Sprite sprite : sprites) {
-            this.paintPanel.drawTileAtPoint(normalizePointToTile(sprite.getLocation().toAWT()));
+            drawTileAt(sprite.getLocation().toAWT());
         }
 
         setMode(Model.SpecialModes.NONE);
+    }
+
+    private void drawTileAt(org.soronthar.geom.Point point) {
+        canvasModel.registerAction(PaintCanvasModel.Action.DRAW, normalizePointToTile(point));
     }
 
     public void setSceneryTree(SceneryTree sceneryTree) {
@@ -152,7 +162,7 @@ public class RpgCreatorController extends Controller {
     public void setScenerySize(long id, Dimension dimension) {
         Scenery scenery = this.model.getProject().getScenery(id);
         scenery.setDimension(com.soronthar.rpg.util.Dimension.fromAWT(dimension));
-        this.paintPanel.clearMap();
+        clearMap();
         drawScenery(model.getActiveScenery());//TODO: nasty bug... is it possible to change the size of an inactive scenery?
     }
 
@@ -181,5 +191,9 @@ public class RpgCreatorController extends Controller {
         }
     }
 
+
+    public void setPaintPanel(PaintPanel paintPanel) {
+        this.paintPanel = paintPanel;
+    }
 
 }

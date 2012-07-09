@@ -8,7 +8,6 @@ import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.adventure.tileset.TileSet;
 import com.soronthar.rpg.adventure.tileset.TileSetBag;
 import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;
-import com.soronthar.rpg.demiurge.components.paint.PaintPanel;
 import com.soronthar.rpg.demiurge.components.tilesets.TilesetsModel;
 import com.soronthar.rpg.util.Point;
 import org.soronthar.error.ApplicationException;
@@ -16,12 +15,9 @@ import org.soronthar.error.ApplicationException;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static com.soronthar.rpg.Utils.normalizePointToTile;
-
 
 public class Controller {
     protected Model model;
-    protected PaintPanel paintPanel;
     protected PaintCanvasModel canvasModel;
     protected TilesetsModel tilesetModel;
 
@@ -47,29 +43,23 @@ public class Controller {
         addTileToActiveSceneryAtPoint(Point.fromAWT(point));
     }
 
-    //TODO: a DRAW model
     public void addTileToActiveSceneryAtPoint(Point p) {
         if (model.isPaintObstacles()) {
             model.getActiveScenery().addObstacleAt(p);
-            this.paintPanel.drawTileAtPoint(normalizePointToTile(p.toAWT()));
         } else if (model.isHeroStartMode()) {
             model.getActiveScenery().setHeroStartingPoint(p);
-            this.paintPanel.drawTileAtPoint(normalizePointToTile(p.toAWT()));
         } else if (model.isAddJumpMode()) {
             Scenery activeScenery = model.getActiveScenery();
             activeScenery.addJumpPoint(new JumpPoint(p, activeScenery.getId()));
-            this.paintPanel.drawTileAtPoint(normalizePointToTile(p.toAWT()));
         } else if (model.isAddSpriteMode()) {
             Scenery activeScenery = model.getActiveScenery();
             int size = activeScenery.getSpriteMap().size();
             activeScenery.addSprite(new MobNpc("Sprite-" + size, p, Facing.DOWN));
-            this.paintPanel.drawTileAtPoint(normalizePointToTile(p.toAWT()));
         } else {
             if (!model.isInSpecialLayer()) {
                 Tile activeTile = model.getActiveTile();
                 if (activeTile != null) {
                     model.getActiveScenery().setTile(activeTile, model.getActiveLayerIndex(), p);
-                    this.paintPanel.drawTileAtPoint(normalizePointToTile(p.toAWT()));
                 }
             }
         }
@@ -82,21 +72,16 @@ public class Controller {
     public void removeTileAtPoint(Point p) {
         if (model.isPaintObstacles()) {
             model.getActiveScenery().removeObstacleAt(p);
-            this.paintPanel.handleEraseTileEvent(p.toAWT());
         } else if (model.isHeroStartMode()) {
             model.getActiveScenery().setHeroStartingPoint(new Point(0, 0));
-            this.paintPanel.handleEraseTileEvent(p.toAWT());
         } else if (model.isAddJumpMode()) {
             model.getActiveScenery().removeJumpAt(p);
-            this.paintPanel.handleEraseTileEvent(p.toAWT());
         } else if (model.isAddSpriteMode()) {
             model.getActiveScenery().removeSpriteAt(p);
-            this.paintPanel.handleEraseTileEvent(p.toAWT());
         } else {
             if (!model.isInSpecialLayer()) {
                 Scenery activeScenery = model.getActiveScenery();
                 activeScenery.setTile(null, model.getActiveLayerIndex(), p);
-                this.paintPanel.handleEraseTileEvent(p.toAWT());
             }
         }
     }
@@ -124,9 +109,7 @@ public class Controller {
     }
 
 
-    public void setPaintPanel(PaintPanel paintPanel) {
-        this.paintPanel = paintPanel;
-    }
+
 
     public Model getModel() {
         return model;
