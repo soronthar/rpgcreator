@@ -31,10 +31,6 @@ public class RpgCreatorController extends Controller {
         super(model);
     }
 
-    public void toggleLayerVisibility(int layerIndex) {
-        getCanvasModel().toggleLayerVisibility(layerIndex);
-    }
-
     public void setActiveLayer(int layerIndex) {
         this.model.setActiveLayerIndex(layerIndex);
         notifyChangeDrawingPen(model.getActiveTile());

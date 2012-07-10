@@ -8,8 +8,6 @@ import com.soronthar.rpg.adventure.tileset.TileSet;
 import com.soronthar.rpg.adventure.tileset.TileSetBag;
 import com.soronthar.rpg.demiurge.legacy.ImageLoader;
 
-import java.awt.image.BufferedImage;
-
 public class Model {
     public enum SpecialModes {
         NONE, OBSTACLE, HERO_START, JUMP, SPRITE
@@ -19,12 +17,9 @@ public class Model {
     private Project project;
     private Scenery activeScenery = Scenery.NULL_SCENERY;
     private int activeLayerIndex;
-    private int lastActiveLayerIndex;
     private Tile activeTile;
-
-
     SpecialModes mode = SpecialModes.NONE;
-    private BufferedImage drawingPen;
+
 
 
     public boolean isPaintObstacles() {

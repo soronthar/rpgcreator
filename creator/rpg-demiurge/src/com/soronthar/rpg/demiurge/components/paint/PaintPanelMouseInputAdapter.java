@@ -1,7 +1,5 @@
 package com.soronthar.rpg.demiurge.components.paint;
 
-import com.soronthar.rpg.demiurge.legacy.gui.builder.Controller;
-
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
@@ -12,12 +10,10 @@ import static com.soronthar.rpg.Utils.normalizePointToTile;
 
 class PaintPanelMouseInputAdapter extends MouseInputAdapter {
     private boolean enabled=true;
-    private Controller controller;
     private PaintCanvasModel canvasModel;
 
     //TODO: Edit dialogs
-    public PaintPanelMouseInputAdapter(Controller controller,PaintCanvasModel canvasModel) {
-        this.controller = controller;
+    public PaintPanelMouseInputAdapter(PaintCanvasModel canvasModel) {
         this.canvasModel =canvasModel;
     }
 

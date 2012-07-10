@@ -2,6 +2,7 @@ package com.soronthar.rpg.demiurge.legacy.gui.builder.components.layers;
 
 import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.adventure.scenery.LayersArray;
+import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.RpgCreatorController;
 
 import javax.swing.*;
@@ -16,7 +17,7 @@ public class LayerPanel extends JScrollPane {
 
     private final JTable layersTable;
 
-    public LayerPanel(final RpgCreatorController controller) {
+    public LayerPanel(final RpgCreatorController controller, final PaintCanvasModel canvasModel) {
         layersTable = new JTable(new MyTableModel());
         layersTable.setMinimumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49).toAWT());
         layersTable.setMaximumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49).toAWT());
@@ -29,7 +30,7 @@ public class LayerPanel extends JScrollPane {
             public void tableChanged(TableModelEvent e) {
                 if (e.getType() == TableModelEvent.UPDATE) {
                     int row = e.getLastRow();
-                    controller.toggleLayerVisibility(row);
+                    canvasModel.toggleLayerVisibility(row);
                 }
             }
         });

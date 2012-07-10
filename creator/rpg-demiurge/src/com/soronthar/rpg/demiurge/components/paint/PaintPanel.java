@@ -23,7 +23,7 @@ public class PaintPanel extends JScrollPane {
 
     public PaintPanel(final Controller controller, PaintCanvasModel canvasModel, int w, int h) {
         canvas = new PaintCanvas(w, h, controller.getModel(), canvasModel);
-        mouseInputAdapter = new PaintPanelMouseInputAdapter(controller, canvasModel);
+        mouseInputAdapter = new PaintPanelMouseInputAdapter(canvasModel);
         canvas.addMouseListener(mouseInputAdapter);
         canvas.addMouseMotionListener(mouseInputAdapter);
 

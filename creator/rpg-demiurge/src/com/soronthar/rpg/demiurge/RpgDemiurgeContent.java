@@ -79,7 +79,7 @@ class RpgDemiurgeContent extends JPanel {
         });
 
         sceneryTree = new SceneryTree(controller);
-        layerPanel = new LayerPanel(controller);
+        layerPanel = new LayerPanel(controller,canvasModel);
         statusBar = new ColoredJPanel(Color.lightGray);
         final JLabel label = new JLabel("0,0");
         statusBar.add(label);
