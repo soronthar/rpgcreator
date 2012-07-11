@@ -8,16 +8,22 @@ import com.javadocking.dockable.DefaultDockable;
 import com.javadocking.dockable.Dockable;
 import com.javadocking.dockable.DockingMode;
 import com.javadocking.model.FloatDockModel;
+import com.soronthar.rpg.adventure.scenery.objects.Actor;
+import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
+import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.demiurge.components.ColoredJPanel;
 import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;
 import com.soronthar.rpg.demiurge.components.paint.PaintPanel;
+import com.soronthar.rpg.demiurge.components.paint.SpecialEditEventListener;
 import com.soronthar.rpg.demiurge.components.tilesets.TilesetsPanel;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.RpgCreatorController;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.ActionsManager;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.layers.LayerPanel;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.scenery.SceneryTree;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.panes.BuilderToolBar;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.panes.JumpPointEditDialog;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.panes.SpriteEditDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -66,12 +72,26 @@ class RpgDemiurgeContent extends JPanel {
 
         controller.setCanvasModel(canvasModel);
         paintPanel = new PaintPanel(canvasModel);
+        paintPanel.addSpecialEditRequestListener(new SpecialEditEventListener() {
+            @Override
+            public void onSpecialEditRequestAt(Point point) {
+                final Actor specialObject = controller.getModel().getActiveScenery().getSpecialAt(point);
+                if (specialObject instanceof JumpPoint) {
+                    final JDialog dialog = new JumpPointEditDialog((JumpPoint) specialObject, point, controller);
+                    dialog.setVisible(true);
+                } else if (specialObject instanceof Sprite) {
+                    final JDialog dialog = new SpriteEditDialog((Sprite) specialObject, point, controller);
+                    dialog.setVisible(true);
+                }
+            }
+        });
         controller.setPaintPanel(paintPanel);
+
 
         toolBar = new BuilderToolBar(actionsManager);
         toolBar.setEnabled(false);
         tilesetsPanel = new TilesetsPanel(controller.getTilesetModel());
-        tilesetsPanel.addPropertyChangeListener(TilesetsPanel.TILE,new PropertyChangeListener() {
+        tilesetsPanel.addPropertyChangeListener(TilesetsPanel.TILE, new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 controller.setDrawingPen((Tile) evt.getNewValue());
@@ -79,7 +99,7 @@ class RpgDemiurgeContent extends JPanel {
         });
 
         sceneryTree = new SceneryTree(controller);
-        layerPanel = new LayerPanel(controller,canvasModel);
+        layerPanel = new LayerPanel(controller, canvasModel);
         statusBar = new ColoredJPanel(Color.lightGray);
         final JLabel label = new JLabel("0,0");
         statusBar.add(label);

@@ -19,8 +19,6 @@ class PaintCanvas extends JPanel {
 
     PaintCanvasModel canvasModel;
 
-    //TODO: model is used for:
-    //TODO: active layer
     public PaintCanvas(int w, int h, PaintCanvasModel canvasModel) {
         this.canvasModel=canvasModel;
         this.setCanvasSize(new Dimension(w, h));

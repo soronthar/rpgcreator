@@ -9,27 +9,22 @@ import static com.soronthar.rpg.Utils.normalizePointToTile;
 
 
 class PaintPanelMouseInputAdapter extends MouseInputAdapter {
-    private boolean enabled=true;
+    private boolean enabled = true;
     private PaintCanvasModel canvasModel;
+    private PaintPanel paintPanel;
 
     //TODO: Edit dialogs
-    public PaintPanelMouseInputAdapter(PaintCanvasModel canvasModel) {
-        this.canvasModel =canvasModel;
+    public PaintPanelMouseInputAdapter(PaintPanel paintPanel, PaintCanvasModel canvasModel) {
+        this.canvasModel = canvasModel;
+        this.paintPanel = paintPanel;
     }
 
     public void mouseClicked(MouseEvent e) {
-//        if (SwingUtilities.isMiddleMouseButton(e) || (SwingUtilities.isLeftMouseButton(e) && e.isControlDown())) {
-//            final Actor specialObject = controller.getModel().getActiveScenery().getSpecialAt(point);
-//            if (specialObject instanceof JumpPoint) {
-//                final JDialog dialog = new JumpPointEditDialog((JumpPoint) specialObject,point,controller);
-//                dialog.setVisible(true);
-//            } else if (specialObject instanceof Sprite) {
-//                final JDialog dialog = new SpriteEditDialog((Sprite) specialObject,point,controller);
-//                dialog.setVisible(true);
-//            }
-//        } else {
+        if (SwingUtilities.isMiddleMouseButton(e) || (SwingUtilities.isLeftMouseButton(e) && e.isControlDown())) {
+            paintPanel.notifySpecialEditRequest(normalizePointToTile(e.getPoint()));
+        } else {
             manipulateCanvas(e);
-//        }
+        }
     }
 
 
@@ -91,20 +86,20 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
 
     private void hidePaintPointer(MouseEvent e) {
         if (enabled) {
-            canvasModel.registerAction(PaintCanvasModel.Action.HIDE_POINTER,normalizePointToTile(e.getPoint()));
+            canvasModel.registerAction(PaintCanvasModel.Action.HIDE_POINTER, normalizePointToTile(e.getPoint()));
         }
     }
 
 
     private void drawTile(Point point) {
-        canvasModel.registerAction(PaintCanvasModel.Action.DRAW,normalizePointToTile(point));
+        canvasModel.registerAction(PaintCanvasModel.Action.DRAW, normalizePointToTile(point));
     }
 
     private void removeTile(Point point) {
-        canvasModel.registerAction(PaintCanvasModel.Action.ERASE,normalizePointToTile(point));
+        canvasModel.registerAction(PaintCanvasModel.Action.ERASE, normalizePointToTile(point));
     }
 
     public void setEnabled(boolean enabled) {
-        this.enabled=enabled;
+        this.enabled = enabled;
     }
 }
