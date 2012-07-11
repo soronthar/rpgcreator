@@ -35,7 +35,7 @@ public class TilesetCompilerGUI extends JSplitPane {
             }
         });
 
-        paintPanel = new PaintPanel(controller, canvasModel,tileDimension.width, tileDimension.height);
+        paintPanel = new PaintPanel(canvasModel,tileDimension.width, tileDimension.height);
         tilesetsPanel = new TilesetsPanel(new TilesetsModel(controller.loadTilesets()));
         tilesetsPanel.addPropertyChangeListener(TilesetsPanel.TILE,new PropertyChangeListener() {
             @Override

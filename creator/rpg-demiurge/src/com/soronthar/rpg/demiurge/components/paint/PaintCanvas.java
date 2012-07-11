@@ -2,7 +2,6 @@ package com.soronthar.rpg.demiurge.components.paint;
 
 import com.soronthar.rpg.adventure.scenery.LayersArray;
 import com.soronthar.rpg.demiurge.components.GlassSelectLayer;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.Model;
 import com.soronthar.rpg.demiurge.legacy.gui.image.TranslucentImage;
 import org.soronthar.geom.Dimension;
 
@@ -18,15 +17,13 @@ class PaintCanvas extends JPanel {
 
     private TranslucentImage[] layers = new TranslucentImage[LayersArray.LAYER_COUNT + 1];
 
-    private Model model;
     PaintCanvasModel canvasModel;
 
     //TODO: model is used for:
     //TODO: active layer
-    public PaintCanvas(int w, int h, Model model,PaintCanvasModel canvasModel) {
+    public PaintCanvas(int w, int h, PaintCanvasModel canvasModel) {
         this.canvasModel=canvasModel;
         this.setCanvasSize(new Dimension(w, h));
-        this.model = model;
         this.canvasModel.addChangeListener(PaintCanvasModel.LOCATION, new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -99,7 +96,7 @@ class PaintCanvas extends JPanel {
     public void drawTileOnPoint(Point p ) {
         BufferedImage tile = canvasModel.getDrawingPen();
         if (tile != null) {
-            Graphics2D g = (Graphics2D) layers[model.getActiveLayerIndex()].getGraphics();
+            Graphics2D g = (Graphics2D) layers[canvasModel.getActiveLayer()].getGraphics();
             g.drawImage(tile, p.x, p.y, null);
             g.dispose();
         }
@@ -109,7 +106,7 @@ class PaintCanvas extends JPanel {
         BufferedImage tile = canvasModel.getDrawingPen();
 
         Graphics2D g;
-        g = (Graphics2D) layers[model.getActiveLayerIndex()].getGraphics();
+        g = (Graphics2D) layers[canvasModel.getActiveLayer()].getGraphics();
         g.clearRect(p.x, p.y, tile.getWidth(), tile.getHeight());
         g.dispose();
     }

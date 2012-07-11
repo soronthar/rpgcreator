@@ -41,7 +41,7 @@ public class LayerPanel extends JScrollPane {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     int row = layersTable.getSelectedRow();
-                    controller.setActiveLayer(row);
+                    canvasModel.setActiveLayer(row);
                 }
             }
         });

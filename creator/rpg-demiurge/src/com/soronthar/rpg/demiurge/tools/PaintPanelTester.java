@@ -20,7 +20,7 @@ public class PaintPanelTester extends JFrame {
         Model model = new Model();
         Controller controller = new Controller(model);
         PaintCanvasModel canvasModel = new PaintCanvasModel();
-        PaintPanel paintPanel=new PaintPanel(controller, canvasModel);
+        PaintPanel paintPanel=new PaintPanel(canvasModel);
 
         this.add(paintPanel,BorderLayout.CENTER);
 

@@ -2,7 +2,6 @@ package com.soronthar.rpg.demiurge.components.paint;
 
 import com.soronthar.rpg.adventure.scenery.LayersArray;
 import com.soronthar.rpg.adventure.scenery.Scenery;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.Controller;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,12 +16,12 @@ public class PaintPanel extends JScrollPane {
     private final PaintPanelMouseInputAdapter mouseInputAdapter;
 
 
-    public PaintPanel(Controller controller, PaintCanvasModel canvasModel) {
-        this(controller, canvasModel, Scenery.WIDTH - 1, Scenery.HEIGHT - 1);
+    public PaintPanel(PaintCanvasModel canvasModel) {
+        this(canvasModel, Scenery.WIDTH - 1, Scenery.HEIGHT - 1);
     }
 
-    public PaintPanel(final Controller controller, PaintCanvasModel canvasModel, int w, int h) {
-        canvas = new PaintCanvas(w, h, controller.getModel(), canvasModel);
+    public PaintPanel(PaintCanvasModel canvasModel, int w, int h) {
+        canvas = new PaintCanvas(w, h, canvasModel);
         mouseInputAdapter = new PaintPanelMouseInputAdapter(canvasModel);
         canvas.addMouseListener(mouseInputAdapter);
         canvas.addMouseMotionListener(mouseInputAdapter);

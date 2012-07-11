@@ -33,7 +33,6 @@ public class RpgCreatorController extends Controller {
 
     public void setActiveLayer(int layerIndex) {
         this.model.setActiveLayerIndex(layerIndex);
-        notifyChangeDrawingPen(model.getActiveTile());
     }
 
     public void saveProject() {
@@ -92,13 +91,14 @@ public class RpgCreatorController extends Controller {
         this.sceneryTree.addSceneryToProjectTree(scenery);
     }
 
-    public void selectScenery(long id) {
+     public void selectScenery(long id) {
         model.setActiveScenery(model.getProject().getScenery(id));
         clearMap();
         drawScenery(model.getActiveScenery());
     }
 
-    private void drawScenery(Scenery scenery) {
+    //TODO: when the scenery is changed several times, a ConcurrentModificationException happens
+     private void drawScenery(Scenery scenery) {
         int height = scenery.getHeight() - 1;
         int width = scenery.getWidth() - 1;
 
@@ -106,7 +106,7 @@ public class RpgCreatorController extends Controller {
 
         LayersArray layers = scenery.getLayers();
         for (int layerIndex = 0; layerIndex < layers.size(); layerIndex++) {
-            this.model.setActiveLayerIndex(layerIndex);
+            this.canvasModel.setActiveLayer(layerIndex);
 
             Layer sceneryLayer = layers.layerAt(layerIndex);
             for (DrawnTile drawnTile : sceneryLayer) {
@@ -168,21 +168,28 @@ public class RpgCreatorController extends Controller {
 
     public void setMode(Model.SpecialModes mode) {
         model.setMode(mode);
+        PaintCanvasModel canvasModel = this.getCanvasModel();
+        
         switch (mode) {
             case HERO_START:
-                this.getCanvasModel().setDrawingPen(Palette.createHeroStartDrawingPen());
+                canvasModel.setDrawingPen(Palette.createHeroStartDrawingPen());
+                canvasModel.setSpecialMode(true);
                 break;
             case JUMP:
-                this.getCanvasModel().setDrawingPen(Palette.createJumpPointDrawingPen());
+                canvasModel.setDrawingPen(Palette.createJumpPointDrawingPen());
+                canvasModel.setSpecialMode(true);
                 break;
             case OBSTACLE:
-                this.getCanvasModel().setDrawingPen(Palette.createObstacleDrawingPen());
+                canvasModel.setDrawingPen(Palette.createObstacleDrawingPen());
+                canvasModel.setSpecialMode(true);
                 break;
             case NONE:
                 notifyChangeDrawingPen(model.getActiveTile());
+                canvasModel.setSpecialMode(false);
                 break;
             case SPRITE:
-                this.getCanvasModel().setDrawingPen(Palette.createSpriteDrawingPen());
+                canvasModel.setDrawingPen(Palette.createSpriteDrawingPen());
+                canvasModel.setSpecialMode(true);
                 break;
         }
     }
