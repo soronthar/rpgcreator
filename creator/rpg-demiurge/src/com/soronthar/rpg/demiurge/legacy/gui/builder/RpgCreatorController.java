@@ -146,11 +146,6 @@ public class RpgCreatorController extends Controller {
         this.sceneryTree = sceneryTree;
     }
 
-    public Project getProject() {
-        return this.model.getProject();
-    }
-
-
     public void setMainGUI(JPanel builderGUI) {
         this.builderGUI = builderGUI;
     }
