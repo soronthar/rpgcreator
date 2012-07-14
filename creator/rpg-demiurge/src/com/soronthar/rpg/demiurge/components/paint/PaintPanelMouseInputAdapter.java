@@ -11,17 +11,14 @@ import static com.soronthar.rpg.Utils.normalizePointToTile;
 class PaintPanelMouseInputAdapter extends MouseInputAdapter {
     private boolean enabled = true;
     private PaintCanvasModel canvasModel;
-    private PaintPanel paintPanel;
 
-    //TODO: Edit dialogs
-    public PaintPanelMouseInputAdapter(PaintPanel paintPanel, PaintCanvasModel canvasModel) {
+    public PaintPanelMouseInputAdapter(PaintCanvasModel canvasModel) {
         this.canvasModel = canvasModel;
-        this.paintPanel = paintPanel;
     }
 
     public void mouseClicked(MouseEvent e) {
         if (SwingUtilities.isMiddleMouseButton(e) || (SwingUtilities.isLeftMouseButton(e) && e.isControlDown())) {
-            paintPanel.notifySpecialEditRequest(normalizePointToTile(e.getPoint()));
+            canvasModel.editSpecialAt(normalizePointToTile(e.getPoint()));
         } else {
             manipulateCanvas(e);
         }

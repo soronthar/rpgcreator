@@ -10,10 +10,8 @@ import java.awt.event.AdjustmentListener;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
 
 public class PaintPanel extends JScrollPane {
-    public static final String EDIT_SPECIAL = "EDIT_SPECIAL";
     private PaintCanvas canvas;
     private final PaintPanelMouseInputAdapter mouseInputAdapter;
 
@@ -24,7 +22,7 @@ public class PaintPanel extends JScrollPane {
 
     public PaintPanel(PaintCanvasModel canvasModel, int w, int h) {
         canvas = new PaintCanvas(w, h, canvasModel);
-        mouseInputAdapter = new PaintPanelMouseInputAdapter(this,canvasModel);
+        mouseInputAdapter = new PaintPanelMouseInputAdapter(canvasModel);
         canvas.addMouseListener(mouseInputAdapter);
         canvas.addMouseMotionListener(mouseInputAdapter);
 
@@ -134,17 +132,5 @@ public class PaintPanel extends JScrollPane {
         super.setEnabled(enabled);
         canvas.setEnabled(enabled);
         mouseInputAdapter.setEnabled(enabled);
-    }
-
-    ArrayList<SpecialEditEventListener> listeners=new ArrayList<SpecialEditEventListener>();
-    
-    public void addSpecialEditRequestListener(SpecialEditEventListener listener) {
-        listeners.add(listener);
-    }
-
-    public void notifySpecialEditRequest(Point point) {
-        for (SpecialEditEventListener listener : listeners) {
-            listener.onSpecialEditRequestAt(point);
-        }    
     }
 }

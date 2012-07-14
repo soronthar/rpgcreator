@@ -72,7 +72,7 @@ class RpgDemiurgeContent extends JPanel {
 
         controller.setCanvasModel(canvasModel);
         paintPanel = new PaintPanel(canvasModel);
-        paintPanel.addSpecialEditRequestListener(new SpecialEditEventListener() {
+        canvasModel.addSpecialEditRequestListener(new SpecialEditEventListener() {
             @Override
             public void onSpecialEditRequestAt(Point point) {
                 final Actor specialObject = controller.getModel().getActiveScenery().getSpecialAt(point);

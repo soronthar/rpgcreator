@@ -11,7 +11,6 @@ import com.soronthar.rpg.util.Dimension;
 import java.io.Reader;
 import java.util.Iterator;
 
-//TODO: The tilesets are not being loaded
 public class ProjectReader {
     
     public Project read(Reader reader) {
