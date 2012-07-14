@@ -11,16 +11,18 @@ import java.util.ArrayList;
 
 public class PaintCanvasModel extends BaseComponentModel {
     public static final String LAYER = "Layer";
-    private BufferedImage drawingPen;
-    private Point pointerLocation;
-    ArrayList<SpecialEditEventListener> listeners=new ArrayList<SpecialEditEventListener>();
+    public static final String LOCATION = "location";
+    public static final String DIMENSION= "dimension";
+
+    private BufferedImage drawingPen=null;
+    private Point pointerLocation=new Point(0,0);
+    private Dimension canvasSize=new Dimension(0,0);
+    private int activeLayer=0;
+    private boolean specialMode=false;
 
     private boolean[] layerVisibility = new boolean[LayersArray.LAYER_COUNT + 1];
 
-
-    public static final String LOCATION = "location";
-    private int activeLayer;
-    private boolean specialMode;
+    ArrayList<SpecialEditEventListener> listeners=new ArrayList<SpecialEditEventListener>();
 
     public PaintCanvasModel() {
         for (int i = 0; i < layerVisibility.length; i++) {
@@ -64,6 +66,15 @@ public class PaintCanvasModel extends BaseComponentModel {
     public void toggleLayerVisibility(int layer) {
         this.layerVisibility[layer] = !this.layerVisibility[layer];
         firePropertyChange(LAYER,false,true);  //TODO: this is not nice.
+    }
+
+    public Dimension getCanvasSize() {
+        return canvasSize;
+    }
+
+    public void setCanvasSize(Dimension canvasSize) {
+        this.canvasSize = canvasSize;
+        firePropertyChange(DIMENSION,null,canvasSize);
     }
 
     public void setActiveLayer(int activeLayer) {

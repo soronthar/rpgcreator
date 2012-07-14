@@ -67,6 +67,12 @@ public class PaintPanel extends JScrollPane {
                 repaint();
             }
         });
+        canvasModel.addChangeListener(PaintCanvasModel.DIMENSION, new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                setCanvasSize((Dimension) evt.getNewValue());
+            }
+        });
 
         this.setPreferredSize(new Dimension(w, h));
     }

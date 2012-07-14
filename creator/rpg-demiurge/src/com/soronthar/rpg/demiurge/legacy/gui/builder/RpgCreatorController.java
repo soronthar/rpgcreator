@@ -5,7 +5,6 @@ import com.soronthar.rpg.adventure.scenery.*;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
 import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;
-import com.soronthar.rpg.demiurge.components.paint.PaintPanel;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.ActionsManager;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.paint.Palette;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.scenery.SceneryTree;
@@ -24,7 +23,6 @@ public class RpgCreatorController extends Controller {
     private JPanel builderGUI;
     protected SceneryTree sceneryTree;
     private ActionsManager actionManager;
-    private PaintPanel paintPanel;
 
 
     public RpgCreatorController(Model model) {
@@ -102,8 +100,7 @@ public class RpgCreatorController extends Controller {
         int height = scenery.getHeight() - 1;
         int width = scenery.getWidth() - 1;
 
-        this.paintPanel.setCanvasSize(new Dimension(width, height));
-
+        this.canvasModel.setCanvasSize(new Dimension(width, height));
         LayersArray layers = scenery.getLayers();
         for (int layerIndex = 0; layerIndex < layers.size(); layerIndex++) {
             this.canvasModel.setActiveLayer(layerIndex);
@@ -189,9 +186,5 @@ public class RpgCreatorController extends Controller {
         }
     }
 
-
-    public void setPaintPanel(PaintPanel paintPanel) {
-        this.paintPanel = paintPanel;
-    }
 
 }

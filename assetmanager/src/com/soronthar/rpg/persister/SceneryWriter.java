@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
+//TODO: add an index to the layer
 public class SceneryWriter {
     public void write(Scenery scenery, Writer out) {
         try {

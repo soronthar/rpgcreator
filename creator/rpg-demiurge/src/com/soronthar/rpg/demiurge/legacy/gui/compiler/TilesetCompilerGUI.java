@@ -34,7 +34,7 @@ public class TilesetCompilerGUI extends JSplitPane {
                 controller.removeTileAtPoint((java.awt.Point) evt.getNewValue());
             }
         });
-
+        //TODO: it is redundant to pass the model and the dimension
         paintPanel = new PaintPanel(canvasModel,tileDimension.width, tileDimension.height);
         tilesetsPanel = new TilesetsPanel(new TilesetsModel(controller.loadTilesets()));
         tilesetsPanel.addPropertyChangeListener(TilesetsPanel.TILE,new PropertyChangeListener() {

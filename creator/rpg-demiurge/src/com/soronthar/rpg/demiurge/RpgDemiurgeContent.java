@@ -85,7 +85,6 @@ class RpgDemiurgeContent extends JPanel {
                 }
             }
         });
-        controller.setPaintPanel(paintPanel);
 
 
         toolBar = new BuilderToolBar(actionsManager);
