@@ -73,7 +73,6 @@ public class MapScreen implements Screen {
         FileHandle sceneryFile = Gdx.files.internal("projects/" + project.getName() + "/sceneries/s" + id + "/scenery.json");
         scenery = new SceneryReader().read(sceneryFile.reader());
         setScenery(scenery);
-//        setScenery(project.getScenery(id));
     }
 
 
@@ -111,7 +110,6 @@ public class MapScreen implements Screen {
             Point loc = iterator.next().clone();
             obstaclesGroup.addActor(new ObstacleActor(loc));
         }
-        obstaclesGroup.addActor(new ObstacleActor(new Point(0,0)));
 
 
         Group mobsGroup=new Group("mobs");

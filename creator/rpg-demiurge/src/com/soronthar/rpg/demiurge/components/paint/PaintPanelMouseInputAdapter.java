@@ -5,7 +5,7 @@ import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-import static com.soronthar.rpg.Utils.normalizePointToTile;
+import static com.soronthar.rpg.demiurge.CoordinateUtil.normalizePointToTile;
 
 
 class PaintPanelMouseInputAdapter extends MouseInputAdapter {

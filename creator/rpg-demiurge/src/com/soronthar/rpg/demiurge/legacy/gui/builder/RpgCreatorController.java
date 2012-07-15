@@ -16,7 +16,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Collection;
 
-import static com.soronthar.rpg.Utils.normalizePointToTile;
+import static com.soronthar.rpg.demiurge.CoordinateUtil.normalizePointToTile;
+
 //TODO: If the "special" layer is selected, it is possible to draw on it. it shouldn;t be.
 public class RpgCreatorController extends Controller {
 

@@ -12,7 +12,7 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import static com.soronthar.rpg.Utils.normalizePointToTile;
+import static com.soronthar.rpg.demiurge.CoordinateUtil.normalizePointToTile;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 

@@ -56,6 +56,7 @@ class RpgDemiurgeContent extends JPanel {
     private void createComponents(final RpgCreatorController controller, ActionsManager actionsManager) {
         PaintCanvasModel canvasModel = new PaintCanvasModel();
 
+        //TODO: these add listeners should be in the controller
         canvasModel.addChangeListener(PaintCanvasModel.Action.DRAW.name(), new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {

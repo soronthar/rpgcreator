@@ -8,10 +8,6 @@ import com.soronthar.rpg.util.Point;
 
 public class Utils {
 
-    public static java.awt.Point normalizePointToTile(java.awt.Point point) {
-        return normalizePointToTile(Point.fromAWT(point)).toAWT();
-    }
-
     public static Point normalizePointToTile(Point point) {
         Point p = new Point();
         p.setX(normalizeDimensionToTile(point.getX()));
