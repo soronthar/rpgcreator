@@ -19,14 +19,14 @@ import java.util.Collection;
 import static com.soronthar.rpg.demiurge.CoordinateUtil.normalizePointToTile;
 
 //TODO: If the "special" layer is selected, it is possible to draw on it. it shouldn;t be.
-public class RpgCreatorController extends Controller {
+public class DemiurgueController extends Controller {
 
     private JPanel builderGUI;
     protected SceneryTree sceneryTree;
     private ActionsManager actionManager;
 
 
-    public RpgCreatorController(Model model) {
+    public DemiurgueController(Model model) {
         super(model);
     }
 

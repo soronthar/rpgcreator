@@ -1,12 +1,12 @@
 package com.soronthar.rpg.demiurge.legacy.gui.builder.actions;
 
-import com.soronthar.rpg.demiurge.legacy.gui.builder.RpgCreatorController;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgueController;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.base.WithControllerAction;
 
 import java.awt.event.ActionEvent;
 
 public class ExitAction extends WithControllerAction {
-    public ExitAction(RpgCreatorController controller) {
+    public ExitAction(DemiurgueController controller) {
         super("Exit", "icons/exit.png", controller);
     }
 

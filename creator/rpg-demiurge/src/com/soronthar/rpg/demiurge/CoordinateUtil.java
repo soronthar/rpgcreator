@@ -11,4 +11,11 @@ public class CoordinateUtil {
         return Utils.normalizePointToTile(Point.fromAWT(point)).toAWT();
     }
 
+    public static Point pointToTile(Point p) {
+        Point point = p.clone();
+        point.setX(Utils.pixelToTile(point.getX()));
+        point.setY(Utils.pixelToTile(point.getY()));
+        return point;
+    }
+
 }

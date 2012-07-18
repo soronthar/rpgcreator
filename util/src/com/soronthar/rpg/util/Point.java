@@ -49,11 +49,6 @@ public class Point implements Cloneable {
         this.y += dy;
     }
 
-    public void setLocation(int x, int y) {
-        this.x=x;
-        this.y=y;
-    }
-
     public static Point fromAWT(java.awt.Point point) {
         return new Point(point.x,point.y);
     }
@@ -97,4 +92,5 @@ public class Point implements Cloneable {
                 ", y=" + y +
                 '}';
     }
+
 }

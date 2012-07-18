@@ -1,9 +1,8 @@
 package com.soronthar.rpg.demiurge;
 
 
-
+import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgueController;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.Model;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.RpgCreatorController;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.ActionsManager;
 
 import javax.swing.*;
@@ -15,7 +14,7 @@ public class RpgDemiurge extends JFrame {
         this.setSize(new Dimension(1024, 600));
         this.setTitle("Rpg Demiurge");
 
-        RpgCreatorController controller = new RpgCreatorController(new Model());
+        DemiurgueController controller = new DemiurgueController(new Model());
         ActionsManager actionsManager = new ActionsManager(this, controller);
 
         Container contentPane = new RpgDemiurgeContent(controller, actionsManager, this);

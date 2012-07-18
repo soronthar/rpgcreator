@@ -1,19 +1,19 @@
 package com.soronthar.rpg.demiurge.legacy.gui.builder.actions.base;
 
-import com.soronthar.rpg.demiurge.legacy.gui.builder.RpgCreatorController;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgueController;
 
 import javax.swing.*;
 
 public abstract class WithControllerAction extends IconedAction {
-    private RpgCreatorController controller;
+    private DemiurgueController controller;
 
-    public WithControllerAction(String name, String iconName, RpgCreatorController controller) {
+    public WithControllerAction(String name, String iconName, DemiurgueController controller) {
         super(name, iconName);
         this.controller = controller;
         setTooltip(name);
     }
 
-    public RpgCreatorController getController() {
+    public DemiurgueController getController() {
         return controller;
     }
 
