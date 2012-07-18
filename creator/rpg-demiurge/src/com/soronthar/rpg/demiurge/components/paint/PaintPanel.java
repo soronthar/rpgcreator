@@ -1,7 +1,6 @@
 package com.soronthar.rpg.demiurge.components.paint;
 
 import com.soronthar.rpg.adventure.scenery.LayersArray;
-import com.soronthar.rpg.adventure.scenery.Scenery;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,11 +16,8 @@ public class PaintPanel extends JScrollPane {
 
 
     public PaintPanel(PaintCanvasModel canvasModel) {
-        this(canvasModel, Scenery.WIDTH - 1, Scenery.HEIGHT - 1);
-    }
 
-    public PaintPanel(PaintCanvasModel canvasModel, int w, int h) {
-        canvas = new PaintCanvas(w, h, canvasModel);
+        canvas = new PaintCanvas(canvasModel);
         mouseInputAdapter = new PaintPanelMouseInputAdapter(canvasModel);
         canvas.addMouseListener(mouseInputAdapter);
         canvas.addMouseMotionListener(mouseInputAdapter);
@@ -74,7 +70,7 @@ public class PaintPanel extends JScrollPane {
             }
         });
 
-        this.setPreferredSize(new Dimension(w, h));
+        this.setPreferredSize(canvasModel.getCanvasSize());
     }
 
     private void forceRepaintOnScroll() {
@@ -129,7 +125,7 @@ public class PaintPanel extends JScrollPane {
         this.repaint();
     }
 
-    public void setCanvasSize(Dimension dimension) {
+    private  void setCanvasSize(Dimension dimension) {
         this.getCanvas().setCanvasSize(dimension);
     }
 

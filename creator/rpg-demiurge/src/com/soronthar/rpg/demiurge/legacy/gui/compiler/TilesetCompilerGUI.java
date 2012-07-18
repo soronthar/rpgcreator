@@ -8,7 +8,6 @@ import com.soronthar.rpg.demiurge.components.tilesets.TilesetsModel;
 import com.soronthar.rpg.demiurge.components.tilesets.TilesetsPanel;
 
 import javax.swing.*;
-import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -18,7 +17,6 @@ public class TilesetCompilerGUI extends JSplitPane {
 
     public TilesetCompilerGUI(final TilesetCompilerController controller) {
         super(JSplitPane.HORIZONTAL_SPLIT);
-        Dimension tileDimension = Utils.getScaledTileDimension(16, 32).toAWT();
         PaintCanvasModel canvasModel = new PaintCanvasModel();
         controller.setCanvasModel(canvasModel);
         canvasModel.addChangeListener(PaintCanvasModel.Action.DRAW.name(), new PropertyChangeListener() {
@@ -34,8 +32,9 @@ public class TilesetCompilerGUI extends JSplitPane {
                 controller.removeTileAtPoint((java.awt.Point) evt.getNewValue());
             }
         });
+        canvasModel.setCanvasSize(Utils.getScaledTileDimension(16, 32).toAWT());
         //TODO: it is redundant to pass the model and the dimension
-        paintPanel = new PaintPanel(canvasModel,tileDimension.width, tileDimension.height);
+        paintPanel = new PaintPanel(canvasModel);
         tilesetsPanel = new TilesetsPanel(new TilesetsModel(controller.loadTilesets()));
         tilesetsPanel.addPropertyChangeListener(TilesetsPanel.TILE,new PropertyChangeListener() {
             @Override

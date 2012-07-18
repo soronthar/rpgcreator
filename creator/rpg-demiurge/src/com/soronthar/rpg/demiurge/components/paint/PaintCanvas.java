@@ -19,9 +19,9 @@ class PaintCanvas extends JPanel {
 
     PaintCanvasModel canvasModel;
 
-    public PaintCanvas(int w, int h, PaintCanvasModel canvasModel) {
+    public PaintCanvas(PaintCanvasModel canvasModel) {
         this.canvasModel=canvasModel;
-        this.setCanvasSize(new Dimension(w, h));
+        this.setCanvasSize(canvasModel.getCanvasSize());
         this.canvasModel.addChangeListener(PaintCanvasModel.LOCATION, new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
