@@ -7,6 +7,7 @@ import com.soronthar.rpg.adventure.scenery.objects.actors.MobNpc;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.adventure.tileset.TileSet;
 import com.soronthar.rpg.adventure.tileset.TileSetBag;
+import com.soronthar.rpg.demiurge.CoordinateUtil;
 import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;
 import com.soronthar.rpg.demiurge.components.tilesets.TilesetsModel;
 import com.soronthar.rpg.util.Point;
@@ -57,9 +58,10 @@ public class Controller {
             activeScenery.addSprite(new MobNpc("Sprite-" + size, p, Facing.DOWN));
         } else {
             if (!model.isInSpecialLayer()) {
+                Point point= Point.fromAWT(CoordinateUtil.tileToPoint(p.toAWT(),canvasModel.getCanvasSize()));
                 Tile activeTile = model.getActiveTile();
                 if (activeTile != null) {
-                    model.getActiveScenery().setTile(activeTile, model.getActiveLayerIndex(), p);
+                    model.getActiveScenery().setTile(activeTile, model.getActiveLayerIndex(), point);
                 }
             }
         }
@@ -80,8 +82,9 @@ public class Controller {
             model.getActiveScenery().removeSpriteAt(p);
         } else {
             if (!model.isInSpecialLayer()) {
+                Point point= Point.fromAWT(CoordinateUtil.tileToPoint(p.toAWT(),canvasModel.getCanvasSize()));
                 Scenery activeScenery = model.getActiveScenery();
-                activeScenery.setTile(null, model.getActiveLayerIndex(), p);
+                activeScenery.setTile(null, model.getActiveLayerIndex(), point);
             }
         }
     }

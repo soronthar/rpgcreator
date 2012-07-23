@@ -14,6 +14,9 @@ public class PaintCanvasModel extends BaseComponentModel {
     public static final String LAYER = "Layer";
     public static final String LOCATION = "location";
     public static final String DIMENSION= "dimension";
+    public enum Action {
+        HIDE_POINTER, DRAW, ERASE, CLEAR
+    }
 
     private BufferedImage drawingPen=null;
     private Point pointerLocation=new Point(0,0);
@@ -40,7 +43,7 @@ public class PaintCanvasModel extends BaseComponentModel {
     }
 
     //TODO: this "may" be used to undo stuff
-    public void registerAction(Action action, Point point) {
+    public void fireAction(Action action, Point point) {
         firePropertyChange(action.name(),null,point);
     }
 
@@ -90,9 +93,6 @@ public class PaintCanvasModel extends BaseComponentModel {
         return (specialMode?LayersArray.LAYER_COUNT:activeLayer);
     }
 
-    public enum Action {
-        HIDE_POINTER, DRAW, ERASE, CLEAR
-    }
 
     public void editSpecialAt(Point point) {
         notifySpecialEditRequest(point);

@@ -1,11 +1,13 @@
 package com.soronthar.rpg.demiurge.components.paint;
 
+import com.soronthar.rpg.demiurge.CoordinateUtil;
+
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-import static com.soronthar.rpg.demiurge.CoordinateUtil.normalizePointToTile;
+import static com.soronthar.rpg.demiurge.CoordinateUtil.pointToTile;
 
 
 class PaintPanelMouseInputAdapter extends MouseInputAdapter {
@@ -18,7 +20,7 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
 
     public void mouseClicked(MouseEvent e) {
         if (SwingUtilities.isMiddleMouseButton(e) || (SwingUtilities.isLeftMouseButton(e) && e.isControlDown())) {
-            canvasModel.editSpecialAt(normalizePointToTile(e.getPoint()));
+            canvasModel.editSpecialAt(CoordinateUtil.pointToTile(e.getPoint(),canvasModel.getCanvasSize()));
         } else {
             manipulateCanvas(e);
         }
@@ -33,7 +35,7 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
      * Moves the paint pointer inside the canvas.
      */
     public void mouseMoved(MouseEvent e) {
-        //By checking that no button is actually beig pressed,
+        //By checking that no button is actually being pressed,
         //the same thing will not be rendered twice (once here and once in mouseDragged).
         if (e.getButton() != MouseEvent.NOBUTTON) return;
 
@@ -61,7 +63,8 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
 
 
     private void manipulateCanvas(MouseEvent e) {
-        final Point point = normalizePointToTile(e.getPoint());
+        Dimension canvasSize = canvasModel.getCanvasSize();
+        Point point = pointToTile(e.getPoint(), canvasSize);
 
         if (enabled) {
             if (SwingUtilities.isLeftMouseButton(e)) {
@@ -69,31 +72,33 @@ class PaintPanelMouseInputAdapter extends MouseInputAdapter {
             } else {
                 removeTile(point);
             }
-            canvasModel.setPointerLocation(normalizePointToTile(e.getPoint()));
+            canvasModel.setPointerLocation(point);
         }
     }
 
 
     private void movePaintPointer(MouseEvent e) {
         if (enabled) {
-            canvasModel.setPointerLocation(normalizePointToTile(e.getPoint()));
+            Dimension canvasSize = canvasModel.getCanvasSize();
+            Point location = pointToTile(e.getPoint(),canvasSize);
+            canvasModel.setPointerLocation(location);
         }
     }
 
 
     private void hidePaintPointer(MouseEvent e) {
         if (enabled) {
-            canvasModel.registerAction(PaintCanvasModel.Action.HIDE_POINTER, normalizePointToTile(e.getPoint()));
+            canvasModel.fireAction(PaintCanvasModel.Action.HIDE_POINTER, e.getPoint());
         }
     }
 
 
     private void drawTile(Point point) {
-        canvasModel.registerAction(PaintCanvasModel.Action.DRAW, normalizePointToTile(point));
+        canvasModel.fireAction(PaintCanvasModel.Action.DRAW, point);
     }
 
     private void removeTile(Point point) {
-        canvasModel.registerAction(PaintCanvasModel.Action.ERASE, normalizePointToTile(point));
+        canvasModel.fireAction(PaintCanvasModel.Action.ERASE, point);
     }
 
     public void setEnabled(boolean enabled) {

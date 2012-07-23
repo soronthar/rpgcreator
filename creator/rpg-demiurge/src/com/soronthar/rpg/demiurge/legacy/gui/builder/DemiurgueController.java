@@ -3,7 +3,7 @@ package com.soronthar.rpg.demiurge.legacy.gui.builder;
 import com.soronthar.rpg.adventure.project.Project;
 import com.soronthar.rpg.adventure.scenery.*;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
-import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
+import com.soronthar.rpg.demiurge.CoordinateUtil;
 import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.ActionsManager;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.paint.Palette;
@@ -15,9 +15,7 @@ import org.soronthar.error.TechnicalException;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Collection;
-
-import static com.soronthar.rpg.demiurge.CoordinateUtil.normalizePointToTile;
-
+//TODO: if a tile is selected and a proyect is loaded, the first tile to be drawn will be use the last tile selected
 //TODO: If the "special" layer is selected, it is possible to draw on it. it shouldn;t be.
 public class DemiurgueController extends Controller {
 
@@ -109,7 +107,7 @@ public class DemiurgueController extends Controller {
             Layer sceneryLayer = layers.layerAt(layerIndex);
             for (DrawnTile drawnTile : sceneryLayer) {
                 notifyChangeDrawingPen(drawnTile.getTile());
-                drawTileAt(drawnTile.getPoint().toAWT());
+                drawTileAt(CoordinateUtil.pointToTile(drawnTile.getPoint().toAWT(), canvasModel.getCanvasSize()));
             }
         }
 
@@ -127,17 +125,17 @@ public class DemiurgueController extends Controller {
             drawTileAt(jump.getLocation().toAWT());
         }
 
-        setMode(Model.SpecialModes.SPRITE);
-        Collection<Sprite> sprites = scenery.getSprites();
-        for (Sprite sprite : sprites) {
-            drawTileAt(sprite.getLocation().toAWT());
-        }
+//        setMode(Model.SpecialModes.SPRITE);
+//        Collection<Sprite> sprites = scenery.getSprites();
+//        for (Sprite sprite : sprites) {
+//            drawTileAt(sprite.getLocation().toAWT());
+//        }
 
         setMode(Model.SpecialModes.NONE);
     }
 
-    private void drawTileAt(org.soronthar.geom.Point point) {
-        canvasModel.registerAction(PaintCanvasModel.Action.DRAW, normalizePointToTile(point));
+    private void drawTileAt(java.awt.Point point) {
+    canvasModel.fireAction(PaintCanvasModel.Action.DRAW, point);
     }
 
     public void setSceneryTree(SceneryTree sceneryTree) {

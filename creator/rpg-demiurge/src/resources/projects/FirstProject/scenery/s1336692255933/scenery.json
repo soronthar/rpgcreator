@@ -63,6 +63,19 @@
     {
         "tiles":[]
     }
-], "obstacles":[]
-    , "sprites":[], "jumps":[
-], "heroStartingPoint":"0,0"}
+], "obstacles":["8,1", "7,6", "0,5", "4,6", "8,3", "4,0", "1,6", "0,3", "8,5", "0,1", "2,6", "3,0", "6,0", "5,6", "8,0", "0,6", "8,2", "0,4", "8,4", "0,2", "3,6", "5,0", "8,6", "0,0", "7,0", "6,6", "2,0"],
+    "sprites": [{
+        "id":"Sprite-0",
+        "solid":"true",
+        "visible":"true",
+        "type":"npc",
+        "frames":"miscsprite.png",
+        "pos":"4,5",
+        "facing":"DOWN"
+    }
+    ], "jumps":[
+    {
+        "pos":"1,0",
+        "target":"1336686674947"
+    }
+], "heroStartingPoint":"1,1"}

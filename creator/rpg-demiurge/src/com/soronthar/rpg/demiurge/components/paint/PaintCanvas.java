@@ -1,6 +1,8 @@
 package com.soronthar.rpg.demiurge.components.paint;
 
 import com.soronthar.rpg.adventure.scenery.LayersArray;
+import com.soronthar.rpg.adventure.tileset.Tile;
+import com.soronthar.rpg.demiurge.CoordinateUtil;
 import com.soronthar.rpg.demiurge.components.GlassSelectLayer;
 import com.soronthar.rpg.demiurge.legacy.gui.image.TranslucentImage;
 import org.soronthar.geom.Dimension;
@@ -36,9 +38,6 @@ class PaintCanvas extends JPanel {
                 hidePaintPointer();
             }
         });
-
-
-
     }
 
 
@@ -79,6 +78,7 @@ class PaintCanvas extends JPanel {
 
 
     public void movePaintPointerTo(Point p) {
+        p= CoordinateUtil.tileToPoint(p,canvasModel.getCanvasSize());
         BufferedImage tile = canvasModel.getDrawingPen();
         if (tile != null) {
             glassLayer.drawSelectOutline(p, new Dimension(tile.getWidth(), tile.getHeight()));
@@ -93,19 +93,28 @@ class PaintCanvas extends JPanel {
 
     public void drawTileOnPoint(Point p ) {
         BufferedImage tile = canvasModel.getDrawingPen();
+        Point point = CoordinateUtil.tileToPoint(p, canvasModel.getCanvasSize());
         if (tile != null) {
             Graphics2D g = (Graphics2D) layers[canvasModel.getActiveLayer()].getGraphics();
-            g.drawImage(tile, p.x, p.y, null);
+            g.drawImage(tile, point.x, point.y, null);
             g.dispose();
         }
     }
 
     public void eraseTileOnPoint(Point p) {
         BufferedImage tile = canvasModel.getDrawingPen();
-
-        Graphics2D g;
-        g = (Graphics2D) layers[canvasModel.getActiveLayer()].getGraphics();
-        g.clearRect(p.x, p.y, tile.getWidth(), tile.getHeight());
+        int width;
+        int height;
+        if (tile!=null) {
+            width = tile.getWidth();
+            height = tile.getHeight();
+        } else {
+            width = Tile.TILE_SIZE;
+            height= Tile.TILE_SIZE;
+        }
+        Point point = CoordinateUtil.tileToPoint(p, canvasModel.getCanvasSize());
+        Graphics2D g = (Graphics2D) layers[canvasModel.getActiveLayer()].getGraphics();
+        g.clearRect(point.x, point.y, width, height);
         g.dispose();
     }
 

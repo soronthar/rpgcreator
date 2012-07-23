@@ -3,7 +3,6 @@ package com.soronthar.rpg.persister;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.OrderedMap;
-import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Facing;
@@ -39,6 +38,12 @@ public class SceneryReader {
         return (OrderedMap) jsonReader.parse(reader);
     }
 
+    /**
+     * Tiles coordinates are pixel-based. Coordinates for specials are all tile-based.
+     * @param scenery
+     * @param data
+     * @return
+     */
     private Scenery fillSceneryData(Scenery scenery, OrderedMap data) {
         scenery.setDimension(parseDimension((String) data.get("size")));
 
@@ -64,19 +69,18 @@ public class SceneryReader {
         Array<String> obstacles = (Array<String>) data.get("obstacles");
         for (Iterator<String> iterator = obstacles.iterator(); iterator.hasNext(); ) {
             String obstacle = iterator.next();
-            scenery.addObstacleAt(convert(parsePoint(obstacle)));
+            scenery.addObstacleAt(parsePoint(obstacle));
         }
 
         Array<OrderedMap> jumps = (Array<OrderedMap>) data.get("jumps");
         for (Iterator iterator = jumps.iterator(); iterator.hasNext(); ) {
             OrderedMap jumpInfo = (OrderedMap) iterator.next();
-            Point pos = convert(parsePoint((String) jumpInfo.get("pos")));
+            Point pos = parsePoint((String) jumpInfo.get("pos"));
             long target = Long.parseLong((String) jumpInfo.get("target"));
             scenery.addJumpPoint(new JumpPoint(pos, target));
         }
 
-//        scenery.setHeroStartingPoint(parsePoint((String)data.get("heroStartingPoint")));
-        scenery.setHeroStartingPoint(convert(parsePoint((String)data.get("heroStartingPoint"))));
+        scenery.setHeroStartingPoint(parsePoint((String)data.get("heroStartingPoint")));
 
         Array<OrderedMap> sprites = (Array<OrderedMap>) data.get("sprites");
         for (Iterator<OrderedMap> iterator = sprites.iterator(); iterator.hasNext(); ) {
@@ -86,7 +90,7 @@ public class SceneryReader {
             boolean isVisible=Boolean.valueOf((String) spriteInfo.get("visible"));
             String type= (String) spriteInfo.get("type");
             String frames= (String) spriteInfo.get("frames");
-            Point point=convert(parsePoint((String) spriteInfo.get("pos")));
+            Point point=parsePoint((String) spriteInfo.get("pos"));
             Facing facing=Facing.valueOf((String) spriteInfo.get("facing"));
             Sprite sprite;
             if (type.equals("npc")) {
@@ -101,12 +105,6 @@ public class SceneryReader {
         }
 
         return scenery;
-    }
-
-    private Point convert(Point point) {
-        point.setX(Utils.tileTopixel(point.getX()));
-        point.setY(Utils.tileTopixel(point.getY()));
-        return point;
     }
 
     private Point parsePoint(String point) {
