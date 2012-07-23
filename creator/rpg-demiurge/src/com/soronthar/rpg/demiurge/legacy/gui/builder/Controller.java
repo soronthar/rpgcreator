@@ -39,12 +39,12 @@ public class Controller {
         }
     }
 
-    @Deprecated
     public void addTileToActiveSceneryAtPoint(java.awt.Point point) {
         addTileToActiveSceneryAtPoint(Point.fromAWT(point));
     }
 
     public void addTileToActiveSceneryAtPoint(Point p) {
+        if (model.isLoading()) return;
         if (model.isPaintObstacles()) {
             model.getActiveScenery().addObstacleAt(p);
         } else if (model.isHeroStartMode()) {

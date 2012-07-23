@@ -9,6 +9,7 @@ import com.soronthar.rpg.adventure.tileset.TileSetBag;
 import com.soronthar.rpg.demiurge.legacy.ImageLoader;
 
 public class Model {
+
     public enum SpecialModes {
         NONE, OBSTACLE, HERO_START, JUMP, SPRITE
     }
@@ -20,7 +21,15 @@ public class Model {
     private Tile activeTile;
     SpecialModes mode = SpecialModes.NONE;
 
+    private boolean loading;
 
+    public boolean isLoading() {
+        return loading;
+    }
+
+    public void setLoading(boolean loading) {
+        this.loading = loading;
+    }
 
     public boolean isPaintObstacles() {
         return mode == SpecialModes.OBSTACLE;

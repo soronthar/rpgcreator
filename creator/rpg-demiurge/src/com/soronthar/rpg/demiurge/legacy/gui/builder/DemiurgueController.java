@@ -3,6 +3,7 @@ package com.soronthar.rpg.demiurge.legacy.gui.builder;
 import com.soronthar.rpg.adventure.project.Project;
 import com.soronthar.rpg.adventure.scenery.*;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
+import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
 import com.soronthar.rpg.demiurge.CoordinateUtil;
 import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.ActionsManager;
@@ -15,6 +16,7 @@ import org.soronthar.error.TechnicalException;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Collection;
+
 //TODO: if a tile is selected and a proyect is loaded, the first tile to be drawn will be use the last tile selected
 //TODO: If the "special" layer is selected, it is possible to draw on it. it shouldn;t be.
 public class DemiurgueController extends Controller {
@@ -88,14 +90,15 @@ public class DemiurgueController extends Controller {
         this.sceneryTree.addSceneryToProjectTree(scenery);
     }
 
-     public void selectScenery(long id) {
+    public void selectScenery(long id) {
         model.setActiveScenery(model.getProject().getScenery(id));
         clearMap();
         drawScenery(model.getActiveScenery());
     }
 
     //TODO: when the scenery is changed several times, a ConcurrentModificationException happens
-     private void drawScenery(Scenery scenery) {
+    private void drawScenery(Scenery scenery) {
+        model.setLoading(true);
         int height = scenery.getHeight() - 1;
         int width = scenery.getWidth() - 1;
 
@@ -125,17 +128,19 @@ public class DemiurgueController extends Controller {
             drawTileAt(jump.getLocation().toAWT());
         }
 
-//        setMode(Model.SpecialModes.SPRITE);
-//        Collection<Sprite> sprites = scenery.getSprites();
-//        for (Sprite sprite : sprites) {
-//            drawTileAt(sprite.getLocation().toAWT());
-//        }
+        setMode(Model.SpecialModes.SPRITE);
+        Collection<Sprite> sprites = scenery.getSprites();
+        for (Sprite sprite : sprites) {
+            drawTileAt(sprite.getLocation().toAWT());
+        }
 
         setMode(Model.SpecialModes.NONE);
+        model.setLoading(false);
+
     }
 
     private void drawTileAt(java.awt.Point point) {
-    canvasModel.fireAction(PaintCanvasModel.Action.DRAW, point);
+        canvasModel.fireAction(PaintCanvasModel.Action.DRAW, point);
     }
 
     public void setSceneryTree(SceneryTree sceneryTree) {
@@ -160,7 +165,7 @@ public class DemiurgueController extends Controller {
     public void setMode(Model.SpecialModes mode) {
         model.setMode(mode);
         PaintCanvasModel canvasModel = this.getCanvasModel();
-        
+
         switch (mode) {
             case HERO_START:
                 canvasModel.setDrawingPen(Palette.createHeroStartDrawingPen());
