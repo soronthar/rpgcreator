@@ -48,4 +48,11 @@ public class Utils {
         newLocation.translate(tileLocationDelta.getX(), tileLocationDelta.getY());
         return newLocation;
     }
+
+    public static Point tileToPoint(Point tileCoord) {
+        Point point=tileCoord.clone();
+        point.setX(Utils.tileTopixel(point.getX()));
+        point.setY(Utils.tileTopixel(point.getY()));
+        return point;
+    }
 }

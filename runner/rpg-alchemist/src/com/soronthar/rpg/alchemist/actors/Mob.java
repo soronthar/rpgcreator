@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.adventure.scenery.objects.actors.MobNpc;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.alchemist.RpgAlchemist;
@@ -20,8 +21,8 @@ public class Mob extends Actor {
 
     public Mob(String name, com.soronthar.rpg.adventure.scenery.objects.actors.Sprite  sprite) {
         super(name);
-        this.x = sprite.getLocation().getX();
-        this.y = sprite.getLocation().getY();
+        this.x = Utils.tileTopixel(sprite.getLocation().getX());
+        this.y = Utils.tileTopixel(sprite.getLocation().getY());
         this.width= Tile.TILE_SIZE;
         this.height= Tile.TILE_SIZE;
 

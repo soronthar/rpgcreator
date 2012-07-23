@@ -33,6 +33,7 @@ import com.soronthar.rpg.util.Dimension;
 import com.soronthar.rpg.util.Point;
 import org.soronthar.error.ApplicationException;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -41,8 +42,8 @@ public class MapScreen implements Screen {
     private Texture textureH;
     private Stage stage;
     private final FPSLogger log = new FPSLogger();
-    private Scenery scenery;
     private HeroActor heroActor;
+    Collection<JumpPoint> jumpPoints=new ArrayList<JumpPoint>();
     private final Project project = new ProjectReader().read(Gdx.files.internal("projects/FirstProject/FirstProject.json").reader());
 
     @Override
@@ -50,17 +51,20 @@ public class MapScreen implements Screen {
         GL10 gl = Gdx.graphics.getGL10();
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
-        Collection<JumpPoint> jumpPoints = scenery.getJumpPoints();
-        for (JumpPoint jumpPoint : jumpPoints) {
-            int y = jumpPoint.getLocation().getY();
-            int x = jumpPoint.getLocation().getX();
-            Vector2 vector=new Vector2((float) x, (float) y);
+        JumpPoint jumpPoint=null;
+        for (JumpPoint jumpPoint1 : jumpPoints) {
+            int y = jumpPoint1.getLocation().getY();
+            int x = jumpPoint1.getLocation().getX();
+            Vector2 vector = new Vector2((float) x, (float) y);
             heroActor.toLocalCoordinates(vector);
-            if (heroActor.hit(vector.x,  vector.y)!=null) {
-                setScenery(jumpPoint.getTargetId());
+            if (heroActor.hit(vector.x, vector.y) != null) {
+                jumpPoint = jumpPoint1;
+                break;
             }
         }
-
+        if (jumpPoint!=null) {
+            setScenery(jumpPoint.getTargetId());
+        }
 
         stage.act(delta);
         stage.getCamera().position.set(heroActor.x, heroActor.y, 0);
@@ -71,7 +75,7 @@ public class MapScreen implements Screen {
 
     private void setScenery(long id) {
         FileHandle sceneryFile = Gdx.files.internal("projects/" + project.getName() + "/sceneries/s" + id + "/scenery.json");
-        scenery = new SceneryReader().read(sceneryFile.reader());
+        Scenery scenery = new SceneryReader().read(sceneryFile.reader());
         setScenery(scenery);
     }
 
@@ -91,23 +95,22 @@ public class MapScreen implements Screen {
     }
 
     private void setScenery(Scenery scenery) {
-        this.scenery=scenery;
         createTextureForScenery(scenery);
-        Point heroPos = scenery.getHeroStartingPoint();
-        System.out.println("MapScreen.setScenery:99 - heroPos = " + heroPos);
+        heroActor = new HeroActor(new Hero(scenery.getHeroStartingPoint()));
+
         int height = Gdx.graphics.getHeight();
         int width = Gdx.graphics.getWidth();
         if (stage!=null) stage.clear();
-        stage = new Stage(width, height, true);
-        stage.getCamera().position.set(heroPos.getX(), heroPos.getY(), 0);
 
-        heroActor = new HeroActor(new Hero(heroPos));
+        stage = new Stage(width, height, true);
+        stage.getCamera().position.set(heroActor.x, heroActor.y, 0);
+
 
         Collection<Point> obstacles = scenery.getObstacles();
         Group obstaclesGroup = new Group("obstacles");
         Iterator<Point> iterator = obstacles.iterator();
         for (; iterator.hasNext(); ) {
-            Point loc = iterator.next().clone();
+            Point loc = Utils.tileToPoint(iterator.next());
             obstaclesGroup.addActor(new ObstacleActor(loc));
         }
 
@@ -123,30 +126,40 @@ public class MapScreen implements Screen {
         stage.addActor(heroActor);
         stage.addActor(obstaclesGroup);
         stage.addActor(new LayerActor(textureH));
+
+        jumpPoints.clear();
+        Collection<JumpPoint> sceneryJumpPoints = scenery.getJumpPoints();
+        for (JumpPoint jumpPoint : sceneryJumpPoints) {
+            Point location = jumpPoint.getLocation();
+            jumpPoint.setLocation(Utils.tileToPoint(location));
+            jumpPoints.add(jumpPoint);
+        }
     }
 
     private void createTextureForScenery(Scenery scenery) {
         TileSetMap tileSets = new TileSetBagPersister().fillTilesetBag(project.getTileSetBag());
         int w= MathUtils.nextPowerOfTwo(scenery.getWidth());
         int h= MathUtils.nextPowerOfTwo(scenery.getHeight());
+        int hPad=h-scenery.getHeight();
+
         Pixmap layerPixmapL = new Pixmap(w, h, Pixmap.Format.RGBA8888);
         Pixmap layerPixmapH = new Pixmap(w, h, Pixmap.Format.RGBA8888);
         LayersArray layers = scenery.getLayers();
-
         for (Layer layer : layers) {
             if (layer.getIndex() < 3) {
-                drawScenery(tileSets, layerPixmapL, layer);
+                drawScenery(tileSets, layerPixmapL, layer, hPad);
             } else {
-                drawScenery(tileSets, layerPixmapH, layer);
+                drawScenery(tileSets, layerPixmapH, layer, hPad);
             }
         }
+
         textureH = new Texture(layerPixmapH);
         textureL = new Texture(layerPixmapL);
         layerPixmapH.dispose();
         layerPixmapL.dispose();
     }
 
-    private void drawScenery(TileSetMap tileSets, Pixmap layerPixmap, Layer sceneryLayer) {
+    private void drawScenery(TileSetMap tileSets, Pixmap layerPixmap, Layer sceneryLayer, int hPad) {
         for (DrawnTile drawnTile : sceneryLayer) {
             Tile info = drawnTile.getTile();
             if (info != null) {
@@ -158,7 +171,7 @@ public class MapScreen implements Screen {
                 Point tilesetPoint = info.getPoint();
 
                 Point p = Utils.normalizePointToTile(drawnTile.getPoint());
-                layerPixmap.drawPixmap(image, p.getX(), p.getY(), tilesetPoint.getX(), tilesetPoint.getY(), dimension.getWidth(), dimension.getHeight());
+                layerPixmap.drawPixmap(image, p.getX(), p.getY()+hPad, tilesetPoint.getX(), tilesetPoint.getY(), dimension.getWidth(), dimension.getHeight());
             }
         }
     }

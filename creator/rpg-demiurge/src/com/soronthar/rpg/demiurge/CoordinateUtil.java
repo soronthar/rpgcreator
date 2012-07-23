@@ -20,7 +20,7 @@ public class CoordinateUtil {
     }
 
     private static Point pointToOrthoTile(Point p) {
-        com.soronthar.rpg.util.Point point = com.soronthar.rpg.util.Point.fromAWT(p);
+        com.soronthar.rpg.util.Point point = com.soronthar.rpg.util.Point.fromAWT(p);      
         point.setX(Utils.pixelToTile(point.getX()));
         point.setY(Utils.pixelToTile(point.getY()));
         return point.toAWT();
