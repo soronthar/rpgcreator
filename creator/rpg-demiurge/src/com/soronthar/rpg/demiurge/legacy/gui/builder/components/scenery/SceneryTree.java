@@ -4,7 +4,7 @@ import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.adventure.project.Project;
 import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.adventure.scenery.SceneryBag;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgueController;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgeController;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -17,7 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class SceneryTree extends JTree {
-    public SceneryTree(final DemiurgueController controller) {
+    public SceneryTree(final DemiurgeController controller) {
 
         super(new SceneryTreeModel());
 
@@ -85,7 +85,7 @@ public class SceneryTree extends JTree {
     }
 
     public void clearSceneryTree(Project project) {
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode(project);
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode(project.getName());
         getModel().setRoot(root);
         this.revalidate();
     }

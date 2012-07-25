@@ -1,6 +1,6 @@
 package com.soronthar.rpg.demiurge.legacy.gui.builder.actions;
 
-import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgueController;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgeController;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.base.ShowDialogAction;
 
 import javax.swing.*;
@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 
 public class LoadProjectAction extends ShowDialogAction {
-    public LoadProjectAction(JFrame frame, DemiurgueController controller) {
+    public LoadProjectAction(JFrame frame, DemiurgeController controller) {
         super("Load Project", "icons/open.png", frame, controller);
     }
 

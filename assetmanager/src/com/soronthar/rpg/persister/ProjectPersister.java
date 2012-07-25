@@ -62,6 +62,10 @@ public class ProjectPersister {
         File projectDir=new File("resources/projects/"+projectName);
         File projectFile=new File(projectDir,projectName+".json");
 
+        if (!projectDir.exists()) {
+            projectDir.mkdirs();
+        }
+
         ProjectWriter projectWriter=new ProjectWriter();
         try {
             FileWriter projectFileWriter = new FileWriter(projectFile);
@@ -71,6 +75,10 @@ public class ProjectPersister {
             SceneryWriter sceneryWriter = new SceneryWriter();
             for(Scenery scenery:sceneries) {
                 File sceneryDir=new File(projectDir,"scenery/s"+scenery.getId());
+                if (!sceneryDir.exists()) {
+                    sceneryDir.mkdirs();
+                }
+
                 File sceneryFile=new File(sceneryDir,"scenery.json");
                 FileWriter sceneryFileWriter = new FileWriter(sceneryFile);
                 sceneryWriter.write(scenery, sceneryFileWriter);

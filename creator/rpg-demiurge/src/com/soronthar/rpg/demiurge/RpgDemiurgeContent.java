@@ -17,7 +17,7 @@ import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;
 import com.soronthar.rpg.demiurge.components.paint.PaintPanel;
 import com.soronthar.rpg.demiurge.components.paint.SpecialEditEventListener;
 import com.soronthar.rpg.demiurge.components.tilesets.TilesetsPanel;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgueController;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgeController;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.ActionsManager;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.layers.LayerPanel;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.scenery.SceneryTree;
@@ -39,7 +39,7 @@ class RpgDemiurgeContent extends JPanel {
     private FloatDockModel dockModel;
     private LayerPanel layerPanel;
 
-    public RpgDemiurgeContent(DemiurgueController controller, ActionsManager actionsManager, JFrame parent) {
+    public RpgDemiurgeContent(DemiurgeController controller, ActionsManager actionsManager, JFrame parent) {
         super(new GridBagLayout());
         // Create the dock model for the docks.
         dockModel = new FloatDockModel();
@@ -53,7 +53,7 @@ class RpgDemiurgeContent extends JPanel {
         controller.setMainGUI(this);
     }
 
-    private void createComponents(final DemiurgueController controller, ActionsManager actionsManager) {
+    private void createComponents(final DemiurgeController controller, ActionsManager actionsManager) {
         PaintCanvasModel canvasModel = new PaintCanvasModel();
 
         //TODO: these add listeners should be in the controller

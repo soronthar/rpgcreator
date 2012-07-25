@@ -1,6 +1,6 @@
 package com.soronthar.rpg.demiurge.legacy.gui.builder.actions;
 
-import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgueController;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgeController;
 
 import javax.swing.*;
 
@@ -18,7 +18,7 @@ public class ActionsManager {
     private AddJumpAction addJumpAction;
     private AddSpriteAction addSpriteAction;
 
-    public ActionsManager(JFrame parent, DemiurgueController controller) {
+    public ActionsManager(JFrame parent, DemiurgeController controller) {
         this.newProjectAction = new NewProjectAction(parent, controller);
         this.loadProjectAction = new LoadProjectAction(parent, controller);
         this.saveProjectAction = new SaveProjectAction(controller);

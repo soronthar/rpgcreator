@@ -5,7 +5,7 @@ import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.alchemist.actors.Mob;
 
 public class MobMovementController implements MovementController {
-    public static final int STEP = Tile.TILE_SIZE / 4;
+    public static final int STEP = Tile.TILE_SIZE / 2;
     public static final double DELAY = 0.1;
 
     protected Actor actor;

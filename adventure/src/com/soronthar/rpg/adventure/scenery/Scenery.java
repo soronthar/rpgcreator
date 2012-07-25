@@ -15,8 +15,8 @@ import java.util.Collection;
 import java.util.Map;
 
 public class Scenery implements Serializable {
-    public static final int WIDTH = 512;
-    public static final int HEIGHT = 256;
+    public static final int DEFAULT_WIDTH = 512;
+    public static final int DEFAULT_HEIGHT = 256;
 
     private long id;
     private Dimension dimension;
@@ -36,7 +36,7 @@ public class Scenery implements Serializable {
         this.id = id;
         this.heroStartingPoint = new Point(0, 0);
         this.name = name;
-        this.dimension = new Dimension(0, 0);
+        this.dimension = new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
 
 

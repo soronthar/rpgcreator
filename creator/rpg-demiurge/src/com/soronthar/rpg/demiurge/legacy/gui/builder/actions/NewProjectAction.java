@@ -1,6 +1,6 @@
 package com.soronthar.rpg.demiurge.legacy.gui.builder.actions;
 
-import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgueController;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgeController;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.base.ShowDialogAction;
 import org.soronthar.util.StringUtils;
 
@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 
 public class NewProjectAction extends ShowDialogAction {
 
-    public NewProjectAction(JFrame frame, DemiurgueController controller) {
+    public NewProjectAction(JFrame frame, DemiurgeController controller) {
         super("New Project", "icons/newproject.png", frame, controller);
     }
 

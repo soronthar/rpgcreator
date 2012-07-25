@@ -1,6 +1,6 @@
 package com.soronthar.rpg.demiurge.legacy.gui.builder.actions;
 
-import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgueController;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgeController;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.Model;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.base.WithControllerAction;
 
@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 public class ToggleControllerModeAction extends WithControllerAction {
     private Model.SpecialModes mode;
 
-    public ToggleControllerModeAction(String name, String iconName, Model.SpecialModes mode, DemiurgueController controller) {
+    public ToggleControllerModeAction(String name, String iconName, Model.SpecialModes mode, DemiurgeController controller) {
         super(name, iconName, controller);
         this.mode = mode;
 

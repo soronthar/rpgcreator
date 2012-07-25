@@ -1,7 +1,7 @@
 package com.soronthar.rpg.demiurge.legacy.gui.builder.components.scenery;
 
 import com.soronthar.rpg.adventure.scenery.Scenery;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgueController;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgeController;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ScenerySizeDialog extends JDialog {
-    public ScenerySizeDialog(final SceneryTree sceneryTree, Scenery scenery, final DemiurgueController controller) {
+    public ScenerySizeDialog(final SceneryTree sceneryTree, Scenery scenery, final DemiurgeController controller) {
         super((Frame) SwingUtilities.getAncestorOfClass(JFrame.class, sceneryTree), "Scenery " + scenery.getName() + " Size", true);
         this.setLayout(new FlowLayout());
         JLabel width = new JLabel("Width:");

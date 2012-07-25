@@ -3,7 +3,7 @@ package com.soronthar.rpg.demiurge.legacy.gui.builder.components.layers;
 import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.adventure.scenery.LayersArray;
 import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;
-import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgueController;
+import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgeController;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -17,7 +17,7 @@ public class LayerPanel extends JScrollPane {
 
     private final JTable layersTable;
 
-    public LayerPanel(final DemiurgueController controller, final PaintCanvasModel canvasModel) {
+    public LayerPanel(final DemiurgeController controller, final PaintCanvasModel canvasModel) {
         layersTable = new JTable(new MyTableModel());
         layersTable.setMinimumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49).toAWT());
         layersTable.setMaximumSize(Utils.getScaledTileDimension(8, 2).addPadding(23, 49).toAWT());

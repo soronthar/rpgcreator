@@ -19,14 +19,14 @@ import java.util.Collection;
 
 //TODO: if a tile is selected and a proyect is loaded, the first tile to be drawn will be use the last tile selected
 //TODO: If the "special" layer is selected, it is possible to draw on it. it shouldn;t be.
-public class DemiurgueController extends Controller {
+public class DemiurgeController extends Controller {
 
     private JPanel builderGUI;
     protected SceneryTree sceneryTree;
     private ActionsManager actionManager;
 
 
-    public DemiurgueController(Model model) {
+    public DemiurgeController(Model model) {
         super(model);
     }
 

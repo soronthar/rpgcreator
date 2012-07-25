@@ -20,7 +20,7 @@ public class PaintCanvasModel extends BaseComponentModel {
 
     private BufferedImage drawingPen=null;
     private Point pointerLocation=new Point(0,0);
-    private Dimension canvasSize=new Dimension(Scenery.WIDTH - 1, Scenery.HEIGHT - 1);
+    private Dimension canvasSize=new Dimension(Scenery.DEFAULT_WIDTH - 1, Scenery.DEFAULT_HEIGHT - 1);
     private int activeLayer=0;
     private boolean specialMode=false;
 
