@@ -1,4 +1,4 @@
-package com.soronthar.rpg.demiurge.tools;
+package com.soronthar.rpg.demiurge.devel;
 
 import com.soronthar.rpg.demiurge.components.ColoredJPanel;
 import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;

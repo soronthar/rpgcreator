@@ -13,7 +13,6 @@ public class TranslucentImage extends BufferedImage {
 
     public Graphics getGraphics() {
         Graphics2D g = (Graphics2D) super.getGraphics();
-        g.setComposite(AlphaComposite.Src);
         g.setBackground(TRANSPARENT_BACKGROUND);
         return g;
     }

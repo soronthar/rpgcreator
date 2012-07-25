@@ -10,6 +10,7 @@
     <output url="file://$MODULE_DIR$/bin" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/bin/resources" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/bin/com" />
       <excludeFolder url="file://$MODULE_DIR$/bin/icons" />
     </content>

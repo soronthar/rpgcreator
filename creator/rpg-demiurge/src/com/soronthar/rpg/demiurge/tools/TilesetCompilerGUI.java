@@ -1,4 +1,4 @@
-package com.soronthar.rpg.demiurge.legacy.gui.compiler;
+package com.soronthar.rpg.demiurge.tools;
 
 import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.adventure.tileset.Tile;

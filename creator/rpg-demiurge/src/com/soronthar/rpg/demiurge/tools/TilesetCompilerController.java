@@ -1,4 +1,4 @@
-package com.soronthar.rpg.demiurge.legacy.gui.compiler;
+package com.soronthar.rpg.demiurge.tools;
 
 import com.soronthar.rpg.adventure.tileset.TileSet;
 import com.soronthar.rpg.adventure.tileset.TileSetBag;

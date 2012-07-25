@@ -1,4 +1,4 @@
-package com.soronthar.rpg.demiurge.legacy.gui.compiler;
+package com.soronthar.rpg.demiurge.tools;
 
 import com.soronthar.rpg.demiurge.legacy.gui.builder.Model;
 import org.soronthar.error.TechnicalException;
@@ -29,7 +29,6 @@ public class TilesetCompiler extends JFrame {
             public void actionPerformed(ActionEvent ev) {
                 BufferedImage image = contentPane.getPaintPanel().getFlattenImage();
                 File file = new File("test.png");
-                System.out.println("TilesetCompiler.actionPerformed:37 - file.getAbsolutePath() = " + file.getAbsolutePath());
                 try {
                     ImageIO.write(image, "png", file);
                 } catch (IOException e) {
