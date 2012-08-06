@@ -30,7 +30,7 @@ public class DebugRenderer implements ActorRenderer {
 
         outliner.begin(ShapeRenderer.ShapeType.FilledCircle);
         outliner.setColor(Color.RED);
-        outliner.filledCircle(actor.x, actor.y, 5);
+        outliner.filledCircle(actor.x, actor.y, 2);
         outliner.end();
 
         batch.begin();

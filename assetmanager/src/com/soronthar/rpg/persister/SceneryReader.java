@@ -6,9 +6,7 @@ import com.badlogic.gdx.utils.OrderedMap;
 import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Facing;
-import com.soronthar.rpg.adventure.scenery.objects.actors.MobNpc;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
-import com.soronthar.rpg.adventure.scenery.objects.actors.StandingNpc;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.util.Dimension;
 import com.soronthar.rpg.util.Point;
@@ -88,16 +86,11 @@ public class SceneryReader {
             String spriteId= (String) spriteInfo.get("id");
             boolean isSolid=Boolean.valueOf((String) spriteInfo.get("solid"));
             boolean isVisible=Boolean.valueOf((String) spriteInfo.get("visible"));
-            String type= (String) spriteInfo.get("type");
+            String type= ((String) spriteInfo.get("type")).toUpperCase();
             String frames= (String) spriteInfo.get("frames");
             Point point=parsePoint((String) spriteInfo.get("pos"));
             Facing facing=Facing.valueOf((String) spriteInfo.get("facing"));
-            Sprite sprite;
-            if (type.equals("npc")) {
-                sprite = new StandingNpc(spriteId, point,facing);
-            } else {
-                sprite = new MobNpc(spriteId, point,facing);
-            }
+            Sprite sprite = new Sprite(spriteId, Sprite.Type.valueOf(type), point, facing);
             sprite.setFramesImage(frames);
             sprite.setSolid(isSolid);
             sprite.setVisible(isVisible);

@@ -1,9 +1,6 @@
 package com.soronthar.rpg.demiurge.legacy.gui.builder.panes;
 
-import com.soronthar.rpg.adventure.scenery.Scenery;
-import com.soronthar.rpg.adventure.scenery.objects.actors.MobNpc;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
-import com.soronthar.rpg.adventure.scenery.objects.actors.StandingNpc;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.Controller;
 
 import javax.swing.*;
@@ -28,16 +25,20 @@ public class SpriteEditDialog extends JDialog {
         final JTextField image = new JTextField();
 
         this.add(image);
-        final JComboBox comboBox = new JComboBox(new String[]{"Npc", "Mob"});
+        final JComboBox comboBox = new JComboBox(new String[]{Sprite.Type.NPC.toString(),Sprite.Type.MOB.toString()});
         this.add(comboBox);
 
-        if (sprite instanceof MobNpc) {
-            image.setText(((MobNpc) sprite).getFramesImageName());
-            comboBox.setSelectedIndex(1);
-        } else {
-            comboBox.setSelectedIndex(0);
-            image.setText(((StandingNpc) sprite).getFramesImageName());
+        switch (sprite.getType()) {
+            case NPC:
+                comboBox.setSelectedIndex(0);
+                break;
+            case MOB:
+                comboBox.setSelectedIndex(1);
+                break;
+            default:
+                break;
         }
+        image.setText(sprite.getFramesImageName());
 
 
         JButton button = new JButton("OK");
@@ -45,29 +46,11 @@ public class SpriteEditDialog extends JDialog {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Scenery activeScenery = controller.getModel().getActiveScenery();
-                if (comboBox.getSelectedItem().equals("Mob") && sprite instanceof StandingNpc) {
-                    activeScenery.removeSpriteAt(point);
-                    MobNpc newSprite = new MobNpc(sprite.getId(), point, sprite.getFacing());
-                    activeScenery.addSprite(newSprite);
-                    newSprite.setVisible(isVisible.isSelected());
-                    newSprite.setSolid(isSolid.isSelected());
-                    newSprite.setFramesImage(image.getText());
-                } else if (comboBox.getSelectedItem().equals("Npc") && sprite instanceof MobNpc) {
-                    activeScenery.removeSpriteAt(point);
-                    StandingNpc newSprite = new StandingNpc(sprite.getId(), point, sprite.getFacing());
-                    activeScenery.addSprite(newSprite);
-                    newSprite.setVisible(isVisible.isSelected());
-                    newSprite.setSolid(isSolid.isSelected());
-                    newSprite.setFramesImage(image.getText());
-                } else if (sprite instanceof MobNpc) {
-                    sprite.setVisible(isVisible.isSelected());
-                    sprite.setSolid(isSolid.isSelected());
-                    ((MobNpc) sprite).setFramesImage(image.getText());
-                } else {
-                    ((StandingNpc) sprite).setFramesImage(image.getText());
-                }
-
+                String type = (String) comboBox.getSelectedItem();
+                sprite.setType(Sprite.Type.valueOf(type));
+                sprite.setVisible(isVisible.isSelected());
+                sprite.setSolid(isSolid.isSelected());
+                sprite.setFramesImage(image.getText());
                 setVisible(false);
             }
         });

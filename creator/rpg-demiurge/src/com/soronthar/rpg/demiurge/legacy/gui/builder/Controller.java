@@ -3,7 +3,7 @@ package com.soronthar.rpg.demiurge.legacy.gui.builder;
 import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Facing;
-import com.soronthar.rpg.adventure.scenery.objects.actors.MobNpc;
+import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.adventure.tileset.TileSet;
 import com.soronthar.rpg.adventure.tileset.TileSetBag;
@@ -55,7 +55,7 @@ public class Controller {
         } else if (model.isAddSpriteMode()) {
             Scenery activeScenery = model.getActiveScenery();
             int size = activeScenery.getSpriteMap().size();
-            activeScenery.addSprite(new MobNpc("Sprite-" + size, p, Facing.DOWN));
+            activeScenery.addSprite(new Sprite("Sprite-" + size, Sprite.Type.MOB, p, Facing.DOWN));
         } else {
             if (!model.isInSpecialLayer()) {
                 Point point= Point.fromAWT(CoordinateUtil.tileToPoint(p.toAWT(),canvasModel.getCanvasSize()));

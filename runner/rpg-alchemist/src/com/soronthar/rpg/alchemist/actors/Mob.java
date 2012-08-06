@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.soronthar.rpg.Utils;
-import com.soronthar.rpg.adventure.scenery.objects.actors.MobNpc;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.alchemist.RpgAlchemist;
 import com.soronthar.rpg.alchemist.actors.frames.ActorRenderer;
@@ -26,15 +25,30 @@ public class Mob extends Actor {
         this.width= Tile.TILE_SIZE;
         this.height= Tile.TILE_SIZE;
 
+        Color debugColor;
+        switch (sprite.getType()) {
+            case MOB:
+                mover = new MobMovementController(this);
+                debugColor = Color.PINK;
+                break;
+            case NPC:
+                debugColor = Color.PINK;
+                mover = new EmptyMover();
+                break;
+            case HERO:
+                debugColor = Color.BLUE;
+                mover = new EmptyMover();
+                break;
+            default:
+                debugColor = Color.WHITE;
+                mover = new EmptyMover();
+                break;
+        }
+
         if (RpgAlchemist.DEBUG) {
-            this.renderer = new DebugRenderer(Color.PINK, this);
+            this.renderer = new DebugRenderer(debugColor, this);
         } else {
             this.renderer = new MobActorRenderer(sprite.getFramesImageName(), this);
-        }
-        if (sprite instanceof MobNpc) {
-            mover = new MobMovementController(this);
-        } else {
-            mover = new EmptyMover();
         }
     }
 

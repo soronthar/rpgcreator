@@ -6,7 +6,6 @@ import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Facing;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
-import com.soronthar.rpg.adventure.scenery.objects.actors.StandingNpc;
 import com.soronthar.rpg.util.Dimension;
 import com.soronthar.rpg.util.Point;
 import junit.framework.TestCase;
@@ -90,7 +89,7 @@ public class TestSceneryReaderWriter extends TestCase {
         assertNotNull(sprite);
         assertTrue(sprite.isSolid());
         assertTrue(sprite.isVisible());
-        assertTrue(sprite instanceof StandingNpc);
+        assertEquals(Sprite.Type.NPC,sprite.getType());
         assertEquals("miscsprite.png", sprite.getFramesImageName());
         assertEquals(new Point(128, 64), sprite.getLocation());
         assertEquals(Facing.DOWN, sprite.getFacing());
@@ -126,7 +125,7 @@ public class TestSceneryReaderWriter extends TestCase {
             "\"256,224\",\"0,96\"" +
             "]," +
             "\"sprites\":[" +
-            "{\"id\":\"Sprite-0\",\"solid\":\"true\",\"visible\":\"true\",\"type\":\"npc\",\"frames\":\"miscsprite.png\",\"pos\":\"128,64\",\"facing\":\"DOWN\"}" +
+            "{\"id\":\"Sprite-0\",\"solid\":\"true\",\"visible\":\"true\",\"type\":\"NPC\",\"frames\":\"miscsprite.png\",\"pos\":\"128,64\",\"facing\":\"DOWN\"}" +
             "]," +
             "\"jumps\":[" +
             "{\"pos\":\"32,224\",\"target\":\"1336686674947\"}" +

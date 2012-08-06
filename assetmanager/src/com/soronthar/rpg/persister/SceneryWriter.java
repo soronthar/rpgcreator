@@ -6,7 +6,6 @@ import com.soronthar.rpg.adventure.scenery.Layer;
 import com.soronthar.rpg.adventure.scenery.LayersArray;
 import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.adventure.scenery.objects.JumpPoint;
-import com.soronthar.rpg.adventure.scenery.objects.actors.MobNpc;
 import com.soronthar.rpg.adventure.scenery.objects.actors.Sprite;
 import com.soronthar.rpg.adventure.tileset.Tile;
 import com.soronthar.rpg.util.Dimension;
@@ -64,7 +63,7 @@ public class SceneryWriter {
             writeAttribute(jw, "id", sprite.getId());
             writeAttribute(jw, "solid", Boolean.toString(sprite.isSolid()));
             writeAttribute(jw, "visible", Boolean.toString(sprite.isVisible()));
-            writeAttribute(jw, "type", sprite instanceof MobNpc ? "mob" : "npc");
+            writeAttribute(jw, "type", sprite.getType().toString());
             writeAttribute(jw, "frames", sprite.getFramesImageName());
             writeAttribute(jw, "pos", renderPoint(sprite.getLocation()));
             writeAttribute(jw, "facing",sprite.getFacing().toString());
