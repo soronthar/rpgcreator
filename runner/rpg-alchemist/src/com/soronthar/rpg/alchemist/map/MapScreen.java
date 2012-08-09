@@ -45,6 +45,7 @@ public class MapScreen implements Screen {
     private HeroActor heroActor;
     Collection<JumpPoint> jumpPoints=new ArrayList<JumpPoint>();
     private final Project project = new ProjectReader().read(Gdx.files.internal("projects/FirstProject/FirstProject.json").reader());
+    private TextDialog textDialog;
 
     @Override
     public void render(float delta) {
@@ -83,6 +84,7 @@ public class MapScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         stage.setViewport(width, height, false);
+        //TODO: resize the dialog
     }
 
 
@@ -98,11 +100,15 @@ public class MapScreen implements Screen {
         createTextureForScenery(scenery);
         heroActor = new HeroActor(new Hero(scenery.getHeroStartingPoint()));
 
-        int height = Gdx.graphics.getHeight();
-        int width = Gdx.graphics.getWidth();
-        if (stage!=null) stage.clear();
 
-        stage = new Stage(width, height, true);
+        if (stage!=null)  {
+            stage.clear();
+        }   else {
+            int height = Gdx.graphics.getHeight();
+            int width = Gdx.graphics.getWidth();
+            stage = new Stage(width, height, true);
+        }
+
         stage.getCamera().position.set(heroActor.x, heroActor.y, 0);
 
 
@@ -126,6 +132,8 @@ public class MapScreen implements Screen {
         stage.addActor(heroActor);
         stage.addActor(obstaclesGroup);
         stage.addActor(new LayerActor(textureH));
+        textDialog = new TextDialog("123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J123456789A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J");
+        stage.addActor(textDialog);
 
         jumpPoints.clear();
         Collection<JumpPoint> sceneryJumpPoints = scenery.getJumpPoints();
