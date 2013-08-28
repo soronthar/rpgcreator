@@ -17,6 +17,7 @@ public class ActionsManager {
     private AddHeroStartAction addHeroStartAction;
     private AddJumpAction addJumpAction;
     private AddSpriteAction addSpriteAction;
+    private ManageTilesetAction manageTilesetsAction;
 
     public ActionsManager(JFrame parent, DemiurgeController controller) {
         this.newProjectAction = new NewProjectAction(parent, controller);
@@ -29,6 +30,7 @@ public class ActionsManager {
         this.addHeroStartAction = new AddHeroStartAction(controller);
         this.addJumpAction = new AddJumpAction(controller);
         this.addSpriteAction = new AddSpriteAction(controller);
+        this.manageTilesetsAction = new ManageTilesetAction(parent,controller);
         setInitialState();
     }
 
@@ -40,6 +42,7 @@ public class ActionsManager {
         this.addHeroStartAction().setEnabled(false);
         this.addJumpAction().setEnabled(false);
         this.addSpriteAction().setEnabled(false);
+        this.manageTilesetsAction().setEnabled(false);
     }
 
     public void setAllEnabled() {
@@ -50,6 +53,7 @@ public class ActionsManager {
         this.addHeroStartAction().setEnabled(true);
         this.addJumpAction().setEnabled(true);
         this.addSpriteAction().setEnabled(true);
+        this.manageTilesetsAction().setEnabled(true);
 
     }
 
@@ -91,5 +95,9 @@ public class ActionsManager {
 
     public Action addSpriteAction() {
         return addSpriteAction;
+    }
+
+    public Action manageTilesetsAction() {
+        return manageTilesetsAction;
     }
 }

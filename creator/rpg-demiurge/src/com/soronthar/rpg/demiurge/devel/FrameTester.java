@@ -12,7 +12,17 @@ import java.awt.*;
  */
 public class FrameTester extends JFrame {
     private class Content extends JPanel {
-        
+
+        private Content() {
+            setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
+            JList jList = new JList(new String[]{"asda", "asdasd", "asdasd"});
+            JPanel panel=new JPanel();
+            panel.setBackground(Color.lightGray);
+            panel.setSize(256,1024);
+            panel.setPreferredSize(new Dimension(256,1024));
+            this.add(jList);
+            this.add(panel);
+        }
     }
     
     

@@ -42,8 +42,13 @@ public class RpgDemiurge extends JFrame {
             JMenu run = new JMenu("Run");
             run.add(new JMenuItem(actions.runProjectAction()));
 
+            JMenu database = new JMenu("Database");
+            database.add(new JMenuItem(actions.manageTilesetsAction()));
+            
             this.add(project);
             this.add(run);
+            this.add(database);
+
         }
     }
 
