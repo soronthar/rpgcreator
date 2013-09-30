@@ -20,7 +20,7 @@
     <orderEntry type="library" exported="" name="Libdir" level="project" />
     <orderEntry type="library" exported="" name="gdx" level="project" />
     <orderEntry type="module" module-name="util" exported="" />
-    <orderEntry type="module" module-name="assetmanager" />
+    <orderEntry type="module" module-name="assetmanager" exported="" />
   </component>
 </module>
 

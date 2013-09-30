@@ -12,7 +12,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lib/sorontharutil-1.0.jar!/" />
+          <root url="jar://$PARENT-1-PROJECT_LOC$/lib/sorontharutil-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -21,13 +21,13 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lib/junit-3.8.1.jar!/" />
+          <root url="jar://$PARENT-1-PROJECT_LOC$/lib/junit-3.8.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="util" />
+    <orderEntry type="module" module-name="util" exported="" />
   </component>
 </module>
 
