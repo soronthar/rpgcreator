@@ -1,5 +1,6 @@
 package com.soronthar.rpg.util;
 
+
 import org.soronthar.error.ExceptionHandler;
 
 /**

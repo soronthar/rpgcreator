@@ -7,16 +7,16 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lib/sorontharutil-1.0.jar!/" />
+          <root url="jar://$PARENT-1-PROJECT_LOC$/lib/sorontharutil-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="gdx" level="project" />
+    <orderEntry type="library" exported="" name="gdx" level="project" />
   </component>
 </module>
 
