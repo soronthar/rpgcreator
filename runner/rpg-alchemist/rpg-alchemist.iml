@@ -6,7 +6,9 @@
       <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
     </src_description>
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$PARENT-1-PROJECT_LOC$/runner/bin" />
+    <output-test url="file://$PARENT-1-PROJECT_LOC$/out/test/rpg-alchemist" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
@@ -15,11 +17,11 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="1.6" jdkType="JavaSDK" />
-    <orderEntry type="module" module-name="adventure" />
+    <orderEntry type="module" module-name="adventure" exported="" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../lib/sorontharutil-1.0.jar!/" />
+          <root url="jar://$PARENT-1-PROJECT_LOC$/lib/sorontharutil-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -28,7 +30,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../lib/commons-io-1.4.jar!/" />
+          <root url="jar://$PARENT-1-PROJECT_LOC$/lib/commons-io-1.4.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -37,7 +39,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../lib/junit-3.8.1.jar!/" />
+          <root url="jar://$PARENT-1-PROJECT_LOC$/lib/junit-3.8.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -45,7 +47,7 @@
     </orderEntry>
     <orderEntry type="library" exported="" name="gdx" level="project" />
     <orderEntry type="module" module-name="util" exported="" />
-    <orderEntry type="module" module-name="assetmanager" />
+    <orderEntry type="module" module-name="assetmanager" exported="" />
   </component>
 </module>
 
