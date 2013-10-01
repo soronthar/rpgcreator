@@ -11,15 +11,7 @@
     <orderEntry type="module" module-name="adventure" exported="" />
     <orderEntry type="module" module-name="util" exported="" />
     <orderEntry type="library" exported="" name="gdx" level="project" />
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$PARENT-1-PROJECT_LOC$/lib/junit-3.8.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="Libdir" level="project" />
   </component>
 </module>
 

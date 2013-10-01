@@ -23,6 +23,7 @@
     <orderEntry type="library" exported="" name="gdx" level="project" />
     <orderEntry type="library" exported="" name="gdx-backend" level="project" />
     <orderEntry type="module" module-name="util" exported="" />
+    <orderEntry type="library" exported="" name="Libdir" level="project" />
   </component>
 </module>
 
