@@ -3,13 +3,14 @@ package com.soronthar.rpg.demiurge.legacy.gui.builder.actions;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.DemiurgeController;
 
 import javax.swing.*;
-
+//TODO: simplify
 public class ActionsManager {
     private NewProjectAction newProjectAction;
     private LoadProjectAction loadProjectAction;
     private SaveProjectAction saveProjectAction;
     private NewSceneryAction newSceneryAction;
     private RunProjectAction runProjectAction;
+    private ExportProjectAction exportProjectAction;
 
     private ExitAction exitAction;
 
@@ -26,6 +27,7 @@ public class ActionsManager {
         this.newSceneryAction = new NewSceneryAction(controller);
         this.exitAction = new ExitAction(controller);
         this.runProjectAction = new RunProjectAction(controller);
+        this.exportProjectAction = new ExportProjectAction(controller);
         this.addObstacleAction = new AddObstacleAction(controller);
         this.addHeroStartAction = new AddHeroStartAction(controller);
         this.addJumpAction = new AddJumpAction(controller);
@@ -43,6 +45,11 @@ public class ActionsManager {
         this.addJumpAction().setEnabled(false);
         this.addSpriteAction().setEnabled(false);
         this.manageTilesetsAction().setEnabled(false);
+        this.exportProjectAction().setEnabled(false);
+    }
+
+    private Action exportProjectAction() {
+        return exportProjectAction;
     }
 
     public void setAllEnabled() {
@@ -54,6 +61,8 @@ public class ActionsManager {
         this.addJumpAction().setEnabled(true);
         this.addSpriteAction().setEnabled(true);
         this.manageTilesetsAction().setEnabled(true);
+        this.exportProjectAction().setEnabled(true);
+
 
     }
 
@@ -99,5 +108,9 @@ public class ActionsManager {
 
     public Action manageTilesetsAction() {
         return manageTilesetsAction;
+    }
+
+    public Action newExportAction() {
+        return exportProjectAction;
     }
 }

@@ -62,6 +62,10 @@ public class DemiurgeController extends Controller {
         }
     }
 
+    public void exportProject() {
+        new ProjectPersister().export(model.getProject());
+    }
+
     private void clearMap() {
         canvasModel.registerAction(PaintCanvasModel.Action.CLEAR);
     }
@@ -189,6 +193,7 @@ public class DemiurgeController extends Controller {
                 break;
         }
     }
+
 
 
 }
