@@ -9,7 +9,7 @@ import com.soronthar.rpg.demiurge.components.paint.PaintCanvasModel;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.actions.ActionsManager;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.paint.Palette;
 import com.soronthar.rpg.demiurge.legacy.gui.builder.components.scenery.SceneryTree;
-import com.soronthar.rpg.persister.ProjectPersister;
+import com.soronthar.rpg.demiurge.persister.ProjectPersister;
 import com.soronthar.rpg.util.Point;
 import org.soronthar.error.TechnicalException;
 

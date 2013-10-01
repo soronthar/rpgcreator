@@ -1,17 +1,24 @@
-package com.soronthar.rpg.persister;
+package com.soronthar.rpg.demiurge.persister;
 
 import com.soronthar.rpg.adventure.project.Project;
 import com.soronthar.rpg.adventure.scenery.Scenery;
 import com.soronthar.rpg.adventure.scenery.SceneryBag;
+import com.soronthar.rpg.demiurge.Configuration;
+import com.soronthar.rpg.persister.ProjectReader;
+import com.soronthar.rpg.persister.ProjectWriter;
+import com.soronthar.rpg.persister.SceneryReader;
+import com.soronthar.rpg.persister.SceneryWriter;
 import org.soronthar.error.ExceptionHandler;
 
 import java.io.*;
 
 public class ProjectPersister {
-    
+
+
     public void createNewProject(String name) {
         try {
-            File projectDir=new File("projects/"+name);
+
+            File projectDir= getProjectDir(name);
             projectDir.mkdirs();
 
             File projectFile=new File(projectDir,name+".json");
@@ -30,7 +37,7 @@ public class ProjectPersister {
     private static final String EMPTY_PROJECT="{\"name\":\"name\",\"tilesets\":{},\"sceneries\":[]}";
 
     public Project load(String projectName) {
-        File projectDir=new File("resources/projects/"+projectName);
+        File projectDir= getProjectDir(projectName);
         File projectFile=new File(projectDir,projectName+".json");
 
         ProjectReader projectReader=new ProjectReader();
@@ -57,9 +64,13 @@ public class ProjectPersister {
         return project;
     }
 
+    private File getProjectDir(String projectName) {
+        return new File(Configuration.getProperty("project.src.path"),projectName);
+    }
+
     public void save(Project project) {
         String projectName=project.getName();
-        File projectDir=new File("resources/projects/"+projectName);
+        File projectDir=getProjectDir(projectName);
         File projectFile=new File(projectDir,projectName+".json");
 
         if (!projectDir.exists()) {

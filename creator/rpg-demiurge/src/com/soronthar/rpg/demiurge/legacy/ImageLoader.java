@@ -14,7 +14,7 @@ public class ImageLoader {
             return new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
         }
     };
-    private final File resourceDirectory = new File("resources/");
+    private final File resourceDirectory = new File("assets/");
 
     public BufferedImage load(String fileName) {
         BufferedImage image;
