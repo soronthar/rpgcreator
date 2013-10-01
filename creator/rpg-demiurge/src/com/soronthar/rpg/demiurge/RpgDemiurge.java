@@ -37,6 +37,8 @@ public class RpgDemiurge extends JFrame {
             project.add(new JMenuItem(actions.saveProjectAction()));
             project.add(new JMenuItem(actions.newSceneryAction()));
             project.addSeparator();
+            project.add(new JMenuItem(actions.newExportAction()));
+            project.addSeparator();
             project.add(new JMenuItem(actions.exitAction()));
 
             JMenu run = new JMenu("Run");

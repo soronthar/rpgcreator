@@ -5,7 +5,7 @@ import com.soronthar.rpg.alchemist.map.MapScreen;
 
 public class RpgAlchemist extends Game {
 
-    public static final boolean DEBUG=Boolean.valueOf(System.getProperty("debug.mode","false"));
+    public static final boolean DEBUG=Boolean.valueOf(System.getProperty("debug.mode","true"));
 
     @Override
     public void create() {

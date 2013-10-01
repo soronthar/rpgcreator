@@ -11,7 +11,7 @@
     </src_description>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$PARENT-1-PROJECT_LOC$/runner/bin" />
+    <output url="file://$PARENT-1-PROJECT_LOC$/runner/rpg-alchemist/bin" />
     <output-test url="file://$PARENT-1-PROJECT_LOC$/out/test/rpg-alchemist-desktop" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
