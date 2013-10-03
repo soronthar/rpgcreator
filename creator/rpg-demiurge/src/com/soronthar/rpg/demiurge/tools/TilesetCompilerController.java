@@ -17,7 +17,8 @@ public class TilesetCompilerController extends Controller {
     }
 
     public TileSetBag loadTilesets() {
-        File dir = new ImageLoader().getDirectoryFor("tilesets");
+        ImageLoader imageLoader = new ImageLoader();
+        File dir = imageLoader.getDirectoryFor("tilesets");
 
         BufferedImage image;
 
@@ -29,7 +30,7 @@ public class TilesetCompilerController extends Controller {
         });
 
         for (File tilesetFile : tilesetFiles) {
-            image = new ImageLoader().load("tilesets/" + tilesetFile.getName());
+            image = imageLoader.load("tilesets/" + tilesetFile.getName());
             TileSet tileSet = new TileSet(tilesetFile.getName(), tilesetFile.getName(),image);
             model.getTilesets().put(tileSet);
         }
