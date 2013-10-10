@@ -1,4 +1,4 @@
-package com.soronthar.rpg.demiurge.tools;
+package com.soronthar.rpg.demiurge.tools.tilesetbuilder;
 
 import com.soronthar.rpg.demiurge.legacy.gui.builder.Model;
 import org.soronthar.error.TechnicalException;

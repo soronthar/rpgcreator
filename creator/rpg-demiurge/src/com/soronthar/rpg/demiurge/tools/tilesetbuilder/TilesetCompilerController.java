@@ -1,4 +1,4 @@
-package com.soronthar.rpg.demiurge.tools;
+package com.soronthar.rpg.demiurge.tools.tilesetbuilder;
 
 import com.soronthar.rpg.adventure.tileset.TileSet;
 import com.soronthar.rpg.adventure.tileset.TileSetBag;

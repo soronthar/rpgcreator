@@ -102,4 +102,8 @@ public class ProjectPersister {
             ExceptionHandler.handleException(e);
         }
     }
+
+    public void export(Project project) {
+        //To change body of created methods use File | Settings | File Templates.
+    }
 }

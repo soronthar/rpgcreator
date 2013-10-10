@@ -1,4 +1,4 @@
-package com.soronthar.rpg.demiurge.tools;
+package com.soronthar.rpg.demiurge.tools.tilesetbuilder;
 
 import com.soronthar.rpg.Utils;
 import com.soronthar.rpg.adventure.tileset.Tile;
@@ -42,7 +42,7 @@ public class TilesetCompilerGUI extends JSplitPane {
                 controller.setDrawingPen((Tile) evt.getNewValue());
             }
         });
-        tilesetsPanel.setTabPlacement(JTabbedPane.TOP);
+//        tilesetsPanel.setTabPlacement(JTabbedPane.TOP);
         addComponentsToPanel();
     }
 

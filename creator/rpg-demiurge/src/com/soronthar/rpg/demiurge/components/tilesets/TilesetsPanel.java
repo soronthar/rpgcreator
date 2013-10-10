@@ -7,7 +7,10 @@ import com.soronthar.rpg.adventure.tileset.TileSetBag;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
+import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -16,17 +19,19 @@ import static com.soronthar.rpg.demiurge.CoordinateUtil.normalizePointToTile;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-public class TilesetsPanel extends JTabbedPane {
+public class TilesetsPanel extends JPanel {
     public static final String TILE = "tile";
-    TilesetsModel model;
+    private TilesetsModel model;
+    private JComboBox tilesetList = new JComboBox(new DefaultComboBoxModel());
 
     public TilesetsPanel(TilesetsModel model) {
         this.model = model;
-        this.setTabPlacement(JTabbedPane.BOTTOM);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
         this.setMinimumSize(Utils.getScaledTileDimension(12, 8).addPadding(23, 49).toAWT());
         this.setMaximumSize(Utils.getScaledTileDimension(12, 12).addPadding(23, 49).toAWT());
         this.setPreferredSize(Utils.getScaledTileDimension(12, 12).addPadding(23, 49).toAWT());
-
+        this.add(tilesetList);
         setTileSets(model.getTileSets());
         this.model.addChangeListener(TilesetsModel.ALL_TILESETS, new PropertyChangeListener() {
             @Override
@@ -34,29 +39,54 @@ public class TilesetsPanel extends JTabbedPane {
                 setTileSets(TilesetsPanel.this.model.getTileSets());
             }
         });
-    }
+        final TilePanel tilePanelForSet = createTilePanelForSet();
 
-    public TilesetsPanel() {
-        this(new TilesetsModel());
+        tilesetList.setRenderer(new BasicComboBoxRenderer() {
+
+            @Override
+            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                TileSet tileSet = (TileSet) value;
+
+                return super.getListCellRendererComponent(list, (tileSet != null ? tileSet.getName() : null), index, isSelected, cellHasFocus);
+            }
+        });
+        tilesetList.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JComboBox cb = (JComboBox) e.getSource();
+                TileSet tileSet = (TileSet) cb.getSelectedItem();
+
+                if (tileSet != null) {
+                    tilePanelForSet.setTileset(tileSet);
+                }
+                revalidate();
+            }
+        });
+        tilesetList.setPreferredSize(new Dimension(150,25));
+        tilesetList.setMaximumSize(new Dimension(1024,25));
+        this.add(tilesetList);
+
+        JScrollPane jScrollPane = new JScrollPane(tilePanelForSet);
+
+        jScrollPane.setEnabled(false);
+        this.add(jScrollPane);
+
     }
 
 
     public void setTileSets(TileSetBag tilesets) {
-        this.removeAll();
+        DefaultComboBoxModel defaultComboBoxModel = (DefaultComboBoxModel) tilesetList.getModel();
+        defaultComboBoxModel.removeAllElements();
+
         for (TileSet tileset : tilesets) {
-            addTilesetTab(tileset);
+            defaultComboBoxModel.addElement(tileset);
         }
+
         revalidate();
     }
 
-    private void addTilesetTab(TileSet tileSet) {
-        JScrollPane jScrollPane = new JScrollPane(createTilePanelForSet(tileSet));
-        this.addTab(Integer.toString(this.getTabCount()), null, jScrollPane, tileSet.getName());
-        this.revalidate();
-    }
-
-    private TilePanel createTilePanelForSet(TileSet tileSet) {
-        TilePanel panel = new TilePanel(tileSet.getName(), tileSet.image());
+    private TilePanel createTilePanelForSet() {
+        TilePanel panel = new TilePanel();
         MyMouseInputAdapter mouseInputAdapter = new MyMouseInputAdapter(panel);
         panel.addMouseListener(mouseInputAdapter);
         panel.addMouseMotionListener(mouseInputAdapter);
@@ -79,6 +109,7 @@ public class TilesetsPanel extends JTabbedPane {
 
         @Override
         public void mousePressed(MouseEvent e) {
+            if (!this.tilePanel.isEnabled()) return;
             startPoint = normalizePointToTile(e.getPoint());
             topLeft = startPoint;
             lastPoint = startPoint;
@@ -88,7 +119,9 @@ public class TilesetsPanel extends JTabbedPane {
 
         @Override
         public void mouseDragged(MouseEvent e) {
-            Point point =  normalizePointToTile(e.getPoint());
+            if (!this.tilePanel.isEnabled()) return;
+
+            Point point = normalizePointToTile(e.getPoint());
             if (this.lastPoint.equals(point)) return;
 
             this.lastPoint = point;
@@ -98,14 +131,15 @@ public class TilesetsPanel extends JTabbedPane {
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            Point point =  normalizePointToTile(e.getPoint());
+            if (!this.tilePanel.isEnabled()) return;
+            Point point = normalizePointToTile(e.getPoint());
             if (point.x >= this.tilePanel.getWidth() || point.y >= this.tilePanel.getHeight()) return;
 
             calculateNewSelection(this.startPoint, point);
             Tile tile = new Tile(tilePanel.getName(), topLeft, dimension);
 
             this.tilePanel.selectTileAt(topLeft, dimension);
-            TilesetsPanel.this.firePropertyChange(TILE,null,tile);
+            TilesetsPanel.this.firePropertyChange(TILE, null, tile);
 
             startPoint = null;
             topLeft = null;
